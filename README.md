@@ -5,6 +5,7 @@ Welcome to Codepedia! This project is a comprehensive collection of coding knowl
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Showcase](#showcase)
 - [Getting Started](#getting-started)
 - [Contributing](#contributing)
 - [License](#license)
@@ -12,6 +13,14 @@ Welcome to Codepedia! This project is a comprehensive collection of coding knowl
 ## Introduction
 
 Codepedia aims to be a one-stop resource for developers of all levels to find valuable information and improve their coding skills.
+
+## Showcase
+
+Here are some images and videos showcasing Codepedia:
+![Alt text](Config/Resources/showcase_vid.mp4)
+![Picture](Config/Resources/showcase_pic01.png)
+![Picture 2](Config/Resources/showcase_pic02.png)
+![Picture 3](Config/Resources/showcase_pic03.png)
 
 ## Getting Started
 

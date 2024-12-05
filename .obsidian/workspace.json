@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Content/Development/C/K&R/0. INTRODUCTION.md",
-                "mode": "source",
+                "file": "Content/Development/C/K&R/1.3 The For Statement.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "0. INTRODUCTION"
+              "title": "1.3 The For Statement"
             }
           }
         ]
@@ -141,9 +141,17 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "LICENSE",
+    "Config/Resources/showcase_pic03.png",
+    "Config/Resources/showcase_pic02.png",
+    "Config/Resources/showcase_pic01.png",
+    "Config/Resources/showcase_vid.mp4",
+    "Content/Development/C/K&R/1.2 Variables and Arithmetic.md",
+    "Content/Development/C/K&R/1.1 Getting Started.md",
+    "Content/Development/C/K&R/0. INTRODUCTION.md",
     "Content/Development/C/Welcome to C.md",
     "Development.md",
-    "Home.md"
+    "Gaming.md",
+    "Home.md",
+    "LICENSE"
   ]
 }
