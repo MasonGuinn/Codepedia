@@ -18,7 +18,7 @@ Codepedia aims to be a one-stop resource for developers of all levels to find va
 To get started with Codepedia, clone the repository and explore the various sections:
 
 ```bash
-git clone https://github.com/yourusername/codepedia.git
+git clone https://github.com/masonguinn/codepedia.git
 cd codepedia
 ```
 
@@ -28,4 +28,4 @@ We welcome contributions from the community. Please read our [contributing guide
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the GNU GENERAL PUBLIC LICENSE. See the [LICENSE](LICENSE) file for more details.
