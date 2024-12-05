@@ -1,0 +1,180 @@
+/* By Mason Guinn */
+
+
+/* Targeting default obsidian and plugins */
+
+/* VERY OPTIONAL: Make Header Collapsible icon always visible */
+.cm-fold-indicator .collapse-indicator,
+.cm-gutterElement .collapse-indicator,
+.collapse-indicator,
+.fold-gutter,
+.markdown-source-view.mod-cm6 .cm-fold-indicator .collapse-indicator {
+    opacity: 100;
+}
+
+/* Global Navigation Drop-Down Menu (LIGHT-MODE) */
+.theme-light>div.menu.note-toolbar-menu,
+.theme-light>div.menu {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    border-width: 0;
+
+}
+
+/* Global Navigation Drop-Down Menu (DARK-MODE) */
+.theme-dark>div.menu.note-toolbar-menu,
+.theme-dark>div.menu {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #dbcfcf 0 -3px 0 inset;
+    border-width: 0;
+}
+
+/* Global Navigation Buttons */
+#\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span {
+    align-items: center;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    font-family: "JetBrains Mono", monospace;
+    height: 48px;
+    line-height: 1;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+}
+
+/* Global Navigation Buttons [Normal-State] (LIGHT-MODE) */
+.theme-light #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span {
+    background-color: #FCFCFD;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    color: #36395A;
+}
+
+/* Global Navigation Buttons [Normal-State] (DARK-MODE) */
+.theme-dark #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span {
+    background-color: #333;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #665e5e 0 -3px 0 inset;
+    color: #FCFCFD;
+}
+
+/* Global Navigation Buttons [Hover-State] (LIGHT-MODE) */
+.theme-light #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span:hover {
+    box-shadow: rgba(35, 47, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-4px);
+    transition: transform 0.80s ease-out, box-shadow 0.80s ease-out;
+}
+
+/* Global Navigation Buttons [Hover-State] (DARK-MODE) */
+.theme-dark #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span:hover {
+    box-shadow: rgba(142, 150, 163, 0.4) 0 4px 8px, rgba(121, 112, 139, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-4px);
+    transition: transform 0.80s ease-out;
+}
+
+/* Global Navigation Buttons [Active-State] (LIGHT-MODE) */
+.theme-light #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(4px);
+    transition: transform .05s ease, box-shadow 0.15s ease;
+}
+
+/* Global Navigation Buttons [Active-State] (DARK-MODE) */
+.theme-dark #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span:active {
+    box-shadow: #60606b 0 3px 7px inset;
+    transform: translateY(4px);
+    transition: transform .05s ease, box-shadow 0.15s ease;
+}
+
+/* Global Navigation Buttons [Focused-State] (LIGHT-MODE) */
+.theme-light #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+/* Global Navigation Buttons [Focused-State] (DARK-MODE) */
+.theme-dark #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span:focus {
+    box-shadow: #3d3d44 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #323236 0 -3px 0 inset;
+}
+
+/* Targeting own html, using my own classes */
+
+/* Title Headers */
+.inline-title {
+    text-align: center;
+    border-radius: 15px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+/* Title Headers (LIGHT-MODE) */
+.theme-light .inline-title {
+    color: #36395A;
+    background-color: white;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+/* Title Headers (DARK-MODE) */
+.theme-dark .inline-title {
+    color: #E1E1E1;
+    background-color: #333;
+    box-shadow: rgba(255, 255, 255, 0.2) 0 2px 4px, rgba(255, 255, 255, 0.3) 0 7px 13px -3px, #444 0 -3px 0 inset;
+}
+
+/* Get rid of that annoying gray list-bullet that shows on html made buttons */
+.content-menu .list-bullet {
+    display: none;
+}
+
+/* Fix the spacing */
+.content-menu h2 {
+    margin-block-end: 10px;
+}
+
+.content-menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    align-items: stretch;
+}
+
+.content-menu ul li {
+    margin: 5px 5px;
+    flex: 1 0 30%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Button Styling for .content-menu class */
+.content-menu ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #9c5812;
+    border: 1px solid #555;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.content-menu ul li a:hover {
+    background-color: #FFA500;
+}
+
+.content-menu ul li a span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

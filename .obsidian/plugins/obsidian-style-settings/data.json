@@ -1,0 +1,9 @@
+{
+  "minimal-style@@hide-help": true,
+  "minimal-style@@tabs-style": "tabs-default",
+  "minimal-style@@file-header-visibility": "minimal-tab-title-hover",
+  "minimal-style@@inline-title-size": "1.925em",
+  "minimal-style@@metadata-heading-off": false,
+  "minimal-advanced@@styled-scrollbars": false,
+  "minimal-advanced@@cursor": "default"
+}

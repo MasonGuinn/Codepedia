@@ -1,0 +1,14 @@
+{
+	"id": "wikipedia-search",
+	"name": "Wikipedia Search",
+	"version": "2.6.0",
+	"minAppVersion": "0.15.0",
+	"description": "Search, link and open Wikipedia/Wiki articles, all within the app!",
+	"author": "StrangeGirlMurph",
+	"authorUrl": "https://github.com/StrangeGirlMurph/",
+	"fundingUrl": {
+		"Ko-fi": "https://ko-fi.com/murph",
+		"GitHub Sponsor": "https://github.com/sponsors/StrangeGirlMurph"
+	},
+	"isDesktopOnly": false
+}
