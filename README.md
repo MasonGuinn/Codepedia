@@ -17,7 +17,6 @@ Codepedia aims to be a one-stop resource for developers of all levels to find va
 ## Showcase
 
 Here are some images and videos showcasing Codepedia:
-![Alt text](Config/Resources/showcase_vid.mp4)
 ![Picture](Config/Resources/showcase_pic01.png)
 ![Picture 2](Config/Resources/showcase_pic02.png)
 ![Picture 3](Config/Resources/showcase_pic03.png)
