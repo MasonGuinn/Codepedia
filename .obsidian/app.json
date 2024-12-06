@@ -1,5 +1,6 @@
 {
   "showRibbon": true,
   "defaultViewMode": "preview",
-  "propertiesInDocument": "visible"
+  "propertiesInDocument": "visible",
+  "alwaysUpdateLinks": true
 }

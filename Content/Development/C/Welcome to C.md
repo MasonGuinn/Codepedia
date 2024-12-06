@@ -1,12 +1,11 @@
-
 ## K&C Book
 <div class="content-menu">
   <!-- CHAPTER 0 -->
   <h2>CHAPTER 0: INTRODUCTION</h2>
   <ul>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Content/Development/C/K%26R/0. INTRODUCTION">
-        <span>0. INTRODUCTION</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/0. Introduction">
+        <span>0. Introduction</span>
       </a>
     </li>
   </ul>
@@ -14,62 +13,58 @@
   <h2>CHAPTER 1: A TUTORIAL INTRODUCTION</h2>
   <ul>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/1. Getting Started">
-        <span>1. GETTING STARTED</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.1 Getting Started">
+        <span>1.1 Getting Started</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/2. Variables and Arithmetic">
-        <span>2. VARIABLES AND ARITHMETIC</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.2 Variables and Arithmetic">
+        <span>1.2 Variables and Arithmetic</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/3. The For Statement">
-        <span>3. THE FOR STATEMENT</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.3 The For Statement">
+        <span>1.3 The For Statement</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4. Symbolic Constants">
-        <span>4. SYMBOLIC CONSTANTS</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.4 Symbolic Constants">
+        <span>1.4 Symbolic Constants</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/5. A Collection of Useful Programs"
-      >
-        <span>5. A COLLECTION OF USEFUL PROGRAMS</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.5 A Collection of Useful Programs">
+        <span>1.5 A Collection of Useful Programs</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/6. Arrays">
-        <span>6. ARRAYS</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.6 Arrays">
+        <span>1.6 Arrays</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/7. Functions">
-        <span>7. FUNCTIONS</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.7 Functions">
+        <span>1.7 Functions</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/8. Arguments - Call by Value">
-        <span>8. ARGUMENTS - CALL BY VALUE</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.8 Arguments - Call by Value">
+        <span>1.8 Arguments - Call by Value</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/9. Character Arrays">
-        <span>9. CHARACTER ARRAYS</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.9 Character Arrays">
+        <span>1.9 Character Arrays</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/10. Scope; External Variables"
-      >
-        <span>10. SCOPE; EXTERNAL VARIABLES</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.10 Scope; External Variables">
+        <span>1.10 Scope; External Variables</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/11. Summary">
-        <span>11. SUMMARY</span>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.11 Summary">
+        <span>1.11 Summary</span>
       </a>
     </li>
   </ul>
@@ -77,72 +72,62 @@
   <h2>CHAPTER 2: TYPES, OPERATORS AND EXPRESSIONS</h2>
   <ul>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/2.1 Variable Names">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.1 Variable Names">
         <span>2.1 Variable Names</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/2.2 Data Types and Sizes">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.2 Data Types and Sizes">
         <span>2.2 Data Types and Sizes</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/2.3 Constants">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.3 Constants">
         <span>2.3 Constants</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/2.4 Declarations">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.4 Declarations">
         <span>2.4 Declarations</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/2.5 Arithmetic Operators">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.5 Arithmetic Operators">
         <span>2.5 Arithmetic Operators</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/2.6 Relational and Logical Operators"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.6 Relational and Logical Operators">
         <span>2.6 Relational and Logical Operators</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/2.7 Type Conversions">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.7 Type Conversions">
         <span>2.7 Type Conversions</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/2.8 Increment and Decrement Operators"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.8 Increment and Decrement Operators">
         <span>2.8 Increment and Decrement Operators</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/2.9 Bitwise Logical Operators"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.9 Bitwise Logical Operators">
         <span>2.9 Bitwise Logical Operators</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/2.10 Assignment Operators and Expressions"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.10 Assignment Operators and Expressions">
         <span>2.10 Assignment Operators and Expressions</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/2.11 Conditional Expressions">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.11 Conditional Expressions">
         <span>2.11 Conditional Expressions</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/2.12 Precedence and Order of Evaluation"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/2.12 Precedence and Order of Evaluation">
         <span>2.12 Precedence and Order of Evaluation</span>
       </a>
     </li>
@@ -151,47 +136,47 @@
   <h2>CHAPTER 3: CONTROL FLOW</h2>
   <ul>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/3.1 Statements and Blocks">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/3.1 Statements and Blocks">
         <span>3.1 Statements and Blocks</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/3.2 If-Else">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/3.2 If-Else">
         <span>3.2 If-Else</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/3.3 Else-If">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/3.3 Else-If">
         <span>3.3 Else-If</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/3.4 Switch">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/3.4 Switch">
         <span>3.4 Switch</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/3.5 Loops - While and For">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/3.5 Loops - While and For">
         <span>3.5 Loops - While and For</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/3.6 Loops - Do-while">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/3.6 Loops - Do-while">
         <span>3.6 Loops - Do-while</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/3.7 Break">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/3.7 Break">
         <span>3.7 Break</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/3.8 Continue">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/3.8 Continue">
         <span>3.8 Continue</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/3.9 Goto's and Labels">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/3.9 Goto's and Labels">
         <span>3.9 Goto's and Labels</span>
       </a>
     </li>
@@ -200,71 +185,67 @@
   <h2>CHAPTER 4: FUNCTIONS AND PROGRAM STRUCTURE</h2>
   <ul>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.1 Basics">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.1 Basics">
         <span>4.1 Basics</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/4.2 Functions Returning Non-Integers"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.2 Functions Returning Non-Integers">
         <span>4.2 Functions Returning Non-Integers</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/4.3 More on Function Arguments"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.3 More on Function Arguments">
         <span>4.3 More on Function Arguments</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.4 External Variables">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.4 External Variables">
         <span>4.4 External Variables</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.5 Scope Rules">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.5 Scope Rules">
         <span>4.5 Scope Rules</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.6 Static Variables">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.6 Static Variables">
         <span>4.6 Static Variables</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.7 Register Variables">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.7 Register Variables">
         <span>4.7 Register Variables</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.8 Block Structure">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.8 Block Structure">
         <span>4.8 Block Structure</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.9 Initialization">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.9 Initialization">
         <span>4.9 Initialization</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.10 Recursion">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.10 Recursion">
         <span>4.10 Recursion</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.11 The C Preprocessor">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/4.11 The C Preprocessor">
         <span>4.11 The C Preprocessor</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.11 File Inclusion">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/File Inclusion">
         <span>File Inclusion</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/4.11 Macro Substitution">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/Macro Substitution">
         <span>Macro Substitution</span>
       </a>
     </li>
@@ -273,74 +254,62 @@
   <h2>CHAPTER 5: POINTERS AND ARRAYS</h2>
   <ul>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/5.1 Pointers and Addresses">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.1 Pointers and Addresses">
         <span>5.1 Pointers and Addresses</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/5.2 Pointers and Function Arguments"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.2 Pointers and Function Arguments">
         <span>5.2 Pointers and Function Arguments</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/5.3 Pointers and Arrays">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.3 Pointers and Arrays">
         <span>5.3 Pointers and Arrays</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/5.4 Address Arithmetic">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.4 Address Arithmetic">
         <span>5.4 Address Arithmetic</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/5.5 Character Pointers and Functions"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.5 Character Pointers and Functions">
         <span>5.5 Character Pointers and Functions</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/5.6 Pointers are not Integers"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.6 Pointers are not Integers">
         <span>5.6 Pointers are not Integers</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/5.7 Multi-Dimensional Arrays">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.7 Multi-Dimensional Arrays">
         <span>5.7 Multi-Dimensional Arrays</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/5.8 Pointer Arrays; Pointers to Pointers"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.8 Pointer Arrays; Pointers to Pointers">
         <span>5.8 Pointer Arrays; Pointers to Pointers</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/5.9 Initialization of Pointer Arrays"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.9 Initialization of Pointer Arrays">
         <span>5.9 Initialization of Pointer Arrays</span>
       </a>
     </li>
     <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/5.10 Pointers vs. Multi-dimensional Arrays"
-      >
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.10 Pointers vs. Multi-dimensional Arrays">
         <span>5.10 Pointers vs. Multi-dimensional Arrays</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/5.11 Command-line Arguments">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.11 Command-line Arguments">
         <span>5.11 Command-line Arguments</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/5.12 Pointers to Functions">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/5.12 Pointers to Functions">
         <span>5.12 Pointers to Functions</span>
       </a>
     </li>
@@ -349,175 +318,137 @@
   <h2>CHAPTER 6: STRUCTURES</h2>
   <ul>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/6.1 Basics">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/6.1 Basics">
         <span>6.1 Basics</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/6.2 Structures and Functions">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/6.2 Structures and Functions">
         <span>6.2 Structures and Functions</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Vault&file=C/6.3 Arrays of Structures">
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/6.3 Arrays of Structures">
         <span>6.3 Arrays of Structures</span>
       </a>
-    </li>
-    <li>
-      <a href="obsidian://open?vault=Vault&file=C/6.4 Pointers to Structures">
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/6.4 Pointers to Structures">
         <span>6.4 Pointers to Structures</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/6.5 Self-referential Structures"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/6.5 Self-referential Structures">
         <span>6.5 Self-referential Structures</span>
       </a>
-    </li>
-    <li>
-      <a href="obsidian://open?vault=Vault&file=C/6.6 Table Lookup">
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/6.6 Table Lookup">
         <span>6.6 Table Lookup</span>
       </a>
-    </li>
-    <li>
-      <a href="obsidian://open?vault=Vault&file=C/6.7 Fields">
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/6.7 Fields">
         <span>6.7 Fields</span>
       </a>
-    </li>
-    <li>
-      <a href="obsidian://open?vault=Vault&file=C/6.8 Unions">
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/6.8 Unions">
         <span>6.8 Unions</span>
       </a>
-    </li>
-    <li>
-      <a href="obsidian://open?vault=Vault&file=C/6.9 Typedef">
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/6.9 Typedef">
         <span>6.9 Typedef</span>
       </a>
-    </li>
-  </ul>
-  <!-- CHAPTER 7 -->
-  <h2>CHAPTER 7: INPUT AND OUTPUT</h2>
-  <ul>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/7.1 Access to the Standard Library"
-      >
+        </li>
+      </ul>
+      <!-- CHAPTER 7 -->
+      <h2>CHAPTER 7: INPUT AND OUTPUT</h2>
+      <ul>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/7.1 Access to the Standard Library">
         <span>7.1 Access to the Standard Library</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/7.2 Standard Input and Output - Getchar and Putchar"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/7.2 Standard Input and Output - Getchar and Putchar">
         <span>7.2 Standard Input and Output - Getchar and Putchar</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/7.3 Formatted Output - Printf"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/7.3 Formatted Output - Printf">
         <span>7.3 Formatted Output - Printf</span>
       </a>
-    </li>
-    <li>
-      <a href="obsidian://open?vault=Vault&file=C/7.4 Formatted Input - Scanf">
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/7.4 Formatted Input - Scanf">
         <span>7.4 Formatted Input - Scanf</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/7.5 In-memory Format Conversion"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/7.5 In-memory Format Conversion">
         <span>7.5 In-memory Format Conversion</span>
       </a>
-    </li>
-    <li>
-      <a href="obsidian://open?vault=Vault&file=C/7.6 File Access">
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/7.6 File Access">
         <span>7.6 File Access</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/7.7 Error Handling - Stderr and Exit"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/7.7 Error Handling - Stderr and Exit">
         <span>7.7 Error Handling - Stderr and Exit</span>
       </a>
-    </li>
-    <li>
-      <a href="obsidian://open?vault=Vault&file=C/7.8 Line Input and Output">
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/7.8 Line Input and Output">
         <span>7.8 Line Input and Output</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/7.9 Some Miscellaneous Functions"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/7.9 Some Miscellaneous Functions">
         <span>7.9 Some Miscellaneous Functions</span>
       </a>
-    </li>
-  </ul>
-  <!-- CHAPTER 8 -->
-  <h2>CHAPTER 8: THE UNIX SYSTEM INTERFACE</h2>
-  <ul>
-    <li>
-      <a href="obsidian://open?vault=Vault&file=C/8.1 File Descriptors">
+        </li>
+      </ul>
+      <!-- CHAPTER 8 -->
+      <h2>CHAPTER 8: THE UNIX SYSTEM INTERFACE</h2>
+      <ul>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/8.1 File Descriptors">
         <span>8.1 File Descriptors</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/8.2 Low Level I/O - Read and Write"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/8.2 Low Level I/O - Read and Write">
         <span>8.2 Low Level I/O - Read and Write</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/8.3 Open, Creat, Close, Unlink"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/8.3 Open, Creat, Close, Unlink">
         <span>8.3 Open, Creat, Close, Unlink</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/8.4 Random Access - Seek and Lseek"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/8.4 Random Access - Seek and Lseek">
         <span>8.4 Random Access - Seek and Lseek</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/8.5 Example - An Implementation of Fopen and Getc"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/8.5 Example - An Implementation of Fopen and Getc">
         <span>8.5 Example - An Implementation of Fopen and Getc</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/8.6 Example - Listing Directories"
-      >
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/8.6 Example - Listing Directories">
         <span>8.6 Example - Listing Directories</span>
       </a>
-    </li>
-    <li>
-      <a
-        href="obsidian://open?vault=Vault&file=C/8.7 A Storage Allocator"
-      >
-        <span>8.7 A Storage Allocator</span>
+        </li>
+        <li>
+      <a href="obsidian://open?vault=Codepedia&file=K%26R/8.7 Example - A Storage Allocator">
+        <span>8.7 Example - A Storage Allocator</span>
       </a>
-    </li>
-    <li>
-      <a href="obsidian://open?vault=Vault&file=C/Whats next?">
-        <span>Whats next?</span>
-      </a>
-    </li>
-  </ul>
-</div>
-
-## Useful Links: 
-(Press **Ctrl** to open <u>external browser</u> or <u>Tab</u>)
-1. [C data types](https://en.wikipedia.org/wiki/C_data_types)
-2. [Learn C](https://www.youtube.com/watch?v=PaPN51Mm5qQ)
-3. [[Welcome to Computer Science]]
-4. asd
+        </li>
+      </ul>
+    </div>

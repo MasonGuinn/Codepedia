@@ -623,6 +623,44 @@
               }
             }
           }
+        },
+        {
+          "uuid": "d72b8c72-2f0e-46f1-bb62-178add54eb2a",
+          "label": "Version Control",
+          "icon": "",
+          "link": "Content/Development/Version Control/Welcome to Version Control.md",
+          "linkAttr": {
+            "commandId": "",
+            "hasVars": false,
+            "type": "file"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
         }
       ],
       "mobileStyles": [],
@@ -644,7 +682,7 @@
           }
         }
       },
-      "updated": "2024-12-04T07:55:15.761Z"
+      "updated": "2024-12-05T23:34:02.349Z"
     },
     {
       "uuid": "39cd58d5-5fe8-4715-bcad-20831a7af34f",
@@ -1751,7 +1789,8 @@
         "button",
         "center",
         "wide",
-        "border"
+        "border",
+        "between"
       ],
       "items": [
         {
@@ -2019,6 +2058,82 @@
               }
             }
           }
+        },
+        {
+          "uuid": "57e34a42-eef9-4304-9a36-ecacb97eb5ff",
+          "label": "",
+          "icon": "",
+          "link": "",
+          "linkAttr": {
+            "commandId": "",
+            "hasVars": false,
+            "type": "break"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "uuid": "3308e044-dd50-4ea3-a0a9-53f3ee5a9d92",
+          "label": "",
+          "icon": "",
+          "link": "33f636ef-918a-47ab-9466-d94cfe0e781c",
+          "linkAttr": {
+            "commandId": "",
+            "hasVars": false,
+            "type": "group"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
         }
       ],
       "mobileStyles": [],
@@ -2040,7 +2155,7 @@
           }
         }
       },
-      "updated": "2024-12-04T07:07:42.080Z"
+      "updated": "2024-12-06T02:10:42.429Z"
     },
     {
       "uuid": "a4ca80eb-6f11-40e5-b9b2-a1860e1f93e9",
