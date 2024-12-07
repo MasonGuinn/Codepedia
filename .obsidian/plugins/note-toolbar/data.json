@@ -13,6 +13,7 @@
   ],
   "icon": "circle-ellipsis",
   "ribbonAction": "toolbar",
+  "scriptingEnabled": false,
   "showEditInFabMenu": false,
   "toolbarProp": "notetoolbar",
   "toolbars": [
@@ -1485,7 +1486,7 @@
           }
         }
       },
-      "updated": "2024-12-04T07:13:15.220Z"
+      "updated": "2024-12-07T05:43:36.652Z"
     },
     {
       "uuid": "b6328b25-ec91-4f5d-9674-ec96d431a4ea",
@@ -3101,5 +3102,5 @@
     }
   ],
   "version": 20240727.1,
-  "whatsnew_version": 1.14
+  "whatsnew_version": 1.15
 }
