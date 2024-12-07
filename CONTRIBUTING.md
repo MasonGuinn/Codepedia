@@ -25,7 +25,7 @@ We are always looking for more quality content, especially for the Development s
 
 For tutorials, walkthroughs, or any note, All you have to do is specify the backward and forward note. Do this by going to the note properties, create new properties called backward and forward and set them to the note's filename for example:
 
-<img src="Config/Resources/contributing_ref02.png" alt="Navigation Buttons Example" width=300>
+<img src="Config/Resources/contributing_ref02.png" alt="Navigation Buttons Example" width=300/>
 
 **⚠️ WARNING** Use `[[note-path]]`
 
