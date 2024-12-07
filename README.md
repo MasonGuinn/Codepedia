@@ -30,11 +30,11 @@ Codepedia is designed to be a comprehensive resource for developers of all skill
 
 Here are some images and videos showcasing Codepedia:
 
-<img src="config/Resources/showcase_pic01.png" alt="Showcase picture 1" width="300"/>
+<img src="config/Resources/showcase_pic01.png" alt="Showcase picture 1" width="300">
 
-<img src="config/Resources/showcase_pic02.png" alt="Showcase picture 1" width="300"/>
+<img src="config/Resources/showcase_pic02.png" alt="Showcase picture 2" width="300">
 
-<img src="config/Resources/showcase_pic03.png" alt="Showcase picture 1" width="300"/>
+<img src="config/Resources/showcase_pic03.png" alt="Showcase picture 3" width="300">
 
 ## Getting Started
 
