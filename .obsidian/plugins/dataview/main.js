@@ -5983,7 +5983,7 @@ class DateTime {
   }
 
   /**
-   * Produce the the fully expanded format token for the locale
+   * Produce the fully expanded format token for the locale
    * Does NOT quote characters, so quoted tokens will not round trip correctly
    * @param fmt
    * @param localeOpts
