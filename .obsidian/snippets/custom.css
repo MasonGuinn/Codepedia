@@ -3,7 +3,7 @@
 
 /* Targeting default obsidian and plugins */
 
-/* VERY OPTIONAL: Make Header Collapsible icon always visible */
+/* VERY OPTIONAL: Make Obsidian Headers Collapsible icon always visible */
 .cm-fold-indicator .collapse-indicator,
 .cm-gutterElement .collapse-indicator,
 .collapse-indicator,
@@ -27,18 +27,16 @@
     border-width: 0;
 }
 
+#\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li> {
+    padding-left: 0;
+}
+
 /* Global Navigation Buttons */
 #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span {
+    padding: 0;
     align-items: center;
-    background-color: #FCFCFD;
-    border-radius: 4px;
-    border-width: 0;
-    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-    box-sizing: border-box;
-    color: #36395A;
     font-family: "JetBrains Mono", monospace;
     height: 48px;
-    line-height: 1;
     overflow: hidden;
     padding-left: 16px;
     padding-right: 16px;
@@ -101,6 +99,17 @@
     box-shadow: #3d3d44 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #323236 0 -3px 0 inset;
 }
 
+/* Global Navigation Backword & Forward Buttons */
+#\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d > div > div > div > ul > li:nth-child(9) > span,
+#\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d > div > div > div > ul > li:nth-child(10) > span {
+    border-radius: 15px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+
 /* Targeting own html, using my own classes */
 
 /* Title Headers */
@@ -130,11 +139,12 @@
     display: none;
 }
 
-/* Fix the spacing */
+/* Fix the spacing for the header */
 .content-menu h2 {
     margin-block-end: 10px;
 }
 
+/* Button Styling for .content-menu class */
 .content-menu ul {
     display: flex;
     flex-wrap: wrap;
@@ -145,6 +155,7 @@
     align-items: stretch;
 }
 
+/* Button Styling for .content-menu class */
 .content-menu ul li {
     margin: 5px 5px;
     flex: 1 0 30%;
@@ -169,10 +180,12 @@
     transition: background-color 0.3s;
 }
 
+/* Button Styling for .content-menu class [Hover State] */
 .content-menu ul li a:hover {
     background-color: #FFA500;
 }
 
+/* Button Styling for .content-menu class */
 .content-menu ul li a span {
     display: flex;
     align-items: center;
