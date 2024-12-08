@@ -2,5 +2,12 @@
   "showRibbon": true,
   "defaultViewMode": "preview",
   "propertiesInDocument": "visible",
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "showIndentGuide": false,
+  "spellcheck": false,
+  "newFileLocation": "current",
+  "attachmentFolderPath": "Config/Resources",
+  "showInlineTitle": true
 }

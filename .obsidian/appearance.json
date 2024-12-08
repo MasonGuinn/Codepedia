@@ -3,5 +3,8 @@
   "enabledCssSnippets": [
     "custom"
   ],
-  "cssTheme": "Minimal"
+  "cssTheme": "Minimal",
+  "monospaceFontFamily": "Cascadia Code",
+  "showViewHeader": true,
+  "nativeMenus": true
 }

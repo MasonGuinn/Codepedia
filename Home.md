@@ -1,38 +1,13 @@
-> [!note-toolbar|button-center] Home-Menu
+
 
 > [!note-toolbar|button-center] Home-Menu
 > - [:LiSearch: Google Search]()<data data-ntb-command="surfing:search-in-current-page-title-bar"/>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```audio-player
+[[THNK IT THRU.mp3]]
+```
 
 
 
