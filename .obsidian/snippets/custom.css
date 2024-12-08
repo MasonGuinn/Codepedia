@@ -3,13 +3,10 @@
 
 /* Targeting default obsidian and plugins */
 
-/* VERY OPTIONAL: Make Obsidian Headers Collapsible icon always visible */
-.cm-fold-indicator .collapse-indicator,
-.cm-gutterElement .collapse-indicator,
-.collapse-indicator,
-.fold-gutter,
-.markdown-source-view.mod-cm6 .cm-fold-indicator .collapse-indicator {
-    opacity: 100;
+
+/* Music Player Buttons */
+.vert > div {
+    background-color: transparent;
 }
 
 /* Global Navigation Drop-Down Menu (LIGHT-MODE) */

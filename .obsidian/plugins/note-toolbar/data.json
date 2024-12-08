@@ -13,7 +13,7 @@
   ],
   "icon": "circle-ellipsis",
   "ribbonAction": "toolbar",
-  "scriptingEnabled": false,
+  "scriptingEnabled": true,
   "showEditInFabMenu": false,
   "toolbarProp": "notetoolbar",
   "toolbars": [
@@ -1465,6 +1465,130 @@
               }
             }
           }
+        },
+        {
+          "uuid": "66c38d0f-c5f2-4880-8493-3c10e0bb23a8",
+          "label": "",
+          "icon": "",
+          "link": "",
+          "linkAttr": {
+            "commandId": "",
+            "hasVars": false,
+            "type": "break"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "uuid": "d44a3ad9-edd9-4a6c-83a8-939870a19dc3",
+          "label": "Start Cat",
+          "icon": "lucide-check-circle-2",
+          "link": "",
+          "linkAttr": {
+            "commandId": "",
+            "hasVars": false,
+            "type": "js-engine"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          },
+          "scriptConfig": {
+            "pluginFunction": "exec",
+            "sourceFile": "Config/Scripts/start-cat.js",
+            "outputContainer": ""
+          }
+        },
+        {
+          "uuid": "bd7d051b-46a4-4a8a-93c9-cba651e3a048",
+          "label": "Stop Cat",
+          "icon": "lucide-circle-x",
+          "link": "",
+          "linkAttr": {
+            "commandId": "",
+            "hasVars": false,
+            "type": "js-engine"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          },
+          "scriptConfig": {
+            "pluginFunction": "exec",
+            "sourceFile": "Config/Scripts/stop-cat.js",
+            "outputContainer": ""
+          }
         }
       ],
       "mobileStyles": [],
@@ -1486,7 +1610,7 @@
           }
         }
       },
-      "updated": "2024-12-07T05:43:36.652Z"
+      "updated": "2024-12-08T03:06:11.889Z"
     },
     {
       "uuid": "b6328b25-ec91-4f5d-9674-ec96d431a4ea",
