@@ -1,0 +1,12 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "sad": "multitext",
+    "Finished Sections": "multitext",
+    "Finished Sections.": "multitext",
+    "Finished": "multitext",
+    "test": "text"
+  }
+}

@@ -14,7 +14,12 @@
   "viewFieldDisplayNullAsEmpty": false,
   "enableSyntaxHighlighting": true,
   "enableEditorRightClickMenu": true,
-  "inputFieldTemplates": [],
+  "inputFieldTemplates": [
+    {
+      "name": "section-status",
+      "declaration": "INPUT[inlineSelect(defaultValue(Not Started), option(Not Started), option(In Progress), option(Done))]"
+    }
+  ],
   "buttonTemplates": [],
   "excludedFolders": [
     "templates"
