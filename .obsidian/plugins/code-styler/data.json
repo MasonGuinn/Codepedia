@@ -3,13 +3,13 @@
     "Default": {
       "settings": {
         "codeblock": {
-          "lineNumbers": true,
+          "lineNumbers": false,
           "unwrapLines": true,
           "wrapLinesActive": false,
           "curvature": 4
         },
         "gutter": {
-          "highlight": true,
+          "highlight": false,
           "activeLine": false
         },
         "header": {
@@ -25,7 +25,7 @@
             "textItalic": false
           },
           "languageIcon": {
-            "display": "none",
+            "display": "always",
             "displayColour": true
           },
           "externalReference": {
@@ -38,7 +38,7 @@
         },
         "highlights": {
           "activeCodeblockLine": false,
-          "activeEditorLine": false
+          "activeEditorLine": true
         },
         "inline": {
           "syntaxHighlight": true,
@@ -53,9 +53,9 @@
         "advanced": {
           "gradientHighlights": false,
           "gradientHighlightsColourStop": "70%",
-          "languageBorderColour": false,
+          "languageBorderColour": true,
           "languageBorderWidth": 5,
-          "iconSize": 28
+          "iconSize": 15
         }
       },
       "colours": {
@@ -299,7 +299,7 @@
   "currentTheme": {
     "settings": {
       "codeblock": {
-        "lineNumbers": false,
+        "lineNumbers": true,
         "unwrapLines": true,
         "wrapLinesActive": false,
         "curvature": 4
@@ -445,9 +445,9 @@
   },
   "newTheme": "",
   "newHighlight": "",
-  "exampleCodeblockParameters": "python title:foo",
+  "exampleCodeblockParameters": "c title:foo",
   "exampleCodeblockContent": "print(\"This line is very long and should be used as an example for how the plugin deals with wrapping and unwrapping very long lines given the choice of codeblock parameters and settings.\")\nprint(\"This line is highlighted.\")",
-  "exampleInlineCode": "{python icon title:foo} print(\"This is inline code\")",
+  "exampleInlineCode": "{python title:foo} print(\"This is inline code\")",
   "decoratePrint": true,
   "excludedLanguages": "ad-*, reference",
   "externalReferenceUpdateOnLoad": true,

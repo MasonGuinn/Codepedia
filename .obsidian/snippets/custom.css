@@ -3,6 +3,10 @@
 
 /* Targeting default obsidian and plugins */
 
+/* Fix code block comments in read-mode */
+.comment {
+    display:initial;
+}
 
 /* Music Player Buttons */
 .vert > div {

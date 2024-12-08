@@ -1,4 +1,4 @@
-
+`INPUT[date:exampleProperty]`
 > [!note-toolbar|button-center] Home-Menu
 > - [:LiSearch: Google Search]()<data data-ntb-command="surfing:search-in-current-page-title-bar"/>
 > - <br/>
@@ -10,14 +10,6 @@
 ```audio-player
 [[THNK IT THRU.mp3]]
 ```
-
-
-
-
-
-
-
-
 
 
 

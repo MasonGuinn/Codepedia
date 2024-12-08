@@ -6,5 +6,7 @@
   "cssTheme": "Minimal",
   "monospaceFontFamily": "Cascadia Code",
   "showViewHeader": true,
-  "nativeMenus": true
+  "nativeMenus": true,
+  "accentColor": "#c47821",
+  "baseFontSize": 16
 }

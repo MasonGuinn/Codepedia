@@ -9,5 +9,6 @@
   "spellcheck": false,
   "newFileLocation": "current",
   "attachmentFolderPath": "Config/Resources",
-  "showInlineTitle": true
+  "showInlineTitle": true,
+  "showLineNumber": false
 }

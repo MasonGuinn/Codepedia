@@ -1,9 +1,6 @@
 [
-  "dataview",
   "homepage",
   "templater-obsidian",
-  "code-styler",
-  "execute-code",
   "obsidian-meta-bind-plugin",
   "obsidian-git",
   "omnisearch",
@@ -16,5 +13,8 @@
   "obsidian-minimal-settings",
   "obsidian-hider",
   "js-engine",
-  "obsidian-audio-player"
+  "obsidian-audio-player",
+  "execute-code",
+  "code-styler",
+  "dataview"
 ]

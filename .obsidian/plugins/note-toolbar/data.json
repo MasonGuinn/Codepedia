@@ -214,6 +214,44 @@
               }
             }
           }
+        },
+        {
+          "uuid": "ed454a1c-3e30-4d18-ae00-d832385e5b29",
+          "label": "New Note",
+          "icon": "lucide-sticky-note",
+          "link": "Create new note in current tab",
+          "linkAttr": {
+            "commandId": "file-explorer:new-file-in-current-tab",
+            "hasVars": false,
+            "type": "command"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
         }
       ],
       "mobileStyles": [],
@@ -235,7 +273,7 @@
           }
         }
       },
-      "updated": "2024-12-04T07:02:24.988Z"
+      "updated": "2024-12-08T06:17:37.013Z"
     },
     {
       "uuid": "f43d6907-8126-4f03-98d4-699197af329c",

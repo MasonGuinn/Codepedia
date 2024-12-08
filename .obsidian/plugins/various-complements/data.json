@@ -63,9 +63,9 @@
   "propagateEsc": false,
   "enableCurrentFileComplement": true,
   "currentFileMinNumberOfCharacters": 0,
-  "onlyComplementEnglishOnCurrentFileComplement": false,
+  "onlyComplementEnglishOnCurrentFileComplement": true,
   "excludeCurrentFileWordPatterns": [],
-  "enableCurrentVaultComplement": false,
+  "enableCurrentVaultComplement": true,
   "currentVaultMinNumberOfCharacters": 0,
   "includeCurrentVaultPathPrefixPatterns": "",
   "excludeCurrentVaultPathPrefixPatterns": "",
@@ -89,7 +89,7 @@
     "after": ""
   },
   "frontMatterKeyForExclusionInternalLink": "",
-  "enableFrontMatterComplement": false,
+  "enableFrontMatterComplement": true,
   "frontMatterComplementMatchStrategy": "inherit",
   "insertCommaAfterFrontMatterCompletion": false,
   "intelligentSuggestionPrioritization": {
