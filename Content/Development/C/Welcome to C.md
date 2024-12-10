@@ -2,7 +2,7 @@
 K&R Status: In Progress
 ---
 # <span class="section-heading">Classics</span>
-## :LiArrowBigRight: K&R Book 2nd Edition `INPUT[section-status][:["K&R Status"]]`
+## :LiArrowBigRight: K&R Book 2nd Edition (C89) `INPUT[section-status][:["K&R Status"]]`
 Covers the fundamental concepts of C programming, which remain relevant and essential even with newer standards. Known for its clear and concise explanations, K&R makes complex topics accessible and understandable. Written by the creators of C, the book provides insights into the design and philosophy of the language, offering a deeper understanding of its principles. It includes numerous practical examples and exercises that help reinforce learning and provide hands-on experience with C programming.
 <div class="content-menu">
   <!-- CHAPTER 0 -->
