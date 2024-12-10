@@ -3,6 +3,52 @@
 
 /* Targeting default obsidian and plugins */
 
+h1, h2 {
+    padding: 0;
+    margin-top: 10px !important;
+}
+
+/* Making drop-down for headers easier to see (DARK-MODE) */
+.theme-dark .view-content .is-collapsed .collapse-indicator svg.svg-icon, .theme-dark .view-content .collapse-indicator svg.svg-icon {
+    color: white;
+}
+
+/* Making drop-down for headers easier to see (LIGHT-MODE) */
+.theme-light .view-content .is-collapsed .collapse-indicator svg.svg-icon, .theme-light .view-content .collapse-indicator svg.svg-icon {
+    color: black;
+}
+
+/* Making section-header better looking */
+.section-heading {
+    border-bottom: none;
+    padding: 2px 25px 5px 25px;
+    border-radius: 12px;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* Making section-header better looking (DARK-MODE)*/
+.theme-dark .section-heading {
+    background-color: #9c5812;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #ffffff 0 -3px 0 inset
+}
+
+/* Making section-header better looking (LIGHT-MODE)*/
+.theme-light .section-heading {
+    background-color: #E1BEE7;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D8BFD8 0 -3px 0 inset
+}
+
+/* Making section-header better looking [Hover-State] (DARK-MODE)*/
+.theme-dark .section-heading:hover {
+    box-shadow: rgba(142, 150, 163, 0.4) 0 4px 8px, rgba(121, 112, 139, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+/* Making section-header better looking [Hover-State] (LIGHT-MODE)*/
+.theme-light .section-heading:hover {
+    box-shadow: rgba(142, 150, 163, 0.4) 0 4px 8px, rgb(0, 0, 0) 0 7px 13px -3px, #a25aac 0 -3px 0 inset;
+}
+
+
 /* Fix code block comments in read-mode */
 .comment {
     display:initial;
@@ -18,7 +64,6 @@
 .theme-light>div.menu {
     box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
     border-width: 0;
-
 }
 
 /* Global Navigation Drop-Down Menu (DARK-MODE) */
@@ -32,7 +77,7 @@
     padding-left: 0;
 }
 
-/* Global Navigation Buttons */
+/* Global Navigation Buttons MAIN */
 #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span {
     padding: 0;
     align-items: center;
@@ -124,15 +169,19 @@
 /* Title Headers (LIGHT-MODE) */
 .theme-light .inline-title {
     color: #36395A;
-    background-color: white;
-    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    background-color: #FFCCBC;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D2B48C 0 -3px 0 inset;
 }
 
 /* Title Headers (DARK-MODE) */
 .theme-dark .inline-title {
     color: #E1E1E1;
-    background-color: #333;
-    box-shadow: rgba(255, 255, 255, 0.2) 0 2px 4px, rgba(255, 255, 255, 0.3) 0 7px 13px -3px, #444 0 -3px 0 inset;
+    background-color: #1C3543;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #ffffff 0 -3px 0 inset;
+}
+
+.content-menu {
+    margin-bottom: 50px;
 }
 
 /* Get rid of that annoying gray list-bullet that shows on html made buttons */
@@ -172,23 +221,44 @@
     padding: 5px 0px;
     text-align: center;
     text-decoration: none;
-    color: white;
-    background-color: #9c5812;
-    border: 1px solid #555;
     border-radius: 5px;
     height: 100%;
     width: 100%;
-    transition: background-color 0.3s;
+    transition: background-color 0.6s;
+}
+
+.theme-light .content-menu ul li a {
+    background-color: #FFCCBC;
+}
+
+.theme-dark .content-menu ul li a {
+    background-color: #1C3543;
 }
 
 /* Button Styling for .content-menu class [Hover State] */
-.content-menu ul li a:hover {
-    background-color: #FFA500;
+.theme-light .content-menu ul li a:hover {
+    background-color: #D2B48C;
 }
+
+/* Button Styling for .content-menu class [Hover State] */
+.theme-dark .content-menu ul li a:hover {
+    background-color: #2E5A6B;
+}
+
 
 /* Button Styling for .content-menu class */
 .content-menu ul li a span {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Button Styling for .content-menu class */
+.theme-light .content-menu ul li a span {
+    color: black;
+}
+
+/* Button Styling for .content-menu class */
+.theme-dark .content-menu ul li a span {
+    color: white;
 }

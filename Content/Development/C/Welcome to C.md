@@ -1,12 +1,12 @@
 ---
 K&R Status: In Progress
 ---
-# Classics
-## K&R Book 2nd Edition `INPUT[section-status][:["K&R Status"]]`
+# <span class="section-heading">Classics</span>
+## :LiArrowBigRight: K&R Book 2nd Edition `INPUT[section-status][:["K&R Status"]]`
 Covers the fundamental concepts of C programming, which remain relevant and essential even with newer standards. Known for its clear and concise explanations, K&R makes complex topics accessible and understandable. Written by the creators of C, the book provides insights into the design and philosophy of the language, offering a deeper understanding of its principles. It includes numerous practical examples and exercises that help reinforce learning and provide hands-on experience with C programming.
 <div class="content-menu">
   <!-- CHAPTER 0 -->
-  <h2>CHAPTER 0: INTRODUCTION</h2>
+  <h3>CHAPTER 0: INTRODUCTION</h3>
   <ul>
     <li>
       <a href="obsidian://open?vault=Codepedia&file=K%26R/0. Introduction">
@@ -15,7 +15,7 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
     </li>
   </ul>
   <!-- CHAPTER 1 -->
-  <h2>CHAPTER 1: A TUTORIAL INTRODUCTION</h2>
+  <h3>CHAPTER 1: A TUTORIAL INTRODUCTION</h3>
   <ul>
     <li>
       <a href="obsidian://open?vault=Codepedia&file=K%26R/1.1 Getting Started">
@@ -74,7 +74,7 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
     </li>
   </ul>
   <!-- CHAPTER 2 -->
-  <h2>CHAPTER 2: TYPES, OPERATORS AND EXPRESSIONS</h2>
+  <h3>CHAPTER 2: TYPES, OPERATORS AND EXPRESSIONS</h3>
   <ul>
     <li>
       <a href="obsidian://open?vault=Codepedia&file=K%26R/2.1 Variable Names">
@@ -138,7 +138,7 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
     </li>
   </ul>
   <!-- CHAPTER 3 -->
-  <h2>CHAPTER 3: CONTROL FLOW</h2>
+  <h3>CHAPTER 3: CONTROL FLOW</h3>
   <ul>
     <li>
       <a href="obsidian://open?vault=Codepedia&file=K%26R/3.1 Statements and Blocks">
@@ -187,7 +187,7 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
     </li>
   </ul>
   <!-- CHAPTER 4 -->
-  <h2>CHAPTER 4: FUNCTIONS AND PROGRAM STRUCTURE</h2>
+  <h3>CHAPTER 4: FUNCTIONS AND PROGRAM STRUCTURE</h3>
   <ul>
     <li>
       <a href="obsidian://open?vault=Codepedia&file=K%26R/4.1 Basics">
@@ -256,7 +256,7 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
     </li>
   </ul>
   <!-- CHAPTER 5 -->
-  <h2>CHAPTER 5: POINTERS AND ARRAYS</h2>
+  <h3>CHAPTER 5: POINTERS AND ARRAYS</h3>
   <ul>
     <li>
       <a href="obsidian://open?vault=Codepedia&file=K%26R/5.1 Pointers and Addresses">
@@ -320,7 +320,7 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
     </li>
   </ul>
   <!-- CHAPTER 6 -->
-  <h2>CHAPTER 6: STRUCTURES</h2>
+  <h3>CHAPTER 6: STRUCTURES</h3>
   <ul>
     <li>
       <a href="obsidian://open?vault=Codepedia&file=K%26R/6.1 Basics">
@@ -369,7 +369,7 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
         </li>
       </ul>
       <!-- CHAPTER 7 -->
-      <h2>CHAPTER 7: INPUT AND OUTPUT</h2>
+      <h3>CHAPTER 7: INPUT AND OUTPUT</h3>
       <ul>
         <li>
       <a href="obsidian://open?vault=Codepedia&file=K%26R/7.1 Access to the Standard Library">
@@ -418,7 +418,7 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
         </li>
       </ul>
       <!-- CHAPTER 8 -->
-      <h2>CHAPTER 8: THE UNIX SYSTEM INTERFACE</h2>
+      <h3>CHAPTER 8: THE UNIX SYSTEM INTERFACE</h3>
       <ul>
         <li>
       <a href="obsidian://open?vault=Codepedia&file=K%26R/8.1 File Descriptors">
@@ -458,6 +458,7 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
       </ul>
     </div>
 
+# <span class="section-heading">Modern</span>
+## :LiArrowBigRight: Some other book `INPUT[section-status][]`
 
-# Modern
-## Some other book `INPUT[section-status][]`
+this book is cooool

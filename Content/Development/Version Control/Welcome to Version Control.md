@@ -1,4 +1,9 @@
-## Git
+---
+Git: Not Started
+Github: In Progress
+---
+# <span class="section-heading">Modern Tools</span>
+## :LiArrowBigRight: Git `INPUT[section-status][:["Git"]]`
 <div class="content-menu">
   <!-- CHAPTER 0 -->
   <h2>CHAPTER 0: START HERE</h2>
@@ -94,3 +99,8 @@
     <li>
   </ul>
 </div>
+
+## :LiArrowBigRight: Github `INPUT[section-status][:["Github"]]`
+> [!TODO] Coming Soon
+
+
