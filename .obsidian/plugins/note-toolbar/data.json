@@ -3020,6 +3020,44 @@
           }
         },
         {
+          "uuid": "d57cb20e-deaf-4ac2-ba5f-5e1ba70acf2a",
+          "label": "{{prop_parent}}",
+          "icon": "",
+          "link": "{{prop_parent}}",
+          "linkAttr": {
+            "commandId": "",
+            "hasVars": true,
+            "type": "uri"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
           "uuid": "964e9f5b-db1d-4a5b-96d0-7d299c0795d3",
           "label": "",
           "icon": "lucide-arrow-right-circle",
@@ -3077,7 +3115,7 @@
           }
         }
       },
-      "updated": "2024-12-04T13:37:37.979Z"
+      "updated": "2024-12-20T06:10:23.157Z"
     },
     {
       "uuid": "65f518a7-2be8-49c8-9fd7-aa5b2d88bf44",

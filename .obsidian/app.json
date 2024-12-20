@@ -10,5 +10,7 @@
   "newFileLocation": "current",
   "attachmentFolderPath": "Config/Resources",
   "showInlineTitle": true,
-  "showLineNumber": false
+  "showLineNumber": false,
+  "foldHeading": true,
+  "foldIndent": true
 }

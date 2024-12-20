@@ -2,8 +2,9 @@
 Git: Not Started
 Github: In Progress
 ---
-# <span class="section-heading">Modern Tools</span>
-## :LiArrowBigRight: Git `INPUT[section-status][:["Git"]]`
+# %% fold %%<span class="section-heading heading-collapse-indicator">Modern Tools</span>
+## %% fold %% <span class="section-sub-heading heading-collapse-indicator">Git</span> `INPUT[section-status][:["Git"]]`
+
 <div class="content-menu">
   <!-- CHAPTER 0 -->
   <h2>CHAPTER 0: START HERE</h2>
@@ -100,7 +101,7 @@ Github: In Progress
   </ul>
 </div>
 
-## :LiArrowBigRight: Github `INPUT[section-status][:["Github"]]`
+## %% fold %% <span class="section-sub-heading heading-collapse-indicator">Github</span> `INPUT[section-status][:["Setup Environment"]]`
 > [!TODO] Coming Soon
 
 

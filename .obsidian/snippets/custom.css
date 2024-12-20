@@ -1,19 +1,50 @@
 /*====================*/
 /*   By Mason Guinn   */
 /*====================*/
-
 /* Overriding h1, h2 Position */
 h1, h2 {
     padding: 0;
     margin-top: 10px !important;
 }
+/* Make editing-view have some margin for visibility */
+.markdown-source-view.mod-cm6 .cm-content > * {
+    margin: 10px 10px !important;
+}
 /* Section Heading Styling */
 .section-heading {
     border-bottom: none;
+    height: 35px;
     padding: 2px 25px 5px 25px;
     border-radius: 12px;
     transition: box-shadow 0.25s ease, transform 0.25s ease;
+    display: flex;
+    justify-content: center;
+    margin-inline-start: 0 !important;
+    cursor: pointer;
+    user-select: none;
 }
+/* Section Sub-Heading Styling */
+.section-sub-heading {
+    border-bottom: none;
+    margin-inline-start: 0 !important;
+    cursor: pointer;
+    user-select: none;
+    border: white 1px solid;
+    border-radius: 12px;
+    padding: 2px 25px 5px 25px !important;
+
+}
+/* Button Styling */
+.dropdown{
+    padding-top: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+/* Hide Collapse Indicator */
+span.heading-collapse-indicator.collapse-indicator.collapse-icon.is-collapsed {
+    display: none;
+}
+
 /* Fix code block comments in read-mode */
 .comment {
     display: initial;
@@ -22,7 +53,6 @@ h1, h2 {
 .vert > div {
     background-color: transparent;
 }
-
 /* Global Navigation Buttons MAIN */
 #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d>div>div>div>ul>li>span {
     padding: 0 16px;
@@ -36,29 +66,30 @@ h1, h2 {
     will-change: box-shadow, transform;
     font-size: 18px;
 }
-
 /* Global Navigation Backward & Forward Buttons */
 #\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d > div > div > div > ul > li:nth-child(9) > span,
-#\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d > div > div > div > ul > li:nth-child(10) > span {
+#\35 e8c9836-dbfc-47c9-ae82-f6880f9e0a8d > div > div > div > ul > li:nth-child(11) > span {
     border-radius: 15px;
     text-align: center;
     width: 40px;
     height: 40px;
     padding: 0;
 }
-
+/* Global Navigation Parent Button */
+#d57cb20e-deaf-4ac2-ba5f-5e1ba70acf2a {
+    height: 40px !important;
+    border-radius: 15px;
+}
 /* ========================================= */
 /* Targeting own html, using my own classes  */
 /* ========================================= */
-
 /* Title Headers */
 .inline-title {
     text-align: center;
     border-radius: 15px;
     padding: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
-
 /* Content Menu */
 .content-menu {
     margin-bottom: 50px;
@@ -96,11 +127,9 @@ h1, h2 {
     width: 100%;
     transition: background-color 0.6s;
 }
-
 /*==================*/
 /*    Light Theme   */
 /*==================*/
-
 /* Collapse Indicator */
 .theme-light .view-content .collapse-indicator svg.svg-icon {
     color: black;
@@ -151,11 +180,9 @@ h1, h2 {
 .theme-light .content-menu ul li a span {
     color: black;
 }
-
 /*==================*/
 /*    Dark Theme    */
 /*==================*/
-
 .theme-dark .view-content .collapse-indicator svg.svg-icon {
     color: white;
 }
@@ -201,11 +228,9 @@ h1, h2 {
 .theme-dark .content-menu ul li a span {
     color: white;
 }
-
 /* Global Navigation Drop-Down Menu */
 .theme-light>div.menu,
 .theme-dark>div.menu {
     border-width: 0;
 }
-
 /*==================*/

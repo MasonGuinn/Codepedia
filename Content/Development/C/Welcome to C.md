@@ -1,8 +1,27 @@
 ---
 K&R Status: In Progress
+Setup Environment: In Progress
 ---
-# <span class="section-heading">Classics</span>
-## :LiArrowBigRight: K&R Book 2nd Edition (C89) `INPUT[section-status][:["K&R Status"]]`
+
+#  %% fold %%<span class="section-heading heading-collapse-indicator">Beginner (Start Here)</span>
+## %% fold %%<span class="section-sub-heading heading-collapse-indicator">Setup Environment</span> `INPUT[section-status][:["Setup Environment"]]`
+<div class="content-menu">
+  <ul>
+    <li>
+      <a href="obsidian://open?vault=Codepedia&file=Beginner/Compiler">
+        <span>Compiler</span>
+      </a>
+    </li>
+    <li>
+      <a href="obsidian://open?vault=Codepedia&file=Beginner/IDE">
+        <span>IDE</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+# %% fold %%<span class="section-heading heading-collapse-indicator">Classic Book Tutorials</span>
+## %% fold %%<span class="section-sub-heading heading-collapse-indicator">K&R Book 2nd Edition (C89)</span> `INPUT[section-status][:["K&R Status"]]`
 Covers the fundamental concepts of C programming, which remain relevant and essential even with newer standards. Known for its clear and concise explanations, K&R makes complex topics accessible and understandable. Written by the creators of C, the book provides insights into the design and philosophy of the language, offering a deeper understanding of its principles. It includes numerous practical examples and exercises that help reinforce learning and provide hands-on experience with C programming.
 <div class="content-menu">
   <!-- CHAPTER 0 -->
@@ -458,7 +477,10 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
       </ul>
     </div>
 
-# <span class="section-heading">Modern</span>
-## :LiArrowBigRight: Some other book `INPUT[section-status][]`
+## %% fold %%<span class="section-sub-heading heading-collapse-indicator">Book Name</span> `INPUT[section-status][:["Book Name 2"]]`
+Covers the fundamental concepts of C programming, which remain relevant and essential even with newer standards. Known for its clear and concise explanations, K&R makes complex topics accessible and understandable. Written by the creators of C, the book provides insights into the design and philosophy of the language, offering a deeper understanding of its principles. It includes numerous practical examples and exercises that help reinforce learning and provide hands-on experience with C programming.
 
-this book is cooool
+
+# %% fold %%<span class="section-heading heading-collapse-indicator">Modern</span>
+## %% fold %%<span class="section-sub-heading heading-collapse-indicator">Book Name</span> `INPUT[section-status][:["Book Name"]]`
+test test 123
