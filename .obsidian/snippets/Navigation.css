@@ -1,0 +1,116 @@
+/* Created by Mason Guinn */
+/* Navigation.css */
+
+/* Common values */
+:root {
+    --transition-duration: 0.25s;
+    --transition-ease: ease;
+    --hover-transform: translateY(-4px);
+    --active-transform: translateY(4px);
+    --focus-shadow: 0 0 0 1.5px inset;
+    --box-shadow-light: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    --box-shadow-dark: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #665e5e 0 -3px 0 inset;
+    --color-light: #FCFCFD;
+    --color-dark: #333;
+    --text-color-light: #36395A;
+    --text-color-dark: #FCFCFD;
+}
+
+/* Targeting Plugin */
+.callout[data-callout="note-toolbar"] {
+
+    /* Targeting elements with metadata attribute that contains the word "button"
+    This is the base class for the button styling */
+    &[data-callout-metadata*="button"] ul {
+
+        /* Top Navbar - Base */
+        & span.external-link {
+            padding: 0 16px;
+            align-items: center;
+            font-family: "JetBrains Mono", monospace;
+            height: 48px;
+            overflow: hidden;
+            transition: box-shadow var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
+            touch-action: manipulation;
+            white-space: nowrap;
+            will-change: box-shadow, transform;
+            font-size: 18px;
+        }
+
+        /* Top Navbar - Note Navigation - Go Backward/Forward Button */
+        & li:nth-child(9)>span, & li:nth-child(11)>span {
+            border-radius: 15px;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+        }
+
+        /* Top Navbar - Note Navigation - Middle Button */
+        & li:nth-child(10)>span {
+            border-radius: 15px;
+            width: 100%;
+            height: 40px;
+            padding: 0 15px 0 15px;
+        }
+    }
+
+    /* Theme Dark - same as above but with obsidian dark theme enabled */
+    .theme-dark &[data-callout-metadata*="button"] ul {
+
+        /* Top Navbar - Dark */
+        & span.external-link {
+            background-color: var(--color-dark);
+            box-shadow: var(--box-shadow-dark);
+            color: var(--text-color-dark);
+        }
+
+        /* Top Navbar (Hover) - Dark */
+        & span.external-link:hover {
+            box-shadow: rgba(142, 150, 163, 0.4) 0 4px 8px, rgba(121, 112, 139, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+            transform: var(--hover-transform);
+            transition: transform 0.80s var(--transition-ease);
+        }
+
+        /* Top Navbar (Active) - Dark */
+        & span.external-link:active {
+            box-shadow: #60606b 0 3px 7px inset;
+            transform: var(--active-transform);
+            transition: transform .05s var(--transition-ease), box-shadow 0.15s var(--transition-ease);
+        }
+
+        /* Top Navbar (Focus) - Dark */
+        & span.external-link:focus {
+            box-shadow: #3d3d44 var(--focus-shadow), var(--box-shadow-dark);
+        }
+    }
+
+    /* Theme Light - same as above but with obsidian light theme enabled */
+    .theme-light &[data-callout-metadata*="button"] ul {
+
+        /* Top Navbar - Light */
+        & span.external-link {
+            background-color: var(--color-light);
+            box-shadow: var(--box-shadow-light);
+            color: var(--text-color-light);
+        }
+
+        /* Top Navbar (Hover) - Light */
+        & span.external-link:hover {
+            box-shadow: rgba(35, 47, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+            transform: var(--hover-transform);
+            transition: transform 0.80s var(--transition-ease);
+        }
+
+        /* Top Navbar (Active) - Light */
+        & span.external-link:active {
+            box-shadow: #D6D6E7 0 3px 7px inset;
+            transform: var(--active-transform);
+            transition: transform .05s var(--transition-ease), box-shadow 0.15s var(--transition-ease);
+        }
+
+        /* Top Navbar (Focus) - Light */
+        & span.external-link:focus {
+            box-shadow: #D6D6E7 var(--focus-shadow), var(--box-shadow-light);
+        }
+    }
+}

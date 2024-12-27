@@ -1,7 +1,9 @@
 {
   "theme": "obsidian",
   "enabledCssSnippets": [
-    "custom"
+    "ToolbarNavigation",
+    "Navigation",
+    "Notes"
   ],
   "cssTheme": "Minimal",
   "monospaceFontFamily": "Cascadia Code",

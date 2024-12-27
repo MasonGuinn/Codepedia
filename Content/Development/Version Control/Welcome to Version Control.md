@@ -2,7 +2,7 @@
 Git: Not Started
 Github: In Progress
 ---
-# %% fold %%<span class="section-heading heading-collapse-indicator">Modern Tools</span>
+# %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">Modern Tools</span></button>
 ## %% fold %% <span class="section-sub-heading heading-collapse-indicator">Git</span> `INPUT[section-status][:["Git"]]`
 
 <div class="content-menu">

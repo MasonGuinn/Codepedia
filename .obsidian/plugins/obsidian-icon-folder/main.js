@@ -693,13 +693,15 @@ const initIconPacks = (plugin) => __awaiter(void 0, void 0, void 0, function* ()
             }
         }
         const prefix = createIconPackPrefix(folderName);
-        iconPacks.push({
-            name: folderName,
-            icons: loadedIcons,
-            prefix,
-            custom: true,
-        });
-        logger.info(`Loaded icon pack '${folderName}' (amount of icons: ${loadedIcons.length})`);
+        if (!iconPacks.some((iconPack) => iconPack.name === folderName)) {
+            iconPacks.push({
+                name: folderName,
+                icons: loadedIcons,
+                prefix,
+                custom: true,
+            });
+            logger.info(`Loaded icon pack '${folderName}' (amount of icons: ${loadedIcons.length})`);
+        }
     }
     // Extract all files from the zip files.
     for (const zipFile in zipFiles) {
@@ -710,13 +712,15 @@ const initIconPacks = (plugin) => __awaiter(void 0, void 0, void 0, function* ()
             !plugin.doesUseCustomLucideIconPack()) {
             continue;
         }
-        iconPacks.push({
-            name: zipFile,
-            icons: loadedIcons,
-            prefix,
-            custom: false,
-        });
-        logger.info(`Loaded icon pack '${zipFile}' (amount of icons: ${loadedIcons.length})`);
+        if (!iconPacks.some((iconPack) => iconPack.name === zipFile)) {
+            iconPacks.push({
+                name: zipFile,
+                icons: loadedIcons,
+                prefix,
+                custom: false,
+            });
+            logger.info(`Loaded icon pack '${zipFile}' (amount of icons: ${loadedIcons.length})`);
+        }
     }
 });
 const getLoadedIconsFromZipFile = (iconPackName, files) => __awaiter(void 0, void 0, void 0, function* () {
@@ -3204,6 +3208,7 @@ const DEFAULT_SETTINGS = {
     iconIdentifier: ':',
     lucideIconPackType: 'native',
     debugMode: false,
+    useInternalPlugins: false,
 };
 
 function migrate$5(plugin) {
@@ -3401,7 +3406,7 @@ const doesMatchPath = (rule, path) => {
 const getFileItems = (plugin, rule) => __awaiter(void 0, void 0, void 0, function* () {
     const result = [];
     for (const fileExplorer of plugin.getRegisteredFileExplorers()) {
-        const files = Object.values(fileExplorer.fileItems);
+        const files = Object.values(fileExplorer.fileItems || {});
         for (const fileItem of files) {
             if (yield isApplicable(plugin, rule, fileItem.file.path)) {
                 result.push(fileItem);
@@ -4207,7 +4212,7 @@ class CustomIconRuleSetting extends IconFolderSetting {
                 yield this.plugin.saveIconFolderData();
                 const addedPaths = [];
                 for (const fileExplorer of this.plugin.getRegisteredFileExplorers()) {
-                    const files = Object.values(fileExplorer.fileItems);
+                    const files = Object.values(fileExplorer.fileItems || {});
                     for (const rule of customRule.getSortedRules(this.plugin)) {
                         // Removes the icon tabs from all opened files.
                         this.updateIconTabs(rule, true, addedPaths);
@@ -4648,7 +4653,7 @@ class EmojiStyleSetting extends IconFolderSetting {
     }
     updateDOM() {
         for (const fileExplorer of this.plugin.getRegisteredFileExplorers()) {
-            const fileItems = Object.entries(fileExplorer.fileItems);
+            const fileItems = Object.entries(fileExplorer.fileItems || {});
             for (const [path, _] of fileItems) {
                 let iconName = this.plugin.getData()[path];
                 if (!iconName) {
@@ -5229,6 +5234,23 @@ class DebugMode extends IconFolderSetting {
     }
 }
 
+class UseInternalPlugins extends IconFolderSetting {
+    display() {
+        new obsidian.Setting(this.containerEl)
+            .setName('EXPERIMENTAL: Use internal plugins')
+            .setDesc('Toggles whether to try to add icons to the bookmark and outline internal plugins.')
+            .addToggle((toggle) => {
+            toggle
+                .setValue(this.plugin.getSettings().useInternalPlugins)
+                .onChange((enabled) => __awaiter(this, void 0, void 0, function* () {
+                this.plugin.getSettings().useInternalPlugins = enabled;
+                yield this.plugin.saveIconFolderData();
+                new obsidian.Notice(`[${config.PLUGIN_NAME}] Obsidian has to be restarted for this change to take effect.`);
+            }));
+        });
+    }
+}
+
 class IconFolderSettings extends obsidian.PluginSettingTab {
     constructor(app, plugin) {
         super(app, plugin);
@@ -5243,6 +5265,7 @@ class IconFolderSettings extends obsidian.PluginSettingTab {
         new IconPacksBackgroundChecker(plugin, containerEl).display();
         new EmojiStyleSetting(plugin, containerEl).display();
         new IconIdentifierSetting(plugin, containerEl).display();
+        new UseInternalPlugins(plugin, containerEl).display();
         new DebugMode(plugin, containerEl).display();
         containerEl.createEl('h3', { text: 'Visibility of icons' });
         new ToggleIconInTabs(plugin, containerEl).display();
@@ -5477,6 +5500,7 @@ class BookmarkInternalPlugin extends InternalPluginInjector {
         });
     }
     onMount() {
+        var _a;
         const setBookmarkIcon = () => {
             const nodesWithPath = {};
             this.computeNodesWithPath((node, filePath) => {
@@ -5486,7 +5510,7 @@ class BookmarkInternalPlugin extends InternalPluginInjector {
         };
         if (obsidian.requireApiVersion('1.7.2')) {
             // TODO: Might improve the performance here.
-            this.leaf.loadIfDeferred().then(setBookmarkIcon);
+            (_a = this.leaf) === null || _a === void 0 ? void 0 : _a.loadIfDeferred().then(setBookmarkIcon);
         }
         else {
             setBookmarkIcon();
@@ -5723,7 +5747,10 @@ class OutlineInternalPlugin extends InternalPluginInjector {
             return;
         }
         const updateTreeItems = () => {
-            var _a;
+            var _a, _b, _c;
+            if (!((_b = (_a = this.leaf) === null || _a === void 0 ? void 0 : _a.view) === null || _b === void 0 ? void 0 : _b.tree)) {
+                return;
+            }
             const treeItems = Array.from(this.leaf.view.tree.containerEl.querySelectorAll(`.${TREE_ITEM_CLASS}`));
             for (const treeItem of treeItems) {
                 const treeItemInner = treeItem.querySelector(`.${TREE_ITEM_INNER}`);
@@ -5752,7 +5779,7 @@ class OutlineInternalPlugin extends InternalPluginInjector {
                                 'aria-hidden': 'true',
                             },
                         });
-                        const fontSize = parseFloat((_a = getComputedStyle(document.body).getPropertyValue('--nav-item-size')) !== null && _a !== void 0 ? _a : '16');
+                        const fontSize = parseFloat((_c = getComputedStyle(document.body).getPropertyValue('--nav-item-size')) !== null && _c !== void 0 ? _c : '16');
                         const svgElement = svg.setFontSize(iconObject.svgElement, fontSize);
                         iconSpan.style.display = 'inline-flex';
                         iconSpan.style.transform = 'translateY(13%)';
@@ -6454,18 +6481,20 @@ class IconizePlugin extends obsidian.Plugin {
     onload() {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(`loading ${config.PLUGIN_NAME}`);
-            // Registers all modified internal plugins.
-            // Only adds star plugin for obsidian under v0.12.6.
-            if (!obsidian.requireApiVersion('0.12.6')) {
-                this.modifiedInternalPlugins.push(new StarredInternalPlugin(this));
-            }
-            else if (obsidian.requireApiVersion('1.2.0')) {
-                this.modifiedInternalPlugins.push(new BookmarkInternalPlugin(this));
-            }
-            this.modifiedInternalPlugins.push(new OutlineInternalPlugin(this));
             yield this.loadIconFolderData();
             logger.toggleLogging(this.getSettings().debugMode);
             setPath(this.getSettings().iconPacksPath);
+            if (this.getSettings().useInternalPlugins) {
+                // Registers all modified internal plugins.
+                // Only adds star plugin for obsidian under v0.12.6.
+                if (!obsidian.requireApiVersion('0.12.6')) {
+                    this.modifiedInternalPlugins.push(new StarredInternalPlugin(this));
+                }
+                else if (obsidian.requireApiVersion('1.2.0')) {
+                    this.modifiedInternalPlugins.push(new BookmarkInternalPlugin(this));
+                }
+                this.modifiedInternalPlugins.push(new OutlineInternalPlugin(this));
+            }
             yield createDefaultDirectory(this);
             yield this.checkRecentlyUsedIcons();
             yield migrate(this);

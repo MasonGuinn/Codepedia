@@ -1,0 +1,214 @@
+/* Created by Mason Guinn */
+/* Notes.css */
+
+/* Common values */
+:root {
+    --inline-title-box-shadow-dark: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #ffffff 0 -3px 0 inset;
+    --inline-title-box-shadow-light: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D2B48C 0 -3px 0 inset;
+    --color-dark-bg: #1C3543;
+    --color-dark-text: #E1E1E1;
+    --color-light-bg: #FFCCBC;
+    --color-light-text: #36395A;
+    --color-light-hover: #D2B48C;
+    --color-dark-hover: #2E5A6B;
+    --color-section-dark-before: #9c5812;
+    --color-section-light-before: #D2B48C;
+    --color-section-dark-bg: rgb(28, 53, 67);
+    --color-section-light-bg: #FFCCBC;
+    --color-section-dark-text: white;
+    --color-section-light-text: black;
+}
+
+/* Note title - Base */
+.inline-title {
+    text-align: center;
+    border-radius: 15px;
+    padding: 16px;
+    margin-bottom: 50px;
+}
+
+/* Note title - Dark */
+.theme-dark .inline-title {
+    color: var(--color-dark-text);
+    background-color: var(--color-dark-bg);
+    box-shadow: var(--inline-title-box-shadow-dark);
+}
+
+/* Note title - Light */
+.theme-light .inline-title {
+    color: var(--color-light-text);
+    background-color: var(--color-light-bg);
+    box-shadow: var(--inline-title-box-shadow-light);
+}
+
+/* Home Note - Music Player Buttons */
+.vert > div {
+    background-color: transparent;
+    opacity: 1.0;
+    cursor: pointer;
+}
+
+/* The main section of a Note e.g Classic Book Tutorials */
+.section-heading {
+    cursor: pointer;
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 1.5em 2.2em !important;
+    position: relative;
+    text-transform: uppercase;
+    transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+    width: 100%;
+    border-radius: 0;
+}
+
+/* The main section of a Note e.g Classic Book Tutorials (before) */
+.section-heading:before {
+    animation: opacityFallbackOut .5s step-end forwards;
+    backface-visibility: hidden;
+    clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translateZ(0);
+    transition: clip-path .4s cubic-bezier(.65, 0.84, 0.44, 1);
+    width: 100%;
+}
+
+/* The main section of a Note e.g Classic Book Tutorials (hover:before) */
+.section-heading:hover:before {
+    animation: opacityFallbackIn 0s step-start forwards;
+    clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+}
+
+/* The main section of a Note e.g Classic Book Tutorials (after) */
+.section-heading:after {
+    background-color: #FFFFFF;
+}
+
+/* The main section of a Note e.g Classic Book Tutorials - Text */
+.section-heading span {
+    z-index: 1;
+    position: relative;
+}
+
+/* The main section of a Note e.g Classic Book Tutorials - Dark */
+.theme-dark .section-heading {
+    background-color: var(--color-section-dark-bg) !important;
+    color: var(--color-section-dark-text) !important;
+}
+
+/* The main section of a Note e.g Classic Book Tutorials (before) - Dark*/
+.theme-dark .section-heading:before {
+    background-color: var(--color-section-dark-before);
+}
+
+/* The main section of a Note e.g Classic Book Tutorials - Light */
+.theme-light .section-heading {
+    background-color: var(--color-section-light-bg) !important;
+    color: var(--color-section-light-text) !important;
+}
+
+/* The main section of a Note e.g Classic Book Tutorials (before) - Light */
+.theme-light .section-heading:before {
+    background-color: var(--color-section-light-before);
+}
+
+/* The sub-section e.g K&R Book 2nd Edition (C89) */
+.section-sub-heading {
+    border-bottom: none;
+    margin-inline-start: 0 !important;
+    cursor: pointer;
+    user-select: none;
+    border: white 1px solid;
+    border-radius: 12px;
+    padding: 2px 25px 5px 25px !important;
+}
+
+/* Content Menu e.g CHAPTER 0: INTRODUCTION*/
+.content-menu {
+    margin-bottom: 50px;
+}
+
+.content-menu .list-bullet {
+    display: none;
+}
+
+.content-menu h2 {
+    margin-block-end: 10px;
+}
+
+.content-menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    align-items: stretch;
+}
+
+.content-menu ul li {
+    margin: 5px;
+    flex: 1 0 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.content-menu ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    transition: background-color 0.6s;
+}
+
+/* Content Menu Light-Mode */
+.theme-light .content-menu ul li a {
+    background-color: var(--color-light-bg);
+}
+
+/* Content Menu Dark-Mode */
+.theme-dark .content-menu ul li a {
+    background-color: var(--color-dark-bg);
+}
+
+.theme-light .content-menu ul li a:hover {
+    background-color: var(--color-light-hover);
+}
+
+.theme-dark .content-menu ul li a:hover {
+    background-color: var(--color-dark-hover);
+}
+
+.theme-light .content-menu ul li a span {
+    color: var(--color-section-light-text);
+}
+
+.theme-dark .content-menu ul li a span {
+    color: var(--color-section-dark-text);
+}
+
+/* Misc */
+
+/* Fixing the note content so it lines up with the note inline title */
+.markdown-preview-view .heading-collapse-indicator {
+    margin-inline-start: initial;
+}
+
+/* Fix code block comments in read-mode */
+.comment {
+    display: initial;
+}
+
+/* Hide the collapsible button e.g -> */
+span.heading-collapse-indicator.collapse-indicator.collapse-icon.is-collapsed {
+    display: none;
+}
