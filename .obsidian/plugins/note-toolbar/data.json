@@ -2071,6 +2071,44 @@
           }
         },
         {
+          "uuid": "b152e295-5f26-42e4-8006-354da645d783",
+          "label": "Notes",
+          "icon": "lucide-pen-box",
+          "link": "Notes.md",
+          "linkAttr": {
+            "commandId": "",
+            "hasVars": false,
+            "type": "file"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
           "uuid": "587183f0-b5a3-437a-8927-9cb5f28df12e",
           "label": "Other",
           "icon": "question-mark-glyph",
@@ -2318,7 +2356,7 @@
           }
         }
       },
-      "updated": "2024-12-06T02:10:42.429Z"
+      "updated": "2025-01-11T00:51:38.773Z"
     },
     {
       "uuid": "a4ca80eb-6f11-40e5-b9b2-a1860e1f93e9",
@@ -2337,6 +2375,44 @@
             "commandId": "",
             "hasVars": false,
             "type": "file"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "uuid": "0b9d6b78-d5f5-41ec-a4d1-26dabacdc984",
+          "label": "Notes",
+          "icon": "",
+          "link": "",
+          "linkAttr": {
+            "commandId": "",
+            "hasVars": false,
+            "type": "command"
           },
           "tooltip": "",
           "visibility": {
@@ -2386,7 +2462,7 @@
           }
         }
       },
-      "updated": "2024-12-04T14:21:50.817Z"
+      "updated": "2025-01-11T00:47:50.861Z"
     },
     {
       "uuid": "d96ca327-f424-4d17-a9db-c35ba9e724fe",
