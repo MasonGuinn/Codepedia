@@ -7,7 +7,7 @@ Welcome to Codepedia! This project is a comprehensive collection of coding knowl
 - [Codepedia](#codepedia)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
-  - [Update 12/7/2024](#update-1272024)
+  - [Update 1/10/2025](#update-1102025)
   - [Showcase](#showcase)
   - [Getting Started](#getting-started)
   - [Contributing](#contributing)
@@ -17,13 +17,14 @@ Welcome to Codepedia! This project is a comprehensive collection of coding knowl
 
 Codepedia is designed to be a comprehensive resource for developers of all skill levels, providing valuable information and enhancing coding skills.
 
-## Update 12/7/2024
+## Update 1/10/2025
+Sorry it's been so long, been busy with school work.
+- Did a bit of stuff but honestly forgot what it was lol
+- Better looking development section
+![[20250111-0058-03.8214527.mp4]]
+(hopefully the video works, because its beautiful)
 
-- Added music player in home
-- Added start and stop buttons and js scripts for **cat**
-- Added new folder in `config/Music/` for any music.
-- Added repo protection
-- Some other stuff I probably forgot to mention
+
 
 ⚠️ Minor bug: When placing the cursor on the edge of the global navigation buttons, they may not register and navigate to the note. This was **not** introduced in this update and will be fixed asap.
 
