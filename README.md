@@ -21,7 +21,7 @@ Codepedia is designed to be a comprehensive resource for developers of all skill
 Sorry it's been so long, been busy with school work.
 - Did a bit of stuff but honestly forgot what it was lol
 - Better looking development section
-[Video here](20250111-0058-03.8214527.mp4)
+[Video here](Config/Resources/20250111-0058-03.8214527.mp4)
 
 (hopefully the video works, because its beautiful)
 
