@@ -18,8 +18,9 @@
   "prioritizeArticleTitle": false,
   "cleanupIntros": true,
   "openArticleInFullscreen": false,
-  "openArticlesInBrowser": false,
   "openCreatedNotes": false,
   "overrideFiles": false,
+  "showedWebviewerMessage": false,
+  "openArticlesInBrowser": false,
   "showedSurfingMessage": false
 }

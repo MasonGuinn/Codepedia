@@ -2403,10 +2403,9 @@ var DEFAULT_SETTINGS = {
   prioritizeArticleTitle: false,
   cleanupIntros: true,
   openArticleInFullscreen: false,
-  openArticlesInBrowser: false,
   openCreatedNotes: false,
   overrideFiles: false,
-  showedSurfingMessage: false
+  showedWebviewerMessage: false
 };
 var WikipediaSearchSettingTab = class extends import_obsidian10.PluginSettingTab {
   constructor(app2, plugin) {
@@ -2469,7 +2468,9 @@ var WikipediaSearchSettingTab = class extends import_obsidian10.PluginSettingTab
     new import_obsidian10.Setting(containerEl).setName(templateSettings).setHeading();
     this.addTemplateSettings(containerEl);
     new import_obsidian10.Setting(containerEl).setName("Workflow optimizations").setHeading();
-    new import_obsidian10.Setting(containerEl).setName("Auto-search note title").setDesc("Whether or not to automatically use the active notes title when searching for articles and nothing is selected.").addToggle(
+    new import_obsidian10.Setting(containerEl).setName("Auto-search note title").setDesc(
+      "Whether or not to automatically use the active notes title when searching for articles and nothing is selected."
+    ).addToggle(
       (toggle) => toggle.setValue(this.settings.autoSearchNoteTitle).onChange(async (value) => {
         this.settings.autoSearchNoteTitle = value;
         await this.plugin.saveSettings();
@@ -2497,16 +2498,8 @@ var WikipediaSearchSettingTab = class extends import_obsidian10.PluginSettingTab
         await this.plugin.saveSettings();
       })
     );
-    new import_obsidian10.Setting(containerEl).setName("Open article in browser").setDesc(
-      "Whether or not to open articles in the browser instead of in-app if the Surfing plugin is installed and enabled."
-    ).addToggle(
-      (toggle) => toggle.setValue(this.settings.openArticlesInBrowser).onChange(async (value) => {
-        this.settings.openArticlesInBrowser = value;
-        await this.plugin.saveSettings();
-      })
-    );
     new import_obsidian10.Setting(containerEl).setName("Article tab placement").setDesc(
-      "Whether or not to open articles in a fullscreen tab instead of a split view when using the Surfing plugin or creating an article note."
+      "Whether or not to open articles in a fullscreen tab instead of a split view when using the Web viewer plugin or creating an article note."
     ).addToggle(
       (toggle) => toggle.setValue(this.settings.openArticleInFullscreen).onChange(async (value) => {
         this.settings.openArticleInFullscreen = value;
@@ -2656,24 +2649,24 @@ var OpenArticleModal = class extends SearchModal {
   async onChooseSuggestion(article) {
     if (
       // @ts-expect-error undocumented
-      this.app.plugins.enabledPlugins.has("surfing") && !this.settings.openArticlesInBrowser && import_obsidian11.Platform.isDesktopApp
+      this.app.setting.pluginTabs.find((e) => e.id == "webviewer") && import_obsidian11.Platform.isDesktopApp
     ) {
       this.app.workspace.getLeaf(this.settings.openArticleInFullscreen ? "tab" : "split").setViewState({
-        type: "surfing-view",
+        type: "webviewer",
         active: true,
         state: { url: article.url }
       });
-    } else if (!this.settings.showedSurfingMessage && import_obsidian11.Platform.isDesktopApp && !this.settings.openArticlesInBrowser) {
+    } else if (!this.settings.showedWebviewerMessage && import_obsidian11.Platform.isDesktopApp) {
       const modal = new import_obsidian11.Modal(this.app);
       modal.onClose = () => this.onChooseSuggestion(article);
-      modal.titleEl.setText("Wikipedia Search plugin \u2665 Surfing plugin");
-      modal.contentEl.innerHTML = `The Wikipedia Search plugin integrates with the amazing Surfing plugin to enable you to open Wikipedia articles directly inside of Obsidian! You just need to install and enable it. It has tons of awesome features and does the heavy lifting of loading the website itself in Obsidian. In this case the Wikipedia Search plugin just provides the search functionality. Using the Surfing plugin is completely optional but I highly recommend you check it out! Note: This will only be shown to you once but you can always find the information later in the README on GitHub as well. ~ Murphy :)<br><br>
-			<b>tl;dr: Install and enable the amazing <a href="obsidian://show-plugin?id=surfing">Surfing plugin</a> to open Wikipedia articles directly inside of Obsidian!</b>`;
+      modal.titleEl.setText("Wikipedia Search plugin \u2665 Web viewer plugin");
+      modal.contentEl.innerHTML = `The Wikipedia Search plugin integrates with the Web viewer core plugin to enable you to open articles directly inside of Obsidian! You just need to enable it. It does the heavy lifting of loading the website itself in Obsidian. In this case the Wikipedia Search plugin just provides the search functionality. Using the Web viewer plugin is completely optional but I highly recommend you check it out! Without it enabled all articles will be opened in your default browser. Note: This will only be shown to you once but you can always find the information later in the README on GitHub as well. ~ Murphy :)<br><br>
+			<b>tl;dr: Enable the Web viewer plugin (Settings > Core plugins > Web viewer) to open Wikipedia articles directly inside of Obsidian!</b>`;
       modal.open();
-      this.settings.showedSurfingMessage = true;
+      this.settings.showedWebviewerMessage = true;
       this.plugin.saveSettings();
     } else {
-      window.open(article.url, "_blank");
+      window.open(article.url);
     }
   }
 };

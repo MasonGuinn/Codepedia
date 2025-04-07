@@ -9,6 +9,7 @@
 
 ```audio-player
 [[THNK IT THRU.mp3]]
+00:00:01 --- More Music Coming Soon!
 ```
 
 

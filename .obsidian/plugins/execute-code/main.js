@@ -9,7 +9,6 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __reflectGet = Reflect.get;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
@@ -30,1407 +29,6 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var __superGet = (cls, obj, key) => __reflectGet(__getProtoOf(cls), key, obj);
-var __async = (__this, __arguments, generator) => {
-  return new Promise((resolve, reject) => {
-    var fulfilled = (value) => {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    };
-    var rejected = (value) => {
-      try {
-        step(generator.throw(value));
-      } catch (e) {
-        reject(e);
-      }
-    };
-    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
-    step((generator = generator.apply(__this, __arguments)).next());
-  });
-};
-
-// node_modules/json5/dist/index.js
-var require_dist = __commonJS({
-  "node_modules/json5/dist/index.js"(exports, module2) {
-    (function(global2, factory) {
-      typeof exports === "object" && typeof module2 !== "undefined" ? module2.exports = factory() : typeof define === "function" && define.amd ? define(factory) : global2.JSON5 = factory();
-    })(exports, function() {
-      "use strict";
-      function createCommonjsModule(fn, module3) {
-        return module3 = { exports: {} }, fn(module3, module3.exports), module3.exports;
-      }
-      var _global = createCommonjsModule(function(module3) {
-        var global2 = module3.exports = typeof window != "undefined" && window.Math == Math ? window : typeof self != "undefined" && self.Math == Math ? self : Function("return this")();
-        if (typeof __g == "number") {
-          __g = global2;
-        }
-      });
-      var _core = createCommonjsModule(function(module3) {
-        var core = module3.exports = { version: "2.6.5" };
-        if (typeof __e == "number") {
-          __e = core;
-        }
-      });
-      var _core_1 = _core.version;
-      var _isObject = function(it) {
-        return typeof it === "object" ? it !== null : typeof it === "function";
-      };
-      var _anObject = function(it) {
-        if (!_isObject(it)) {
-          throw TypeError(it + " is not an object!");
-        }
-        return it;
-      };
-      var _fails = function(exec) {
-        try {
-          return !!exec();
-        } catch (e) {
-          return true;
-        }
-      };
-      var _descriptors = !_fails(function() {
-        return Object.defineProperty({}, "a", { get: function() {
-          return 7;
-        } }).a != 7;
-      });
-      var document2 = _global.document;
-      var is = _isObject(document2) && _isObject(document2.createElement);
-      var _domCreate = function(it) {
-        return is ? document2.createElement(it) : {};
-      };
-      var _ie8DomDefine = !_descriptors && !_fails(function() {
-        return Object.defineProperty(_domCreate("div"), "a", { get: function() {
-          return 7;
-        } }).a != 7;
-      });
-      var _toPrimitive = function(it, S) {
-        if (!_isObject(it)) {
-          return it;
-        }
-        var fn, val;
-        if (S && typeof (fn = it.toString) == "function" && !_isObject(val = fn.call(it))) {
-          return val;
-        }
-        if (typeof (fn = it.valueOf) == "function" && !_isObject(val = fn.call(it))) {
-          return val;
-        }
-        if (!S && typeof (fn = it.toString) == "function" && !_isObject(val = fn.call(it))) {
-          return val;
-        }
-        throw TypeError("Can't convert object to primitive value");
-      };
-      var dP = Object.defineProperty;
-      var f = _descriptors ? Object.defineProperty : function defineProperty(O, P, Attributes) {
-        _anObject(O);
-        P = _toPrimitive(P, true);
-        _anObject(Attributes);
-        if (_ie8DomDefine) {
-          try {
-            return dP(O, P, Attributes);
-          } catch (e) {
-          }
-        }
-        if ("get" in Attributes || "set" in Attributes) {
-          throw TypeError("Accessors not supported!");
-        }
-        if ("value" in Attributes) {
-          O[P] = Attributes.value;
-        }
-        return O;
-      };
-      var _objectDp = {
-        f
-      };
-      var _propertyDesc = function(bitmap, value) {
-        return {
-          enumerable: !(bitmap & 1),
-          configurable: !(bitmap & 2),
-          writable: !(bitmap & 4),
-          value
-        };
-      };
-      var _hide = _descriptors ? function(object, key2, value) {
-        return _objectDp.f(object, key2, _propertyDesc(1, value));
-      } : function(object, key2, value) {
-        object[key2] = value;
-        return object;
-      };
-      var hasOwnProperty = {}.hasOwnProperty;
-      var _has = function(it, key2) {
-        return hasOwnProperty.call(it, key2);
-      };
-      var id = 0;
-      var px = Math.random();
-      var _uid = function(key2) {
-        return "Symbol(".concat(key2 === void 0 ? "" : key2, ")_", (++id + px).toString(36));
-      };
-      var _library = false;
-      var _shared = createCommonjsModule(function(module3) {
-        var SHARED = "__core-js_shared__";
-        var store = _global[SHARED] || (_global[SHARED] = {});
-        (module3.exports = function(key2, value) {
-          return store[key2] || (store[key2] = value !== void 0 ? value : {});
-        })("versions", []).push({
-          version: _core.version,
-          mode: _library ? "pure" : "global",
-          copyright: "\xA9 2019 Denis Pushkarev (zloirock.ru)"
-        });
-      });
-      var _functionToString = _shared("native-function-to-string", Function.toString);
-      var _redefine = createCommonjsModule(function(module3) {
-        var SRC = _uid("src");
-        var TO_STRING = "toString";
-        var TPL = ("" + _functionToString).split(TO_STRING);
-        _core.inspectSource = function(it) {
-          return _functionToString.call(it);
-        };
-        (module3.exports = function(O, key2, val, safe) {
-          var isFunction = typeof val == "function";
-          if (isFunction) {
-            _has(val, "name") || _hide(val, "name", key2);
-          }
-          if (O[key2] === val) {
-            return;
-          }
-          if (isFunction) {
-            _has(val, SRC) || _hide(val, SRC, O[key2] ? "" + O[key2] : TPL.join(String(key2)));
-          }
-          if (O === _global) {
-            O[key2] = val;
-          } else if (!safe) {
-            delete O[key2];
-            _hide(O, key2, val);
-          } else if (O[key2]) {
-            O[key2] = val;
-          } else {
-            _hide(O, key2, val);
-          }
-        })(Function.prototype, TO_STRING, function toString() {
-          return typeof this == "function" && this[SRC] || _functionToString.call(this);
-        });
-      });
-      var _aFunction = function(it) {
-        if (typeof it != "function") {
-          throw TypeError(it + " is not a function!");
-        }
-        return it;
-      };
-      var _ctx = function(fn, that, length) {
-        _aFunction(fn);
-        if (that === void 0) {
-          return fn;
-        }
-        switch (length) {
-          case 1:
-            return function(a) {
-              return fn.call(that, a);
-            };
-          case 2:
-            return function(a, b) {
-              return fn.call(that, a, b);
-            };
-          case 3:
-            return function(a, b, c2) {
-              return fn.call(that, a, b, c2);
-            };
-        }
-        return function() {
-          return fn.apply(that, arguments);
-        };
-      };
-      var PROTOTYPE = "prototype";
-      var $export = function(type, name, source2) {
-        var IS_FORCED = type & $export.F;
-        var IS_GLOBAL = type & $export.G;
-        var IS_STATIC = type & $export.S;
-        var IS_PROTO = type & $export.P;
-        var IS_BIND = type & $export.B;
-        var target = IS_GLOBAL ? _global : IS_STATIC ? _global[name] || (_global[name] = {}) : (_global[name] || {})[PROTOTYPE];
-        var exports2 = IS_GLOBAL ? _core : _core[name] || (_core[name] = {});
-        var expProto = exports2[PROTOTYPE] || (exports2[PROTOTYPE] = {});
-        var key2, own, out, exp;
-        if (IS_GLOBAL) {
-          source2 = name;
-        }
-        for (key2 in source2) {
-          own = !IS_FORCED && target && target[key2] !== void 0;
-          out = (own ? target : source2)[key2];
-          exp = IS_BIND && own ? _ctx(out, _global) : IS_PROTO && typeof out == "function" ? _ctx(Function.call, out) : out;
-          if (target) {
-            _redefine(target, key2, out, type & $export.U);
-          }
-          if (exports2[key2] != out) {
-            _hide(exports2, key2, exp);
-          }
-          if (IS_PROTO && expProto[key2] != out) {
-            expProto[key2] = out;
-          }
-        }
-      };
-      _global.core = _core;
-      $export.F = 1;
-      $export.G = 2;
-      $export.S = 4;
-      $export.P = 8;
-      $export.B = 16;
-      $export.W = 32;
-      $export.U = 64;
-      $export.R = 128;
-      var _export = $export;
-      var ceil = Math.ceil;
-      var floor = Math.floor;
-      var _toInteger = function(it) {
-        return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-      };
-      var _defined = function(it) {
-        if (it == void 0) {
-          throw TypeError("Can't call method on  " + it);
-        }
-        return it;
-      };
-      var _stringAt = function(TO_STRING) {
-        return function(that, pos2) {
-          var s = String(_defined(that));
-          var i2 = _toInteger(pos2);
-          var l = s.length;
-          var a, b;
-          if (i2 < 0 || i2 >= l) {
-            return TO_STRING ? "" : void 0;
-          }
-          a = s.charCodeAt(i2);
-          return a < 55296 || a > 56319 || i2 + 1 === l || (b = s.charCodeAt(i2 + 1)) < 56320 || b > 57343 ? TO_STRING ? s.charAt(i2) : a : TO_STRING ? s.slice(i2, i2 + 2) : (a - 55296 << 10) + (b - 56320) + 65536;
-        };
-      };
-      var $at = _stringAt(false);
-      _export(_export.P, "String", {
-        codePointAt: function codePointAt2(pos2) {
-          return $at(this, pos2);
-        }
-      });
-      var codePointAt = _core.String.codePointAt;
-      var max = Math.max;
-      var min = Math.min;
-      var _toAbsoluteIndex = function(index, length) {
-        index = _toInteger(index);
-        return index < 0 ? max(index + length, 0) : min(index, length);
-      };
-      var fromCharCode = String.fromCharCode;
-      var $fromCodePoint = String.fromCodePoint;
-      _export(_export.S + _export.F * (!!$fromCodePoint && $fromCodePoint.length != 1), "String", {
-        fromCodePoint: function fromCodePoint2(x) {
-          var arguments$1 = arguments;
-          var res = [];
-          var aLen = arguments.length;
-          var i2 = 0;
-          var code;
-          while (aLen > i2) {
-            code = +arguments$1[i2++];
-            if (_toAbsoluteIndex(code, 1114111) !== code) {
-              throw RangeError(code + " is not a valid code point");
-            }
-            res.push(
-              code < 65536 ? fromCharCode(code) : fromCharCode(((code -= 65536) >> 10) + 55296, code % 1024 + 56320)
-            );
-          }
-          return res.join("");
-        }
-      });
-      var fromCodePoint = _core.String.fromCodePoint;
-      var Space_Separator = /[\u1680\u2000-\u200A\u202F\u205F\u3000]/;
-      var ID_Start = /[\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u052F\u0531-\u0556\u0559\u0561-\u0587\u05D0-\u05EA\u05F0-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u0860-\u086A\u08A0-\u08B4\u08B6-\u08BD\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u09FC\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0AF9\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58-\u0C5A\u0C60\u0C61\u0C80\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D54-\u0D56\u0D5F-\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16EE-\u16F8\u1700-\u170C\u170E-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1877\u1880-\u1884\u1887-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1C80-\u1C88\u1CE9-\u1CEC\u1CEE-\u1CF1\u1CF5\u1CF6\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2160-\u2188\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005-\u3007\u3021-\u3029\u3031-\u3035\u3038-\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312E\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FEA\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA69D\uA6A0-\uA6EF\uA717-\uA71F\uA722-\uA788\uA78B-\uA7AE\uA7B0-\uA7B7\uA7F7-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA8FD\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uA9E0-\uA9E4\uA9E6-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB65\uAB70-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDD40-\uDD74\uDE80-\uDE9C\uDEA0-\uDED0\uDF00-\uDF1F\uDF2D-\uDF4A\uDF50-\uDF75\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF\uDFD1-\uDFD5]|\uD801[\uDC00-\uDC9D\uDCB0-\uDCD3\uDCD8-\uDCFB\uDD00-\uDD27\uDD30-\uDD63\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00\uDE10-\uDE13\uDE15-\uDE17\uDE19-\uDE33\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE4\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2]|\uD804[\uDC03-\uDC37\uDC83-\uDCAF\uDCD0-\uDCE8\uDD03-\uDD26\uDD50-\uDD72\uDD76\uDD83-\uDDB2\uDDC1-\uDDC4\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE2B\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEDE\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3D\uDF50\uDF5D-\uDF61]|\uD805[\uDC00-\uDC34\uDC47-\uDC4A\uDC80-\uDCAF\uDCC4\uDCC5\uDCC7\uDD80-\uDDAE\uDDD8-\uDDDB\uDE00-\uDE2F\uDE44\uDE80-\uDEAA\uDF00-\uDF19]|\uD806[\uDCA0-\uDCDF\uDCFF\uDE00\uDE0B-\uDE32\uDE3A\uDE50\uDE5C-\uDE83\uDE86-\uDE89\uDEC0-\uDEF8]|\uD807[\uDC00-\uDC08\uDC0A-\uDC2E\uDC40\uDC72-\uDC8F\uDD00-\uDD06\uDD08\uDD09\uDD0B-\uDD30\uDD46]|\uD808[\uDC00-\uDF99]|\uD809[\uDC00-\uDC6E\uDC80-\uDD43]|[\uD80C\uD81C-\uD820\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2E]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDED0-\uDEED\uDF00-\uDF2F\uDF40-\uDF43\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDF00-\uDF44\uDF50\uDF93-\uDF9F\uDFE0\uDFE1]|\uD821[\uDC00-\uDFEC]|\uD822[\uDC00-\uDEF2]|\uD82C[\uDC00-\uDD1E\uDD70-\uDEFB]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB]|\uD83A[\uDC00-\uDCC4\uDD00-\uDD43]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0]|\uD87E[\uDC00-\uDE1D]/;
-      var ID_Continue = /[\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0300-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u0483-\u0487\u048A-\u052F\u0531-\u0556\u0559\u0561-\u0587\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u05D0-\u05EA\u05F0-\u05F2\u0610-\u061A\u0620-\u0669\u066E-\u06D3\u06D5-\u06DC\u06DF-\u06E8\u06EA-\u06FC\u06FF\u0710-\u074A\u074D-\u07B1\u07C0-\u07F5\u07FA\u0800-\u082D\u0840-\u085B\u0860-\u086A\u08A0-\u08B4\u08B6-\u08BD\u08D4-\u08E1\u08E3-\u0963\u0966-\u096F\u0971-\u0983\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BC-\u09C4\u09C7\u09C8\u09CB-\u09CE\u09D7\u09DC\u09DD\u09DF-\u09E3\u09E6-\u09F1\u09FC\u0A01-\u0A03\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A59-\u0A5C\u0A5E\u0A66-\u0A75\u0A81-\u0A83\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABC-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AD0\u0AE0-\u0AE3\u0AE6-\u0AEF\u0AF9-\u0AFF\u0B01-\u0B03\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3C-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B5C\u0B5D\u0B5F-\u0B63\u0B66-\u0B6F\u0B71\u0B82\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD0\u0BD7\u0BE6-\u0BEF\u0C00-\u0C03\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C58-\u0C5A\u0C60-\u0C63\u0C66-\u0C6F\u0C80-\u0C83\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBC-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CDE\u0CE0-\u0CE3\u0CE6-\u0CEF\u0CF1\u0CF2\u0D00-\u0D03\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D44\u0D46-\u0D48\u0D4A-\u0D4E\u0D54-\u0D57\u0D5F-\u0D63\u0D66-\u0D6F\u0D7A-\u0D7F\u0D82\u0D83\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DE6-\u0DEF\u0DF2\u0DF3\u0E01-\u0E3A\u0E40-\u0E4E\u0E50-\u0E59\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB9\u0EBB-\u0EBD\u0EC0-\u0EC4\u0EC6\u0EC8-\u0ECD\u0ED0-\u0ED9\u0EDC-\u0EDF\u0F00\u0F18\u0F19\u0F20-\u0F29\u0F35\u0F37\u0F39\u0F3E-\u0F47\u0F49-\u0F6C\u0F71-\u0F84\u0F86-\u0F97\u0F99-\u0FBC\u0FC6\u1000-\u1049\u1050-\u109D\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u135D-\u135F\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16EE-\u16F8\u1700-\u170C\u170E-\u1714\u1720-\u1734\u1740-\u1753\u1760-\u176C\u176E-\u1770\u1772\u1773\u1780-\u17D3\u17D7\u17DC\u17DD\u17E0-\u17E9\u180B-\u180D\u1810-\u1819\u1820-\u1877\u1880-\u18AA\u18B0-\u18F5\u1900-\u191E\u1920-\u192B\u1930-\u193B\u1946-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u19D0-\u19D9\u1A00-\u1A1B\u1A20-\u1A5E\u1A60-\u1A7C\u1A7F-\u1A89\u1A90-\u1A99\u1AA7\u1AB0-\u1ABD\u1B00-\u1B4B\u1B50-\u1B59\u1B6B-\u1B73\u1B80-\u1BF3\u1C00-\u1C37\u1C40-\u1C49\u1C4D-\u1C7D\u1C80-\u1C88\u1CD0-\u1CD2\u1CD4-\u1CF9\u1D00-\u1DF9\u1DFB-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u203F\u2040\u2054\u2071\u207F\u2090-\u209C\u20D0-\u20DC\u20E1\u20E5-\u20F0\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2160-\u2188\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D7F-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2DE0-\u2DFF\u2E2F\u3005-\u3007\u3021-\u302F\u3031-\u3035\u3038-\u303C\u3041-\u3096\u3099\u309A\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312E\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FEA\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA62B\uA640-\uA66F\uA674-\uA67D\uA67F-\uA6F1\uA717-\uA71F\uA722-\uA788\uA78B-\uA7AE\uA7B0-\uA7B7\uA7F7-\uA827\uA840-\uA873\uA880-\uA8C5\uA8D0-\uA8D9\uA8E0-\uA8F7\uA8FB\uA8FD\uA900-\uA92D\uA930-\uA953\uA960-\uA97C\uA980-\uA9C0\uA9CF-\uA9D9\uA9E0-\uA9FE\uAA00-\uAA36\uAA40-\uAA4D\uAA50-\uAA59\uAA60-\uAA76\uAA7A-\uAAC2\uAADB-\uAADD\uAAE0-\uAAEF\uAAF2-\uAAF6\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB65\uAB70-\uABEA\uABEC\uABED\uABF0-\uABF9\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE00-\uFE0F\uFE20-\uFE2F\uFE33\uFE34\uFE4D-\uFE4F\uFE70-\uFE74\uFE76-\uFEFC\uFF10-\uFF19\uFF21-\uFF3A\uFF3F\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDD40-\uDD74\uDDFD\uDE80-\uDE9C\uDEA0-\uDED0\uDEE0\uDF00-\uDF1F\uDF2D-\uDF4A\uDF50-\uDF7A\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF\uDFD1-\uDFD5]|\uD801[\uDC00-\uDC9D\uDCA0-\uDCA9\uDCB0-\uDCD3\uDCD8-\uDCFB\uDD00-\uDD27\uDD30-\uDD63\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00-\uDE03\uDE05\uDE06\uDE0C-\uDE13\uDE15-\uDE17\uDE19-\uDE33\uDE38-\uDE3A\uDE3F\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE6\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2]|\uD804[\uDC00-\uDC46\uDC66-\uDC6F\uDC7F-\uDCBA\uDCD0-\uDCE8\uDCF0-\uDCF9\uDD00-\uDD34\uDD36-\uDD3F\uDD50-\uDD73\uDD76\uDD80-\uDDC4\uDDCA-\uDDCC\uDDD0-\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE37\uDE3E\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEEA\uDEF0-\uDEF9\uDF00-\uDF03\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3C-\uDF44\uDF47\uDF48\uDF4B-\uDF4D\uDF50\uDF57\uDF5D-\uDF63\uDF66-\uDF6C\uDF70-\uDF74]|\uD805[\uDC00-\uDC4A\uDC50-\uDC59\uDC80-\uDCC5\uDCC7\uDCD0-\uDCD9\uDD80-\uDDB5\uDDB8-\uDDC0\uDDD8-\uDDDD\uDE00-\uDE40\uDE44\uDE50-\uDE59\uDE80-\uDEB7\uDEC0-\uDEC9\uDF00-\uDF19\uDF1D-\uDF2B\uDF30-\uDF39]|\uD806[\uDCA0-\uDCE9\uDCFF\uDE00-\uDE3E\uDE47\uDE50-\uDE83\uDE86-\uDE99\uDEC0-\uDEF8]|\uD807[\uDC00-\uDC08\uDC0A-\uDC36\uDC38-\uDC40\uDC50-\uDC59\uDC72-\uDC8F\uDC92-\uDCA7\uDCA9-\uDCB6\uDD00-\uDD06\uDD08\uDD09\uDD0B-\uDD36\uDD3A\uDD3C\uDD3D\uDD3F-\uDD47\uDD50-\uDD59]|\uD808[\uDC00-\uDF99]|\uD809[\uDC00-\uDC6E\uDC80-\uDD43]|[\uD80C\uD81C-\uD820\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2E]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDE60-\uDE69\uDED0-\uDEED\uDEF0-\uDEF4\uDF00-\uDF36\uDF40-\uDF43\uDF50-\uDF59\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDF00-\uDF44\uDF50-\uDF7E\uDF8F-\uDF9F\uDFE0\uDFE1]|\uD821[\uDC00-\uDFEC]|\uD822[\uDC00-\uDEF2]|\uD82C[\uDC00-\uDD1E\uDD70-\uDEFB]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99\uDC9D\uDC9E]|\uD834[\uDD65-\uDD69\uDD6D-\uDD72\uDD7B-\uDD82\uDD85-\uDD8B\uDDAA-\uDDAD\uDE42-\uDE44]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB\uDFCE-\uDFFF]|\uD836[\uDE00-\uDE36\uDE3B-\uDE6C\uDE75\uDE84\uDE9B-\uDE9F\uDEA1-\uDEAF]|\uD838[\uDC00-\uDC06\uDC08-\uDC18\uDC1B-\uDC21\uDC23\uDC24\uDC26-\uDC2A]|\uD83A[\uDC00-\uDCC4\uDCD0-\uDCD6\uDD00-\uDD4A\uDD50-\uDD59]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0]|\uD87E[\uDC00-\uDE1D]|\uDB40[\uDD00-\uDDEF]/;
-      var unicode = {
-        Space_Separator,
-        ID_Start,
-        ID_Continue
-      };
-      var util = {
-        isSpaceSeparator: function isSpaceSeparator(c2) {
-          return typeof c2 === "string" && unicode.Space_Separator.test(c2);
-        },
-        isIdStartChar: function isIdStartChar(c2) {
-          return typeof c2 === "string" && (c2 >= "a" && c2 <= "z" || c2 >= "A" && c2 <= "Z" || c2 === "$" || c2 === "_" || unicode.ID_Start.test(c2));
-        },
-        isIdContinueChar: function isIdContinueChar(c2) {
-          return typeof c2 === "string" && (c2 >= "a" && c2 <= "z" || c2 >= "A" && c2 <= "Z" || c2 >= "0" && c2 <= "9" || c2 === "$" || c2 === "_" || c2 === "\u200C" || c2 === "\u200D" || unicode.ID_Continue.test(c2));
-        },
-        isDigit: function isDigit(c2) {
-          return typeof c2 === "string" && /[0-9]/.test(c2);
-        },
-        isHexDigit: function isHexDigit(c2) {
-          return typeof c2 === "string" && /[0-9A-Fa-f]/.test(c2);
-        }
-      };
-      var source;
-      var parseState;
-      var stack;
-      var pos;
-      var line;
-      var column;
-      var token;
-      var key;
-      var root;
-      var parse2 = function parse3(text, reviver) {
-        source = String(text);
-        parseState = "start";
-        stack = [];
-        pos = 0;
-        line = 1;
-        column = 0;
-        token = void 0;
-        key = void 0;
-        root = void 0;
-        do {
-          token = lex();
-          parseStates[parseState]();
-        } while (token.type !== "eof");
-        if (typeof reviver === "function") {
-          return internalize({ "": root }, "", reviver);
-        }
-        return root;
-      };
-      function internalize(holder, name, reviver) {
-        var value = holder[name];
-        if (value != null && typeof value === "object") {
-          if (Array.isArray(value)) {
-            for (var i2 = 0; i2 < value.length; i2++) {
-              var key2 = String(i2);
-              var replacement = internalize(value, key2, reviver);
-              if (replacement === void 0) {
-                delete value[key2];
-              } else {
-                Object.defineProperty(value, key2, {
-                  value: replacement,
-                  writable: true,
-                  enumerable: true,
-                  configurable: true
-                });
-              }
-            }
-          } else {
-            for (var key$1 in value) {
-              var replacement$1 = internalize(value, key$1, reviver);
-              if (replacement$1 === void 0) {
-                delete value[key$1];
-              } else {
-                Object.defineProperty(value, key$1, {
-                  value: replacement$1,
-                  writable: true,
-                  enumerable: true,
-                  configurable: true
-                });
-              }
-            }
-          }
-        }
-        return reviver.call(holder, name, value);
-      }
-      var lexState;
-      var buffer;
-      var doubleQuote;
-      var sign;
-      var c;
-      function lex() {
-        lexState = "default";
-        buffer = "";
-        doubleQuote = false;
-        sign = 1;
-        for (; ; ) {
-          c = peek();
-          var token2 = lexStates[lexState]();
-          if (token2) {
-            return token2;
-          }
-        }
-      }
-      function peek() {
-        if (source[pos]) {
-          return String.fromCodePoint(source.codePointAt(pos));
-        }
-      }
-      function read() {
-        var c2 = peek();
-        if (c2 === "\n") {
-          line++;
-          column = 0;
-        } else if (c2) {
-          column += c2.length;
-        } else {
-          column++;
-        }
-        if (c2) {
-          pos += c2.length;
-        }
-        return c2;
-      }
-      var lexStates = {
-        default: function default$1() {
-          switch (c) {
-            case "	":
-            case "\v":
-            case "\f":
-            case " ":
-            case "\xA0":
-            case "\uFEFF":
-            case "\n":
-            case "\r":
-            case "\u2028":
-            case "\u2029":
-              read();
-              return;
-            case "/":
-              read();
-              lexState = "comment";
-              return;
-            case void 0:
-              read();
-              return newToken("eof");
-          }
-          if (util.isSpaceSeparator(c)) {
-            read();
-            return;
-          }
-          return lexStates[parseState]();
-        },
-        comment: function comment() {
-          switch (c) {
-            case "*":
-              read();
-              lexState = "multiLineComment";
-              return;
-            case "/":
-              read();
-              lexState = "singleLineComment";
-              return;
-          }
-          throw invalidChar(read());
-        },
-        multiLineComment: function multiLineComment() {
-          switch (c) {
-            case "*":
-              read();
-              lexState = "multiLineCommentAsterisk";
-              return;
-            case void 0:
-              throw invalidChar(read());
-          }
-          read();
-        },
-        multiLineCommentAsterisk: function multiLineCommentAsterisk() {
-          switch (c) {
-            case "*":
-              read();
-              return;
-            case "/":
-              read();
-              lexState = "default";
-              return;
-            case void 0:
-              throw invalidChar(read());
-          }
-          read();
-          lexState = "multiLineComment";
-        },
-        singleLineComment: function singleLineComment() {
-          switch (c) {
-            case "\n":
-            case "\r":
-            case "\u2028":
-            case "\u2029":
-              read();
-              lexState = "default";
-              return;
-            case void 0:
-              read();
-              return newToken("eof");
-          }
-          read();
-        },
-        value: function value() {
-          switch (c) {
-            case "{":
-            case "[":
-              return newToken("punctuator", read());
-            case "n":
-              read();
-              literal("ull");
-              return newToken("null", null);
-            case "t":
-              read();
-              literal("rue");
-              return newToken("boolean", true);
-            case "f":
-              read();
-              literal("alse");
-              return newToken("boolean", false);
-            case "-":
-            case "+":
-              if (read() === "-") {
-                sign = -1;
-              }
-              lexState = "sign";
-              return;
-            case ".":
-              buffer = read();
-              lexState = "decimalPointLeading";
-              return;
-            case "0":
-              buffer = read();
-              lexState = "zero";
-              return;
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
-            case "7":
-            case "8":
-            case "9":
-              buffer = read();
-              lexState = "decimalInteger";
-              return;
-            case "I":
-              read();
-              literal("nfinity");
-              return newToken("numeric", Infinity);
-            case "N":
-              read();
-              literal("aN");
-              return newToken("numeric", NaN);
-            case '"':
-            case "'":
-              doubleQuote = read() === '"';
-              buffer = "";
-              lexState = "string";
-              return;
-          }
-          throw invalidChar(read());
-        },
-        identifierNameStartEscape: function identifierNameStartEscape() {
-          if (c !== "u") {
-            throw invalidChar(read());
-          }
-          read();
-          var u = unicodeEscape();
-          switch (u) {
-            case "$":
-            case "_":
-              break;
-            default:
-              if (!util.isIdStartChar(u)) {
-                throw invalidIdentifier();
-              }
-              break;
-          }
-          buffer += u;
-          lexState = "identifierName";
-        },
-        identifierName: function identifierName() {
-          switch (c) {
-            case "$":
-            case "_":
-            case "\u200C":
-            case "\u200D":
-              buffer += read();
-              return;
-            case "\\":
-              read();
-              lexState = "identifierNameEscape";
-              return;
-          }
-          if (util.isIdContinueChar(c)) {
-            buffer += read();
-            return;
-          }
-          return newToken("identifier", buffer);
-        },
-        identifierNameEscape: function identifierNameEscape() {
-          if (c !== "u") {
-            throw invalidChar(read());
-          }
-          read();
-          var u = unicodeEscape();
-          switch (u) {
-            case "$":
-            case "_":
-            case "\u200C":
-            case "\u200D":
-              break;
-            default:
-              if (!util.isIdContinueChar(u)) {
-                throw invalidIdentifier();
-              }
-              break;
-          }
-          buffer += u;
-          lexState = "identifierName";
-        },
-        sign: function sign$1() {
-          switch (c) {
-            case ".":
-              buffer = read();
-              lexState = "decimalPointLeading";
-              return;
-            case "0":
-              buffer = read();
-              lexState = "zero";
-              return;
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
-            case "7":
-            case "8":
-            case "9":
-              buffer = read();
-              lexState = "decimalInteger";
-              return;
-            case "I":
-              read();
-              literal("nfinity");
-              return newToken("numeric", sign * Infinity);
-            case "N":
-              read();
-              literal("aN");
-              return newToken("numeric", NaN);
-          }
-          throw invalidChar(read());
-        },
-        zero: function zero() {
-          switch (c) {
-            case ".":
-              buffer += read();
-              lexState = "decimalPoint";
-              return;
-            case "e":
-            case "E":
-              buffer += read();
-              lexState = "decimalExponent";
-              return;
-            case "x":
-            case "X":
-              buffer += read();
-              lexState = "hexadecimal";
-              return;
-          }
-          return newToken("numeric", sign * 0);
-        },
-        decimalInteger: function decimalInteger() {
-          switch (c) {
-            case ".":
-              buffer += read();
-              lexState = "decimalPoint";
-              return;
-            case "e":
-            case "E":
-              buffer += read();
-              lexState = "decimalExponent";
-              return;
-          }
-          if (util.isDigit(c)) {
-            buffer += read();
-            return;
-          }
-          return newToken("numeric", sign * Number(buffer));
-        },
-        decimalPointLeading: function decimalPointLeading() {
-          if (util.isDigit(c)) {
-            buffer += read();
-            lexState = "decimalFraction";
-            return;
-          }
-          throw invalidChar(read());
-        },
-        decimalPoint: function decimalPoint() {
-          switch (c) {
-            case "e":
-            case "E":
-              buffer += read();
-              lexState = "decimalExponent";
-              return;
-          }
-          if (util.isDigit(c)) {
-            buffer += read();
-            lexState = "decimalFraction";
-            return;
-          }
-          return newToken("numeric", sign * Number(buffer));
-        },
-        decimalFraction: function decimalFraction() {
-          switch (c) {
-            case "e":
-            case "E":
-              buffer += read();
-              lexState = "decimalExponent";
-              return;
-          }
-          if (util.isDigit(c)) {
-            buffer += read();
-            return;
-          }
-          return newToken("numeric", sign * Number(buffer));
-        },
-        decimalExponent: function decimalExponent() {
-          switch (c) {
-            case "+":
-            case "-":
-              buffer += read();
-              lexState = "decimalExponentSign";
-              return;
-          }
-          if (util.isDigit(c)) {
-            buffer += read();
-            lexState = "decimalExponentInteger";
-            return;
-          }
-          throw invalidChar(read());
-        },
-        decimalExponentSign: function decimalExponentSign() {
-          if (util.isDigit(c)) {
-            buffer += read();
-            lexState = "decimalExponentInteger";
-            return;
-          }
-          throw invalidChar(read());
-        },
-        decimalExponentInteger: function decimalExponentInteger() {
-          if (util.isDigit(c)) {
-            buffer += read();
-            return;
-          }
-          return newToken("numeric", sign * Number(buffer));
-        },
-        hexadecimal: function hexadecimal() {
-          if (util.isHexDigit(c)) {
-            buffer += read();
-            lexState = "hexadecimalInteger";
-            return;
-          }
-          throw invalidChar(read());
-        },
-        hexadecimalInteger: function hexadecimalInteger() {
-          if (util.isHexDigit(c)) {
-            buffer += read();
-            return;
-          }
-          return newToken("numeric", sign * Number(buffer));
-        },
-        string: function string() {
-          switch (c) {
-            case "\\":
-              read();
-              buffer += escape();
-              return;
-            case '"':
-              if (doubleQuote) {
-                read();
-                return newToken("string", buffer);
-              }
-              buffer += read();
-              return;
-            case "'":
-              if (!doubleQuote) {
-                read();
-                return newToken("string", buffer);
-              }
-              buffer += read();
-              return;
-            case "\n":
-            case "\r":
-              throw invalidChar(read());
-            case "\u2028":
-            case "\u2029":
-              separatorChar(c);
-              break;
-            case void 0:
-              throw invalidChar(read());
-          }
-          buffer += read();
-        },
-        start: function start() {
-          switch (c) {
-            case "{":
-            case "[":
-              return newToken("punctuator", read());
-          }
-          lexState = "value";
-        },
-        beforePropertyName: function beforePropertyName() {
-          switch (c) {
-            case "$":
-            case "_":
-              buffer = read();
-              lexState = "identifierName";
-              return;
-            case "\\":
-              read();
-              lexState = "identifierNameStartEscape";
-              return;
-            case "}":
-              return newToken("punctuator", read());
-            case '"':
-            case "'":
-              doubleQuote = read() === '"';
-              lexState = "string";
-              return;
-          }
-          if (util.isIdStartChar(c)) {
-            buffer += read();
-            lexState = "identifierName";
-            return;
-          }
-          throw invalidChar(read());
-        },
-        afterPropertyName: function afterPropertyName() {
-          if (c === ":") {
-            return newToken("punctuator", read());
-          }
-          throw invalidChar(read());
-        },
-        beforePropertyValue: function beforePropertyValue() {
-          lexState = "value";
-        },
-        afterPropertyValue: function afterPropertyValue() {
-          switch (c) {
-            case ",":
-            case "}":
-              return newToken("punctuator", read());
-          }
-          throw invalidChar(read());
-        },
-        beforeArrayValue: function beforeArrayValue() {
-          if (c === "]") {
-            return newToken("punctuator", read());
-          }
-          lexState = "value";
-        },
-        afterArrayValue: function afterArrayValue() {
-          switch (c) {
-            case ",":
-            case "]":
-              return newToken("punctuator", read());
-          }
-          throw invalidChar(read());
-        },
-        end: function end() {
-          throw invalidChar(read());
-        }
-      };
-      function newToken(type, value) {
-        return {
-          type,
-          value,
-          line,
-          column
-        };
-      }
-      function literal(s) {
-        for (var i2 = 0, list = s; i2 < list.length; i2 += 1) {
-          var c2 = list[i2];
-          var p = peek();
-          if (p !== c2) {
-            throw invalidChar(read());
-          }
-          read();
-        }
-      }
-      function escape() {
-        var c2 = peek();
-        switch (c2) {
-          case "b":
-            read();
-            return "\b";
-          case "f":
-            read();
-            return "\f";
-          case "n":
-            read();
-            return "\n";
-          case "r":
-            read();
-            return "\r";
-          case "t":
-            read();
-            return "	";
-          case "v":
-            read();
-            return "\v";
-          case "0":
-            read();
-            if (util.isDigit(peek())) {
-              throw invalidChar(read());
-            }
-            return "\0";
-          case "x":
-            read();
-            return hexEscape();
-          case "u":
-            read();
-            return unicodeEscape();
-          case "\n":
-          case "\u2028":
-          case "\u2029":
-            read();
-            return "";
-          case "\r":
-            read();
-            if (peek() === "\n") {
-              read();
-            }
-            return "";
-          case "1":
-          case "2":
-          case "3":
-          case "4":
-          case "5":
-          case "6":
-          case "7":
-          case "8":
-          case "9":
-            throw invalidChar(read());
-          case void 0:
-            throw invalidChar(read());
-        }
-        return read();
-      }
-      function hexEscape() {
-        var buffer2 = "";
-        var c2 = peek();
-        if (!util.isHexDigit(c2)) {
-          throw invalidChar(read());
-        }
-        buffer2 += read();
-        c2 = peek();
-        if (!util.isHexDigit(c2)) {
-          throw invalidChar(read());
-        }
-        buffer2 += read();
-        return String.fromCodePoint(parseInt(buffer2, 16));
-      }
-      function unicodeEscape() {
-        var buffer2 = "";
-        var count = 4;
-        while (count-- > 0) {
-          var c2 = peek();
-          if (!util.isHexDigit(c2)) {
-            throw invalidChar(read());
-          }
-          buffer2 += read();
-        }
-        return String.fromCodePoint(parseInt(buffer2, 16));
-      }
-      var parseStates = {
-        start: function start() {
-          if (token.type === "eof") {
-            throw invalidEOF();
-          }
-          push();
-        },
-        beforePropertyName: function beforePropertyName() {
-          switch (token.type) {
-            case "identifier":
-            case "string":
-              key = token.value;
-              parseState = "afterPropertyName";
-              return;
-            case "punctuator":
-              pop();
-              return;
-            case "eof":
-              throw invalidEOF();
-          }
-        },
-        afterPropertyName: function afterPropertyName() {
-          if (token.type === "eof") {
-            throw invalidEOF();
-          }
-          parseState = "beforePropertyValue";
-        },
-        beforePropertyValue: function beforePropertyValue() {
-          if (token.type === "eof") {
-            throw invalidEOF();
-          }
-          push();
-        },
-        beforeArrayValue: function beforeArrayValue() {
-          if (token.type === "eof") {
-            throw invalidEOF();
-          }
-          if (token.type === "punctuator" && token.value === "]") {
-            pop();
-            return;
-          }
-          push();
-        },
-        afterPropertyValue: function afterPropertyValue() {
-          if (token.type === "eof") {
-            throw invalidEOF();
-          }
-          switch (token.value) {
-            case ",":
-              parseState = "beforePropertyName";
-              return;
-            case "}":
-              pop();
-          }
-        },
-        afterArrayValue: function afterArrayValue() {
-          if (token.type === "eof") {
-            throw invalidEOF();
-          }
-          switch (token.value) {
-            case ",":
-              parseState = "beforeArrayValue";
-              return;
-            case "]":
-              pop();
-          }
-        },
-        end: function end() {
-        }
-      };
-      function push() {
-        var value;
-        switch (token.type) {
-          case "punctuator":
-            switch (token.value) {
-              case "{":
-                value = {};
-                break;
-              case "[":
-                value = [];
-                break;
-            }
-            break;
-          case "null":
-          case "boolean":
-          case "numeric":
-          case "string":
-            value = token.value;
-            break;
-        }
-        if (root === void 0) {
-          root = value;
-        } else {
-          var parent = stack[stack.length - 1];
-          if (Array.isArray(parent)) {
-            parent.push(value);
-          } else {
-            Object.defineProperty(parent, key, {
-              value,
-              writable: true,
-              enumerable: true,
-              configurable: true
-            });
-          }
-        }
-        if (value !== null && typeof value === "object") {
-          stack.push(value);
-          if (Array.isArray(value)) {
-            parseState = "beforeArrayValue";
-          } else {
-            parseState = "beforePropertyName";
-          }
-        } else {
-          var current = stack[stack.length - 1];
-          if (current == null) {
-            parseState = "end";
-          } else if (Array.isArray(current)) {
-            parseState = "afterArrayValue";
-          } else {
-            parseState = "afterPropertyValue";
-          }
-        }
-      }
-      function pop() {
-        stack.pop();
-        var current = stack[stack.length - 1];
-        if (current == null) {
-          parseState = "end";
-        } else if (Array.isArray(current)) {
-          parseState = "afterArrayValue";
-        } else {
-          parseState = "afterPropertyValue";
-        }
-      }
-      function invalidChar(c2) {
-        if (c2 === void 0) {
-          return syntaxError("JSON5: invalid end of input at " + line + ":" + column);
-        }
-        return syntaxError("JSON5: invalid character '" + formatChar(c2) + "' at " + line + ":" + column);
-      }
-      function invalidEOF() {
-        return syntaxError("JSON5: invalid end of input at " + line + ":" + column);
-      }
-      function invalidIdentifier() {
-        column -= 5;
-        return syntaxError("JSON5: invalid identifier character at " + line + ":" + column);
-      }
-      function separatorChar(c2) {
-        console.warn("JSON5: '" + formatChar(c2) + "' in strings is not valid ECMAScript; consider escaping");
-      }
-      function formatChar(c2) {
-        var replacements = {
-          "'": "\\'",
-          '"': '\\"',
-          "\\": "\\\\",
-          "\b": "\\b",
-          "\f": "\\f",
-          "\n": "\\n",
-          "\r": "\\r",
-          "	": "\\t",
-          "\v": "\\v",
-          "\0": "\\0",
-          "\u2028": "\\u2028",
-          "\u2029": "\\u2029"
-        };
-        if (replacements[c2]) {
-          return replacements[c2];
-        }
-        if (c2 < " ") {
-          var hexString = c2.charCodeAt(0).toString(16);
-          return "\\x" + ("00" + hexString).substring(hexString.length);
-        }
-        return c2;
-      }
-      function syntaxError(message) {
-        var err = new SyntaxError(message);
-        err.lineNumber = line;
-        err.columnNumber = column;
-        return err;
-      }
-      var stringify = function stringify2(value, replacer, space) {
-        var stack2 = [];
-        var indent = "";
-        var propertyList;
-        var replacerFunc;
-        var gap = "";
-        var quote;
-        if (replacer != null && typeof replacer === "object" && !Array.isArray(replacer)) {
-          space = replacer.space;
-          quote = replacer.quote;
-          replacer = replacer.replacer;
-        }
-        if (typeof replacer === "function") {
-          replacerFunc = replacer;
-        } else if (Array.isArray(replacer)) {
-          propertyList = [];
-          for (var i2 = 0, list = replacer; i2 < list.length; i2 += 1) {
-            var v = list[i2];
-            var item = void 0;
-            if (typeof v === "string") {
-              item = v;
-            } else if (typeof v === "number" || v instanceof String || v instanceof Number) {
-              item = String(v);
-            }
-            if (item !== void 0 && propertyList.indexOf(item) < 0) {
-              propertyList.push(item);
-            }
-          }
-        }
-        if (space instanceof Number) {
-          space = Number(space);
-        } else if (space instanceof String) {
-          space = String(space);
-        }
-        if (typeof space === "number") {
-          if (space > 0) {
-            space = Math.min(10, Math.floor(space));
-            gap = "          ".substr(0, space);
-          }
-        } else if (typeof space === "string") {
-          gap = space.substr(0, 10);
-        }
-        return serializeProperty("", { "": value });
-        function serializeProperty(key2, holder) {
-          var value2 = holder[key2];
-          if (value2 != null) {
-            if (typeof value2.toJSON5 === "function") {
-              value2 = value2.toJSON5(key2);
-            } else if (typeof value2.toJSON === "function") {
-              value2 = value2.toJSON(key2);
-            }
-          }
-          if (replacerFunc) {
-            value2 = replacerFunc.call(holder, key2, value2);
-          }
-          if (value2 instanceof Number) {
-            value2 = Number(value2);
-          } else if (value2 instanceof String) {
-            value2 = String(value2);
-          } else if (value2 instanceof Boolean) {
-            value2 = value2.valueOf();
-          }
-          switch (value2) {
-            case null:
-              return "null";
-            case true:
-              return "true";
-            case false:
-              return "false";
-          }
-          if (typeof value2 === "string") {
-            return quoteString(value2, false);
-          }
-          if (typeof value2 === "number") {
-            return String(value2);
-          }
-          if (typeof value2 === "object") {
-            return Array.isArray(value2) ? serializeArray(value2) : serializeObject(value2);
-          }
-          return void 0;
-        }
-        function quoteString(value2) {
-          var quotes = {
-            "'": 0.1,
-            '"': 0.2
-          };
-          var replacements = {
-            "'": "\\'",
-            '"': '\\"',
-            "\\": "\\\\",
-            "\b": "\\b",
-            "\f": "\\f",
-            "\n": "\\n",
-            "\r": "\\r",
-            "	": "\\t",
-            "\v": "\\v",
-            "\0": "\\0",
-            "\u2028": "\\u2028",
-            "\u2029": "\\u2029"
-          };
-          var product = "";
-          for (var i3 = 0; i3 < value2.length; i3++) {
-            var c2 = value2[i3];
-            switch (c2) {
-              case "'":
-              case '"':
-                quotes[c2]++;
-                product += c2;
-                continue;
-              case "\0":
-                if (util.isDigit(value2[i3 + 1])) {
-                  product += "\\x00";
-                  continue;
-                }
-            }
-            if (replacements[c2]) {
-              product += replacements[c2];
-              continue;
-            }
-            if (c2 < " ") {
-              var hexString = c2.charCodeAt(0).toString(16);
-              product += "\\x" + ("00" + hexString).substring(hexString.length);
-              continue;
-            }
-            product += c2;
-          }
-          var quoteChar = quote || Object.keys(quotes).reduce(function(a, b) {
-            return quotes[a] < quotes[b] ? a : b;
-          });
-          product = product.replace(new RegExp(quoteChar, "g"), replacements[quoteChar]);
-          return quoteChar + product + quoteChar;
-        }
-        function serializeObject(value2) {
-          if (stack2.indexOf(value2) >= 0) {
-            throw TypeError("Converting circular structure to JSON5");
-          }
-          stack2.push(value2);
-          var stepback = indent;
-          indent = indent + gap;
-          var keys = propertyList || Object.keys(value2);
-          var partial = [];
-          for (var i3 = 0, list2 = keys; i3 < list2.length; i3 += 1) {
-            var key2 = list2[i3];
-            var propertyString = serializeProperty(key2, value2);
-            if (propertyString !== void 0) {
-              var member = serializeKey(key2) + ":";
-              if (gap !== "") {
-                member += " ";
-              }
-              member += propertyString;
-              partial.push(member);
-            }
-          }
-          var final;
-          if (partial.length === 0) {
-            final = "{}";
-          } else {
-            var properties;
-            if (gap === "") {
-              properties = partial.join(",");
-              final = "{" + properties + "}";
-            } else {
-              var separator = ",\n" + indent;
-              properties = partial.join(separator);
-              final = "{\n" + indent + properties + ",\n" + stepback + "}";
-            }
-          }
-          stack2.pop();
-          indent = stepback;
-          return final;
-        }
-        function serializeKey(key2) {
-          if (key2.length === 0) {
-            return quoteString(key2, true);
-          }
-          var firstChar = String.fromCodePoint(key2.codePointAt(0));
-          if (!util.isIdStartChar(firstChar)) {
-            return quoteString(key2, true);
-          }
-          for (var i3 = firstChar.length; i3 < key2.length; i3++) {
-            if (!util.isIdContinueChar(String.fromCodePoint(key2.codePointAt(i3)))) {
-              return quoteString(key2, true);
-            }
-          }
-          return key2;
-        }
-        function serializeArray(value2) {
-          if (stack2.indexOf(value2) >= 0) {
-            throw TypeError("Converting circular structure to JSON5");
-          }
-          stack2.push(value2);
-          var stepback = indent;
-          indent = indent + gap;
-          var partial = [];
-          for (var i3 = 0; i3 < value2.length; i3++) {
-            var propertyString = serializeProperty(String(i3), value2);
-            partial.push(propertyString !== void 0 ? propertyString : "null");
-          }
-          var final;
-          if (partial.length === 0) {
-            final = "[]";
-          } else {
-            if (gap === "") {
-              var properties = partial.join(",");
-              final = "[" + properties + "]";
-            } else {
-              var separator = ",\n" + indent;
-              var properties$1 = partial.join(separator);
-              final = "[\n" + indent + properties$1 + ",\n" + stepback + "]";
-            }
-          }
-          stack2.pop();
-          indent = stepback;
-          return final;
-        }
-      };
-      var JSON52 = {
-        parse: parse2,
-        stringify
-      };
-      var lib = JSON52;
-      var es5 = lib;
-      return es5;
-    });
-  }
-});
 
 // node_modules/readline-sync/lib/readline-sync.js
 var require_readline_sync = __commonJS({
@@ -1440,7 +38,7 @@ var require_readline_sync = __commonJS({
     var ALGORITHM_CIPHER = "aes-256-cbc";
     var ALGORITHM_HASH = "sha256";
     var DEFAULT_ERR_MSG = "The current environment doesn't support interactive reading from TTY.";
-    var fs2 = require("fs");
+    var fs3 = require("fs");
     var TTY = process.binding("tty_wrap").TTY;
     var childProc = require("child_process");
     var pathUtil = require("path");
@@ -1514,7 +112,7 @@ var require_readline_sync = __commonJS({
         while (true) {
           filepath = pathUtil.join(tempdir, name + suffix);
           try {
-            fd = fs2.openSync(filepath, "wx");
+            fd = fs3.openSync(filepath, "wx");
           } catch (e) {
             if (e.code === "EEXIST") {
               suffix++;
@@ -1523,7 +121,7 @@ var require_readline_sync = __commonJS({
               throw e;
             }
           }
-          fs2.closeSync(fd);
+          fs3.closeSync(fd);
           break;
         }
         return filepath;
@@ -1565,16 +163,16 @@ var require_readline_sync = __commonJS({
         res.error.program = shellPath;
         res.error.args = shellArgs;
       }
-      while (fs2.readFileSync(pathDone, { encoding: options.encoding }).trim() !== "1") {
+      while (fs3.readFileSync(pathDone, { encoding: options.encoding }).trim() !== "1") {
       }
-      if ((exitCode = fs2.readFileSync(pathExit, { encoding: options.encoding }).trim()) === "0") {
+      if ((exitCode = fs3.readFileSync(pathExit, { encoding: options.encoding }).trim()) === "0") {
         res.input = decipher.update(
-          fs2.readFileSync(pathStdout, { encoding: "binary" }),
+          fs3.readFileSync(pathStdout, { encoding: "binary" }),
           "hex",
           options.encoding
         ) + decipher.final(options.encoding);
       } else {
-        extMessage = fs2.readFileSync(pathStderr, { encoding: options.encoding }).trim();
+        extMessage = fs3.readFileSync(pathStderr, { encoding: options.encoding }).trim();
         res.error = new Error(DEFAULT_ERR_MSG + (extMessage ? "\n" + extMessage : ""));
         res.error.method = "_execFileSync";
         res.error.program = shellPath;
@@ -1582,10 +180,10 @@ var require_readline_sync = __commonJS({
         res.error.extMessage = extMessage;
         res.error.exitCode = +exitCode;
       }
-      fs2.unlinkSync(pathStdout);
-      fs2.unlinkSync(pathStderr);
-      fs2.unlinkSync(pathExit);
-      fs2.unlinkSync(pathDone);
+      fs3.unlinkSync(pathStdout);
+      fs3.unlinkSync(pathStderr);
+      fs3.unlinkSync(pathExit);
+      fs3.unlinkSync(pathDone);
       return res;
     }
     function readlineExt(options) {
@@ -1689,7 +287,7 @@ var require_readline_sync = __commonJS({
             fdW = process.stdout.fd;
           } else {
             try {
-              fdW = fs2.openSync("\\\\.\\CON", "w");
+              fdW = fs3.openSync("\\\\.\\CON", "w");
             } catch (e) {
             }
             if (typeof fdW !== "number") {
@@ -1703,13 +301,13 @@ var require_readline_sync = __commonJS({
           if (process.stdin.isTTY) {
             process.stdin.pause();
             try {
-              fdR = fs2.openSync("/dev/tty", "r");
+              fdR = fs3.openSync("/dev/tty", "r");
               ttyR = process.stdin._handle;
             } catch (e) {
             }
           } else {
             try {
-              fdR = fs2.openSync("/dev/tty", "r");
+              fdR = fs3.openSync("/dev/tty", "r");
               ttyR = new TTY(fdR, false);
             } catch (e) {
             }
@@ -1718,7 +316,7 @@ var require_readline_sync = __commonJS({
             fdW = process.stdout.fd;
           } else {
             try {
-              fdW = fs2.openSync("/dev/tty", "w");
+              fdW = fs3.openSync("/dev/tty", "w");
             } catch (e) {
             }
           }
@@ -1742,7 +340,7 @@ var require_readline_sync = __commonJS({
           return;
         }
         if (options.display) {
-          fs2.writeSync(fdW, options.display);
+          fs3.writeSync(fdW, options.display);
           options.display = "";
         }
         if (options.displayOnly) {
@@ -1763,7 +361,7 @@ var require_readline_sync = __commonJS({
         while (true) {
           readSize = 0;
           try {
-            readSize = fs2.readSync(fdR, buffer, 0, reqSize);
+            readSize = fs3.readSync(fdR, buffer, 0, reqSize);
           } catch (e) {
             if (e.code !== "EOF") {
               setRawMode(false);
@@ -1791,9 +389,9 @@ var require_readline_sync = __commonJS({
           if (chunk) {
             if (!isCooked) {
               if (!options.hideEchoBack) {
-                fs2.writeSync(fdW, chunk);
+                fs3.writeSync(fdW, chunk);
               } else if (options.mask) {
-                fs2.writeSync(fdW, new Array(chunk.length + 1).join(options.mask));
+                fs3.writeSync(fdW, new Array(chunk.length + 1).join(options.mask));
               }
             }
             input += chunk;
@@ -1803,7 +401,7 @@ var require_readline_sync = __commonJS({
           }
         }
         if (!isCooked && !silent) {
-          fs2.writeSync(fdW, "\n");
+          fs3.writeSync(fdW, "\n");
         }
         setRawMode(false);
       })();
@@ -1922,29 +520,29 @@ var require_readline_sync = __commonJS({
         return type === "string" ? caseSensitive ? res === comp : res.toLowerCase() === comp.toLowerCase() : type === "number" ? parseFloat(res) === comp : type === "function" ? comp(res) : comp instanceof RegExp ? comp.test(res) : false;
       });
     }
-    function replaceHomePath(path2, expand) {
+    function replaceHomePath(path6, expand) {
       var homePath = pathUtil.normalize(
         IS_WIN ? (process.env.HOMEDRIVE || "") + (process.env.HOMEPATH || "") : process.env.HOME || ""
       ).replace(/[\/\\]+$/, "");
-      path2 = pathUtil.normalize(path2);
-      return expand ? path2.replace(/^~(?=\/|\\|$)/, homePath) : path2.replace(new RegExp("^" + escapePattern(homePath) + "(?=\\/|\\\\|$)", IS_WIN ? "i" : ""), "~");
+      path6 = pathUtil.normalize(path6);
+      return expand ? path6.replace(/^~(?=\/|\\|$)/, homePath) : path6.replace(new RegExp("^" + escapePattern(homePath) + "(?=\\/|\\\\|$)", IS_WIN ? "i" : ""), "~");
     }
     function replacePlaceholder(text, generator) {
       var PTN_INNER = "(?:\\(([\\s\\S]*?)\\))?(\\w+|.-.)(?:\\(([\\s\\S]*?)\\))?", rePlaceholder = new RegExp("(\\$)?(\\$<" + PTN_INNER + ">)", "g"), rePlaceholderCompat = new RegExp("(\\$)?(\\$\\{" + PTN_INNER + "\\})", "g");
-      function getPlaceholderText(s, escape, placeholder, pre, param, post) {
+      function getPlaceholderText(s, escape2, placeholder, pre, param, post) {
         var text2;
-        return escape || typeof (text2 = generator(param)) !== "string" ? placeholder : text2 ? (pre || "") + text2 + (post || "") : "";
+        return escape2 || typeof (text2 = generator(param)) !== "string" ? placeholder : text2 ? (pre || "") + text2 + (post || "") : "";
       }
       return text.replace(rePlaceholder, getPlaceholderText).replace(rePlaceholderCompat, getPlaceholderText);
     }
     function array2charlist(array, caseSensitive, collectSymbols) {
-      var values, group2 = [], groupClass = -1, charCode = 0, symbols = "", suppressed;
-      function addGroup(groups, group3) {
-        if (group3.length > 3) {
-          groups.push(group3[0] + "..." + group3[group3.length - 1]);
+      var values, group3 = [], groupClass = -1, charCode = 0, symbols = "", suppressed;
+      function addGroup(groups, group4) {
+        if (group4.length > 3) {
+          groups.push(group4[0] + "..." + group4[group4.length - 1]);
           suppressed = true;
-        } else if (group3.length) {
-          groups = groups.concat(group3);
+        } else if (group4.length) {
+          groups = groups.concat(group4);
         }
         return groups;
       }
@@ -1964,17 +562,17 @@ var require_readline_sync = __commonJS({
         } else {
           curCharCode = curChar.charCodeAt(0);
           if (curGroupClass && curGroupClass === groupClass && curCharCode === charCode + 1) {
-            group2.push(curChar);
+            group3.push(curChar);
           } else {
-            groups = addGroup(groups, group2);
-            group2 = [curChar];
+            groups = addGroup(groups, group3);
+            group3 = [curChar];
             groupClass = curGroupClass;
           }
           charCode = curCharCode;
         }
         return groups;
       }, []);
-      values = addGroup(values, group2);
+      values = addGroup(values, group3);
       if (symbols) {
         values.push(symbols);
         suppressed = true;
@@ -2313,18 +911,18 @@ var require_readline_sync = __commonJS({
           error = "";
           function mkdirParents(dirPath) {
             dirPath.split(/\/|\\/).reduce(function(parents, dir) {
-              var path2 = pathUtil.resolve(parents += dir + pathUtil.sep);
-              if (!fs2.existsSync(path2)) {
-                fs2.mkdirSync(path2);
-              } else if (!fs2.statSync(path2).isDirectory()) {
-                throw new Error("Non directory already exists: " + path2);
+              var path6 = pathUtil.resolve(parents += dir + pathUtil.sep);
+              if (!fs3.existsSync(path6)) {
+                fs3.mkdirSync(path6);
+              } else if (!fs3.statSync(path6).isDirectory()) {
+                throw new Error("Non directory already exists: " + path6);
               }
               return parents;
             }, "");
           }
           try {
-            exists = fs2.existsSync(value);
-            validPath = exists ? fs2.realpathSync(value) : pathUtil.resolve(value);
+            exists = fs3.existsSync(value);
+            validPath = exists ? fs3.realpathSync(value) : pathUtil.resolve(value);
             if (!options.hasOwnProperty("exists") && !exists || typeof options.exists === "boolean" && options.exists !== exists) {
               error = (exists ? "Already exists" : "No such file or directory") + ": " + validPath;
               return false;
@@ -2334,12 +932,12 @@ var require_readline_sync = __commonJS({
                 mkdirParents(validPath);
               } else {
                 mkdirParents(pathUtil.dirname(validPath));
-                fs2.closeSync(fs2.openSync(validPath, "w"));
+                fs3.closeSync(fs3.openSync(validPath, "w"));
               }
-              validPath = fs2.realpathSync(validPath);
+              validPath = fs3.realpathSync(validPath);
             }
             if (exists && (options.min || options.max || options.isFile || options.isDirectory)) {
-              stat = fs2.statSync(validPath);
+              stat = fs3.statSync(validPath);
               if (options.isFile && !stat.isFile()) {
                 error = "Not file: " + validPath;
                 return false;
@@ -2681,8 +1279,8 @@ var require_core = __commonJS({
       };
       tau_file_system = {
         files: new TauDirectory("/", "/", null),
-        open: function(path2, type, mode) {
-          var dirs = path2.replace(/\/$/, "").split("/");
+        open: function(path6, type, mode) {
+          var dirs = path6.replace(/\/$/, "").split("/");
           var dir = tau_file_system.files;
           var name = dirs[dirs.length - 1];
           for (var i2 = 1; i2 < dirs.length - 1; i2++) {
@@ -2703,8 +1301,8 @@ var require_core = __commonJS({
             file.text = "";
           return file;
         },
-        get: function(path2) {
-          var dirs = path2.replace(/\/$/, "").split("/");
+        get: function(path6) {
+          var dirs = path6.replace(/\/$/, "").split("/");
           var file = tau_file_system.files;
           for (var i2 = 1; i2 < dirs.length; i2++)
             if (pl.type.is_directory(file))
@@ -2753,19 +1351,19 @@ var require_core = __commonJS({
         }
       };
       nodejs_file_system = {
-        open: function(path2, type, mode) {
-          var fd, fs2 = require("fs");
-          if (mode === "read" && !fs2.existsSync(path2))
+        open: function(path6, type, mode) {
+          var fd, fs3 = require("fs");
+          if (mode === "read" && !fs3.existsSync(path6))
             return null;
           try {
-            fd = fs2.openSync(path2, mode[0]);
+            fd = fs3.openSync(path6, mode[0]);
           } catch (ex) {
             return false;
           }
           return {
             get: function(length, position) {
               var buffer = new Buffer(length);
-              fs2.readSync(fd, buffer, 0, length, position);
+              fs3.readSync(fd, buffer, 0, length, position);
               var end_of_file = true;
               var text = buffer.toString();
               for (var i2 = 0; i2 < length && end_of_file; i2++)
@@ -2773,23 +1371,23 @@ var require_core = __commonJS({
               return end_of_file ? "end_of_stream" : buffer.toString();
             },
             eof: function(position) {
-              var stats = fs2.statSync(path2);
+              var stats = fs3.statSync(path6);
               return position === stats["size"];
             },
             put: function(text, position) {
               var buffer = Buffer.from(text);
               if (position === "end_of_stream")
-                fs2.writeSync(fd, buffer);
+                fs3.writeSync(fd, buffer);
               else if (position === "past_end_of_stream")
                 return null;
               else
-                fs2.writeSync(fd, buffer, 0, buffer.length, position);
+                fs3.writeSync(fd, buffer, 0, buffer.length, position);
               return true;
             },
             get_byte: function(position) {
               try {
                 var buffer = Buffer.alloc(1);
-                var bytesRead = fs2.readSync(fd, buffer, 0, 1, position);
+                var bytesRead = fs3.readSync(fd, buffer, 0, 1, position);
                 var end_of_file = bytesRead < 1;
                 return end_of_file ? "end_of_stream" : buffer.readUInt8(0);
               } catch (ex) {
@@ -2799,18 +1397,18 @@ var require_core = __commonJS({
             put_byte: function(byte, position) {
               var buffer = Buffer.from([byte]);
               if (position === "end_of_stream")
-                fs2.writeSync(fd, buffer);
+                fs3.writeSync(fd, buffer);
               else if (position === "past_end_of_stream")
                 return null;
               else
-                fs2.writeSync(fd, buffer, 0, buffer.length, position);
+                fs3.writeSync(fd, buffer, 0, buffer.length, position);
               return true;
             },
             flush: function() {
               return true;
             },
             close: function() {
-              fs2.closeSync(fd);
+              fs3.closeSync(fd);
               return true;
             }
           };
@@ -2939,7 +1537,7 @@ var require_core = __commonJS({
       var SUCCESS = 1;
       var regex_escape = /(\\a)|(\\b)|(\\d)|(\\e)|(\\f)|(\\n)|(\\r)|(\\s)|(\\t)|(\\v)|\\x([0-9a-fA-F]+)\\|\\([0-7]+)\\|(\\\\)|(\\')|('')|(\\")|(\\`)|(\\.)|(.)/g;
       var escape_map = { "\\a": 7, "\\b": 8, "\\d": 127, "\\e": 27, "\\f": 12, "\\n": 10, "\\r": 13, "\\s": 32, "\\t": 9, "\\v": 11 };
-      function escape(str) {
+      function escape2(str) {
         var stack = [];
         var _error = false;
         str.replace(regex_escape, function(match, a, b, d, e, f, n, r, s, t, v, hex, octal, back, single, dsingle, double, backquote, error, char) {
@@ -3085,7 +1683,7 @@ var require_core = __commonJS({
           case "0o":
             return parseInt(n, 8);
           case "0'":
-            return escape(n)[0];
+            return escape2(n)[0];
           default:
             return parseFloat(num);
         }
@@ -4856,25 +3454,25 @@ var require_core = __commonJS({
       Thread.prototype.get_stream_by_alias = function(alias) {
         return this.session.get_stream_by_alias(alias);
       };
-      Session.prototype.file_system_open = function(path2, type, mode) {
+      Session.prototype.file_system_open = function(path6, type, mode) {
         if (this.get_flag("nodejs").indicator === "false/0")
-          path2 = this.absolute_file_name(path2);
-        return this.file_system.open(path2, type, mode);
+          path6 = this.absolute_file_name(path6);
+        return this.file_system.open(path6, type, mode);
       };
-      Thread.prototype.file_system_open = function(path2, type, mode) {
-        return this.session.file_system_open(path2, type, mode);
+      Thread.prototype.file_system_open = function(path6, type, mode) {
+        return this.session.file_system_open(path6, type, mode);
       };
       Session.prototype.absolute_file_name = function(filename) {
         var absolute;
         if (this.get_flag("nodejs").indicator === "true/0") {
-          var path2 = require("path");
+          var path6 = require("path");
           absolute = filename;
           for (var prop in process.env) {
             if (!process.env.hasOwnProperty(prop))
               continue;
             absolute = absolute.replace(new RegExp("\\$" + prop, "g"), process.env[prop]);
           }
-          return path2.resolve(absolute);
+          return path6.resolve(absolute);
         } else {
           var cwd = this.working_directory;
           if (filename[0] === "/")
@@ -4896,8 +3494,8 @@ var require_core = __commonJS({
         }
         return absolute;
       };
-      Thread.prototype.absolute_file_name = function(path2, cwd) {
-        return this.session.absolute_file_name(path2, cwd);
+      Thread.prototype.absolute_file_name = function(path6, cwd) {
+        return this.session.absolute_file_name(path6, cwd);
       };
       Session.prototype.get_char_conversion = function(char) {
         return this.__char_conversion[char] || char;
@@ -5066,9 +3664,9 @@ var require_core = __commonJS({
             }
           }
           if (!success && opts.file && this.get_flag("nodejs").indicator === "true/0") {
-            var fs2 = require("fs");
+            var fs3 = require("fs");
             var thread = this;
-            fs2.readFile(program, function(error, data) {
+            fs3.readFile(program, function(error, data) {
               if (error) {
                 opts.file = false;
                 thread.consult(program, opts);
@@ -8998,15 +7596,15 @@ var require_core = __commonJS({
           }
         },
         "atomic_concat/3": function(thread, point, atom) {
-          var atomic1 = atom.args[0], atomic2 = atom.args[1], concat = atom.args[2];
+          var atomic1 = atom.args[0], atomic2 = atom.args[1], concat2 = atom.args[2];
           if (pl.type.is_variable(atomic1) || pl.type.is_variable(atomic2)) {
             thread.throw_error(pl.error.instantiation(atom.indicator));
           } else if (!pl.type.is_atomic(atomic1)) {
             thread.throw_error(pl.error.type("atomic", atomic1, atom.indicator));
           } else if (!pl.type.is_atomic(atomic2)) {
             thread.throw_error(pl.error.type("atomic", atomic2, atom.indicator));
-          } else if (!pl.type.is_variable(concat) && !pl.type.is_atom(concat)) {
-            thread.throw_error(pl.error.type("atom", concat, atom.indicator));
+          } else if (!pl.type.is_variable(concat2) && !pl.type.is_atom(concat2)) {
+            thread.throw_error(pl.error.type("atom", concat2, atom.indicator));
           } else {
             var id = "";
             if (pl.type.is_atom(atomic1)) {
@@ -9020,23 +7618,23 @@ var require_core = __commonJS({
               id += "" + atomic2.value;
             }
             var atom = new Term(id, []);
-            thread.prepend([new State(point.goal.replace(new Term("=", [atom, concat])), point.substitution, point)]);
+            thread.prepend([new State(point.goal.replace(new Term("=", [atom, concat2])), point.substitution, point)]);
           }
         },
         "atomic_list_concat/2": function(thread, point, atom) {
-          var list = atom.args[0], concat = atom.args[1];
-          thread.prepend([new State(point.goal.replace(new Term("atomic_list_concat", [list, new Term("", []), concat])), point.substitution, point)]);
+          var list = atom.args[0], concat2 = atom.args[1];
+          thread.prepend([new State(point.goal.replace(new Term("atomic_list_concat", [list, new Term("", []), concat2])), point.substitution, point)]);
         },
         "atomic_list_concat/3": function(thread, point, atom) {
-          var list = atom.args[0], separator = atom.args[1], concat = atom.args[2];
-          if (pl.type.is_variable(separator) || pl.type.is_variable(list) && pl.type.is_variable(concat)) {
+          var list = atom.args[0], separator = atom.args[1], concat2 = atom.args[2];
+          if (pl.type.is_variable(separator) || pl.type.is_variable(list) && pl.type.is_variable(concat2)) {
             thread.throw_error(pl.error.instantiation(atom.indicator));
           } else if (!pl.type.is_variable(list) && !pl.type.is_list(list)) {
             thread.throw_error(pl.error.type("list", list, atom.indicator));
           } else if (!pl.type.is_atom(separator) && !pl.type.is_number(separator)) {
             thread.throw_error(pl.error.type("atomic", separator, atom.indicator));
-          } else if (!pl.type.is_variable(concat) && !pl.type.is_atom(concat)) {
-            thread.throw_error(pl.error.type("atom", concat, atom.indicator));
+          } else if (!pl.type.is_variable(concat2) && !pl.type.is_atom(concat2)) {
+            thread.throw_error(pl.error.type("atom", concat2, atom.indicator));
           } else {
             var id = "";
             var pointer = list;
@@ -9062,7 +7660,7 @@ var require_core = __commonJS({
             } else if (!pl.type.is_term(pointer) || pointer.indicator !== "[]/0") {
               thread.throw_error(pl.error.type("list", list, atom.indicator));
             } else {
-              thread.prepend([new State(point.goal.replace(new Term("=", [id, concat])), point.substitution, point)]);
+              thread.prepend([new State(point.goal.replace(new Term("=", [id, concat2])), point.substitution, point)]);
             }
           }
         },
@@ -10626,20 +9224,3920 @@ var require_core = __commonJS({
   }
 });
 
+// node_modules/json5/dist/index.js
+var require_dist = __commonJS({
+  "node_modules/json5/dist/index.js"(exports, module2) {
+    (function(global2, factory) {
+      typeof exports === "object" && typeof module2 !== "undefined" ? module2.exports = factory() : typeof define === "function" && define.amd ? define(factory) : global2.JSON5 = factory();
+    })(exports, function() {
+      "use strict";
+      function createCommonjsModule(fn, module3) {
+        return module3 = { exports: {} }, fn(module3, module3.exports), module3.exports;
+      }
+      var _global = createCommonjsModule(function(module3) {
+        var global2 = module3.exports = typeof window != "undefined" && window.Math == Math ? window : typeof self != "undefined" && self.Math == Math ? self : Function("return this")();
+        if (typeof __g == "number") {
+          __g = global2;
+        }
+      });
+      var _core = createCommonjsModule(function(module3) {
+        var core = module3.exports = { version: "2.6.5" };
+        if (typeof __e == "number") {
+          __e = core;
+        }
+      });
+      var _core_1 = _core.version;
+      var _isObject = function(it) {
+        return typeof it === "object" ? it !== null : typeof it === "function";
+      };
+      var _anObject = function(it) {
+        if (!_isObject(it)) {
+          throw TypeError(it + " is not an object!");
+        }
+        return it;
+      };
+      var _fails = function(exec) {
+        try {
+          return !!exec();
+        } catch (e) {
+          return true;
+        }
+      };
+      var _descriptors = !_fails(function() {
+        return Object.defineProperty({}, "a", { get: function() {
+          return 7;
+        } }).a != 7;
+      });
+      var document2 = _global.document;
+      var is = _isObject(document2) && _isObject(document2.createElement);
+      var _domCreate = function(it) {
+        return is ? document2.createElement(it) : {};
+      };
+      var _ie8DomDefine = !_descriptors && !_fails(function() {
+        return Object.defineProperty(_domCreate("div"), "a", { get: function() {
+          return 7;
+        } }).a != 7;
+      });
+      var _toPrimitive = function(it, S) {
+        if (!_isObject(it)) {
+          return it;
+        }
+        var fn, val;
+        if (S && typeof (fn = it.toString) == "function" && !_isObject(val = fn.call(it))) {
+          return val;
+        }
+        if (typeof (fn = it.valueOf) == "function" && !_isObject(val = fn.call(it))) {
+          return val;
+        }
+        if (!S && typeof (fn = it.toString) == "function" && !_isObject(val = fn.call(it))) {
+          return val;
+        }
+        throw TypeError("Can't convert object to primitive value");
+      };
+      var dP = Object.defineProperty;
+      var f = _descriptors ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+        _anObject(O);
+        P = _toPrimitive(P, true);
+        _anObject(Attributes);
+        if (_ie8DomDefine) {
+          try {
+            return dP(O, P, Attributes);
+          } catch (e) {
+          }
+        }
+        if ("get" in Attributes || "set" in Attributes) {
+          throw TypeError("Accessors not supported!");
+        }
+        if ("value" in Attributes) {
+          O[P] = Attributes.value;
+        }
+        return O;
+      };
+      var _objectDp = {
+        f
+      };
+      var _propertyDesc = function(bitmap, value) {
+        return {
+          enumerable: !(bitmap & 1),
+          configurable: !(bitmap & 2),
+          writable: !(bitmap & 4),
+          value
+        };
+      };
+      var _hide = _descriptors ? function(object, key2, value) {
+        return _objectDp.f(object, key2, _propertyDesc(1, value));
+      } : function(object, key2, value) {
+        object[key2] = value;
+        return object;
+      };
+      var hasOwnProperty = {}.hasOwnProperty;
+      var _has = function(it, key2) {
+        return hasOwnProperty.call(it, key2);
+      };
+      var id = 0;
+      var px = Math.random();
+      var _uid = function(key2) {
+        return "Symbol(".concat(key2 === void 0 ? "" : key2, ")_", (++id + px).toString(36));
+      };
+      var _library = false;
+      var _shared = createCommonjsModule(function(module3) {
+        var SHARED = "__core-js_shared__";
+        var store = _global[SHARED] || (_global[SHARED] = {});
+        (module3.exports = function(key2, value) {
+          return store[key2] || (store[key2] = value !== void 0 ? value : {});
+        })("versions", []).push({
+          version: _core.version,
+          mode: _library ? "pure" : "global",
+          copyright: "\xA9 2019 Denis Pushkarev (zloirock.ru)"
+        });
+      });
+      var _functionToString = _shared("native-function-to-string", Function.toString);
+      var _redefine = createCommonjsModule(function(module3) {
+        var SRC = _uid("src");
+        var TO_STRING = "toString";
+        var TPL = ("" + _functionToString).split(TO_STRING);
+        _core.inspectSource = function(it) {
+          return _functionToString.call(it);
+        };
+        (module3.exports = function(O, key2, val, safe) {
+          var isFunction = typeof val == "function";
+          if (isFunction) {
+            _has(val, "name") || _hide(val, "name", key2);
+          }
+          if (O[key2] === val) {
+            return;
+          }
+          if (isFunction) {
+            _has(val, SRC) || _hide(val, SRC, O[key2] ? "" + O[key2] : TPL.join(String(key2)));
+          }
+          if (O === _global) {
+            O[key2] = val;
+          } else if (!safe) {
+            delete O[key2];
+            _hide(O, key2, val);
+          } else if (O[key2]) {
+            O[key2] = val;
+          } else {
+            _hide(O, key2, val);
+          }
+        })(Function.prototype, TO_STRING, function toString() {
+          return typeof this == "function" && this[SRC] || _functionToString.call(this);
+        });
+      });
+      var _aFunction = function(it) {
+        if (typeof it != "function") {
+          throw TypeError(it + " is not a function!");
+        }
+        return it;
+      };
+      var _ctx = function(fn, that, length) {
+        _aFunction(fn);
+        if (that === void 0) {
+          return fn;
+        }
+        switch (length) {
+          case 1:
+            return function(a) {
+              return fn.call(that, a);
+            };
+          case 2:
+            return function(a, b) {
+              return fn.call(that, a, b);
+            };
+          case 3:
+            return function(a, b, c2) {
+              return fn.call(that, a, b, c2);
+            };
+        }
+        return function() {
+          return fn.apply(that, arguments);
+        };
+      };
+      var PROTOTYPE = "prototype";
+      var $export = function(type, name, source2) {
+        var IS_FORCED = type & $export.F;
+        var IS_GLOBAL = type & $export.G;
+        var IS_STATIC = type & $export.S;
+        var IS_PROTO = type & $export.P;
+        var IS_BIND = type & $export.B;
+        var target = IS_GLOBAL ? _global : IS_STATIC ? _global[name] || (_global[name] = {}) : (_global[name] || {})[PROTOTYPE];
+        var exports2 = IS_GLOBAL ? _core : _core[name] || (_core[name] = {});
+        var expProto = exports2[PROTOTYPE] || (exports2[PROTOTYPE] = {});
+        var key2, own, out, exp;
+        if (IS_GLOBAL) {
+          source2 = name;
+        }
+        for (key2 in source2) {
+          own = !IS_FORCED && target && target[key2] !== void 0;
+          out = (own ? target : source2)[key2];
+          exp = IS_BIND && own ? _ctx(out, _global) : IS_PROTO && typeof out == "function" ? _ctx(Function.call, out) : out;
+          if (target) {
+            _redefine(target, key2, out, type & $export.U);
+          }
+          if (exports2[key2] != out) {
+            _hide(exports2, key2, exp);
+          }
+          if (IS_PROTO && expProto[key2] != out) {
+            expProto[key2] = out;
+          }
+        }
+      };
+      _global.core = _core;
+      $export.F = 1;
+      $export.G = 2;
+      $export.S = 4;
+      $export.P = 8;
+      $export.B = 16;
+      $export.W = 32;
+      $export.U = 64;
+      $export.R = 128;
+      var _export = $export;
+      var ceil = Math.ceil;
+      var floor = Math.floor;
+      var _toInteger = function(it) {
+        return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+      };
+      var _defined = function(it) {
+        if (it == void 0) {
+          throw TypeError("Can't call method on  " + it);
+        }
+        return it;
+      };
+      var _stringAt = function(TO_STRING) {
+        return function(that, pos2) {
+          var s = String(_defined(that));
+          var i2 = _toInteger(pos2);
+          var l = s.length;
+          var a, b;
+          if (i2 < 0 || i2 >= l) {
+            return TO_STRING ? "" : void 0;
+          }
+          a = s.charCodeAt(i2);
+          return a < 55296 || a > 56319 || i2 + 1 === l || (b = s.charCodeAt(i2 + 1)) < 56320 || b > 57343 ? TO_STRING ? s.charAt(i2) : a : TO_STRING ? s.slice(i2, i2 + 2) : (a - 55296 << 10) + (b - 56320) + 65536;
+        };
+      };
+      var $at = _stringAt(false);
+      _export(_export.P, "String", {
+        codePointAt: function codePointAt2(pos2) {
+          return $at(this, pos2);
+        }
+      });
+      var codePointAt = _core.String.codePointAt;
+      var max = Math.max;
+      var min = Math.min;
+      var _toAbsoluteIndex = function(index, length) {
+        index = _toInteger(index);
+        return index < 0 ? max(index + length, 0) : min(index, length);
+      };
+      var fromCharCode = String.fromCharCode;
+      var $fromCodePoint = String.fromCodePoint;
+      _export(_export.S + _export.F * (!!$fromCodePoint && $fromCodePoint.length != 1), "String", {
+        fromCodePoint: function fromCodePoint2(x) {
+          var arguments$1 = arguments;
+          var res = [];
+          var aLen = arguments.length;
+          var i2 = 0;
+          var code;
+          while (aLen > i2) {
+            code = +arguments$1[i2++];
+            if (_toAbsoluteIndex(code, 1114111) !== code) {
+              throw RangeError(code + " is not a valid code point");
+            }
+            res.push(
+              code < 65536 ? fromCharCode(code) : fromCharCode(((code -= 65536) >> 10) + 55296, code % 1024 + 56320)
+            );
+          }
+          return res.join("");
+        }
+      });
+      var fromCodePoint = _core.String.fromCodePoint;
+      var Space_Separator = /[\u1680\u2000-\u200A\u202F\u205F\u3000]/;
+      var ID_Start = /[\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u052F\u0531-\u0556\u0559\u0561-\u0587\u05D0-\u05EA\u05F0-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u0860-\u086A\u08A0-\u08B4\u08B6-\u08BD\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u09FC\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0AF9\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58-\u0C5A\u0C60\u0C61\u0C80\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D54-\u0D56\u0D5F-\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16EE-\u16F8\u1700-\u170C\u170E-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1877\u1880-\u1884\u1887-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1C80-\u1C88\u1CE9-\u1CEC\u1CEE-\u1CF1\u1CF5\u1CF6\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2160-\u2188\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005-\u3007\u3021-\u3029\u3031-\u3035\u3038-\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312E\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FEA\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA69D\uA6A0-\uA6EF\uA717-\uA71F\uA722-\uA788\uA78B-\uA7AE\uA7B0-\uA7B7\uA7F7-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA8FD\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uA9E0-\uA9E4\uA9E6-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB65\uAB70-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDD40-\uDD74\uDE80-\uDE9C\uDEA0-\uDED0\uDF00-\uDF1F\uDF2D-\uDF4A\uDF50-\uDF75\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF\uDFD1-\uDFD5]|\uD801[\uDC00-\uDC9D\uDCB0-\uDCD3\uDCD8-\uDCFB\uDD00-\uDD27\uDD30-\uDD63\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00\uDE10-\uDE13\uDE15-\uDE17\uDE19-\uDE33\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE4\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2]|\uD804[\uDC03-\uDC37\uDC83-\uDCAF\uDCD0-\uDCE8\uDD03-\uDD26\uDD50-\uDD72\uDD76\uDD83-\uDDB2\uDDC1-\uDDC4\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE2B\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEDE\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3D\uDF50\uDF5D-\uDF61]|\uD805[\uDC00-\uDC34\uDC47-\uDC4A\uDC80-\uDCAF\uDCC4\uDCC5\uDCC7\uDD80-\uDDAE\uDDD8-\uDDDB\uDE00-\uDE2F\uDE44\uDE80-\uDEAA\uDF00-\uDF19]|\uD806[\uDCA0-\uDCDF\uDCFF\uDE00\uDE0B-\uDE32\uDE3A\uDE50\uDE5C-\uDE83\uDE86-\uDE89\uDEC0-\uDEF8]|\uD807[\uDC00-\uDC08\uDC0A-\uDC2E\uDC40\uDC72-\uDC8F\uDD00-\uDD06\uDD08\uDD09\uDD0B-\uDD30\uDD46]|\uD808[\uDC00-\uDF99]|\uD809[\uDC00-\uDC6E\uDC80-\uDD43]|[\uD80C\uD81C-\uD820\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2E]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDED0-\uDEED\uDF00-\uDF2F\uDF40-\uDF43\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDF00-\uDF44\uDF50\uDF93-\uDF9F\uDFE0\uDFE1]|\uD821[\uDC00-\uDFEC]|\uD822[\uDC00-\uDEF2]|\uD82C[\uDC00-\uDD1E\uDD70-\uDEFB]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB]|\uD83A[\uDC00-\uDCC4\uDD00-\uDD43]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0]|\uD87E[\uDC00-\uDE1D]/;
+      var ID_Continue = /[\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0300-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u0483-\u0487\u048A-\u052F\u0531-\u0556\u0559\u0561-\u0587\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u05D0-\u05EA\u05F0-\u05F2\u0610-\u061A\u0620-\u0669\u066E-\u06D3\u06D5-\u06DC\u06DF-\u06E8\u06EA-\u06FC\u06FF\u0710-\u074A\u074D-\u07B1\u07C0-\u07F5\u07FA\u0800-\u082D\u0840-\u085B\u0860-\u086A\u08A0-\u08B4\u08B6-\u08BD\u08D4-\u08E1\u08E3-\u0963\u0966-\u096F\u0971-\u0983\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BC-\u09C4\u09C7\u09C8\u09CB-\u09CE\u09D7\u09DC\u09DD\u09DF-\u09E3\u09E6-\u09F1\u09FC\u0A01-\u0A03\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A59-\u0A5C\u0A5E\u0A66-\u0A75\u0A81-\u0A83\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABC-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AD0\u0AE0-\u0AE3\u0AE6-\u0AEF\u0AF9-\u0AFF\u0B01-\u0B03\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3C-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B5C\u0B5D\u0B5F-\u0B63\u0B66-\u0B6F\u0B71\u0B82\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD0\u0BD7\u0BE6-\u0BEF\u0C00-\u0C03\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C58-\u0C5A\u0C60-\u0C63\u0C66-\u0C6F\u0C80-\u0C83\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBC-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CDE\u0CE0-\u0CE3\u0CE6-\u0CEF\u0CF1\u0CF2\u0D00-\u0D03\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D44\u0D46-\u0D48\u0D4A-\u0D4E\u0D54-\u0D57\u0D5F-\u0D63\u0D66-\u0D6F\u0D7A-\u0D7F\u0D82\u0D83\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DE6-\u0DEF\u0DF2\u0DF3\u0E01-\u0E3A\u0E40-\u0E4E\u0E50-\u0E59\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB9\u0EBB-\u0EBD\u0EC0-\u0EC4\u0EC6\u0EC8-\u0ECD\u0ED0-\u0ED9\u0EDC-\u0EDF\u0F00\u0F18\u0F19\u0F20-\u0F29\u0F35\u0F37\u0F39\u0F3E-\u0F47\u0F49-\u0F6C\u0F71-\u0F84\u0F86-\u0F97\u0F99-\u0FBC\u0FC6\u1000-\u1049\u1050-\u109D\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u135D-\u135F\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16EE-\u16F8\u1700-\u170C\u170E-\u1714\u1720-\u1734\u1740-\u1753\u1760-\u176C\u176E-\u1770\u1772\u1773\u1780-\u17D3\u17D7\u17DC\u17DD\u17E0-\u17E9\u180B-\u180D\u1810-\u1819\u1820-\u1877\u1880-\u18AA\u18B0-\u18F5\u1900-\u191E\u1920-\u192B\u1930-\u193B\u1946-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u19D0-\u19D9\u1A00-\u1A1B\u1A20-\u1A5E\u1A60-\u1A7C\u1A7F-\u1A89\u1A90-\u1A99\u1AA7\u1AB0-\u1ABD\u1B00-\u1B4B\u1B50-\u1B59\u1B6B-\u1B73\u1B80-\u1BF3\u1C00-\u1C37\u1C40-\u1C49\u1C4D-\u1C7D\u1C80-\u1C88\u1CD0-\u1CD2\u1CD4-\u1CF9\u1D00-\u1DF9\u1DFB-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u203F\u2040\u2054\u2071\u207F\u2090-\u209C\u20D0-\u20DC\u20E1\u20E5-\u20F0\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2160-\u2188\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D7F-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2DE0-\u2DFF\u2E2F\u3005-\u3007\u3021-\u302F\u3031-\u3035\u3038-\u303C\u3041-\u3096\u3099\u309A\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312E\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FEA\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA62B\uA640-\uA66F\uA674-\uA67D\uA67F-\uA6F1\uA717-\uA71F\uA722-\uA788\uA78B-\uA7AE\uA7B0-\uA7B7\uA7F7-\uA827\uA840-\uA873\uA880-\uA8C5\uA8D0-\uA8D9\uA8E0-\uA8F7\uA8FB\uA8FD\uA900-\uA92D\uA930-\uA953\uA960-\uA97C\uA980-\uA9C0\uA9CF-\uA9D9\uA9E0-\uA9FE\uAA00-\uAA36\uAA40-\uAA4D\uAA50-\uAA59\uAA60-\uAA76\uAA7A-\uAAC2\uAADB-\uAADD\uAAE0-\uAAEF\uAAF2-\uAAF6\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB65\uAB70-\uABEA\uABEC\uABED\uABF0-\uABF9\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE00-\uFE0F\uFE20-\uFE2F\uFE33\uFE34\uFE4D-\uFE4F\uFE70-\uFE74\uFE76-\uFEFC\uFF10-\uFF19\uFF21-\uFF3A\uFF3F\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDD40-\uDD74\uDDFD\uDE80-\uDE9C\uDEA0-\uDED0\uDEE0\uDF00-\uDF1F\uDF2D-\uDF4A\uDF50-\uDF7A\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF\uDFD1-\uDFD5]|\uD801[\uDC00-\uDC9D\uDCA0-\uDCA9\uDCB0-\uDCD3\uDCD8-\uDCFB\uDD00-\uDD27\uDD30-\uDD63\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00-\uDE03\uDE05\uDE06\uDE0C-\uDE13\uDE15-\uDE17\uDE19-\uDE33\uDE38-\uDE3A\uDE3F\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE6\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2]|\uD804[\uDC00-\uDC46\uDC66-\uDC6F\uDC7F-\uDCBA\uDCD0-\uDCE8\uDCF0-\uDCF9\uDD00-\uDD34\uDD36-\uDD3F\uDD50-\uDD73\uDD76\uDD80-\uDDC4\uDDCA-\uDDCC\uDDD0-\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE37\uDE3E\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEEA\uDEF0-\uDEF9\uDF00-\uDF03\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3C-\uDF44\uDF47\uDF48\uDF4B-\uDF4D\uDF50\uDF57\uDF5D-\uDF63\uDF66-\uDF6C\uDF70-\uDF74]|\uD805[\uDC00-\uDC4A\uDC50-\uDC59\uDC80-\uDCC5\uDCC7\uDCD0-\uDCD9\uDD80-\uDDB5\uDDB8-\uDDC0\uDDD8-\uDDDD\uDE00-\uDE40\uDE44\uDE50-\uDE59\uDE80-\uDEB7\uDEC0-\uDEC9\uDF00-\uDF19\uDF1D-\uDF2B\uDF30-\uDF39]|\uD806[\uDCA0-\uDCE9\uDCFF\uDE00-\uDE3E\uDE47\uDE50-\uDE83\uDE86-\uDE99\uDEC0-\uDEF8]|\uD807[\uDC00-\uDC08\uDC0A-\uDC36\uDC38-\uDC40\uDC50-\uDC59\uDC72-\uDC8F\uDC92-\uDCA7\uDCA9-\uDCB6\uDD00-\uDD06\uDD08\uDD09\uDD0B-\uDD36\uDD3A\uDD3C\uDD3D\uDD3F-\uDD47\uDD50-\uDD59]|\uD808[\uDC00-\uDF99]|\uD809[\uDC00-\uDC6E\uDC80-\uDD43]|[\uD80C\uD81C-\uD820\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2E]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDE60-\uDE69\uDED0-\uDEED\uDEF0-\uDEF4\uDF00-\uDF36\uDF40-\uDF43\uDF50-\uDF59\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDF00-\uDF44\uDF50-\uDF7E\uDF8F-\uDF9F\uDFE0\uDFE1]|\uD821[\uDC00-\uDFEC]|\uD822[\uDC00-\uDEF2]|\uD82C[\uDC00-\uDD1E\uDD70-\uDEFB]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99\uDC9D\uDC9E]|\uD834[\uDD65-\uDD69\uDD6D-\uDD72\uDD7B-\uDD82\uDD85-\uDD8B\uDDAA-\uDDAD\uDE42-\uDE44]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB\uDFCE-\uDFFF]|\uD836[\uDE00-\uDE36\uDE3B-\uDE6C\uDE75\uDE84\uDE9B-\uDE9F\uDEA1-\uDEAF]|\uD838[\uDC00-\uDC06\uDC08-\uDC18\uDC1B-\uDC21\uDC23\uDC24\uDC26-\uDC2A]|\uD83A[\uDC00-\uDCC4\uDCD0-\uDCD6\uDD00-\uDD4A\uDD50-\uDD59]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0]|\uD87E[\uDC00-\uDE1D]|\uDB40[\uDD00-\uDDEF]/;
+      var unicode = {
+        Space_Separator,
+        ID_Start,
+        ID_Continue
+      };
+      var util = {
+        isSpaceSeparator: function isSpaceSeparator(c2) {
+          return typeof c2 === "string" && unicode.Space_Separator.test(c2);
+        },
+        isIdStartChar: function isIdStartChar(c2) {
+          return typeof c2 === "string" && (c2 >= "a" && c2 <= "z" || c2 >= "A" && c2 <= "Z" || c2 === "$" || c2 === "_" || unicode.ID_Start.test(c2));
+        },
+        isIdContinueChar: function isIdContinueChar(c2) {
+          return typeof c2 === "string" && (c2 >= "a" && c2 <= "z" || c2 >= "A" && c2 <= "Z" || c2 >= "0" && c2 <= "9" || c2 === "$" || c2 === "_" || c2 === "\u200C" || c2 === "\u200D" || unicode.ID_Continue.test(c2));
+        },
+        isDigit: function isDigit(c2) {
+          return typeof c2 === "string" && /[0-9]/.test(c2);
+        },
+        isHexDigit: function isHexDigit(c2) {
+          return typeof c2 === "string" && /[0-9A-Fa-f]/.test(c2);
+        }
+      };
+      var source;
+      var parseState;
+      var stack;
+      var pos;
+      var line;
+      var column;
+      var token;
+      var key;
+      var root;
+      var parse3 = function parse4(text, reviver) {
+        source = String(text);
+        parseState = "start";
+        stack = [];
+        pos = 0;
+        line = 1;
+        column = 0;
+        token = void 0;
+        key = void 0;
+        root = void 0;
+        do {
+          token = lex();
+          parseStates[parseState]();
+        } while (token.type !== "eof");
+        if (typeof reviver === "function") {
+          return internalize({ "": root }, "", reviver);
+        }
+        return root;
+      };
+      function internalize(holder, name, reviver) {
+        var value = holder[name];
+        if (value != null && typeof value === "object") {
+          if (Array.isArray(value)) {
+            for (var i2 = 0; i2 < value.length; i2++) {
+              var key2 = String(i2);
+              var replacement = internalize(value, key2, reviver);
+              if (replacement === void 0) {
+                delete value[key2];
+              } else {
+                Object.defineProperty(value, key2, {
+                  value: replacement,
+                  writable: true,
+                  enumerable: true,
+                  configurable: true
+                });
+              }
+            }
+          } else {
+            for (var key$1 in value) {
+              var replacement$1 = internalize(value, key$1, reviver);
+              if (replacement$1 === void 0) {
+                delete value[key$1];
+              } else {
+                Object.defineProperty(value, key$1, {
+                  value: replacement$1,
+                  writable: true,
+                  enumerable: true,
+                  configurable: true
+                });
+              }
+            }
+          }
+        }
+        return reviver.call(holder, name, value);
+      }
+      var lexState;
+      var buffer;
+      var doubleQuote;
+      var sign;
+      var c;
+      function lex() {
+        lexState = "default";
+        buffer = "";
+        doubleQuote = false;
+        sign = 1;
+        for (; ; ) {
+          c = peek();
+          var token2 = lexStates[lexState]();
+          if (token2) {
+            return token2;
+          }
+        }
+      }
+      function peek() {
+        if (source[pos]) {
+          return String.fromCodePoint(source.codePointAt(pos));
+        }
+      }
+      function read() {
+        var c2 = peek();
+        if (c2 === "\n") {
+          line++;
+          column = 0;
+        } else if (c2) {
+          column += c2.length;
+        } else {
+          column++;
+        }
+        if (c2) {
+          pos += c2.length;
+        }
+        return c2;
+      }
+      var lexStates = {
+        default: function default$1() {
+          switch (c) {
+            case "	":
+            case "\v":
+            case "\f":
+            case " ":
+            case "\xA0":
+            case "\uFEFF":
+            case "\n":
+            case "\r":
+            case "\u2028":
+            case "\u2029":
+              read();
+              return;
+            case "/":
+              read();
+              lexState = "comment";
+              return;
+            case void 0:
+              read();
+              return newToken("eof");
+          }
+          if (util.isSpaceSeparator(c)) {
+            read();
+            return;
+          }
+          return lexStates[parseState]();
+        },
+        comment: function comment() {
+          switch (c) {
+            case "*":
+              read();
+              lexState = "multiLineComment";
+              return;
+            case "/":
+              read();
+              lexState = "singleLineComment";
+              return;
+          }
+          throw invalidChar(read());
+        },
+        multiLineComment: function multiLineComment() {
+          switch (c) {
+            case "*":
+              read();
+              lexState = "multiLineCommentAsterisk";
+              return;
+            case void 0:
+              throw invalidChar(read());
+          }
+          read();
+        },
+        multiLineCommentAsterisk: function multiLineCommentAsterisk() {
+          switch (c) {
+            case "*":
+              read();
+              return;
+            case "/":
+              read();
+              lexState = "default";
+              return;
+            case void 0:
+              throw invalidChar(read());
+          }
+          read();
+          lexState = "multiLineComment";
+        },
+        singleLineComment: function singleLineComment() {
+          switch (c) {
+            case "\n":
+            case "\r":
+            case "\u2028":
+            case "\u2029":
+              read();
+              lexState = "default";
+              return;
+            case void 0:
+              read();
+              return newToken("eof");
+          }
+          read();
+        },
+        value: function value() {
+          switch (c) {
+            case "{":
+            case "[":
+              return newToken("punctuator", read());
+            case "n":
+              read();
+              literal("ull");
+              return newToken("null", null);
+            case "t":
+              read();
+              literal("rue");
+              return newToken("boolean", true);
+            case "f":
+              read();
+              literal("alse");
+              return newToken("boolean", false);
+            case "-":
+            case "+":
+              if (read() === "-") {
+                sign = -1;
+              }
+              lexState = "sign";
+              return;
+            case ".":
+              buffer = read();
+              lexState = "decimalPointLeading";
+              return;
+            case "0":
+              buffer = read();
+              lexState = "zero";
+              return;
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+              buffer = read();
+              lexState = "decimalInteger";
+              return;
+            case "I":
+              read();
+              literal("nfinity");
+              return newToken("numeric", Infinity);
+            case "N":
+              read();
+              literal("aN");
+              return newToken("numeric", NaN);
+            case '"':
+            case "'":
+              doubleQuote = read() === '"';
+              buffer = "";
+              lexState = "string";
+              return;
+          }
+          throw invalidChar(read());
+        },
+        identifierNameStartEscape: function identifierNameStartEscape() {
+          if (c !== "u") {
+            throw invalidChar(read());
+          }
+          read();
+          var u = unicodeEscape();
+          switch (u) {
+            case "$":
+            case "_":
+              break;
+            default:
+              if (!util.isIdStartChar(u)) {
+                throw invalidIdentifier();
+              }
+              break;
+          }
+          buffer += u;
+          lexState = "identifierName";
+        },
+        identifierName: function identifierName() {
+          switch (c) {
+            case "$":
+            case "_":
+            case "\u200C":
+            case "\u200D":
+              buffer += read();
+              return;
+            case "\\":
+              read();
+              lexState = "identifierNameEscape";
+              return;
+          }
+          if (util.isIdContinueChar(c)) {
+            buffer += read();
+            return;
+          }
+          return newToken("identifier", buffer);
+        },
+        identifierNameEscape: function identifierNameEscape() {
+          if (c !== "u") {
+            throw invalidChar(read());
+          }
+          read();
+          var u = unicodeEscape();
+          switch (u) {
+            case "$":
+            case "_":
+            case "\u200C":
+            case "\u200D":
+              break;
+            default:
+              if (!util.isIdContinueChar(u)) {
+                throw invalidIdentifier();
+              }
+              break;
+          }
+          buffer += u;
+          lexState = "identifierName";
+        },
+        sign: function sign$1() {
+          switch (c) {
+            case ".":
+              buffer = read();
+              lexState = "decimalPointLeading";
+              return;
+            case "0":
+              buffer = read();
+              lexState = "zero";
+              return;
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+              buffer = read();
+              lexState = "decimalInteger";
+              return;
+            case "I":
+              read();
+              literal("nfinity");
+              return newToken("numeric", sign * Infinity);
+            case "N":
+              read();
+              literal("aN");
+              return newToken("numeric", NaN);
+          }
+          throw invalidChar(read());
+        },
+        zero: function zero() {
+          switch (c) {
+            case ".":
+              buffer += read();
+              lexState = "decimalPoint";
+              return;
+            case "e":
+            case "E":
+              buffer += read();
+              lexState = "decimalExponent";
+              return;
+            case "x":
+            case "X":
+              buffer += read();
+              lexState = "hexadecimal";
+              return;
+          }
+          return newToken("numeric", sign * 0);
+        },
+        decimalInteger: function decimalInteger() {
+          switch (c) {
+            case ".":
+              buffer += read();
+              lexState = "decimalPoint";
+              return;
+            case "e":
+            case "E":
+              buffer += read();
+              lexState = "decimalExponent";
+              return;
+          }
+          if (util.isDigit(c)) {
+            buffer += read();
+            return;
+          }
+          return newToken("numeric", sign * Number(buffer));
+        },
+        decimalPointLeading: function decimalPointLeading() {
+          if (util.isDigit(c)) {
+            buffer += read();
+            lexState = "decimalFraction";
+            return;
+          }
+          throw invalidChar(read());
+        },
+        decimalPoint: function decimalPoint() {
+          switch (c) {
+            case "e":
+            case "E":
+              buffer += read();
+              lexState = "decimalExponent";
+              return;
+          }
+          if (util.isDigit(c)) {
+            buffer += read();
+            lexState = "decimalFraction";
+            return;
+          }
+          return newToken("numeric", sign * Number(buffer));
+        },
+        decimalFraction: function decimalFraction() {
+          switch (c) {
+            case "e":
+            case "E":
+              buffer += read();
+              lexState = "decimalExponent";
+              return;
+          }
+          if (util.isDigit(c)) {
+            buffer += read();
+            return;
+          }
+          return newToken("numeric", sign * Number(buffer));
+        },
+        decimalExponent: function decimalExponent() {
+          switch (c) {
+            case "+":
+            case "-":
+              buffer += read();
+              lexState = "decimalExponentSign";
+              return;
+          }
+          if (util.isDigit(c)) {
+            buffer += read();
+            lexState = "decimalExponentInteger";
+            return;
+          }
+          throw invalidChar(read());
+        },
+        decimalExponentSign: function decimalExponentSign() {
+          if (util.isDigit(c)) {
+            buffer += read();
+            lexState = "decimalExponentInteger";
+            return;
+          }
+          throw invalidChar(read());
+        },
+        decimalExponentInteger: function decimalExponentInteger() {
+          if (util.isDigit(c)) {
+            buffer += read();
+            return;
+          }
+          return newToken("numeric", sign * Number(buffer));
+        },
+        hexadecimal: function hexadecimal() {
+          if (util.isHexDigit(c)) {
+            buffer += read();
+            lexState = "hexadecimalInteger";
+            return;
+          }
+          throw invalidChar(read());
+        },
+        hexadecimalInteger: function hexadecimalInteger() {
+          if (util.isHexDigit(c)) {
+            buffer += read();
+            return;
+          }
+          return newToken("numeric", sign * Number(buffer));
+        },
+        string: function string() {
+          switch (c) {
+            case "\\":
+              read();
+              buffer += escape2();
+              return;
+            case '"':
+              if (doubleQuote) {
+                read();
+                return newToken("string", buffer);
+              }
+              buffer += read();
+              return;
+            case "'":
+              if (!doubleQuote) {
+                read();
+                return newToken("string", buffer);
+              }
+              buffer += read();
+              return;
+            case "\n":
+            case "\r":
+              throw invalidChar(read());
+            case "\u2028":
+            case "\u2029":
+              separatorChar(c);
+              break;
+            case void 0:
+              throw invalidChar(read());
+          }
+          buffer += read();
+        },
+        start: function start() {
+          switch (c) {
+            case "{":
+            case "[":
+              return newToken("punctuator", read());
+          }
+          lexState = "value";
+        },
+        beforePropertyName: function beforePropertyName() {
+          switch (c) {
+            case "$":
+            case "_":
+              buffer = read();
+              lexState = "identifierName";
+              return;
+            case "\\":
+              read();
+              lexState = "identifierNameStartEscape";
+              return;
+            case "}":
+              return newToken("punctuator", read());
+            case '"':
+            case "'":
+              doubleQuote = read() === '"';
+              lexState = "string";
+              return;
+          }
+          if (util.isIdStartChar(c)) {
+            buffer += read();
+            lexState = "identifierName";
+            return;
+          }
+          throw invalidChar(read());
+        },
+        afterPropertyName: function afterPropertyName() {
+          if (c === ":") {
+            return newToken("punctuator", read());
+          }
+          throw invalidChar(read());
+        },
+        beforePropertyValue: function beforePropertyValue() {
+          lexState = "value";
+        },
+        afterPropertyValue: function afterPropertyValue() {
+          switch (c) {
+            case ",":
+            case "}":
+              return newToken("punctuator", read());
+          }
+          throw invalidChar(read());
+        },
+        beforeArrayValue: function beforeArrayValue() {
+          if (c === "]") {
+            return newToken("punctuator", read());
+          }
+          lexState = "value";
+        },
+        afterArrayValue: function afterArrayValue() {
+          switch (c) {
+            case ",":
+            case "]":
+              return newToken("punctuator", read());
+          }
+          throw invalidChar(read());
+        },
+        end: function end() {
+          throw invalidChar(read());
+        }
+      };
+      function newToken(type, value) {
+        return {
+          type,
+          value,
+          line,
+          column
+        };
+      }
+      function literal(s) {
+        for (var i2 = 0, list = s; i2 < list.length; i2 += 1) {
+          var c2 = list[i2];
+          var p = peek();
+          if (p !== c2) {
+            throw invalidChar(read());
+          }
+          read();
+        }
+      }
+      function escape2() {
+        var c2 = peek();
+        switch (c2) {
+          case "b":
+            read();
+            return "\b";
+          case "f":
+            read();
+            return "\f";
+          case "n":
+            read();
+            return "\n";
+          case "r":
+            read();
+            return "\r";
+          case "t":
+            read();
+            return "	";
+          case "v":
+            read();
+            return "\v";
+          case "0":
+            read();
+            if (util.isDigit(peek())) {
+              throw invalidChar(read());
+            }
+            return "\0";
+          case "x":
+            read();
+            return hexEscape();
+          case "u":
+            read();
+            return unicodeEscape();
+          case "\n":
+          case "\u2028":
+          case "\u2029":
+            read();
+            return "";
+          case "\r":
+            read();
+            if (peek() === "\n") {
+              read();
+            }
+            return "";
+          case "1":
+          case "2":
+          case "3":
+          case "4":
+          case "5":
+          case "6":
+          case "7":
+          case "8":
+          case "9":
+            throw invalidChar(read());
+          case void 0:
+            throw invalidChar(read());
+        }
+        return read();
+      }
+      function hexEscape() {
+        var buffer2 = "";
+        var c2 = peek();
+        if (!util.isHexDigit(c2)) {
+          throw invalidChar(read());
+        }
+        buffer2 += read();
+        c2 = peek();
+        if (!util.isHexDigit(c2)) {
+          throw invalidChar(read());
+        }
+        buffer2 += read();
+        return String.fromCodePoint(parseInt(buffer2, 16));
+      }
+      function unicodeEscape() {
+        var buffer2 = "";
+        var count = 4;
+        while (count-- > 0) {
+          var c2 = peek();
+          if (!util.isHexDigit(c2)) {
+            throw invalidChar(read());
+          }
+          buffer2 += read();
+        }
+        return String.fromCodePoint(parseInt(buffer2, 16));
+      }
+      var parseStates = {
+        start: function start() {
+          if (token.type === "eof") {
+            throw invalidEOF();
+          }
+          push();
+        },
+        beforePropertyName: function beforePropertyName() {
+          switch (token.type) {
+            case "identifier":
+            case "string":
+              key = token.value;
+              parseState = "afterPropertyName";
+              return;
+            case "punctuator":
+              pop();
+              return;
+            case "eof":
+              throw invalidEOF();
+          }
+        },
+        afterPropertyName: function afterPropertyName() {
+          if (token.type === "eof") {
+            throw invalidEOF();
+          }
+          parseState = "beforePropertyValue";
+        },
+        beforePropertyValue: function beforePropertyValue() {
+          if (token.type === "eof") {
+            throw invalidEOF();
+          }
+          push();
+        },
+        beforeArrayValue: function beforeArrayValue() {
+          if (token.type === "eof") {
+            throw invalidEOF();
+          }
+          if (token.type === "punctuator" && token.value === "]") {
+            pop();
+            return;
+          }
+          push();
+        },
+        afterPropertyValue: function afterPropertyValue() {
+          if (token.type === "eof") {
+            throw invalidEOF();
+          }
+          switch (token.value) {
+            case ",":
+              parseState = "beforePropertyName";
+              return;
+            case "}":
+              pop();
+          }
+        },
+        afterArrayValue: function afterArrayValue() {
+          if (token.type === "eof") {
+            throw invalidEOF();
+          }
+          switch (token.value) {
+            case ",":
+              parseState = "beforeArrayValue";
+              return;
+            case "]":
+              pop();
+          }
+        },
+        end: function end() {
+        }
+      };
+      function push() {
+        var value;
+        switch (token.type) {
+          case "punctuator":
+            switch (token.value) {
+              case "{":
+                value = {};
+                break;
+              case "[":
+                value = [];
+                break;
+            }
+            break;
+          case "null":
+          case "boolean":
+          case "numeric":
+          case "string":
+            value = token.value;
+            break;
+        }
+        if (root === void 0) {
+          root = value;
+        } else {
+          var parent = stack[stack.length - 1];
+          if (Array.isArray(parent)) {
+            parent.push(value);
+          } else {
+            Object.defineProperty(parent, key, {
+              value,
+              writable: true,
+              enumerable: true,
+              configurable: true
+            });
+          }
+        }
+        if (value !== null && typeof value === "object") {
+          stack.push(value);
+          if (Array.isArray(value)) {
+            parseState = "beforeArrayValue";
+          } else {
+            parseState = "beforePropertyName";
+          }
+        } else {
+          var current = stack[stack.length - 1];
+          if (current == null) {
+            parseState = "end";
+          } else if (Array.isArray(current)) {
+            parseState = "afterArrayValue";
+          } else {
+            parseState = "afterPropertyValue";
+          }
+        }
+      }
+      function pop() {
+        stack.pop();
+        var current = stack[stack.length - 1];
+        if (current == null) {
+          parseState = "end";
+        } else if (Array.isArray(current)) {
+          parseState = "afterArrayValue";
+        } else {
+          parseState = "afterPropertyValue";
+        }
+      }
+      function invalidChar(c2) {
+        if (c2 === void 0) {
+          return syntaxError("JSON5: invalid end of input at " + line + ":" + column);
+        }
+        return syntaxError("JSON5: invalid character '" + formatChar(c2) + "' at " + line + ":" + column);
+      }
+      function invalidEOF() {
+        return syntaxError("JSON5: invalid end of input at " + line + ":" + column);
+      }
+      function invalidIdentifier() {
+        column -= 5;
+        return syntaxError("JSON5: invalid identifier character at " + line + ":" + column);
+      }
+      function separatorChar(c2) {
+        console.warn("JSON5: '" + formatChar(c2) + "' in strings is not valid ECMAScript; consider escaping");
+      }
+      function formatChar(c2) {
+        var replacements = {
+          "'": "\\'",
+          '"': '\\"',
+          "\\": "\\\\",
+          "\b": "\\b",
+          "\f": "\\f",
+          "\n": "\\n",
+          "\r": "\\r",
+          "	": "\\t",
+          "\v": "\\v",
+          "\0": "\\0",
+          "\u2028": "\\u2028",
+          "\u2029": "\\u2029"
+        };
+        if (replacements[c2]) {
+          return replacements[c2];
+        }
+        if (c2 < " ") {
+          var hexString = c2.charCodeAt(0).toString(16);
+          return "\\x" + ("00" + hexString).substring(hexString.length);
+        }
+        return c2;
+      }
+      function syntaxError(message) {
+        var err = new SyntaxError(message);
+        err.lineNumber = line;
+        err.columnNumber = column;
+        return err;
+      }
+      var stringify = function stringify2(value, replacer, space) {
+        var stack2 = [];
+        var indent = "";
+        var propertyList;
+        var replacerFunc;
+        var gap = "";
+        var quote;
+        if (replacer != null && typeof replacer === "object" && !Array.isArray(replacer)) {
+          space = replacer.space;
+          quote = replacer.quote;
+          replacer = replacer.replacer;
+        }
+        if (typeof replacer === "function") {
+          replacerFunc = replacer;
+        } else if (Array.isArray(replacer)) {
+          propertyList = [];
+          for (var i2 = 0, list = replacer; i2 < list.length; i2 += 1) {
+            var v = list[i2];
+            var item = void 0;
+            if (typeof v === "string") {
+              item = v;
+            } else if (typeof v === "number" || v instanceof String || v instanceof Number) {
+              item = String(v);
+            }
+            if (item !== void 0 && propertyList.indexOf(item) < 0) {
+              propertyList.push(item);
+            }
+          }
+        }
+        if (space instanceof Number) {
+          space = Number(space);
+        } else if (space instanceof String) {
+          space = String(space);
+        }
+        if (typeof space === "number") {
+          if (space > 0) {
+            space = Math.min(10, Math.floor(space));
+            gap = "          ".substr(0, space);
+          }
+        } else if (typeof space === "string") {
+          gap = space.substr(0, 10);
+        }
+        return serializeProperty("", { "": value });
+        function serializeProperty(key2, holder) {
+          var value2 = holder[key2];
+          if (value2 != null) {
+            if (typeof value2.toJSON5 === "function") {
+              value2 = value2.toJSON5(key2);
+            } else if (typeof value2.toJSON === "function") {
+              value2 = value2.toJSON(key2);
+            }
+          }
+          if (replacerFunc) {
+            value2 = replacerFunc.call(holder, key2, value2);
+          }
+          if (value2 instanceof Number) {
+            value2 = Number(value2);
+          } else if (value2 instanceof String) {
+            value2 = String(value2);
+          } else if (value2 instanceof Boolean) {
+            value2 = value2.valueOf();
+          }
+          switch (value2) {
+            case null:
+              return "null";
+            case true:
+              return "true";
+            case false:
+              return "false";
+          }
+          if (typeof value2 === "string") {
+            return quoteString(value2, false);
+          }
+          if (typeof value2 === "number") {
+            return String(value2);
+          }
+          if (typeof value2 === "object") {
+            return Array.isArray(value2) ? serializeArray(value2) : serializeObject(value2);
+          }
+          return void 0;
+        }
+        function quoteString(value2) {
+          var quotes = {
+            "'": 0.1,
+            '"': 0.2
+          };
+          var replacements = {
+            "'": "\\'",
+            '"': '\\"',
+            "\\": "\\\\",
+            "\b": "\\b",
+            "\f": "\\f",
+            "\n": "\\n",
+            "\r": "\\r",
+            "	": "\\t",
+            "\v": "\\v",
+            "\0": "\\0",
+            "\u2028": "\\u2028",
+            "\u2029": "\\u2029"
+          };
+          var product = "";
+          for (var i3 = 0; i3 < value2.length; i3++) {
+            var c2 = value2[i3];
+            switch (c2) {
+              case "'":
+              case '"':
+                quotes[c2]++;
+                product += c2;
+                continue;
+              case "\0":
+                if (util.isDigit(value2[i3 + 1])) {
+                  product += "\\x00";
+                  continue;
+                }
+            }
+            if (replacements[c2]) {
+              product += replacements[c2];
+              continue;
+            }
+            if (c2 < " ") {
+              var hexString = c2.charCodeAt(0).toString(16);
+              product += "\\x" + ("00" + hexString).substring(hexString.length);
+              continue;
+            }
+            product += c2;
+          }
+          var quoteChar = quote || Object.keys(quotes).reduce(function(a, b) {
+            return quotes[a] < quotes[b] ? a : b;
+          });
+          product = product.replace(new RegExp(quoteChar, "g"), replacements[quoteChar]);
+          return quoteChar + product + quoteChar;
+        }
+        function serializeObject(value2) {
+          if (stack2.indexOf(value2) >= 0) {
+            throw TypeError("Converting circular structure to JSON5");
+          }
+          stack2.push(value2);
+          var stepback = indent;
+          indent = indent + gap;
+          var keys = propertyList || Object.keys(value2);
+          var partial = [];
+          for (var i3 = 0, list2 = keys; i3 < list2.length; i3 += 1) {
+            var key2 = list2[i3];
+            var propertyString = serializeProperty(key2, value2);
+            if (propertyString !== void 0) {
+              var member = serializeKey(key2) + ":";
+              if (gap !== "") {
+                member += " ";
+              }
+              member += propertyString;
+              partial.push(member);
+            }
+          }
+          var final;
+          if (partial.length === 0) {
+            final = "{}";
+          } else {
+            var properties;
+            if (gap === "") {
+              properties = partial.join(",");
+              final = "{" + properties + "}";
+            } else {
+              var separator = ",\n" + indent;
+              properties = partial.join(separator);
+              final = "{\n" + indent + properties + ",\n" + stepback + "}";
+            }
+          }
+          stack2.pop();
+          indent = stepback;
+          return final;
+        }
+        function serializeKey(key2) {
+          if (key2.length === 0) {
+            return quoteString(key2, true);
+          }
+          var firstChar = String.fromCodePoint(key2.codePointAt(0));
+          if (!util.isIdStartChar(firstChar)) {
+            return quoteString(key2, true);
+          }
+          for (var i3 = firstChar.length; i3 < key2.length; i3++) {
+            if (!util.isIdContinueChar(String.fromCodePoint(key2.codePointAt(i3)))) {
+              return quoteString(key2, true);
+            }
+          }
+          return key2;
+        }
+        function serializeArray(value2) {
+          if (stack2.indexOf(value2) >= 0) {
+            throw TypeError("Converting circular structure to JSON5");
+          }
+          stack2.push(value2);
+          var stepback = indent;
+          indent = indent + gap;
+          var partial = [];
+          for (var i3 = 0; i3 < value2.length; i3++) {
+            var propertyString = serializeProperty(String(i3), value2);
+            partial.push(propertyString !== void 0 ? propertyString : "null");
+          }
+          var final;
+          if (partial.length === 0) {
+            final = "[]";
+          } else {
+            if (gap === "") {
+              var properties = partial.join(",");
+              final = "[" + properties + "]";
+            } else {
+              var separator = ",\n" + indent;
+              var properties$1 = partial.join(separator);
+              final = "[\n" + indent + properties$1 + ",\n" + stepback + "]";
+            }
+          }
+          stack2.pop();
+          indent = stepback;
+          return final;
+        }
+      };
+      var JSON52 = {
+        parse: parse3,
+        stringify
+      };
+      var lib = JSON52;
+      var es5 = lib;
+      return es5;
+    });
+  }
+});
+
 // src/main.ts
 var main_exports = {};
 __export(main_exports, {
   canonicalLanguages: () => canonicalLanguages,
   default: () => ExecuteCodePlugin2,
   languageAliases: () => languageAliases,
-  runButtonClass: () => runButtonClass,
   supportedLanguages: () => supportedLanguages
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian46 = require("obsidian");
+var import_obsidian50 = require("obsidian");
+
+// src/settings/Settings.ts
+var DEFAULT_SETTINGS = {
+  lastOpenLanguageTab: void 0,
+  releaseNote2_1_0wasShowed: false,
+  persistentOuput: false,
+  timeout: 1e4,
+  allowInput: true,
+  wslMode: false,
+  shellWSLMode: false,
+  onlyCurrentBlock: false,
+  nodePath: "node",
+  nodeArgs: "",
+  jsFileExtension: "js",
+  jsInject: "",
+  tsPath: "ts-node",
+  tsArgs: "",
+  tsInject: "",
+  latexCompilerPath: "lualatex",
+  latexCompilerArgs: "-interaction=nonstopmode",
+  latexDoFilter: true,
+  latexTexfotPath: "texfot",
+  latexTexfotArgs: "--quiet",
+  latexDocumentclass: "article",
+  latexAdaptFont: "obsidian",
+  latexKeepLog: false,
+  latexSubprocessesUseShell: false,
+  latexMaxFigures: 10,
+  latexFigureTitlePattern: /[^\n][^%`]*\\title\s*\{(?<name>[^\}]*)\}/.source,
+  latexDoCrop: false,
+  latexCropPath: "pdfcrop",
+  latexCropArgs: "--quiet",
+  latexCropNoStandalone: true,
+  latexCropNoPagenum: true,
+  latexSaveSvg: "poppler",
+  latexSvgPath: "pdftocairo",
+  latexSvgArgs: "-svg",
+  latexInkscapePath: "inkscape",
+  latexInkscapeArgs: "--pages=all --export-plain-svg",
+  latexSavePdf: true,
+  latexSavePng: false,
+  latexPngPath: "pdftocairo",
+  latexPngArgs: "-singlefile -png",
+  latexOutputEmbeddings: true,
+  latexInvertFigures: true,
+  latexCenterFigures: true,
+  latexInject: "",
+  leanPath: "lean",
+  leanArgs: "",
+  leanInject: "",
+  luaPath: "lua",
+  luaArgs: "",
+  luaFileExtension: "lua",
+  luaInject: "",
+  dartPath: "dart",
+  dartArgs: "",
+  dartFileExtension: "dart",
+  dartInject: "",
+  csPath: "dotnet-script",
+  csArgs: "",
+  csFileExtension: "csx",
+  csInject: "",
+  pythonPath: "python",
+  pythonArgs: "",
+  pythonEmbedPlots: true,
+  pythonFileExtension: "py",
+  pythonInject: "",
+  shellPath: "bash",
+  shellArgs: "",
+  shellFileExtension: "sh",
+  shellInject: "",
+  batchPath: "call",
+  batchArgs: "",
+  batchFileExtension: "bat",
+  batchInject: "",
+  groovyPath: "groovy",
+  groovyArgs: "",
+  groovyFileExtension: "groovy",
+  groovyInject: "",
+  golangPath: "go",
+  golangArgs: "run",
+  golangFileExtension: "go",
+  goInject: "",
+  javaPath: "java",
+  javaArgs: "-ea",
+  javaFileExtension: "java",
+  javaInject: "",
+  maxPrologAnswers: 15,
+  prologInject: "",
+  powershellPath: "powershell",
+  powershellArgs: "-file",
+  powershellFileExtension: "ps1",
+  powershellInject: "$OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding",
+  powershellEncoding: "latin1",
+  cargoPath: "cargo",
+  cargoEvalArgs: "",
+  rustInject: "",
+  cppRunner: "cling",
+  cppFileExtension: "cpp",
+  cppInject: "",
+  cppArgs: "",
+  cppUseMain: false,
+  clingPath: "cling",
+  clingArgs: "",
+  clingStd: "c++17",
+  rustFileExtension: "rs",
+  RPath: "Rscript",
+  RArgs: "",
+  REmbedPlots: true,
+  RFileExtension: "R",
+  rInject: "",
+  kotlinPath: "kotlinc",
+  kotlinArgs: "-script",
+  kotlinFileExtension: "kts",
+  kotlinInject: "",
+  swiftPath: "swift",
+  swiftArgs: "",
+  swiftFileExtension: "swift",
+  swiftInject: "",
+  runghcPath: "runghc",
+  ghcPath: "ghc",
+  ghciPath: "ghci",
+  useGhci: false,
+  haskellInject: "",
+  mathematicaPath: "wolframscript",
+  mathematicaArgs: "-file",
+  mathematicaFileExtension: "wls",
+  mathematicaInject: "",
+  scalaPath: "scala",
+  scalaArgs: "",
+  scalaFileExtension: "scala",
+  scalaInject: "",
+  racketPath: "racket",
+  racketArgs: "",
+  racketFileExtension: "rkt",
+  racketInject: "#lang racket",
+  fsharpPath: "dotnet",
+  fsharpArgs: "fsi",
+  fsharpInject: "",
+  fsharpFileExtension: "fsx",
+  cArgs: "",
+  cUseMain: true,
+  cInject: "",
+  rubyPath: "ruby",
+  rubyArgs: "",
+  rubyFileExtension: "rb",
+  rubyInject: "",
+  sqlPath: "psql",
+  sqlArgs: "-d <database> -U <user> -f",
+  sqlInject: "",
+  octavePath: "octave",
+  octaveArgs: "-q",
+  octaveFileExtension: "m",
+  octaveInject: "figure('visible','off')  # Necessary to embed plots",
+  maximaPath: "maxima",
+  maximaArgs: "-qb",
+  maximaFileExtension: "mx",
+  maximaInject: "",
+  applescriptPath: "osascript",
+  applescriptArgs: "",
+  applescriptFileExtension: "scpt",
+  applescriptInject: "",
+  zigPath: "zig",
+  zigArgs: "run",
+  zigInject: "",
+  ocamlPath: "ocaml",
+  ocamlArgs: "",
+  ocamlInject: "",
+  phpPath: "php",
+  phpArgs: "",
+  phpFileExtension: "php",
+  phpInject: "",
+  jsInteractive: true,
+  tsInteractive: false,
+  csInteractive: false,
+  latexInteractive: false,
+  leanInteractive: false,
+  luaInteractive: false,
+  dartInteractive: false,
+  pythonInteractive: true,
+  cppInteractive: false,
+  prologInteractive: false,
+  shellInteractive: false,
+  batchInteractive: false,
+  bashInteractive: false,
+  groovyInteractive: false,
+  rInteractive: false,
+  goInteractive: false,
+  rustInteractive: false,
+  javaInteractive: false,
+  powershellInteractive: false,
+  kotlinInteractive: false,
+  swiftInteractive: false,
+  mathematicaInteractive: false,
+  haskellInteractive: false,
+  scalaInteractive: false,
+  fsharpInteractive: false,
+  cInteractive: false,
+  racketInteractive: false,
+  rubyInteractive: false,
+  sqlInteractive: false,
+  octaveInteractive: false,
+  maximaInteractive: false,
+  applescriptInteractive: false,
+  zigInteractive: false,
+  ocamlInteractive: false,
+  phpInteractive: false
+};
+
+// src/settings/SettingsTab.ts
+var import_obsidian36 = require("obsidian");
+
+// src/settings/languageDisplayName.ts
+var DISPLAY_NAMES = {
+  cpp: "C++",
+  cs: "C#",
+  go: "Golang",
+  groovy: "Groovy",
+  haskell: "Haskell",
+  java: "Java",
+  js: "Javascript",
+  kotlin: "Kotlin",
+  latex: "LaTeX",
+  lua: "Lua",
+  mathematica: "Mathematica",
+  php: "PHP",
+  powershell: "Powershell",
+  prolog: "Prolog",
+  python: "Python",
+  r: "R",
+  rust: "Rust",
+  shell: "Shell",
+  batch: "Batch",
+  ts: "Typescript",
+  scala: "Scala",
+  swift: "Swift",
+  racket: "Racket",
+  c: "C",
+  fsharp: "F#",
+  ruby: "Ruby",
+  dart: "Dart",
+  lean: "Lean",
+  sql: "SQL",
+  octave: "Octave",
+  maxima: "Maxima",
+  applescript: "Applescript",
+  zig: "Zig",
+  ocaml: "OCaml"
+};
+
+// src/settings/per-lang/makeCppSettings.ts
+var import_obsidian = require("obsidian");
+var makeCppSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "C++ Settings" });
+  new import_obsidian.Setting(containerEl).setName("Cling path").setDesc("The path to your Cling installation.").addText((text) => text.setValue(tab.plugin.settings.clingPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.clingPath = sanitized;
+    console.log("Cling path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian.Setting(containerEl).setName("Cling arguments for C++").addText((text) => text.setValue(tab.plugin.settings.cppArgs).onChange(async (value) => {
+    tab.plugin.settings.cppArgs = value;
+    console.log("CPP args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian.Setting(containerEl).setName("Cling std").addDropdown((dropdown) => dropdown.addOption("c++98", "C++ 98").addOption("c++11", "C++ 11").addOption("c++14", "C++ 14").addOption("c++17", "C++ 17").addOption("c++2a", "C++ 20").setValue(tab.plugin.settings.clingStd).onChange(async (value) => {
+    tab.plugin.settings.clingStd = value;
+    console.log("Cling std set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian.Setting(containerEl).setName("Use main function").setDesc("If enabled, will use a main() function as the code block entrypoint.").addToggle((toggle) => toggle.setValue(tab.plugin.settings.cppUseMain).onChange(async (value) => {
+    tab.plugin.settings.cppUseMain = value;
+    console.log("Cpp use main set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "cpp");
+};
+
+// src/settings/per-lang/makeCSettings.ts
+var import_obsidian2 = require("obsidian");
+var makeCSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "C Settings" });
+  new import_obsidian2.Setting(containerEl).setName("gcc / Cling path").setDesc("The path to your gcc / Cling installation.").addText((text) => text.setValue(tab.plugin.settings.clingPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.clingPath = sanitized;
+    console.log("gcc / Cling path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian2.Setting(containerEl).setName("gcc / Cling arguments for C").addText((text) => text.setValue(tab.plugin.settings.cArgs).onChange(async (value) => {
+    tab.plugin.settings.cArgs = value;
+    console.log("gcc / Cling args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian2.Setting(containerEl).setName("Cling std (ignored for gcc)").addDropdown((dropdown) => dropdown.addOption("c++98", "C++ 98").addOption("c++11", "C++ 11").addOption("c++14", "C++ 14").addOption("c++17", "C++ 17").addOption("c++2a", "C++ 20").setValue(tab.plugin.settings.clingStd).onChange(async (value) => {
+    tab.plugin.settings.clingStd = value;
+    console.log("Cling std set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian2.Setting(containerEl).setName("Use main function (mandatory for gcc)").setDesc("If enabled, will use a main() function as the code block entrypoint.").addToggle((toggle) => toggle.setValue(tab.plugin.settings.cUseMain).onChange(async (value) => {
+    tab.plugin.settings.cUseMain = value;
+    console.log("C use main set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "c");
+};
+
+// src/settings/per-lang/makeCsSettings.ts
+var import_obsidian3 = require("obsidian");
+var makeCsSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "CSharp Settings" });
+  new import_obsidian3.Setting(containerEl).setName("dotnet path").addText((text) => text.setValue(tab.plugin.settings.csPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.csPath = sanitized;
+    console.log("dotnet path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian3.Setting(containerEl).setName("CSharp arguments").addText((text) => text.setValue(tab.plugin.settings.csArgs).onChange(async (value) => {
+    tab.plugin.settings.csArgs = value;
+    console.log("CSharp args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "cs");
+};
+
+// src/settings/per-lang/makeFSharpSettings.ts
+var import_obsidian4 = require("obsidian");
+var makeFSharpSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "F# Settings" });
+  new import_obsidian4.Setting(containerEl).setName("F# path").setDesc("The path to dotnet.").addText((text) => text.setValue(tab.plugin.settings.fsharpPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.fsharpPath = sanitized;
+    console.log("F# path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian4.Setting(containerEl).setName("F# arguments").addText((text) => text.setValue(tab.plugin.settings.fsharpArgs).onChange(async (value) => {
+    tab.plugin.settings.fsharpArgs = value;
+    console.log("F# args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian4.Setting(containerEl).setName("F# file extension").setDesc("Changes the file extension for generated F# scripts.").addText((text) => text.setValue(tab.plugin.settings.fsharpFileExtension).onChange(async (value) => {
+    tab.plugin.settings.fsharpFileExtension = value;
+    console.log("F# file extension set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "fsharp");
+};
+
+// src/settings/per-lang/makeGoSettings.ts
+var import_obsidian5 = require("obsidian");
+var makeGoSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Golang Settings" });
+  new import_obsidian5.Setting(containerEl).setName("Golang Path").setDesc("The path to your Golang installation.").addText((text) => text.setValue(tab.plugin.settings.golangPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.golangPath = sanitized;
+    console.log("Golang path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "go");
+};
+
+// src/settings/per-lang/makeGroovySettings.ts
+var import_obsidian6 = require("obsidian");
+var makeGroovySettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Groovy Settings" });
+  new import_obsidian6.Setting(containerEl).setName("Groovy path").setDesc("The path to your Groovy installation.").addText((text) => text.setValue(tab.plugin.settings.groovyPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.groovyPath = sanitized;
+    console.log("Groovy path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian6.Setting(containerEl).setName("Groovy arguments").addText((text) => text.setValue(tab.plugin.settings.groovyArgs).onChange(async (value) => {
+    tab.plugin.settings.groovyArgs = value;
+    console.log("Groovy args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "groovy");
+};
+
+// src/settings/per-lang/makeHaskellSettings.ts
+var import_obsidian7 = require("obsidian");
+var makeHaskellSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Haskell Settings" });
+  new import_obsidian7.Setting(containerEl).setName("Use Ghci").setDesc("Run haskell code with ghci instead of runghc").addToggle((toggle) => toggle.setValue(tab.plugin.settings.useGhci).onChange(async (value) => {
+    tab.plugin.settings.useGhci = value;
+    console.log(value ? "Now using ghci for haskell" : "Now using runghc for haskell.");
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian7.Setting(containerEl).setName("Ghci path").setDesc("The path to your ghci installation.").addText((text) => text.setValue(tab.plugin.settings.ghciPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.ghciPath = sanitized;
+    console.log("ghci path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian7.Setting(containerEl).setName("Runghc path").setDesc("The path to your runghc installation.").addText((text) => text.setValue(tab.plugin.settings.runghcPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.runghcPath = sanitized;
+    console.log("runghc path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian7.Setting(containerEl).setName("Ghc path").setDesc("The Ghc path your runghc installation will call.").addText((text) => text.setValue(tab.plugin.settings.ghcPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.ghcPath = sanitized;
+    console.log("ghc path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "haskell");
+};
+
+// src/settings/per-lang/makeJavaSettings.ts
+var import_obsidian8 = require("obsidian");
+var makeJavaSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Java Settings" });
+  new import_obsidian8.Setting(containerEl).setName("Java path (Java 11 or higher)").setDesc("The path to your Java installation.").addText((text) => text.setValue(tab.plugin.settings.javaPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.javaPath = sanitized;
+    console.log("Java path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian8.Setting(containerEl).setName("Java arguments").addText((text) => text.setValue(tab.plugin.settings.javaArgs).onChange(async (value) => {
+    tab.plugin.settings.javaArgs = value;
+    console.log("Java args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "java");
+};
+
+// src/settings/per-lang/makeJsSettings.ts
+var import_obsidian9 = require("obsidian");
+var makeJsSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "JavaScript / Node Settings" });
+  new import_obsidian9.Setting(containerEl).setName("Node path").addText((text) => text.setValue(tab.plugin.settings.nodePath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.nodePath = sanitized;
+    console.log("Node path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian9.Setting(containerEl).setName("Node arguments").addText((text) => text.setValue(tab.plugin.settings.nodeArgs).onChange(async (value) => {
+    tab.plugin.settings.nodeArgs = value;
+    console.log("Node args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian9.Setting(containerEl).setName("Run Javascript blocks in Notebook Mode").addToggle(
+    (toggle) => toggle.setValue(tab.plugin.settings.jsInteractive).onChange(async (value) => {
+      tab.plugin.settings.jsInteractive = value;
+      await tab.plugin.saveSettings();
+    })
+  );
+  tab.makeInjectSetting(containerEl, "js");
+};
+
+// src/settings/per-lang/makeKotlinSettings.ts
+var import_obsidian10 = require("obsidian");
+var makeKotlinSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Kotlin Settings" });
+  new import_obsidian10.Setting(containerEl).setName("Kotlin path").setDesc("The path to your Kotlin installation.").addText((text) => text.setValue(tab.plugin.settings.kotlinPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.kotlinPath = sanitized;
+    console.log("Kotlin path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian10.Setting(containerEl).setName("Kotlin arguments").addText((text) => text.setValue(tab.plugin.settings.kotlinArgs).onChange(async (value) => {
+    tab.plugin.settings.kotlinArgs = value;
+    console.log("Kotlin args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "kotlin");
+};
+
+// src/settings/per-lang/makeLatexSettings.ts
+var import_obsidian12 = require("obsidian");
+
+// src/transforms/LatexFontHandler.ts
+var import_obsidian11 = require("obsidian");
+var path = __toESM(require("path"));
+var validFonts = /* @__PURE__ */ new Set();
+var invalidFonts = /* @__PURE__ */ new Set();
+function addFontSpec(settings) {
+  const isPdflatex = path.basename(settings.latexCompilerPath).toLowerCase().includes("pdflatex");
+  if (isPdflatex || settings.latexAdaptFont === "")
+    return "";
+  const platformFonts = getPlatformFonts();
+  const fontSpec = buildFontCommand(settings, platformFonts);
+  if (!fontSpec)
+    return "";
+  const packageSrc = `\\usepackage{fontspec}
+`;
+  return packageSrc + fontSpec;
+}
+function getObsidianFonts(cssVariable) {
+  const cssDeclarations = getComputedStyle(document.body);
+  const fonts = cssDeclarations.getPropertyValue(cssVariable).split(`'??'`)[0];
+  return sanitizeCommaList(fonts);
+}
+function buildFontCommand(settings, fonts) {
+  if (settings.latexAdaptFont === "obsidian") {
+    fonts.main = [getObsidianFonts("--font-text"), fonts.main].join(",");
+    fonts.sans = [getObsidianFonts("--font-interface"), fonts.sans].join(",");
+    fonts.mono = [getObsidianFonts("--font-monospace"), fonts.mono].join(",");
+  }
+  const mainSrc = buildSetfont("main", fonts.main);
+  const sansSrc = buildSetfont("sans", fonts.sans);
+  const monoSrc = buildSetfont("mono", fonts.mono);
+  return mainSrc + sansSrc + monoSrc;
+}
+function getPlatformFonts() {
+  if (import_obsidian11.Platform.isWin)
+    return { main: "Segoe UI", sans: "Segoe UI", mono: "Consolas" };
+  if (import_obsidian11.Platform.isMacOS)
+    return { main: "SF Pro", sans: "SF Pro", mono: "SF Mono" };
+  if (import_obsidian11.Platform.isLinux)
+    return { main: "DejaVu Sans", sans: "DejaVu Sans", mono: "DejaVu Sans Mono" };
+  return { main: "", sans: "", mono: "" };
+}
+function buildSetfont(type, fallbackList) {
+  const font = firstValidFont(fallbackList);
+  return font ? `\\set${type}font{${font}}
+` : "";
+}
+function firstValidFont(fallbackList) {
+  return sanitizeCommaList(fallbackList).split(", ").reduce((result, font) => result || (cachedTestFont(font) ? font : void 0), void 0);
+}
+function cachedTestFont(fontName) {
+  if (validFonts.has(fontName))
+    return true;
+  if (invalidFonts.has(fontName))
+    return false;
+  if (!testFont(fontName)) {
+    invalidFonts.add(fontName);
+    return false;
+  }
+  validFonts.add(fontName);
+  return true;
+}
+function testFont(fontName) {
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  if (!context)
+    return false;
+  const text = "abcdefghijklmnopqrstuvwxyz";
+  context.font = `16px monospace`;
+  const baselineWidth = context.measureText(text).width;
+  context.font = `16px "${fontName}", monospace`;
+  const testWidth = context.measureText(text).width;
+  const isFontAvailable = baselineWidth !== testWidth;
+  console.debug(isFontAvailable ? `Font ${fontName} accepted.` : `Font ${fontName} ignored.`);
+  return isFontAvailable;
+}
+function sanitizeCommaList(commaList) {
+  return commaList.split(",").map((font) => font.trim().replace(/^["']|["']$/g, "")).filter(Boolean).join(", ");
+}
+
+// src/transforms/LatexTransformer.ts
+var appInstance;
+var settingsInstance;
+var DOCUMENT_CLASS = /^[^%]*(?<src>\\documentclass\s*(\[(?<options>[^\]]*?)\])?\s*{\s*(?<class>[^}]*?)\s*})/;
+function modifyLatexCode(latexSrc, settings) {
+  const documentClass = captureDocumentClass(latexSrc);
+  const injectSrc = "" + provideDocumentClass(documentClass == null ? void 0 : documentClass.class, settings.latexDocumentclass) + addFontSpec(settings) + disablePageNumberForCropping(settings);
+  latexSrc = injectSrc + latexSrc;
+  console.debug(`Injected LaTeX code:`, documentClass, injectSrc);
+  latexSrc = moveDocumentClassToBeginning(latexSrc, documentClass);
+  return latexSrc;
+}
+function disablePageNumberForCropping(settings) {
+  return settings.latexDoCrop && settings.latexCropNoPagenum ? `\\pagestyle{empty}
+` : "";
+}
+function provideDocumentClass(currentClass, defaultClass) {
+  return currentClass || defaultClass === "" ? "" : `\\documentclass{${defaultClass}}
+`;
+}
+function moveDocumentClassToBeginning(latexSrc, documentClass) {
+  return !(documentClass == null ? void 0 : documentClass.src) ? latexSrc : documentClass.src + "\n" + latexSrc.replace(documentClass.src, "");
+}
+function captureDocumentClass(latexSrc) {
+  var _a, _b, _c;
+  const match = latexSrc.match(DOCUMENT_CLASS);
+  if (!match)
+    return void 0;
+  return { src: (_a = match.groups) == null ? void 0 : _a.src, class: (_b = match.groups) == null ? void 0 : _b.class, options: (_c = match.groups) == null ? void 0 : _c.options };
+}
+function isStandaloneClass(latexSrc) {
+  var _a;
+  const className = (_a = captureDocumentClass(latexSrc)) == null ? void 0 : _a.class;
+  return className === "standalone";
+}
+function updateBodyClass(className, isActive) {
+  if (isActive) {
+    document.body.classList.add(className);
+  } else {
+    document.body.classList.remove(className);
+  }
+}
+function applyLatexBodyClasses(app, settings) {
+  updateBodyClass("center-latex-figures", settings.latexCenterFigures);
+  updateBodyClass("invert-latex-figures", settings.latexInvertFigures);
+  appInstance = app;
+  settingsInstance = settings;
+}
+
+// src/output/RegExpUtilities.ts
+function escape(str) {
+  return new RegExp(str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+}
+function parse(pattern) {
+  try {
+    const trimmedSlashes = pattern.replace(/^\/|\/$/g, "");
+    return RegExp(trimmedSlashes);
+  } catch (e) {
+    return void 0;
+  }
+}
+function optional(pattern) {
+  return new RegExp(group2(pattern).source + "?");
+}
+function capture(pattern, groupName) {
+  return group2(pattern, { name: groupName });
+}
+function group2(inner, options) {
+  let identifier = "";
+  if (options == null ? void 0 : options.name)
+    identifier = `?<${options.name}>`;
+  return new RegExp("(" + identifier + inner.source + ")");
+}
+function concat(...chain) {
+  const combined = chain.filter(Boolean).map((pattern) => pattern.source).join("");
+  return new RegExp(combined);
+}
+function alternate(...options) {
+  const alternated = options.filter(Boolean).map((pattern) => pattern.source).join("|");
+  return group2(new RegExp(alternated));
+}
+
+// src/settings/per-lang/makeLatexSettings.ts
+var makeLatexSettings_default = (tab, containerEl) => {
+  const s = tab.plugin.settings;
+  const linkTexDistributions = "Distributed through <a href='https://miktex.org/'>MiKTeX</a> or <a href='https://www.tug.org/texlive/'>TeX Live</a>.";
+  const linkInkscape = "Download <a href='https://inkscape.org/'>Inkscape</a>.";
+  containerEl.createEl("h3", { text: "LaTeX Settings" });
+  containerEl.createEl("h4", { text: "Code injection" });
+  new import_obsidian12.Setting(containerEl).setName("Default document class").addText((text) => text.setPlaceholder("disabled").setValue(s.latexDocumentclass).onChange(async (value) => {
+    const sanitized = value.trim();
+    s.latexDocumentclass = sanitized;
+    console.log(`Default documentclass set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Inject ${selectableText("\\documentclass{}")} if no class is specified. The document class macro is always moved to the very top of code blocks.
+            Set empty to disable, default is ${selectableText(DEFAULT_SETTINGS.latexDocumentclass, true)}.`;
+  new import_obsidian12.Setting(containerEl).setName("Adopt fonts").addDropdown((dropdown) => dropdown.addOptions({ "": "Disabled", system: "Use system default", obsidian: "Same as Obsidian" }).setValue(s.latexAdaptFont).onChange(async (value) => {
+    s.latexAdaptFont = value;
+    console.log(value ? `Now using ${value} fonts.` : "Now keeping default fonts.");
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Inject fontspec ${selectableText("\\setmainfont{}")}, ${selectableText("\\setsansfont{}")}, ${selectableText("\\setmonofont{}")} to the top of code blocks. 
+            Ignores fonts that can not be loaded by CSS. Skipped if PdfLaTeX is used. Default is ${DEFAULT_SETTINGS.latexAdaptFont === "" ? "disabled" : DEFAULT_SETTINGS.latexAdaptFont}.`;
+  tab.makeInjectSetting(containerEl, "latex");
+  containerEl.createEl("h4", { text: "LaTeX Compiler" });
+  new import_obsidian12.Setting(containerEl).setName("Compiler path").addText((text) => text.setPlaceholder(`Example: ${DEFAULT_SETTINGS.latexCompilerPath}`).setValue(s.latexCompilerPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    s.latexCompilerPath = sanitized;
+    console.log(`latex compiler path set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `The path to your LuaLaTeX installation. Or use PdfLaTeX, XeLaTeX. ${linkTexDistributions}`;
+  new import_obsidian12.Setting(containerEl.createDiv()).setName("Compiler arguments").addText((text) => text.setValue(s.latexCompilerArgs).onChange(async (value) => {
+    const sanitized = value.trim();
+    s.latexCompilerArgs = sanitized;
+    console.log(`LaTeX args set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `${selectableText("-shell-escape")} Allow LaTeX packages to execute external programs. 
+            Default is ${selectableText(DEFAULT_SETTINGS.latexCompilerArgs)}.`;
+  containerEl.createEl("h4", { text: "Post-processing" });
+  new import_obsidian12.Setting(containerEl).setName("Crop to content").addToggle((toggle) => toggle.setValue(s.latexDoCrop).onChange(async (value) => {
+    s.latexDoCrop = value;
+    showSubSettings(requiresCrop, value);
+    console.log(value ? "Now cropping pdf to content." : "Now keeping entire page.");
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Crop PDF to visible content area with pdfcrop. Default is ${DEFAULT_SETTINGS.latexDoCrop ? "on" : "off"}.`;
+  const requiresCrop = containerEl.createDiv();
+  showSubSettings(requiresCrop, s.latexDoCrop);
+  new import_obsidian12.Setting(requiresCrop.createDiv()).setName("Pdfcrop path").addText((text) => text.setPlaceholder(`Example: ${DEFAULT_SETTINGS.latexCropPath}`).setValue(s.latexCropPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    s.latexCropPath = sanitized;
+    console.log(`latex compiler path set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `The path to your pdfcrop installation. ${linkTexDistributions}`;
+  new import_obsidian12.Setting(requiresCrop.createDiv()).setName("Pdfcrop arguments").addText((text) => text.setPlaceholder("Example: --margins 10").setValue(s.latexCropArgs).onChange(async (value) => {
+    const sanitized = value.trim();
+    s.latexCropArgs = sanitized;
+    console.log(`LaTeX args set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `${selectableText("--margins 10")} Whitespace in all directions. ${selectableText('--margins "left top right bottom"')} Specify margins. 
+            Default is ${selectableText(DEFAULT_SETTINGS.latexCropArgs)}.`;
+  new import_obsidian12.Setting(requiresCrop.createDiv()).setName("Disable page number").addToggle((toggle) => toggle.setValue(s.latexCropNoPagenum).onChange(async (value) => {
+    s.latexCropNoPagenum = value;
+    console.log(value ? "Now disabling page number for cropping." : "Now keeping page number for cropping.");
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Inject ${selectableText("\\pagestyle{empty}")} to reduce the height of the content. 
+            Default is ${DEFAULT_SETTINGS.latexCropNoPagenum ? "on" : "off"}.`;
+  new import_obsidian12.Setting(requiresCrop.createDiv()).setName("Exclude standalone").addToggle((toggle) => toggle.setValue(s.latexCropNoStandalone).onChange(async (value) => {
+    s.latexCropNoStandalone = value;
+    console.log(value ? "Now excluding standalone for cropping." : "Now including standalone for cropping.");
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Skip if document class ${selectableText("standalone")} is used, because it is already cropped. 
+            Default is ${DEFAULT_SETTINGS.latexCropNoStandalone ? "on" : "off"}.`;
+  new import_obsidian12.Setting(containerEl).setName("Save PDF").addToggle((toggle) => toggle.setValue(s.latexSavePdf).onChange(async (value) => {
+    s.latexSavePdf = value;
+    console.log(value ? "Now saving PDFs." : "Now discarding PDFs.");
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Save the generated PDF as attachment. Default is ${DEFAULT_SETTINGS.latexSavePdf ? "on" : "off"}.`;
+  new import_obsidian12.Setting(containerEl).setName("Convert to SVG").addDropdown((dropdown) => dropdown.addOptions({ "": "Disabled", poppler: "Poppler: draw fonts perfectly", inkscape: "Inkscape: keep text editable" }).setValue(s.latexSaveSvg).onChange(async (value) => {
+    s.latexSaveSvg = value;
+    showSubSettings(requiresSvg, value === "poppler");
+    showSubSettings(requiresInkscape, value === "inkscape");
+    console.log(value === "" ? "Now discarding SVGs." : `Svg converter set to: ${value}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Convert the PDF to SVG and save it as attachment. Background is transparant. 
+            Default is ${DEFAULT_SETTINGS.latexSaveSvg === "" ? "disabled" : DEFAULT_SETTINGS.latexSaveSvg}.`;
+  const requiresSvg = containerEl.createDiv();
+  showSubSettings(requiresSvg, s.latexSaveSvg === "poppler");
+  new import_obsidian12.Setting(requiresSvg.createDiv()).setName("SVG converter path").addText((text) => text.setPlaceholder(`Example: ${DEFAULT_SETTINGS.latexSvgPath}`).setValue(s.latexSvgPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    s.latexSvgPath = sanitized;
+    console.log(`Pdftocairo path for svg set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `The path to your pdftocairo installation. ${linkTexDistributions}`;
+  new import_obsidian12.Setting(requiresSvg.createDiv()).setName("SVG converter arguments").addText((text) => text.setValue(s.latexSvgArgs).onChange(async (value) => {
+    const sanitized = value.trim();
+    s.latexSvgArgs = sanitized;
+    console.log(`Pdftocairo args for svg set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Default is ${selectableText(DEFAULT_SETTINGS.latexSvgArgs)}.`;
+  const requiresInkscape = containerEl.createDiv();
+  showSubSettings(requiresInkscape, s.latexSaveSvg === "inkscape");
+  new import_obsidian12.Setting(requiresInkscape.createDiv()).setName("Inkscape path").addText((text) => text.setPlaceholder(`Example: ${DEFAULT_SETTINGS.latexInkscapePath}`).setValue(s.latexInkscapePath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    s.latexInkscapePath = sanitized;
+    console.log(`latex compiler path set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `The path to your Inkscape installation. ${linkInkscape}`;
+  new import_obsidian12.Setting(requiresInkscape.createDiv()).setName("Inkscape arguments").addText((text) => text.setValue(s.latexInkscapeArgs).onChange(async (value) => {
+    const sanitized = value.trim();
+    s.latexInkscapeArgs = sanitized;
+    console.log(`LaTeX args set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `${selectableText("--pdf-font-strategy=draw-missing|substitute|keep|\u2026")} How fonts are parsed in the internal PDF importer. 
+            Default is ${selectableText(DEFAULT_SETTINGS.latexInkscapeArgs)}.`;
+  new import_obsidian12.Setting(containerEl).setName("Convert to PNG").addToggle((toggle) => toggle.setValue(s.latexSavePng).onChange(async (value) => {
+    s.latexSavePng = value;
+    showSubSettings(requiresPng, value);
+    console.log(value ? "Now generation PNGs." : "Now discarding PNGs.");
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Convert the PDF to PNG and save it as attachment. Default is ${DEFAULT_SETTINGS.latexSavePng ? "on" : "off"}.`;
+  const requiresPng = containerEl.createDiv();
+  showSubSettings(requiresPng, s.latexSavePng);
+  new import_obsidian12.Setting(requiresPng.createDiv()).setName("PNG converter path").addText((text) => text.setPlaceholder(`Example: ${DEFAULT_SETTINGS.latexPngPath}`).setValue(s.latexPngPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    s.latexPngPath = sanitized;
+    console.log(`Pdftocairo args for png set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `The path to your pdftocairo installation. ${linkTexDistributions}`;
+  new import_obsidian12.Setting(requiresPng.createDiv()).setName("PNG converter arguments").addText((text) => text.setValue(s.latexPngArgs).onChange(async (value) => {
+    const sanitized = value.trim();
+    s.latexPngArgs = sanitized;
+    console.log(`Pdftocairo args for png set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `${selectableText("-transp")} Transparent background. ${selectableText("-gray")} Grayscale. ${selectableText("-mono")} Monochrome. 
+            ${selectableText("-f int")} Page to save. Default is ${selectableText(DEFAULT_SETTINGS.latexPngArgs)}.`;
+  containerEl.createEl("h4", { text: "Appearance" });
+  new import_obsidian12.Setting(containerEl).setName("Output embeddings").addToggle((toggle) => toggle.setValue(s.latexOutputEmbeddings).onChange(async (value) => {
+    s.latexOutputEmbeddings = value;
+    console.log(value ? "Now embedding figures." : `Now linking figures.`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `When running a LaTeX code block, show embeddings of saved figures. Default is ${DEFAULT_SETTINGS.latexOutputEmbeddings ? "on" : "off"}.`;
+  new import_obsidian12.Setting(containerEl).setName("Center SVGs").addToggle((toggle) => toggle.setValue(s.latexCenterFigures).onChange(async (value) => {
+    s.latexCenterFigures = value;
+    console.log(value ? "Now centering SVGs." : `Now left aligning SVGs.`);
+    updateBodyClass("center-latex-figures", value);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Horizontally align SVGs whose filename starts with ${selectableText("figure")}. 
+            Default is ${DEFAULT_SETTINGS.latexCenterFigures ? "on" : "off"}.`;
+  new import_obsidian12.Setting(containerEl).setName("Invert SVGs in dark mode").addToggle((toggle) => toggle.setValue(s.latexInvertFigures).onChange(async (value) => {
+    s.latexInvertFigures = value;
+    console.log(value ? "Now inverting SVGs." : `Now not inverting SVGs.`);
+    updateBodyClass("invert-latex-figures", value);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `If dark mode is enabled, invert the color of SVGs whose filename starts with ${selectableText("figure")}. 
+            Default is ${DEFAULT_SETTINGS.latexInvertFigures ? "on" : "off"}.`;
+  containerEl.createEl("h4", { text: "Troubleshooting" });
+  const maxFigures = containerEl.createDiv();
+  new import_obsidian12.Setting(maxFigures).setName("Keep last n unnamed figures").addText((text) => text.setPlaceholder("unlimited").setValue(s.latexMaxFigures === Infinity ? "" : `${s.latexMaxFigures}`).onChange(async (value) => {
+    const numValue = value === "" ? Infinity : Number(value);
+    const isValid = isIntegerOrInfinity(numValue) && numValue > 0;
+    updateTextColor(maxFigures, isValid);
+    if (isValid) {
+      s.latexMaxFigures = numValue;
+      console.log(`max number of figures set to: ${numValue}`);
+      await tab.plugin.saveSettings();
+    }
+  })).descEl.innerHTML = `Generated attachments receive an increasing index. To prevent too many files from piling up, jump back to zero after <i>n</i> executions. 
+            Set empty for unlimited. Default is ${selectableText(DEFAULT_SETTINGS.latexMaxFigures.toString(), true)}.`;
+  maxFigures.querySelector("input").type = "number";
+  const captureFigureName = containerEl.createDiv();
+  new import_obsidian12.Setting(captureFigureName).setName("Capture figure name").addText((text) => text.setPlaceholder("/regex/").setValue(`${s.latexFigureTitlePattern}`).onChange(async (value) => {
+    const pattern = parse(value);
+    const isValid = pattern != void 0;
+    updateTextColor(captureFigureName, isValid);
+    if (isValid) {
+      s.latexFigureTitlePattern = pattern.toString();
+      console.log("capture figure name pattern set to: " + pattern);
+      await tab.plugin.saveSettings();
+    }
+  })).descEl.innerHTML = `Search LaTeX code block for ${selectableText("\\title{\u2026}")} to retrieve the figure name: 
+            ${selectableText(/[^\n][^%`]*/.source)} Ignore comments after % symbol. ${selectableText(/(?<name>.*?)/.source)} Capture group for figure name.
+            Default is ${selectableText(DEFAULT_SETTINGS.latexFigureTitlePattern)}.`;
+  new import_obsidian12.Setting(containerEl).setName("Filter output").addToggle((toggle) => toggle.setValue(s.latexDoFilter).onChange(async (value) => {
+    s.latexDoFilter = value;
+    showSubSettings(requiresTexfot, value);
+    console.log(value ? "Now filtering latex stdout with texfot." : "Now showing full latex stdout.");
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Filtering stdout to relevant messages with texfot. Default is ${DEFAULT_SETTINGS.latexKeepLog ? "on" : "off"}.`;
+  const requiresTexfot = containerEl.createDiv();
+  showSubSettings(requiresTexfot, s.latexDoFilter);
+  new import_obsidian12.Setting(requiresTexfot.createDiv()).setName("Texfot path").addText((text) => text.setPlaceholder(`Example: ${DEFAULT_SETTINGS.latexTexfotPath}`).setValue(s.latexTexfotPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    s.latexTexfotPath = sanitized;
+    console.log(`texfot path set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `The path to your texfot installation. ${linkTexDistributions}`;
+  new import_obsidian12.Setting(requiresTexfot.createDiv()).setName("Texfot arguments").addText((text) => text.setPlaceholder(`Example: ${DEFAULT_SETTINGS.latexTexfotArgs}`).setValue(s.latexTexfotArgs).onChange(async (value) => {
+    const sanitized = value.trim();
+    s.latexTexfotArgs = sanitized;
+    console.log(`texfot arguments set to: ${sanitized}`);
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `${selectableText("--accept regex")}, ${selectableText("--ignore regex")} Filter lines in the TeX output matching RegExp. 
+            Default is ${selectableText(DEFAULT_SETTINGS.latexTexfotArgs)}.`;
+  new import_obsidian12.Setting(containerEl).setName("Keep log").addToggle((toggle) => toggle.setValue(s.latexKeepLog).onChange(async (value) => {
+    s.latexKeepLog = value;
+    console.log(value ? "Now preserving latex build folder." : "Now clearing latex build folder.");
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Prevent deletion of temporary build folder. Default is ${DEFAULT_SETTINGS.latexKeepLog ? "on" : "off"}.`;
+  new import_obsidian12.Setting(containerEl).setName("Run subprocesses in shell").addToggle((toggle) => toggle.setValue(s.latexSubprocessesUseShell).onChange(async (value) => {
+    s.latexSubprocessesUseShell = value;
+    console.log(value ? "Now running subprocesses in shell." : "Now running subprocesses directly.");
+    await tab.plugin.saveSettings();
+  })).descEl.innerHTML = `Run compilation and conversion tools in shell environment. Default is ${DEFAULT_SETTINGS.latexSubprocessesUseShell ? "on" : "off"}.`;
+};
+function showSubSettings(settingsDiv, doShow) {
+  settingsDiv.setAttr("style", doShow ? "display: block" : "display: none");
+}
+function updateTextColor(containerEl, isValid) {
+  const inputEl = containerEl.querySelector("input");
+  inputEl.style.color = isValid ? "" : "red";
+}
+function isIntegerOrInfinity(value) {
+  return Number.isInteger(value) || value === Infinity;
+}
+function selectableText(text, noMonospace) {
+  if (noMonospace)
+    return `<span class='selectable-description-text'>${text}</span>`;
+  const escapedAngleBrackets = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return `<span><code class='selectable-description-text'>${escapedAngleBrackets}</code></span>`;
+}
+
+// src/settings/per-lang/makeLeanSettings.ts
+var import_obsidian13 = require("obsidian");
+var makeLeanSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Lean Settings" });
+  new import_obsidian13.Setting(containerEl).setName("lean path").addText((text) => text.setValue(tab.plugin.settings.leanPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.leanPath = sanitized;
+    console.log("lean path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian13.Setting(containerEl).setName("Lean arguments").addText((text) => text.setValue(tab.plugin.settings.leanArgs).onChange(async (value) => {
+    tab.plugin.settings.leanArgs = value;
+    console.log("Lean args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "lean");
+};
+
+// src/settings/per-lang/makeLuaSettings.ts
+var import_obsidian14 = require("obsidian");
+var makeLuaSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Lua Settings" });
+  new import_obsidian14.Setting(containerEl).setName("lua path").addText((text) => text.setValue(tab.plugin.settings.luaPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.luaPath = sanitized;
+    console.log("lua path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian14.Setting(containerEl).setName("Lua arguments").addText((text) => text.setValue(tab.plugin.settings.luaArgs).onChange(async (value) => {
+    tab.plugin.settings.luaArgs = value;
+    console.log("Lua args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "lua");
+};
+
+// src/settings/per-lang/makeDartSettings.ts
+var import_obsidian15 = require("obsidian");
+var makeDartSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Dart Settings" });
+  new import_obsidian15.Setting(containerEl).setName("dart path").addText((text) => text.setValue(tab.plugin.settings.dartPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.dartPath = sanitized;
+    console.log("dart path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian15.Setting(containerEl).setName("Dart arguments").addText((text) => text.setValue(tab.plugin.settings.dartArgs).onChange(async (value) => {
+    tab.plugin.settings.dartArgs = value;
+    console.log("Dart args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "dart");
+};
+
+// src/settings/per-lang/makeMathematicaSettings.ts
+var import_obsidian16 = require("obsidian");
+var makeMathematicaSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Wolfram Mathematica Settings" });
+  new import_obsidian16.Setting(containerEl).setName("Mathematica path").setDesc("The path to your Mathematica installation.").addText((text) => text.setValue(tab.plugin.settings.mathematicaPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.mathematicaPath = sanitized;
+    console.log("Mathematica path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian16.Setting(containerEl).setName("Mathematica arguments").addText((text) => text.setValue(tab.plugin.settings.mathematicaArgs).onChange(async (value) => {
+    tab.plugin.settings.mathematicaArgs = value;
+    console.log("Mathematica args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "mathematica");
+};
+
+// src/settings/per-lang/makePhpSettings.ts
+var import_obsidian17 = require("obsidian");
+var makePhpSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "PHP Settings" });
+  new import_obsidian17.Setting(containerEl).setName("php path").setDesc("Path to your php installation").addText((text) => text.setValue(tab.plugin.settings.phpPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.phpPath = sanitized;
+    console.log("php path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian17.Setting(containerEl).setName("php arguments").addText((text) => text.setValue(tab.plugin.settings.phpArgs).onChange(async (value) => {
+    tab.plugin.settings.phpArgs = value;
+    console.log("php args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "php");
+};
+
+// src/settings/per-lang/makePowershellSettings.ts
+var import_obsidian18 = require("obsidian");
+var makePowershellSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Powershell Settings" });
+  new import_obsidian18.Setting(containerEl).setName("Powershell path").setDesc("The path to Powershell.").addText((text) => text.setValue(tab.plugin.settings.powershellPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.powershellPath = sanitized;
+    console.log("Powershell path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian18.Setting(containerEl).setName("Powershell arguments").addText((text) => text.setValue(tab.plugin.settings.powershellArgs).onChange(async (value) => {
+    tab.plugin.settings.powershellArgs = value;
+    console.log("Powershell args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian18.Setting(containerEl).setName("Powershell file extension").setDesc("Changes the file extension for generated shell scripts. This is useful if you don't want to use PowerShell.").addText((text) => text.setValue(tab.plugin.settings.powershellFileExtension).onChange(async (value) => {
+    tab.plugin.settings.powershellFileExtension = value;
+    console.log("Powershell file extension set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian18.Setting(containerEl).setName("PowerShell script encoding").setDesc('Windows still uses windows-1252 as default encoding on most systems for legacy reasons. If you change your encodings systemwide to UTF-8, you can change this setting to UTF-8 as well. Only use one of the following encodings: "ascii", "utf8", "utf-8", "utf16le", "ucs2", "ucs-2", "base64", "latin1", "binary", "hex" (default: "latin1")').addText((text) => text.setValue(tab.plugin.settings.powershellEncoding).onChange(async (value) => {
+    value = value.replace(/["'`´]/, "").trim().toLowerCase();
+    if (["ascii", "utf8", "utf-8", "utf16le", "ucs2", "ucs-2", "base64", "latin1", "binary", "hex"].includes(value)) {
+      tab.plugin.settings.powershellEncoding = value;
+      console.log("Powershell file extension set to: " + value);
+      await tab.plugin.saveSettings();
+    } else {
+      console.error("Invalid encoding. " + value + 'Please use one of the following encodings: "ascii", "utf8", "utf-8", "utf16le", "ucs2", "ucs-2", "base64", "latin1", "binary", "hex"');
+    }
+  }));
+  tab.makeInjectSetting(containerEl, "powershell");
+};
+
+// src/settings/per-lang/makePrologSettings.ts
+var import_obsidian19 = require("obsidian");
+var makePrologSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Prolog Settings" });
+  new import_obsidian19.Setting(containerEl).setName("Prolog Answer Limit").setDesc("Maximal number of answers to be returned by the Prolog engine. tab is to prevent creating too huge texts in the notebook.").addText((text) => text.setValue("" + tab.plugin.settings.maxPrologAnswers).onChange(async (value) => {
+    if (Number(value) * 1e3) {
+      console.log("Prolog answer limit set to: " + value);
+      tab.plugin.settings.maxPrologAnswers = Number(value);
+    }
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "prolog");
+};
+
+// src/settings/per-lang/makePythonSettings.ts
+var import_obsidian20 = require("obsidian");
+var makePythonSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Python Settings" });
+  new import_obsidian20.Setting(containerEl).setName("Embed Python Plots").addToggle((toggle) => toggle.setValue(tab.plugin.settings.pythonEmbedPlots).onChange(async (value) => {
+    tab.plugin.settings.pythonEmbedPlots = value;
+    console.log(value ? "Embedding Plots into Notes." : "Not embedding Plots into Notes.");
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian20.Setting(containerEl).setName("Python path").setDesc("The path to your Python installation.").addText((text) => text.setValue(tab.plugin.settings.pythonPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.pythonPath = sanitized;
+    console.log("Python path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian20.Setting(containerEl).setName("Python arguments").addText((text) => text.setValue(tab.plugin.settings.pythonArgs).onChange(async (value) => {
+    tab.plugin.settings.pythonArgs = value;
+    console.log("Python args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian20.Setting(containerEl).setName("Run Python blocks in Notebook Mode").addToggle((toggle) => toggle.setValue(tab.plugin.settings.pythonInteractive).onChange(async (value) => {
+    tab.plugin.settings.pythonInteractive = value;
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "python");
+};
+
+// src/settings/per-lang/makeRSettings.ts
+var import_obsidian21 = require("obsidian");
+var makeRSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "R Settings" });
+  new import_obsidian21.Setting(containerEl).setName("Embed R Plots created via `plot()` into Notes").addToggle((toggle) => toggle.setValue(tab.plugin.settings.REmbedPlots).onChange(async (value) => {
+    tab.plugin.settings.REmbedPlots = value;
+    console.log(value ? "Embedding R Plots into Notes." : "Not embedding R Plots into Notes.");
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian21.Setting(containerEl).setName("Rscript path").setDesc("The path to your Rscript installation. Ensure you provide the Rscript binary instead of the ordinary R binary.").addText((text) => text.setValue(tab.plugin.settings.RPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.RPath = sanitized;
+    console.log("R path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian21.Setting(containerEl).setName("R arguments").addText((text) => text.setValue(tab.plugin.settings.RArgs).onChange(async (value) => {
+    tab.plugin.settings.RArgs = value;
+    console.log("R args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian21.Setting(containerEl).setName("Run R blocks in Notebook Mode").addToggle((toggle) => toggle.setValue(tab.plugin.settings.rInteractive).onChange(async (value) => {
+    tab.plugin.settings.rInteractive = value;
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "r");
+};
+
+// src/settings/per-lang/makeRubySettings.ts
+var import_obsidian22 = require("obsidian");
+var makeRubySettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Ruby Settings" });
+  new import_obsidian22.Setting(containerEl).setName("ruby path").setDesc("Path to your ruby installation").addText((text) => text.setValue(tab.plugin.settings.rubyPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.rubyPath = sanitized;
+    console.log("ruby path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian22.Setting(containerEl).setName("ruby arguments").addText((text) => text.setValue(tab.plugin.settings.rubyArgs).onChange(async (value) => {
+    tab.plugin.settings.rubyArgs = value;
+    console.log("ruby args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "ruby");
+};
+
+// src/settings/per-lang/makeRustSettings.ts
+var import_obsidian23 = require("obsidian");
+var makeRustSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Rust Settings" });
+  new import_obsidian23.Setting(containerEl).setName("Cargo Path").setDesc("The path to your Cargo installation.").addText((text) => text.setValue(tab.plugin.settings.cargoPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.cargoPath = sanitized;
+    console.log("Cargo path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "rust");
+};
+
+// src/settings/per-lang/makeScalaSettings.ts
+var import_obsidian24 = require("obsidian");
+var makeScalaSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Scala Settings" });
+  new import_obsidian24.Setting(containerEl).setName("scala path").setDesc("Path to your scala installation").addText((text) => text.setValue(tab.plugin.settings.scalaPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.scalaPath = sanitized;
+    console.log("scala path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian24.Setting(containerEl).setName("Scala arguments").addText((text) => text.setValue(tab.plugin.settings.scalaArgs).onChange(async (value) => {
+    tab.plugin.settings.scalaArgs = value;
+    console.log("Scala args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "scala");
+};
+
+// src/settings/per-lang/makeRacketSettings.ts
+var import_obsidian25 = require("obsidian");
+var makeRacketSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Racket Settings" });
+  new import_obsidian25.Setting(containerEl).setName("racket path").setDesc("Path to your racket installation").addText((text) => text.setValue(tab.plugin.settings.racketPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.racketPath = sanitized;
+    console.log("racket path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian25.Setting(containerEl).setName("Racket arguments").addText((text) => text.setValue(tab.plugin.settings.racketArgs).onChange(async (value) => {
+    tab.plugin.settings.racketArgs = value;
+    console.log("Racket args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "racket");
+};
+
+// src/settings/per-lang/makeShellSettings.ts
+var import_obsidian26 = require("obsidian");
+var makeShellSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Shell Settings" });
+  new import_obsidian26.Setting(containerEl).setName("Shell path").setDesc("The path to shell. Default is Bash but you can use any shell you want, e.g. bash, zsh, fish, ...").addText((text) => text.setValue(tab.plugin.settings.shellPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.shellPath = sanitized;
+    console.log("Shell path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian26.Setting(containerEl).setName("Shell arguments").addText((text) => text.setValue(tab.plugin.settings.shellArgs).onChange(async (value) => {
+    tab.plugin.settings.shellArgs = value;
+    console.log("Shell args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian26.Setting(containerEl).setName("Shell file extension").setDesc("Changes the file extension for generated shell scripts. This is useful if you want to use a shell other than bash.").addText((text) => text.setValue(tab.plugin.settings.shellFileExtension).onChange(async (value) => {
+    tab.plugin.settings.shellFileExtension = value;
+    console.log("Shell file extension set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian26.Setting(containerEl).setName("Shell WSL mode").setDesc('Run the shell script in Windows Subsystem for Linux. This option is used if the global "WSL Mode" is disabled.').addToggle(
+    (toggle) => toggle.setValue(tab.plugin.settings.shellWSLMode).onChange(async (value) => {
+      tab.plugin.settings.shellWSLMode = value;
+      await tab.plugin.saveSettings();
+    })
+  );
+  tab.makeInjectSetting(containerEl, "shell");
+};
+
+// src/settings/per-lang/makeBatchSettings.ts
+var import_obsidian27 = require("obsidian");
+var makeBatchSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Batch Settings" });
+  new import_obsidian27.Setting(containerEl).setName("Batch path").setDesc("The path to the terminal. Default is command prompt.").addText((text) => text.setValue(tab.plugin.settings.batchPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.batchPath = sanitized;
+    console.log("Batch path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian27.Setting(containerEl).setName("Batch arguments").addText((text) => text.setValue(tab.plugin.settings.batchArgs).onChange(async (value) => {
+    tab.plugin.settings.batchArgs = value;
+    console.log("Batch args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian27.Setting(containerEl).setName("Batch file extension").setDesc("Changes the file extension for generated batch scripts. Default is .bat").addText((text) => text.setValue(tab.plugin.settings.batchFileExtension).onChange(async (value) => {
+    tab.plugin.settings.batchFileExtension = value;
+    console.log("Batch file extension set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "batch");
+};
+
+// src/settings/per-lang/makeTsSettings.ts
+var import_obsidian28 = require("obsidian");
+var makeTsSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "TypeScript Settings" });
+  new import_obsidian28.Setting(containerEl).setName("ts-node path").addText((text) => text.setValue(tab.plugin.settings.tsPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.tsPath = sanitized;
+    console.log("ts-node path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian28.Setting(containerEl).setName("TypeScript arguments").addText((text) => text.setValue(tab.plugin.settings.tsArgs).onChange(async (value) => {
+    tab.plugin.settings.tsArgs = value;
+    console.log("TypeScript args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "ts");
+};
+
+// src/settings/per-lang/makeSQLSettings.ts
+var import_obsidian29 = require("obsidian");
+var makeSQLSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "SQL Settings" });
+  new import_obsidian29.Setting(containerEl).setName("SQL path").setDesc("Path to your SQL installation. You can select the SQL dialect you prefer but you need to set the right arguments by yourself.").addText((text) => text.setValue(tab.plugin.settings.sqlPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.sqlPath = sanitized;
+    console.log("ruby path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian29.Setting(containerEl).setName("SQL arguments").setDesc("Set the right arguments for your database.").addText((text) => text.setValue(tab.plugin.settings.sqlArgs).onChange(async (value) => {
+    tab.plugin.settings.sqlArgs = value;
+    console.log("SQL args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "sql");
+};
+
+// src/settings/per-lang/makeOctaveSettings.ts
+var import_obsidian30 = require("obsidian");
+var makeOctaveSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Octave Settings" });
+  new import_obsidian30.Setting(containerEl).setName("Octave path").setDesc("The path to your Octave installation.").addText((text) => text.setValue(tab.plugin.settings.octavePath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.octavePath = sanitized;
+    console.log("Octave path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian30.Setting(containerEl).setName("Octave arguments").addText((text) => text.setValue(tab.plugin.settings.octaveArgs).onChange(async (value) => {
+    tab.plugin.settings.octaveArgs = value;
+    console.log("Octave args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "octave");
+};
+
+// src/settings/per-lang/makeMaximaSettings.ts
+var import_obsidian31 = require("obsidian");
+var makeMaximaSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Maxima Settings" });
+  new import_obsidian31.Setting(containerEl).setName("Maxima path").setDesc("The path to your Maxima installation.").addText((text) => text.setValue(tab.plugin.settings.maximaPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.maximaPath = sanitized;
+    console.log("Maxima path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian31.Setting(containerEl).setName("Maxima arguments").addText((text) => text.setValue(tab.plugin.settings.maximaArgs).onChange(async (value) => {
+    tab.plugin.settings.maximaArgs = value;
+    console.log("Maxima args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "maxima");
+};
+
+// src/settings/per-lang/makeApplescriptSettings.ts
+var import_obsidian32 = require("obsidian");
+var makeApplescriptSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Applescript Settings" });
+  new import_obsidian32.Setting(containerEl).setName("Osascript path").setDesc("The path to your osascript installation (only available on MacOS).").addText((text) => text.setValue(tab.plugin.settings.applescriptPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.applescriptPath = sanitized;
+    console.log("Applescript path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian32.Setting(containerEl).setName("Applescript arguments").addText((text) => text.setValue(tab.plugin.settings.applescriptArgs).onChange(async (value) => {
+    tab.plugin.settings.applescriptArgs = value;
+    console.log("Applescript args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "applescript");
+};
+
+// src/settings/per-lang/makeZigSettings.ts
+var import_obsidian33 = require("obsidian");
+var makeZigSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Zig Settings" });
+  new import_obsidian33.Setting(containerEl).setName("zig path").setDesc("Path to your zig installation").addText((text) => text.setValue(tab.plugin.settings.zigPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.zigPath = sanitized;
+    console.log("zig path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian33.Setting(containerEl).setName("zig arguments").addText((text) => text.setValue(tab.plugin.settings.zigArgs).onChange(async (value) => {
+    tab.plugin.settings.zigArgs = value;
+    console.log("zig args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "zig");
+};
+
+// src/settings/per-lang/makeOCamlSettings.ts
+var import_obsidian34 = require("obsidian");
+var makeOCamlSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "OCaml Settings" });
+  new import_obsidian34.Setting(containerEl).setName("ocaml path").setDesc("Path to your ocaml installation").addText((text) => text.setValue(tab.plugin.settings.ocamlPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.ocamlPath = sanitized;
+    console.log("ocaml path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian34.Setting(containerEl).setName("ocaml arguments").addText((text) => text.setValue(tab.plugin.settings.ocamlArgs).onChange(async (value) => {
+    tab.plugin.settings.ocamlArgs = value;
+    console.log("ocaml args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "ocaml");
+};
+
+// src/settings/per-lang/makeSwiftSettings.ts
+var import_obsidian35 = require("obsidian");
+var makeSwiftSettings_default = (tab, containerEl) => {
+  containerEl.createEl("h3", { text: "Swift Settings" });
+  new import_obsidian35.Setting(containerEl).setName("Swift path").setDesc("The path to your Swift installation.").addText((text) => text.setValue(tab.plugin.settings.swiftPath).onChange(async (value) => {
+    const sanitized = tab.sanitizePath(value);
+    tab.plugin.settings.swiftPath = sanitized;
+    console.log("Swift path set to: " + sanitized);
+    await tab.plugin.saveSettings();
+  }));
+  new import_obsidian35.Setting(containerEl).setName("Swift arguments").addText((text) => text.setValue(tab.plugin.settings.swiftArgs).onChange(async (value) => {
+    tab.plugin.settings.swiftArgs = value;
+    console.log("Swift args set to: " + value);
+    await tab.plugin.saveSettings();
+  }));
+  tab.makeInjectSetting(containerEl, "swift");
+};
+
+// src/settings/SettingsTab.ts
+var SettingsTab = class extends import_obsidian36.PluginSettingTab {
+  constructor(app, plugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+    this.languageContainers = {};
+  }
+  display() {
+    const { containerEl } = this;
+    containerEl.empty();
+    containerEl.createEl("h2", { text: "Settings for the Code Execution Plugin." });
+    containerEl.createEl("h3", { text: "General Settings" });
+    new import_obsidian36.Setting(containerEl).setName("Timeout (in seconds)").setDesc("The time after which a program gets shut down automatically. This is to prevent infinite loops. ").addText((text) => text.setValue("" + this.plugin.settings.timeout / 1e3).onChange(async (value) => {
+      if (Number(value) * 1e3) {
+        console.log("Timeout set to: " + value);
+        this.plugin.settings.timeout = Number(value) * 1e3;
+      }
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian36.Setting(containerEl).setName("Allow Input").setDesc("Whether or not to include a stdin input box when running blocks. In order to apply changes to this, Obsidian must be refreshed. ").addToggle((text) => text.setValue(this.plugin.settings.allowInput).onChange(async (value) => {
+      console.log("Allow Input set to: " + value);
+      this.plugin.settings.allowInput = value;
+      await this.plugin.saveSettings();
+    }));
+    if (process.platform === "win32") {
+      new import_obsidian36.Setting(containerEl).setName("WSL Mode").setDesc("Whether or not to run code in the Windows Subsystem for Linux. If you don't have WSL installed, don't turn this on!").addToggle((text) => text.setValue(this.plugin.settings.wslMode).onChange(async (value) => {
+        console.log("WSL Mode set to: " + value);
+        this.plugin.settings.wslMode = value;
+        await this.plugin.saveSettings();
+      }));
+    }
+    new import_obsidian36.Setting(containerEl).setName("[Experimental] Persistent Output").setDesc("If enabled, the output of the code block is written into the markdown file. This feature is experimental and may not work as expected.").addToggle((text) => text.setValue(this.plugin.settings.persistentOuput).onChange(async (value) => {
+      console.log("Allow Input set to: " + value);
+      this.plugin.settings.persistentOuput = value;
+      await this.plugin.saveSettings();
+    }));
+    containerEl.createEl("hr");
+    new import_obsidian36.Setting(containerEl).setName("Language-Specific Settings").setDesc("Pick a language to edit its language-specific settings").addDropdown(
+      (dropdown) => dropdown.addOptions(Object.fromEntries(
+        canonicalLanguages.map((lang) => [lang, DISPLAY_NAMES[lang]])
+      )).setValue(this.plugin.settings.lastOpenLanguageTab || canonicalLanguages[0]).onChange(async (value) => {
+        this.focusContainer(value);
+        this.plugin.settings.lastOpenLanguageTab = value;
+        await this.plugin.saveSettings();
+      })
+    ).settingEl.style.borderTop = "0";
+    makeJsSettings_default(this, this.makeContainerFor("js"));
+    makeTsSettings_default(this, this.makeContainerFor("ts"));
+    makeLeanSettings_default(this, this.makeContainerFor("lean"));
+    makeLuaSettings_default(this, this.makeContainerFor("lua"));
+    makeDartSettings_default(this, this.makeContainerFor("dart"));
+    makeCsSettings_default(this, this.makeContainerFor("cs"));
+    makeJavaSettings_default(this, this.makeContainerFor("java"));
+    makePythonSettings_default(this, this.makeContainerFor("python"));
+    makeGoSettings_default(this, this.makeContainerFor("go"));
+    makeRustSettings_default(this, this.makeContainerFor("rust"));
+    makeCppSettings_default(this, this.makeContainerFor("cpp"));
+    makeCSettings_default(this, this.makeContainerFor("c"));
+    makeBatchSettings_default(this, this.makeContainerFor("batch"));
+    makeShellSettings_default(this, this.makeContainerFor("shell"));
+    makePowershellSettings_default(this, this.makeContainerFor("powershell"));
+    makePrologSettings_default(this, this.makeContainerFor("prolog"));
+    makeGroovySettings_default(this, this.makeContainerFor("groovy"));
+    makeRSettings_default(this, this.makeContainerFor("r"));
+    makeKotlinSettings_default(this, this.makeContainerFor("kotlin"));
+    makeMathematicaSettings_default(this, this.makeContainerFor("mathematica"));
+    makeHaskellSettings_default(this, this.makeContainerFor("haskell"));
+    makeScalaSettings_default(this, this.makeContainerFor("scala"));
+    makeSwiftSettings_default(this, this.makeContainerFor("swift"));
+    makeRacketSettings_default(this, this.makeContainerFor("racket"));
+    makeFSharpSettings_default(this, this.makeContainerFor("fsharp"));
+    makeRubySettings_default(this, this.makeContainerFor("ruby"));
+    makeSQLSettings_default(this, this.makeContainerFor("sql"));
+    makeOctaveSettings_default(this, this.makeContainerFor("octave"));
+    makeMaximaSettings_default(this, this.makeContainerFor("maxima"));
+    makeApplescriptSettings_default(this, this.makeContainerFor("applescript"));
+    makeZigSettings_default(this, this.makeContainerFor("zig"));
+    makeOCamlSettings_default(this, this.makeContainerFor("ocaml"));
+    makePhpSettings_default(this, this.makeContainerFor("php"));
+    makeLatexSettings_default(this, this.makeContainerFor("latex"));
+    this.focusContainer(this.plugin.settings.lastOpenLanguageTab || canonicalLanguages[0]);
+  }
+  makeContainerFor(language) {
+    const container = this.containerEl.createDiv();
+    container.style.display = "none";
+    this.languageContainers[language] = container;
+    return container;
+  }
+  focusContainer(language) {
+    if (this.activeLanguageContainer)
+      this.activeLanguageContainer.style.display = "none";
+    if (language in this.languageContainers) {
+      this.activeLanguageContainer = this.languageContainers[language];
+      this.activeLanguageContainer.style.display = "block";
+    }
+  }
+  sanitizePath(path6) {
+    path6 = path6.replace(/\\/g, "/");
+    path6 = path6.replace(/['"`]/, "");
+    path6 = path6.trim();
+    return path6;
+  }
+  makeInjectSetting(containerEl, language) {
+    const languageAlt = DISPLAY_NAMES[language];
+    new import_obsidian36.Setting(containerEl).setName(`Inject ${languageAlt} code`).setDesc(`Code to add to the top of every ${languageAlt} code block before running.`).setClass("settings-code-input-box").addTextArea((textarea) => {
+      const val = this.plugin.settings[`${language}Inject`];
+      return textarea.setValue(val).onChange(async (value) => {
+        this.plugin.settings[`${language}Inject`] = value;
+        console.log(`${language} inject set to ${value}`);
+        await this.plugin.saveSettings();
+      });
+    });
+  }
+};
+
+// src/ExecutorContainer.ts
+var import_events = require("events");
+
+// src/executors/ReplExecutor.ts
+var import_child_process2 = require("child_process");
+var import_obsidian38 = require("obsidian");
+
+// src/executors/Executor.ts
+var import_obsidian37 = require("obsidian");
+var os = __toESM(require("os"));
+var path2 = __toESM(require("path"));
+var import_stream = require("stream");
+var Executor = class extends import_stream.EventEmitter {
+  constructor(file, language) {
+    super();
+    this.tempFileId = void 0;
+    this.file = file;
+    this.language = language;
+  }
+  notifyError(cmd, cmdArgs, tempFileName, err, outputter, label = "Error while executing code") {
+    const errorMSG = `Error while executing ${cmd} ${cmdArgs} ${tempFileName}: ${err}`;
+    console.error(errorMSG);
+    if (outputter)
+      outputter.writeErr(errorMSG);
+    new import_obsidian37.Notice(label);
+  }
+  getTempFile(ext) {
+    if (this.tempFileId === void 0)
+      this.tempFileId = Date.now().toString();
+    return path2.join(os.tmpdir(), `temp_${this.tempFileId}.${ext}`);
+  }
+};
+
+// src/executors/AsyncExecutor.ts
+var AsyncExecutor = class extends Executor {
+  constructor() {
+    super(...arguments);
+    this.runningTask = Promise.resolve();
+  }
+  async addJobToQueue(promiseCallback) {
+    const previousJob = this.runningTask;
+    this.runningTask = new Promise((resolve, reject) => {
+      previousJob.finally(async () => {
+        try {
+          await new Promise((innerResolve, innerReject) => {
+            this.once("close", () => innerResolve(void 0));
+            promiseCallback(innerResolve, innerReject);
+          });
+          resolve();
+        } catch (e) {
+          reject(e);
+        }
+      });
+    });
+    return this.runningTask;
+  }
+};
+
+// src/executors/killWithChildren.ts
+var import_child_process = require("child_process");
+var killWithChildren_default = (pid) => {
+  if (process.platform === "win32") {
+    (0, import_child_process.execSync)(`taskkill /pid ${pid} /T /F`);
+  } else {
+    try {
+      (0, import_child_process.execSync)(`pkill -P ${pid}`);
+    } catch (err) {
+      if (err.status !== 1)
+        throw err;
+    }
+    process.kill(pid);
+  }
+};
+
+// src/executors/ReplExecutor.ts
+var ReplExecutor = class extends AsyncExecutor {
+  constructor(settings, path6, args, file, language) {
+    var _a;
+    super(file, language);
+    this.settings = settings;
+    if (this.settings.wslMode) {
+      args.unshift("-e", path6);
+      path6 = "wsl";
+    }
+    if (path6.includes("%USERNAME%") && ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.USERNAME))
+      path6 = path6.replace("%USERNAME%", process.env.USERNAME);
+    this.process = (0, import_child_process2.spawn)(path6, args, { env: process.env });
+    this.process.on("close", () => {
+      this.emit("close");
+      new import_obsidian38.Notice("Runtime exited");
+      this.process = null;
+    });
+    this.process.on("error", (err) => {
+      this.notifyError(settings.pythonPath, args.join(" "), "", err, void 0, "Error launching process: " + err);
+      this.stop();
+    });
+    this.setup().then(() => {
+    });
+  }
+  run(code, outputter, cmd, cmdArgs, ext) {
+    outputter.queueBlock();
+    return this.addJobToQueue((resolve, _reject) => {
+      if (this.process === null)
+        return resolve();
+      const finishSigil = `SIGIL_BLOCK_DONE_${Math.random()}_${Date.now()}_${code.length}`;
+      outputter.startBlock();
+      const wrappedCode = this.wrapCode(code, finishSigil);
+      this.process.stdin.write(wrappedCode);
+      outputter.clear();
+      outputter.on("data", (data) => {
+        this.process.stdin.write(data);
+      });
+      const writeToStdout = (data) => {
+        let str = data.toString();
+        if (str.endsWith(finishSigil)) {
+          str = str.substring(0, str.length - finishSigil.length);
+          this.process.stdout.removeListener("data", writeToStdout);
+          this.process.stderr.removeListener("data", writeToStderr);
+          this.process.removeListener("close", resolve);
+          outputter.write(str);
+          resolve();
+        } else {
+          outputter.write(str);
+        }
+      };
+      const writeToStderr = (data) => {
+        outputter.writeErr(
+          this.removePrompts(data.toString(), "stderr")
+        );
+      };
+      this.process.on("close", resolve);
+      this.process.stdout.on("data", writeToStdout);
+      this.process.stderr.on("data", writeToStderr);
+    });
+  }
+  stop() {
+    return new Promise((resolve, _reject) => {
+      this.process.on("close", () => {
+        resolve();
+      });
+      killWithChildren_default(this.process.pid);
+      this.process = null;
+    });
+  }
+};
+
+// src/executors/NodeJSExecutor.ts
+var NodeJSExecutor = class extends ReplExecutor {
+  constructor(settings, file) {
+    const args = settings.nodeArgs ? settings.nodeArgs.split(" ") : [];
+    args.unshift(`-e`, `require("repl").start({prompt: "", preview: false, ignoreUndefined: true}).on("exit", ()=>process.exit())`);
+    super(settings, settings.nodePath, args, file, "js");
+  }
+  async setup() {
+    this.process.stdin.write("\n");
+  }
+  wrapCode(code, finishSigil) {
+    return `try { eval(${JSON.stringify(code)}); }catch(e) { console.error(e); }finally { process.stdout.write(${JSON.stringify(finishSigil)}); }
+`;
+  }
+  removePrompts(output, source) {
+    return output;
+  }
+};
+
+// src/executors/NonInteractiveCodeExecutor.ts
+var import_obsidian39 = require("obsidian");
+var fs = __toESM(require("fs"));
+var child_process = __toESM(require("child_process"));
+
+// src/transforms/windowsPathToWsl.ts
+var import_posix = require("path/posix");
+var import_path = require("path");
+var windowsPathToWsl_default = (windowsPath) => {
+  const driveLetter = windowsPath[0].toLowerCase();
+  const posixyPath = windowsPath.replace(/^[^:]*:/, "").split(import_path.sep).join("/");
+  return (0, import_posix.join)("/mnt/", driveLetter, posixyPath);
+};
+
+// src/executors/NonInteractiveCodeExecutor.ts
+var NonInteractiveCodeExecutor = class extends Executor {
+  constructor(settings, usesShell, file, language) {
+    super(file, language);
+    this.resolveRun = void 0;
+    this.settings = settings;
+    this.usesShell = usesShell;
+  }
+  stop() {
+    return Promise.resolve();
+  }
+  run(codeBlockContent, outputter, cmd, cmdArgs, ext) {
+    if (this.resolveRun !== void 0)
+      this.resolveRun();
+    this.resolveRun = void 0;
+    return new Promise((resolve, reject) => {
+      const tempFileName = this.getTempFile(ext);
+      fs.promises.writeFile(tempFileName, codeBlockContent).then(() => {
+        const args = cmdArgs ? cmdArgs.split(" ") : [];
+        if (this.isWSLEnabled()) {
+          args.unshift("-e", cmd);
+          cmd = "wsl";
+          args.push(windowsPathToWsl_default(tempFileName));
+        } else {
+          args.push(tempFileName);
+        }
+        let child;
+        if (cmd.endsWith("gcc") || cmd.endsWith("gcc.exe")) {
+          const tempFileNameWExe = tempFileName.slice(0, -2) + ".out";
+          args.push("-o", tempFileNameWExe);
+          const childGCC = child_process.spawn(cmd, args, { env: process.env, shell: this.usesShell });
+          this.handleChildOutput(childGCC, outputter, tempFileName);
+          childGCC.on("exit", (code) => {
+            if (code === 0) {
+              child = child_process.spawn(tempFileNameWExe, { env: process.env, shell: this.usesShell });
+              this.handleChildOutput(child, outputter, tempFileNameWExe).then(() => {
+                this.tempFileId = void 0;
+              });
+            }
+          });
+        } else {
+          child = child_process.spawn(cmd, args, { env: process.env, shell: this.usesShell });
+          this.handleChildOutput(child, outputter, tempFileName).then(() => {
+            this.tempFileId = void 0;
+          });
+        }
+        this.resolveRun = resolve;
+      }).catch((err) => {
+        this.notifyError(cmd, cmdArgs, tempFileName, err, outputter);
+        resolve();
+      });
+    });
+  }
+  isWSLEnabled() {
+    if (this.settings.wslMode) {
+      return true;
+    }
+    if (this.language == "shell" && this.settings.shellWSLMode) {
+      return true;
+    }
+    return false;
+  }
+  async handleChildOutput(child, outputter, fileName) {
+    outputter.clear();
+    outputter.killBlock = () => {
+      child.kill("SIGINT");
+    };
+    this.stdoutCb = (data) => {
+      outputter.write(data.toString());
+    };
+    this.stderrCb = (data) => {
+      outputter.writeErr(data.toString());
+    };
+    child.stdout.on("data", this.stdoutCb);
+    child.stderr.on("data", this.stderrCb);
+    outputter.on("data", (data) => {
+      child.stdin.write(data);
+    });
+    child.on("close", (code) => {
+      if (code !== 0)
+        new import_obsidian39.Notice("Error!");
+      if (this.resolveRun !== void 0)
+        this.resolveRun();
+      outputter.closeInput();
+      if (fileName === void 0)
+        return;
+      fs.promises.rm(fileName).catch((err) => {
+        console.error("Error in 'Obsidian Execute Code' Plugin while removing file: " + err);
+      });
+    });
+    child.on("error", (err) => {
+      new import_obsidian39.Notice("Error!");
+      outputter.writeErr(err.toString());
+    });
+  }
+};
+
+// src/executors/PrologExecutor.ts
+var prolog = __toESM(require_core());
+var import_obsidian40 = require("obsidian");
+var PrologExecutor = class extends Executor {
+  constructor(settings, file) {
+    super(file, "prolog");
+    this.runQueries = true;
+    this.maxPrologAnswers = settings.maxPrologAnswers;
+  }
+  async run(code, outputter, cmd, cmdArgs, ext) {
+    const prologCode = code.split(/\n+%+\s*query\n+/);
+    if (prologCode.length < 2)
+      return;
+    outputter.closeInput();
+    outputter.clear();
+    this.runPrologCode(prologCode[0], prologCode[1], outputter);
+  }
+  async stop() {
+    this.runQueries = false;
+    this.emit("close");
+  }
+  runPrologCode(facts, queries, out) {
+    new import_obsidian40.Notice("Running...");
+    const session = prolog.create();
+    session.consult(
+      facts,
+      {
+        success: () => {
+          session.query(
+            queries,
+            {
+              success: async (goal) => {
+                console.debug(`Prolog goal: ${goal}`);
+                let answersLeft = true;
+                let counter = 0;
+                while (answersLeft && counter < this.maxPrologAnswers) {
+                  await session.answer({
+                    success: function(answer) {
+                      new import_obsidian40.Notice("Done!");
+                      console.debug(`Prolog result: ${session.format_answer(answer)}`);
+                      out.write(session.format_answer(answer) + "\n");
+                      out.closeInput();
+                    },
+                    fail: function() {
+                      answersLeft = false;
+                    },
+                    error: function(err) {
+                      new import_obsidian40.Notice("Error!");
+                      console.error(err);
+                      answersLeft = false;
+                      out.writeErr(`Error while executing code: ${err}`);
+                      out.closeInput();
+                    },
+                    limit: function() {
+                      answersLeft = false;
+                    }
+                  });
+                  counter++;
+                }
+              },
+              error: (err) => {
+                new import_obsidian40.Notice("Error!");
+                out.writeErr("Query failed.\n");
+                out.writeErr(err.toString());
+              }
+            }
+          );
+        },
+        error: (err) => {
+          out.writeErr("Adding facts failed.\n");
+          out.writeErr(err.toString());
+        }
+      }
+    );
+  }
+};
+
+// src/executors/python/wrapPython.ts
+var PLT_DEFAULT_BACKEND_PY_VAR = "OBSIDIAN_EXECUTE_CODE_MATPLOTLIB_DEFAULT_BACKEND";
+var wrapPython_default = (code, globalsName, printName, finishSigil, embedPlots) => `
+${embedPlots ? `
+try:
+    matplotlib.use('agg')
+except:
+    pass
+` : `
+try:
+    matplotlib.use(${PLT_DEFAULT_BACKEND_PY_VAR})
+except:
+    pass
+`}
+
+try:
+    try:
+        ${printName}(eval(
+            compile(${JSON.stringify(code.replace(/\r\n/g, "\n") + "\n")}, "<code block>", "eval"),
+            ${globalsName}
+        ))
+    except SyntaxError:
+        exec(
+            compile(${JSON.stringify(code.replace(/\r\n/g, "\n") + "\n")}, "<code block>", "exec"),
+            ${globalsName}
+        )
+except Exception as e:
+    ${printName} (e, file=sys.stderr)
+finally:
+    ${printName} ("${finishSigil}", end="")
+
+`;
+
+// src/executors/python/PythonExecutor.ts
+var PythonExecutor = class extends ReplExecutor {
+  constructor(settings, file) {
+    const args = settings.pythonArgs ? settings.pythonArgs.split(" ") : [];
+    args.unshift("-i");
+    super(
+      settings,
+      settings.pythonPath,
+      args,
+      file,
+      "python"
+    );
+    this.printFunctionName = `__print_${Math.random().toString().substring(2)}_${Date.now()}`;
+    this.globalsDictionaryName = `__globals_${Math.random().toString().substring(2)}_${Date.now()}`;
+  }
+  removePrompts(output, source) {
+    if (source == "stderr") {
+      return output.replace(/(^((\.\.\.|>>>) )+)|(((\.\.\.|>>>) )+$)/g, "");
+    } else {
+      return output;
+    }
+  }
+  wrapCode(code, finishSigil) {
+    return wrapPython_default(
+      code,
+      this.globalsDictionaryName,
+      this.printFunctionName,
+      finishSigil,
+      this.settings.pythonEmbedPlots
+    );
+  }
+  async setup() {
+    this.addJobToQueue((resolve, reject) => {
+      this.process.stdin.write(
+        `
+${this.globalsDictionaryName} = {**globals()}
+${this.settings.pythonEmbedPlots ? `
+try:
+    import matplotlib
+    ${PLT_DEFAULT_BACKEND_PY_VAR} = matplotlib.get_backend()
+except:
+    pass
+` : ""}
+
+from __future__ import print_function
+import sys
+${this.printFunctionName} = print
+`.replace(/\r\n/g, "\n")
+      );
+      this.process.stderr.once("data", (data) => {
+        resolve();
+      });
+    }).then(() => {
+    });
+  }
+};
+
+// src/executors/ClingExecutor.ts
+var child_process2 = __toESM(require("child_process"));
+var ClingExecutor = class extends NonInteractiveCodeExecutor {
+  constructor(settings, file, language) {
+    super(settings, false, file, language);
+  }
+  run(codeBlockContent, outputter, cmd, args, ext) {
+    if (this.settings[`${this.language}UseMain`]) {
+      this.getTempFile(ext);
+      let code;
+      if (ext != "c") {
+        code = codeBlockContent.replace(/main\(\)/g, `temp_${this.tempFileId}()`);
+      } else {
+        code = codeBlockContent;
+      }
+      return super.run(code, outputter, this.settings.clingPath, args, ext);
+    }
+    return new Promise((resolve, reject) => {
+      const childArgs = [...args.split(" "), ...codeBlockContent.split("\n")];
+      const child = child_process2.spawn(this.settings.clingPath, childArgs, { env: process.env, shell: this.usesShell });
+      this.resolveRun = resolve;
+      this.handleChildOutput(child, outputter, this.tempFileId);
+    });
+  }
+  async handleChildOutput(child, outputter, fileName) {
+    super.handleChildOutput(child, outputter, fileName);
+    child.stdout.removeListener("data", this.stdoutCb);
+    child.stderr.removeListener("data", this.stderrCb);
+    const fileId = this.tempFileId;
+    const replaceTmpId = (data) => {
+      return data.replace(new RegExp(`temp_${fileId}\\(\\)`, "g"), "main()");
+    };
+    child.stdout.on("data", (data) => {
+      this.stdoutCb(replaceTmpId(data.toString()));
+    });
+    child.stderr.on("data", (data) => {
+      this.stderrCb(replaceTmpId(data.toString()));
+    });
+  }
+};
+
+// src/executors/CppExecutor.ts
+var CppExecutor = class extends ClingExecutor {
+  constructor(settings, file) {
+    super(settings, file, "cpp");
+  }
+  run(codeBlockContent, outputter, cmd, cmdArgs, ext) {
+    return super.run(codeBlockContent, outputter, cmd, `-std=${this.settings.clingStd} ${cmdArgs}`, "cpp");
+  }
+};
+
+// src/executors/RExecutor.ts
+var RExecutor = class extends ReplExecutor {
+  constructor(settings, file) {
+    const args = settings.RArgs ? settings.RArgs.split(" ") : [];
+    let conArgName = `notebook_connection_${Math.random().toString(16).substring(2)}`;
+    args.unshift(
+      `-e`,
+      `${conArgName}=file("stdin", "r"); while(1) { eval(parse(text=tail(readLines(con = ${conArgName}, n=1)))) }`
+    );
+    super(settings, settings.RPath, args, file, "r");
+  }
+  async setup() {
+    console.log("setup");
+  }
+  wrapCode(code, finishSigil) {
+    return `tryCatch({
+			cat(sprintf("%s", 
+				eval(parse(text = ${JSON.stringify(code)} ))
+			))
+		},
+		error = function(e){
+			cat(sprintf("%s", e), file=stderr())
+		}, 
+		finally = {
+			cat(${JSON.stringify(finishSigil)});
+			flush.console()
+		})`.replace(/\r?\n/g, "") + "\n";
+  }
+  removePrompts(output, source) {
+    return output;
+  }
+};
+
+// src/executors/CExecutor.ts
+var CExecutor = class extends ClingExecutor {
+  constructor(settings, file) {
+    super(settings, file, "c");
+  }
+  run(codeBlockContent, outputter, cmd, cmdArgs, ext) {
+    const install_path = this.settings[`clingPath`];
+    if (install_path.endsWith("cling") || install_path.endsWith("cling.exe")) {
+      return super.run(codeBlockContent, outputter, cmd, this.settings[`cArgs`], "cpp");
+    } else {
+      return super.run(codeBlockContent, outputter, cmd, this.settings[`cArgs`], "c");
+    }
+  }
+};
+
+// src/executors/FSharpExecutor.ts
+var FSharpExecutor = class extends NonInteractiveCodeExecutor {
+  constructor(settings, file) {
+    super(settings, false, file, "fsharp");
+  }
+  run(codeBlockContent, outputter, cmd, args, ext) {
+    return super.run(codeBlockContent, outputter, cmd, args, ext);
+  }
+};
+
+// src/executors/LatexExecutor.ts
+var fs2 = __toESM(require("fs/promises"));
+var fsSync = __toESM(require("fs"));
+var path5 = __toESM(require("path"));
+var import_child_process3 = require("child_process");
+var os2 = __toESM(require("os"));
+
+// src/transforms/LatexFigureName.ts
+var path3 = __toESM(require("path"));
+var ILLEGAL_FILENAME_CHARS = /[<>:"/\\|?*]+/g;
+var WHITESPACE_AND_ILLEGAL_CHARS = /[<>:"/\\|?*\s]+/;
+var MAYBE_WHITESPACE_AND_ILLEGAL = /[<>:"/\\|?*\s]*/;
+var FIGURE_FILENAME_EXTENSIONS = /(.pdf|.svg|.png)/;
+var FILENAME_PREFIX = /figure /;
+var UNNAMED_PREFIX = /temp /;
+var TEMP_FIGURE_NAME = /figure temp \d+/;
+var latexFilenameIndex = 0;
+async function retrieveFigurePath(codeblockContent, titlePattern, srcFile, settings) {
+  const vaultAbsolutePath = this.app.vault.adapter.basePath;
+  const vaultAttachmentPath = await this.app.fileManager.getAvailablePathForAttachment("test", srcFile);
+  const vaultAttachmentDir = path3.dirname(vaultAttachmentPath);
+  const figureDir = path3.join(vaultAbsolutePath, vaultAttachmentDir);
+  let figureTitle = captureFigureTitle(codeblockContent, titlePattern);
+  if (!figureTitle) {
+    const index = nextLatexFilenameIndex(settings.latexMaxFigures);
+    figureTitle = UNNAMED_PREFIX.source + index;
+  }
+  return path3.join(figureDir, FILENAME_PREFIX.source + figureTitle);
+}
+function captureFigureTitle(codeblockContent, titlePattern) {
+  const pattern = parse(titlePattern);
+  if (!pattern)
+    return void 0;
+  const match = codeblockContent.match(pattern);
+  const title = match == null ? void 0 : match[1];
+  if (!title)
+    return void 0;
+  return sanitizeFilename(title);
+}
+function sanitizeFilename(input) {
+  const trailingFilenames = concat(FIGURE_FILENAME_EXTENSIONS, /$/);
+  return input.replace(ILLEGAL_FILENAME_CHARS, " ").replace(/\s+/g, " ").trim().replace(concat(/^/, FILENAME_PREFIX), "").replace(trailingFilenames, "");
+}
+function generalizeFigureTitle(figureName) {
+  const normalized = sanitizeFilename(figureName);
+  const escaped = escape(normalized);
+  const whitespaced = new RegExp(escaped.source.replace(/\s+/g, WHITESPACE_AND_ILLEGAL_CHARS.source));
+  return concat(
+    MAYBE_WHITESPACE_AND_ILLEGAL,
+    optional(FILENAME_PREFIX),
+    MAYBE_WHITESPACE_AND_ILLEGAL,
+    whitespaced,
+    MAYBE_WHITESPACE_AND_ILLEGAL,
+    optional(FIGURE_FILENAME_EXTENSIONS),
+    MAYBE_WHITESPACE_AND_ILLEGAL
+  );
+}
+function nextLatexFilenameIndex(maxIndex) {
+  latexFilenameIndex %= maxIndex;
+  return latexFilenameIndex++;
+}
+
+// src/output/LatexInserter.ts
+var path4 = __toESM(require("path"));
+var LINK_ALIAS = /\|[^\]]*/;
+var ANY_WIKILINK_EMBEDDING = concat(/!\[\[.*?/, FIGURE_FILENAME_EXTENSIONS, optional(LINK_ALIAS), /\]\]/);
+var ANY_MARKDOWN_EMBEDDING = concat(/!\[.*?\]\(.*?/, FIGURE_FILENAME_EXTENSIONS, /\)/);
+var ANY_FIGURE_EMBEDDING = alternate(ANY_WIKILINK_EMBEDDING, ANY_MARKDOWN_EMBEDDING);
+var SAFE_ANY = /([^`]|`[^`]|``[^`])*?/;
+var EMPTY_LINES = /[\s\n]*/;
+function updateImage(image) {
+  const baseUrl = image.src.split("?")[0];
+  image.src = `${baseUrl}?cache=${Date.now()}`;
+}
+async function writeFileLink(figureName, figurePath, outputter) {
+  await outputter.writeMarkdown(`Saved [[${figureName}]]`);
+  const isTempFigure = TEMP_FIGURE_NAME.test(figureName);
+  if (isTempFigure)
+    return outputter.write("\n");
+  const file = outputter.app.vault.getFileByPath(outputter.srcFile);
+  if (!file)
+    throw new Error(`File not found: ${outputter.srcFile}`);
+  const link = () => createObsidianLink(outputter.app, figurePath, outputter.srcFile);
+  const figure = { app: outputter.app, figureName, link, file };
+  const buttonClass2 = "insert-figure-icon";
+  const insertAbove = outputter.writeIcon("image-up", "Click to embed file above codeblock.\nCtrl + Click to replace previous embedding.", buttonClass2);
+  insertAbove.addEventListener("click", (event) => insertEmbedding("above", event.ctrlKey, figure));
+  const insertBelow = outputter.writeIcon("image-down", "Click to embed file below codeblock.\nCtrl + Click to replace next embedding.", buttonClass2);
+  insertBelow.addEventListener("click", (event) => insertEmbedding("below", event.ctrlKey, figure));
+  const copyLink = outputter.writeIcon("copy", "Copy the markdown link.", buttonClass2);
+  copyLink.addEventListener("click", () => navigator.clipboard.writeText(link()));
+  outputter.write("\n");
+}
+async function insertEmbedding(pastePosition, doReplace, figure) {
+  try {
+    const vault = figure.app.vault;
+    const content = await vault.read(figure.file);
+    const identifierSrc = settingsInstance.latexFigureTitlePattern.replace(/\(\?<name>[^)]*\)/, generalizeFigureTitle(figure.figureName).source);
+    const identifier = parse(identifierSrc);
+    if (!identifier)
+      return;
+    const codeBlocks = findMatchingCodeBlocks(content, /(la)?tex/, identifier, figure.link(), doReplace);
+    if (codeBlocks.length === 0)
+      return false;
+    codeBlocks.forEach(async (block) => {
+      await insertAtCodeBlock(block, pastePosition, figure);
+    });
+    return true;
+  } catch (error) {
+    console.error("Error inserting embedding:", error);
+    throw error;
+  }
+}
+function findMatchingCodeBlocks(content, language, identifier, link, doReplace) {
+  const alreadyLinked = group2(escape(link));
+  const codeblock = concat(
+    /```(run-)?/,
+    group2(language),
+    /[\s\n]/,
+    SAFE_ANY,
+    group2(identifier),
+    SAFE_ANY,
+    /```/
+  );
+  const previous = capture(concat(ANY_FIGURE_EMBEDDING, EMPTY_LINES), "replacePrevious");
+  const above = capture(concat(alreadyLinked, EMPTY_LINES), "alreadyAbove");
+  const below = capture(concat(EMPTY_LINES, alreadyLinked), "alreadyBelow");
+  const next = capture(concat(EMPTY_LINES, ANY_FIGURE_EMBEDDING), "replaceNext");
+  const blocksWithEmbeds = new RegExp(concat(
+    doReplace ? optional(previous) : null,
+    optional(above),
+    capture(codeblock, "codeblock"),
+    optional(below),
+    doReplace ? optional(next) : null
+  ), "g");
+  const matches = Array.from(content.matchAll(blocksWithEmbeds));
+  console.debug(`Searching markdown for`, blocksWithEmbeds, `resulted in `, matches.length, `codeblock(s)`, matches.map((match) => match.groups));
+  return matches;
+}
+async function insertAtCodeBlock(block, pastePosition, figure) {
+  var _a, _b, _c, _d;
+  const vault = figure.app.vault;
+  const groups = block.groups;
+  if (!groups || !groups.codeblock)
+    return;
+  const canReplace = pastePosition === "above" ? ((_a = groups.replacePrevious) == null ? void 0 : _a.length) > 0 : ((_b = groups.replaceNext) == null ? void 0 : _b.length) > 0;
+  const isAlreadyEmbedded = pastePosition === "above" ? ((_c = groups.alreadyAbove) == null ? void 0 : _c.length) > 0 : ((_d = groups.alreadyBelow) == null ? void 0 : _d.length) > 0;
+  if (isAlreadyEmbedded && !canReplace)
+    return;
+  const newText = pastePosition === "above" ? figure.link() + "\n\n" + groups.codeblock : groups.codeblock + "\n\n" + figure.link();
+  if (!canReplace) {
+    await vault.process(figure.file, (data) => data.replace(groups.codeblock, newText));
+    return;
+  }
+  const oldTexts = pastePosition === "above" ? [groups.replacePrevious, groups.alreadyAbove, groups.codeblock] : [groups.codeblock, groups.alreadyBelow, groups.replaceNext];
+  const oldCombined = oldTexts.filter(Boolean).join("");
+  await vault.process(figure.file, (data) => data.replace(oldCombined, newText));
+}
+function createObsidianLink(app, filePath, sourcePath, subpath, alias) {
+  const relative = getPathRelativeToVault(filePath);
+  try {
+    const file = app.vault.getFileByPath(relative);
+    return app.fileManager.generateMarkdownLink(file, sourcePath, subpath, alias);
+  } catch (error) {
+    console.error(`File not found: ${relative}`);
+    return "![[" + path4.basename(filePath) + "]]";
+  }
+}
+function getPathRelativeToVault(absolutePath) {
+  const vaultPath = this.app.vault.adapter.basePath;
+  absolutePath = path4.normalize(absolutePath);
+  if (!absolutePath.startsWith(vaultPath))
+    return absolutePath;
+  return absolutePath.slice(vaultPath.length).replace(/^[\\\/]/, "").replace(/\\/g, "/").replace(/['"`]/, "").trim();
+}
+
+// src/executors/LatexExecutor.ts
+var REQUEST_RERUN_WARNING = /LaTeX Warning: .* Rerun to get cross-references right./;
+var MAX_COMPILER_RERUNS = 10;
+var LaTeXExecutor = class extends NonInteractiveCodeExecutor {
+  constructor() {
+    super(...arguments);
+    this.compilerRequestsRerun = /* @__PURE__ */ new Set();
+  }
+  async run(latexSrc, outputter, compilerPath, compilerArgs, exportPath) {
+    outputter.clear();
+    outputter.killBlock = (subprocesses) => this.killSubprocesses(subprocesses);
+    const s = this.settings;
+    const exec = {
+      outputter,
+      outputDir: path5.dirname(exportPath)
+    };
+    const figureName = path5.basename(exportPath, path5.extname(exportPath));
+    const errorHandler = (error) => {
+      outputter.writeErr(error + "\n");
+      outputter.closeInput();
+    };
+    let pdfFile;
+    try {
+      exec.workingDir = await this.createTempDirectory(outputter);
+      pdfFile = await this.compileAndCrop(latexSrc, compilerArgs, compilerPath, exec);
+    } catch (error) {
+      errorHandler(error);
+      this.cleanupBuildDir(exec);
+      return;
+    }
+    if (s.latexSavePdf) {
+      this.savePdf(pdfFile, exportPath, `${figureName}.pdf`, exec).catch(errorHandler);
+    }
+    if (s.latexSaveSvg === "poppler") {
+      this.runChildProcess(s.latexSvgPath, [s.latexSvgArgs, pdfFile], `${figureName}.svg`, exec).catch(errorHandler);
+    }
+    if (s.latexSaveSvg === "inkscape") {
+      this.runChildProcess(s.latexInkscapePath, [s.latexInkscapeArgs, pdfFile, "--export-filename"], `${figureName}.svg`, exec).catch(errorHandler);
+    }
+    if (s.latexSavePng) {
+      this.runChildProcess(s.latexPngPath, [s.latexPngArgs, pdfFile], `${figureName}.png`, exec, { outFileArg: figureName }).catch(errorHandler);
+    }
+    this.cleanupBuildDir(exec);
+  }
+  async compileAndCrop(latexSrc, compilerArgs, compilerPath, exec) {
+    const s = this.settings;
+    const buildDir = exec.workingDir;
+    const texFile = await this.writeContentToTexFile(latexSrc, buildDir, "o.tex");
+    compilerArgs = [compilerArgs, `-output-directory=${buildDir}`, texFile].join(" ");
+    const allowIncludesRelativeToAttachmentDir = { outputDir: buildDir, workingDir: exec.outputDir, outputter: exec.outputter };
+    const cropInBuildDir = { outputDir: buildDir, workingDir: buildDir, outputter: exec.outputter };
+    let pdfFile = await this.compileAndRerun(compilerPath, compilerArgs, allowIncludesRelativeToAttachmentDir);
+    if (s.latexKeepLog) {
+      const logFile = path5.join(buildDir, "o.log");
+      await exec.outputter.writeMarkdown(`Log: [${logFile}](file://${logFile})`, true);
+    }
+    const isExcludedDocumentclass = s.latexCropNoStandalone && isStandaloneClass(latexSrc);
+    if (s.latexDoCrop && !isExcludedDocumentclass) {
+      await fs2.rename(path5.join(buildDir, pdfFile), path5.join(buildDir, "original.pdf"));
+      pdfFile = await this.runChildProcess(s.latexCropPath, [s.latexCropArgs, "original.pdf"], pdfFile, cropInBuildDir, { skipWriteFileLink: true });
+    }
+    return pdfFile;
+  }
+  async compileAndRerun(compilerPath, args, exec) {
+    for (let attempt = 0; attempt <= MAX_COMPILER_RERUNS; attempt++) {
+      const isLastAttempt = attempt == MAX_COMPILER_RERUNS;
+      const result = await this.runChildProcess(compilerPath, args.split(" "), "o.pdf", exec, { skipWriteFileLink: true, outFileArg: "", doDetectRerun: !isLastAttempt });
+      const hasRequestedRerun = result === void 0;
+      if (!hasRequestedRerun)
+        return result;
+    }
+    throw `LaTeX compilation did not result in a PDF file.`;
+  }
+  killSubprocesses(subprocesses) {
+    for (const child of subprocesses) {
+      child.kill("SIGINT");
+      console.log(`Subprocess ${path5.basename(child.spawnfile)} killed.`);
+      subprocesses.delete(child);
+    }
+  }
+  async savePdf(pdfFile, exportPath, figureName, exec) {
+    const pdfPath = path5.join(exec.workingDir, pdfFile);
+    const destinationPath = `${exportPath}.pdf`;
+    try {
+      await fs2.copyFile(pdfPath, destinationPath);
+    } catch (error) {
+      throw `Failed to copy ${pdfPath} to ${destinationPath}: ${error}`;
+    }
+    await writeFileLink(figureName, destinationPath, exec.outputter);
+  }
+  async runChildProcess(cmd, args, outName, exec, options) {
+    const outDir = exec.outputDir;
+    const cwdDir = exec.workingDir;
+    const outputter = exec.outputter;
+    let outFileArg = (options == null ? void 0 : options.outFileArg) || outName;
+    const outFile = path5.join(outDir, outFileArg);
+    if (outFileArg) {
+      if (outDir !== cwdDir) {
+        outFileArg = outFile;
+      }
+      args.push(`"${outFileArg}"`);
+    }
+    const child = (0, import_child_process3.spawn)(cmd, args, {
+      env: process.env,
+      windowsVerbatimArguments: true,
+      cwd: cwdDir,
+      shell: Boolean(this.settings.latexSubprocessesUseShell)
+    });
+    outputter.runningSubprocesses.add(child);
+    const description = `Subprocess ${cmd} ${args.join(" ")}`;
+    child.stdout.on("data", (data) => outputter.write(data.toString()));
+    child.stderr.on("data", (data) => outputter.writeErr(data.toString()));
+    outputter.on("data", (data) => child.stdin.write(data));
+    if (options == null ? void 0 : options.doDetectRerun) {
+      child.stdout.on("data", (data) => this.detectWarningRequestingRerun(data, child));
+    }
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (!outputter.runningSubprocesses.has(child))
+          return;
+        child.kill("SIGTERM");
+        reject(new Error(`${description} timed out after ${this.settings.timeout} ms.`));
+      }, this.settings.timeout);
+      child.on("error", (err) => reject(`${description} throws:
+${err}`));
+      child.on("close", async (code) => {
+        const resultedInFile = fsSync.existsSync(path5.join(outDir, outName));
+        outputter.runningSubprocesses.delete(child);
+        if (code != 0)
+          return reject(`${description} failed with code ${code}.`);
+        if (!resultedInFile)
+          return reject(`${description} failed to create ${outFile}.`);
+        if ((options == null ? void 0 : options.doDetectRerun) && this.compilerRequestsRerun.has(child)) {
+          this.compilerRequestsRerun.delete(child);
+          return resolve(void 0);
+        }
+        if (options == null ? void 0 : options.skipWriteFileLink)
+          return resolve(outName);
+        const figureEmbeddings = document.querySelectorAll(`img[alt="${outName}"]`);
+        figureEmbeddings.forEach((img) => updateImage(img));
+        await writeFileLink(outName, path5.join(outDir, outName), outputter);
+        await sleep(200);
+        if (this.settings.latexOutputEmbeddings) {
+          await outputter.writeMarkdown(`![[${outName}]]`, true);
+        }
+        outputter.closeInput();
+        return resolve(outName);
+      });
+    });
+  }
+  detectWarningRequestingRerun(data, child) {
+    if (REQUEST_RERUN_WARNING.test(data.toString())) {
+      this.compilerRequestsRerun.add(child);
+    }
+    ;
+  }
+  async writeContentToTexFile(codeBlockContent, buildDir, filename) {
+    const texFile = path5.join(buildDir, filename);
+    await fs2.writeFile(texFile, codeBlockContent);
+    return filename;
+  }
+  async createTempDirectory(outputter) {
+    const millisToday = Date.now() - new Date().setHours(0, 0, 0, 0);
+    const prefix = "tex" + millisToday.toString();
+    const prefixPath = path5.join(os2.tmpdir(), prefix);
+    const buildDir = await fs2.mkdtemp(prefixPath);
+    this.removeBuildDir = async () => {
+      const success = await this.removeLockedFolder(buildDir);
+      if (success)
+        outputter.closeInput();
+    };
+    return buildDir;
+  }
+  async cleanupBuildDir(exec) {
+    const path6 = exec.workingDir;
+    if (!path6 || this.settings.latexKeepLog)
+      return;
+    await sleep(100);
+    if (!fsSync.existsSync(path6))
+      return;
+    const maxRetries = 10;
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+      await sleep(500);
+      if (!fsSync.existsSync(path6))
+        return;
+      if (exec.outputter.runningSubprocesses.size > 0)
+        continue;
+      const success = await this.removeLockedFolder(path6, `Build folder busy, retrying (${attempt + 1}/${maxRetries}).`);
+      if (success) {
+        exec.outputter.closeInput();
+        return;
+      }
+    }
+    throw new Error("Failed to delete folder after multiple attempts.");
+  }
+  async removeLockedFolder(path6, comment) {
+    try {
+      await fs2.rmdir(path6, { recursive: true });
+      console.debug(`Removed build folder: ${path6}`);
+      return true;
+    } catch (error) {
+      if (error.code != "EBUSY" && error.code != "ENOENT")
+        throw error;
+      if (comment) {
+        console.log(comment);
+      }
+    }
+    return false;
+  }
+};
+
+// src/ExecutorContainer.ts
+var interactiveExecutors = {
+  "js": NodeJSExecutor,
+  "python": PythonExecutor,
+  "r": RExecutor
+};
+var nonInteractiveExecutors = {
+  "prolog": PrologExecutor,
+  "cpp": CppExecutor,
+  "c": CExecutor,
+  "fsharp": FSharpExecutor,
+  "latex": LaTeXExecutor
+};
+var ExecutorContainer = class extends import_events.EventEmitter {
+  constructor(plugin) {
+    super();
+    this.executors = {};
+    this.plugin = plugin;
+    window.addEventListener("beforeunload", async () => {
+      for (const executor of this) {
+        executor.stop();
+      }
+    });
+  }
+  *[Symbol.iterator]() {
+    for (const language in this.executors) {
+      for (const file in this.executors[language]) {
+        yield this.executors[language][file];
+      }
+    }
+  }
+  getExecutorFor(file, language, needsShell) {
+    if (!this.executors[language])
+      this.executors[language] = {};
+    if (!this.executors[language][file])
+      this.setExecutorInExecutorsObject(file, language, needsShell);
+    return this.executors[language][file];
+  }
+  setExecutorInExecutorsObject(file, language, needsShell) {
+    const exe = this.createExecutorFor(file, language, needsShell);
+    if (!(exe instanceof NonInteractiveCodeExecutor))
+      this.emit("add", exe);
+    exe.on("close", () => {
+      delete this.executors[language][file];
+    });
+    this.executors[language][file] = exe;
+  }
+  createExecutorFor(file, language, needsShell) {
+    if (this.plugin.settings[`${language}Interactive`]) {
+      if (!(language in interactiveExecutors))
+        throw new Error(`Attempted to use interactive executor for '${language}' but no such executor exists`);
+      return new interactiveExecutors[language](this.plugin.settings, file);
+    } else if (language in nonInteractiveExecutors)
+      return new nonInteractiveExecutors[language](this.plugin.settings, file);
+    return new NonInteractiveCodeExecutor(this.plugin.settings, needsShell, file, language);
+  }
+};
+
+// src/ExecutorManagerView.ts
+var import_obsidian41 = require("obsidian");
+var import_path2 = require("path");
+var EXECUTOR_MANAGER_VIEW_ID = "code-execute-manage-executors";
+var EXECUTOR_MANAGER_OPEN_VIEW_COMMAND_ID = "code-execute-open-manage-executors";
+var ExecutorManagerView = class extends import_obsidian41.ItemView {
+  constructor(leaf, executors) {
+    super(leaf);
+    this.executors = executors;
+    this.executors.on("add", (executor) => {
+      this.addExecutorElement(executor);
+    });
+  }
+  static async activate(workspace) {
+    workspace.detachLeavesOfType(EXECUTOR_MANAGER_VIEW_ID);
+    await workspace.getRightLeaf(false).setViewState({
+      type: EXECUTOR_MANAGER_VIEW_ID,
+      active: true
+    });
+    workspace.revealLeaf(
+      workspace.getLeavesOfType(EXECUTOR_MANAGER_VIEW_ID)[0]
+    );
+  }
+  getViewType() {
+    return EXECUTOR_MANAGER_VIEW_ID;
+  }
+  getDisplayText() {
+    return "Execution Runtimes";
+  }
+  getIcon() {
+    return "command-glyph";
+  }
+  async onOpen() {
+    const container = this.contentEl;
+    container.empty();
+    container.classList.add("manage-executors-view");
+    const header = document.createElement("h3");
+    header.textContent = "Runtimes";
+    container.appendChild(header);
+    this.list = document.createElement("ul");
+    container.appendChild(document.createElement("div")).appendChild(this.list);
+    for (const executor of this.executors) {
+      this.addExecutorElement(executor);
+    }
+    this.addEmptyState();
+  }
+  async onClose() {
+  }
+  addEmptyState() {
+    this.emptyStateElement = document.createElement("div");
+    this.emptyStateElement.classList.add("empty-state");
+    this.emptyStateElement.textContent = "There are currently no runtimes online. Run some code blocks, and their runtimes will appear here.";
+    this.list.parentElement.appendChild(this.emptyStateElement);
+    this.updateEmptyState();
+  }
+  updateEmptyState() {
+    if (this.list.childElementCount == 0) {
+      this.emptyStateElement.style.display = "block";
+    } else {
+      this.emptyStateElement.style.display = "none";
+    }
+  }
+  addExecutorElement(executor) {
+    const li = document.createElement("li");
+    const simpleName = (0, import_path2.basename)(executor.file);
+    const langElem = document.createElement("small");
+    langElem.textContent = executor.language;
+    li.appendChild(langElem);
+    li.appendChild(this.createFilenameRowElem(simpleName));
+    executor.on("close", () => {
+      li.remove();
+      this.updateEmptyState();
+    });
+    const button = document.createElement("button");
+    button.addEventListener("click", () => executor.stop());
+    (0, import_obsidian41.setIcon)(button, "trash");
+    button.setAttribute("aria-label", "Stop Runtime");
+    li.appendChild(button);
+    this.list.appendChild(li);
+    this.updateEmptyState();
+  }
+  createFilenameRowElem(text) {
+    const fElem = document.createElement("span");
+    fElem.textContent = text;
+    fElem.classList.add("filename");
+    return fElem;
+  }
+};
+
+// src/runAllCodeBlocks.ts
+var import_obsidian48 = require("obsidian");
+
+// src/RunButton.ts
+var import_obsidian47 = require("obsidian");
 
 // src/output/Outputter.ts
-var import_events = require("events");
+var import_events2 = require("events");
 
 // src/svgs/parseHTML.ts
 var parseHTML_default = (html) => {
@@ -10794,11 +13292,15 @@ var FileAppender = class {
 };
 
 // src/output/Outputter.ts
+var import_obsidian42 = require("obsidian");
 var TOGGLE_HTML_SIGIL = `TOGGLE_HTML_${Math.random().toString(16).substring(2)}`;
-var Outputter = class extends import_events.EventEmitter {
-  constructor(codeBlock, settings, view) {
+var Outputter = class extends import_events2.EventEmitter {
+  constructor(codeBlock, settings, view, app, srcFile) {
     super();
+    this.runningSubprocesses = /* @__PURE__ */ new Set();
     this.settings = settings;
+    this.app = app;
+    this.srcFile = srcFile;
     this.inputState = this.settings.allowInput ? "INACTIVE" : "NOT_DOING";
     this.codeBlockElement = codeBlock;
     this.hadPreviouslyPrinted = false;
@@ -10822,9 +13324,9 @@ var Outputter = class extends import_events.EventEmitter {
     this.closeInput();
     this.inputState = "INACTIVE";
     this.saveToFile.clearOutput();
-    this.killBlock();
+    this.killBlock(this.runningSubprocesses);
   }
-  killBlock() {
+  killBlock(subprocesses) {
   }
   delete() {
     if (this.outputElement)
@@ -10833,6 +13335,24 @@ var Outputter = class extends import_events.EventEmitter {
   }
   write(text) {
     this.processSigilsAndWriteText(text);
+  }
+  writeIcon(icon, hoverTooltip, styleClass) {
+    const button = this.lastPrintElem.createEl("a", { title: hoverTooltip, cls: styleClass });
+    (0, import_obsidian42.setIcon)(button, icon);
+    return button;
+  }
+  async writeMarkdown(markdown, addLineBreak, relativeFile = this.srcFile) {
+    if (relativeFile !== this.srcFile) {
+      relativeFile = (0, import_obsidian42.normalizePath)(relativeFile);
+    }
+    const renderedEl = document.createElement("div");
+    await import_obsidian42.MarkdownRenderer.render(this.app, markdown, renderedEl, relativeFile, new import_obsidian42.Component());
+    for (const child of Array.from(renderedEl.children)) {
+      this.write(TOGGLE_HTML_SIGIL + child.innerHTML + TOGGLE_HTML_SIGIL);
+    }
+    if (addLineBreak)
+      this.write(`
+`);
   }
   processSigilsAndWriteText(text) {
     while (true) {
@@ -10899,7 +13419,7 @@ var Outputter = class extends import_events.EventEmitter {
   addLoadStateIndicator() {
     this.loadStateIndicatorElement = document.createElement("div");
     this.loadStateIndicatorElement.classList.add("load-state-indicator");
-    this.loadStateIndicatorElement.addEventListener("click", () => this.killBlock());
+    this.loadStateIndicatorElement.addEventListener("click", () => this.killBlock(this.runningSubprocesses));
     this.getParentElement().parentElement.appendChild(this.loadStateIndicatorElement);
   }
   getParentElement() {
@@ -11010,1015 +13530,14 @@ var Outputter = class extends import_events.EventEmitter {
   }
 };
 
-// src/settings/Settings.ts
-var DEFAULT_SETTINGS = {
-  lastOpenLanguageTab: void 0,
-  releaseNote2_0_0wasShowed: false,
-  persistentOuput: false,
-  timeout: 1e4,
-  allowInput: true,
-  wslMode: false,
-  shellWSLMode: false,
-  onlyCurrentBlock: false,
-  nodePath: "node",
-  nodeArgs: "",
-  jsFileExtension: "js",
-  jsInject: "",
-  tsPath: "ts-node",
-  tsArgs: "",
-  tsInject: "",
-  leanPath: "lean",
-  leanArgs: "",
-  leanInject: "",
-  luaPath: "lua",
-  luaArgs: "",
-  luaFileExtension: "lua",
-  luaInject: "",
-  dartPath: "dart",
-  dartArgs: "",
-  dartFileExtension: "dart",
-  dartInject: "",
-  csPath: "dotnet-script",
-  csArgs: "",
-  csFileExtension: "csx",
-  csInject: "",
-  pythonPath: "python",
-  pythonArgs: "",
-  pythonEmbedPlots: true,
-  pythonFileExtension: "py",
-  pythonInject: "",
-  shellPath: "bash",
-  shellArgs: "",
-  shellFileExtension: "sh",
-  shellInject: "",
-  batchPath: "call",
-  batchArgs: "",
-  batchFileExtension: "bat",
-  batchInject: "",
-  groovyPath: "groovy",
-  groovyArgs: "",
-  groovyFileExtension: "groovy",
-  groovyInject: "",
-  golangPath: "go",
-  golangArgs: "run",
-  golangFileExtension: "go",
-  goInject: "",
-  javaPath: "java",
-  javaArgs: "-ea",
-  javaFileExtension: "java",
-  javaInject: "",
-  maxPrologAnswers: 15,
-  prologInject: "",
-  powershellPath: "powershell",
-  powershellArgs: "-file",
-  powershellFileExtension: "ps1",
-  powershellInject: "$OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding",
-  powershellEncoding: "latin1",
-  cargoPath: "cargo",
-  cargoEvalArgs: "",
-  rustInject: "",
-  cppRunner: "cling",
-  cppFileExtension: "cpp",
-  cppInject: "",
-  cppArgs: "",
-  cppUseMain: false,
-  clingPath: "cling",
-  clingArgs: "",
-  clingStd: "c++17",
-  rustFileExtension: "rs",
-  RPath: "Rscript",
-  RArgs: "",
-  REmbedPlots: true,
-  RFileExtension: "R",
-  rInject: "",
-  kotlinPath: "kotlinc",
-  kotlinArgs: "-script",
-  kotlinFileExtension: "kts",
-  kotlinInject: "",
-  swiftPath: "swift",
-  swiftArgs: "",
-  swiftFileExtension: "swift",
-  swiftInject: "",
-  runghcPath: "runghc",
-  ghcPath: "ghc",
-  ghciPath: "ghci",
-  useGhci: false,
-  haskellInject: "",
-  mathematicaPath: "wolframscript",
-  mathematicaArgs: "-file",
-  mathematicaFileExtension: "wls",
-  mathematicaInject: "",
-  scalaPath: "scala",
-  scalaArgs: "",
-  scalaFileExtension: "scala",
-  scalaInject: "",
-  racketPath: "racket",
-  racketArgs: "",
-  racketFileExtension: "rkt",
-  racketInject: "#lang racket",
-  fsharpPath: "dotnet",
-  fsharpArgs: "",
-  fsharpInject: "",
-  fsharpFileExtension: "fsx",
-  cArgs: "",
-  cUseMain: true,
-  cInject: "",
-  rubyPath: "ruby",
-  rubyArgs: "",
-  rubyFileExtension: "rb",
-  rubyInject: "",
-  sqlPath: "psql",
-  sqlArgs: "-d <database> -U <user> -f",
-  sqlInject: "",
-  octavePath: "octave",
-  octaveArgs: "-q",
-  octaveFileExtension: "m",
-  octaveInject: "figure('visible','off')  # Necessary to embed plots",
-  maximaPath: "maxima",
-  maximaArgs: "-qb",
-  maximaFileExtension: "mx",
-  maximaInject: "",
-  applescriptPath: "osascript",
-  applescriptArgs: "",
-  applescriptFileExtension: "scpt",
-  applescriptInject: "",
-  zigPath: "zig",
-  zigArgs: "run",
-  zigInject: "",
-  ocamlPath: "ocaml",
-  ocamlArgs: "",
-  ocamlInject: "",
-  phpPath: "php",
-  phpArgs: "",
-  phpFileExtension: "php",
-  phpInject: "",
-  jsInteractive: true,
-  tsInteractive: false,
-  csInteractive: false,
-  leanInteractive: false,
-  luaInteractive: false,
-  dartInteractive: false,
-  pythonInteractive: true,
-  cppInteractive: false,
-  prologInteractive: false,
-  shellInteractive: false,
-  batchInteractive: false,
-  bashInteractive: false,
-  groovyInteractive: false,
-  rInteractive: false,
-  goInteractive: false,
-  rustInteractive: false,
-  javaInteractive: false,
-  powershellInteractive: false,
-  kotlinInteractive: false,
-  swiftInteractive: false,
-  mathematicaInteractive: false,
-  haskellInteractive: false,
-  scalaInteractive: false,
-  fsharpInteractive: false,
-  cInteractive: false,
-  racketInteractive: false,
-  rubyInteractive: false,
-  sqlInteractive: false,
-  octaveInteractive: false,
-  maximaInteractive: false,
-  applescriptInteractive: false,
-  zigInteractive: false,
-  ocamlInteractive: false,
-  phpInteractive: false
-};
-
-// src/settings/SettingsTab.ts
-var import_obsidian34 = require("obsidian");
-
-// src/settings/languageDisplayName.ts
-var DISPLAY_NAMES = {
-  cpp: "C++",
-  cs: "C#",
-  go: "Golang",
-  groovy: "Groovy",
-  haskell: "Haskell",
-  java: "Java",
-  js: "Javascript",
-  kotlin: "Kotlin",
-  lua: "Lua",
-  mathematica: "Mathematica",
-  php: "PHP",
-  powershell: "Powershell",
-  prolog: "Prolog",
-  python: "Python",
-  r: "R",
-  rust: "Rust",
-  shell: "Shell",
-  batch: "Batch",
-  ts: "Typescript",
-  scala: "Scala",
-  swift: "Swift",
-  racket: "Racket",
-  c: "C",
-  fsharp: "F#",
-  ruby: "Ruby",
-  dart: "Dart",
-  lean: "Lean",
-  sql: "SQL",
-  octave: "Octave",
-  maxima: "Maxima",
-  applescript: "Applescript",
-  zig: "Zig",
-  ocaml: "OCaml"
-};
-
-// src/settings/per-lang/makeCppSettings.ts
-var import_obsidian = require("obsidian");
-var makeCppSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "C++ Settings" });
-  new import_obsidian.Setting(containerEl).setName("Cling path").setDesc("The path to your Cling installation.").addText((text) => text.setValue(tab.plugin.settings.clingPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.clingPath = sanitized;
-    console.log("Cling path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian.Setting(containerEl).setName("Cling arguments for C++").addText((text) => text.setValue(tab.plugin.settings.cppArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.cppArgs = value;
-    console.log("CPP args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian.Setting(containerEl).setName("Cling std").addDropdown((dropdown) => dropdown.addOption("c++98", "C++ 98").addOption("c++11", "C++ 11").addOption("c++14", "C++ 14").addOption("c++17", "C++ 17").addOption("c++2a", "C++ 20").setValue(tab.plugin.settings.clingStd).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.clingStd = value;
-    console.log("Cling std set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian.Setting(containerEl).setName("Use main function").setDesc("If enabled, will use a main() function as the code block entrypoint.").addToggle((toggle) => toggle.setValue(tab.plugin.settings.cppUseMain).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.cppUseMain = value;
-    console.log("Cpp use main set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "cpp");
-};
-
-// src/settings/per-lang/makeCSettings.ts
-var import_obsidian2 = require("obsidian");
-var makeCSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "C Settings" });
-  new import_obsidian2.Setting(containerEl).setName("gcc / Cling path").setDesc("The path to your gcc / Cling installation.").addText((text) => text.setValue(tab.plugin.settings.clingPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.clingPath = sanitized;
-    console.log("gcc / Cling path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian2.Setting(containerEl).setName("gcc / Cling arguments for C").addText((text) => text.setValue(tab.plugin.settings.cArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.cArgs = value;
-    console.log("gcc / Cling args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian2.Setting(containerEl).setName("Cling std (ignored for gcc)").addDropdown((dropdown) => dropdown.addOption("c++98", "C++ 98").addOption("c++11", "C++ 11").addOption("c++14", "C++ 14").addOption("c++17", "C++ 17").addOption("c++2a", "C++ 20").setValue(tab.plugin.settings.clingStd).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.clingStd = value;
-    console.log("Cling std set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian2.Setting(containerEl).setName("Use main function (mandatory for gcc)").setDesc("If enabled, will use a main() function as the code block entrypoint.").addToggle((toggle) => toggle.setValue(tab.plugin.settings.cUseMain).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.cUseMain = value;
-    console.log("C use main set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "c");
-};
-
-// src/settings/per-lang/makeCsSettings.ts
-var import_obsidian3 = require("obsidian");
-var makeCsSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "CSharp Settings" });
-  new import_obsidian3.Setting(containerEl).setName("dotnet path").addText((text) => text.setValue(tab.plugin.settings.csPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.csPath = sanitized;
-    console.log("dotnet path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian3.Setting(containerEl).setName("CSharp arguments").addText((text) => text.setValue(tab.plugin.settings.csArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.csArgs = value;
-    console.log("CSharp args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "cs");
-};
-
-// src/settings/per-lang/makeFSharpSettings.ts
-var import_obsidian4 = require("obsidian");
-var makeFSharpSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "F# Settings" });
-  new import_obsidian4.Setting(containerEl).setName("F# path").setDesc("The path to dotnet.").addText((text) => text.setValue(tab.plugin.settings.fsharpPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.fsharpPath = sanitized;
-    console.log("F# path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian4.Setting(containerEl).setName("F# arguments").addText((text) => text.setValue(tab.plugin.settings.fsharpArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.fsharpArgs = value;
-    console.log("F# args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian4.Setting(containerEl).setName("F# file extension").setDesc("Changes the file extension for generated F# scripts.").addText((text) => text.setValue(tab.plugin.settings.fsharpFileExtension).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.fsharpFileExtension = value;
-    console.log("F# file extension set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "fsharp");
-};
-
-// src/settings/per-lang/makeGoSettings.ts
-var import_obsidian5 = require("obsidian");
-var makeGoSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Golang Settings" });
-  new import_obsidian5.Setting(containerEl).setName("Golang Path").setDesc("The path to your Golang installation.").addText((text) => text.setValue(tab.plugin.settings.golangPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.golangPath = sanitized;
-    console.log("Golang path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "go");
-};
-
-// src/settings/per-lang/makeGroovySettings.ts
-var import_obsidian6 = require("obsidian");
-var makeGroovySettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Groovy Settings" });
-  new import_obsidian6.Setting(containerEl).setName("Groovy path").setDesc("The path to your Groovy installation.").addText((text) => text.setValue(tab.plugin.settings.groovyPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.groovyPath = sanitized;
-    console.log("Groovy path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian6.Setting(containerEl).setName("Groovy arguments").addText((text) => text.setValue(tab.plugin.settings.groovyArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.groovyArgs = value;
-    console.log("Groovy args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "groovy");
-};
-
-// src/settings/per-lang/makeHaskellSettings.ts
-var import_obsidian7 = require("obsidian");
-var makeHaskellSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Haskell Settings" });
-  new import_obsidian7.Setting(containerEl).setName("Use Ghci").setDesc("Run haskell code with ghci instead of runghc").addToggle((toggle) => toggle.setValue(tab.plugin.settings.useGhci).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.useGhci = value;
-    console.log(value ? "Now using ghci for haskell" : "Now using runghc for haskell.");
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian7.Setting(containerEl).setName("Ghci path").setDesc("The path to your ghci installation.").addText((text) => text.setValue(tab.plugin.settings.ghciPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.ghciPath = sanitized;
-    console.log("ghci path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian7.Setting(containerEl).setName("Rungch path").setDesc("The path to your runghc installation.").addText((text) => text.setValue(tab.plugin.settings.runghcPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.runghcPath = sanitized;
-    console.log("runghc path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian7.Setting(containerEl).setName("Ghc path").setDesc("The Ghc path your runghc installation will call.").addText((text) => text.setValue(tab.plugin.settings.ghcPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.ghcPath = sanitized;
-    console.log("ghc path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "haskell");
-};
-
-// src/settings/per-lang/makeJavaSettings.ts
-var import_obsidian8 = require("obsidian");
-var makeJavaSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Java Settings" });
-  new import_obsidian8.Setting(containerEl).setName("Java path (Java 11 or higher)").setDesc("The path to your Java installation.").addText((text) => text.setValue(tab.plugin.settings.javaPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.javaPath = sanitized;
-    console.log("Java path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian8.Setting(containerEl).setName("Java arguments").addText((text) => text.setValue(tab.plugin.settings.javaArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.javaArgs = value;
-    console.log("Java args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "java");
-};
-
-// src/settings/per-lang/makeJsSettings.ts
-var import_obsidian9 = require("obsidian");
-var makeJsSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "JavaScript / Node Settings" });
-  new import_obsidian9.Setting(containerEl).setName("Node path").addText((text) => text.setValue(tab.plugin.settings.nodePath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.nodePath = sanitized;
-    console.log("Node path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian9.Setting(containerEl).setName("Node arguments").addText((text) => text.setValue(tab.plugin.settings.nodeArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.nodeArgs = value;
-    console.log("Node args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian9.Setting(containerEl).setName("Run Javascript blocks in Notebook Mode").addToggle(
-    (toggle) => toggle.setValue(tab.plugin.settings.jsInteractive).onChange((value) => __async(void 0, null, function* () {
-      tab.plugin.settings.jsInteractive = value;
-      yield tab.plugin.saveSettings();
-    }))
-  );
-  tab.makeInjectSetting(containerEl, "js");
-};
-
-// src/settings/per-lang/makeKotlinSettings.ts
-var import_obsidian10 = require("obsidian");
-var makeKotlinSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Kotlin Settings" });
-  new import_obsidian10.Setting(containerEl).setName("Kotlin path").setDesc("The path to your Kotlin installation.").addText((text) => text.setValue(tab.plugin.settings.kotlinPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.kotlinPath = sanitized;
-    console.log("Kotlin path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian10.Setting(containerEl).setName("Kotlin arguments").addText((text) => text.setValue(tab.plugin.settings.kotlinArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.kotlinArgs = value;
-    console.log("Kotlin args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "kotlin");
-};
-
-// src/settings/per-lang/makeLeanSettings.ts
-var import_obsidian11 = require("obsidian");
-var makeLeanSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Lean Settings" });
-  new import_obsidian11.Setting(containerEl).setName("lean path").addText((text) => text.setValue(tab.plugin.settings.leanPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.leanPath = sanitized;
-    console.log("lean path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian11.Setting(containerEl).setName("Lean arguments").addText((text) => text.setValue(tab.plugin.settings.leanArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.leanArgs = value;
-    console.log("Lean args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "lean");
-};
-
-// src/settings/per-lang/makeLuaSettings.ts
-var import_obsidian12 = require("obsidian");
-var makeLuaSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Lua Settings" });
-  new import_obsidian12.Setting(containerEl).setName("lua path").addText((text) => text.setValue(tab.plugin.settings.luaPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.luaPath = sanitized;
-    console.log("lua path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian12.Setting(containerEl).setName("Lua arguments").addText((text) => text.setValue(tab.plugin.settings.luaArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.luaArgs = value;
-    console.log("Lua args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "lua");
-};
-
-// src/settings/per-lang/makeDartSettings.ts
-var import_obsidian13 = require("obsidian");
-var makeDartSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Dart Settings" });
-  new import_obsidian13.Setting(containerEl).setName("dart path").addText((text) => text.setValue(tab.plugin.settings.dartPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.dartPath = sanitized;
-    console.log("dart path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian13.Setting(containerEl).setName("Dart arguments").addText((text) => text.setValue(tab.plugin.settings.dartArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.dartArgs = value;
-    console.log("Dart args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "dart");
-};
-
-// src/settings/per-lang/makeMathematicaSettings.ts
-var import_obsidian14 = require("obsidian");
-var makeMathematicaSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Wolfram Mathematica Settings" });
-  new import_obsidian14.Setting(containerEl).setName("Mathematica path").setDesc("The path to your Mathematica installation.").addText((text) => text.setValue(tab.plugin.settings.mathematicaPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.mathematicaPath = sanitized;
-    console.log("Mathematica path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian14.Setting(containerEl).setName("Mathematica arguments").addText((text) => text.setValue(tab.plugin.settings.mathematicaArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.mathematicaArgs = value;
-    console.log("Mathematica args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "mathematica");
-};
-
-// src/settings/per-lang/makePhpSettings.ts
-var import_obsidian15 = require("obsidian");
-var makePhpSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "PHP Settings" });
-  new import_obsidian15.Setting(containerEl).setName("php path").setDesc("Path to your php installation").addText((text) => text.setValue(tab.plugin.settings.phpPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.phpPath = sanitized;
-    console.log("php path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian15.Setting(containerEl).setName("php arguments").addText((text) => text.setValue(tab.plugin.settings.phpArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.phpArgs = value;
-    console.log("php args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "php");
-};
-
-// src/settings/per-lang/makePowershellSettings.ts
-var import_obsidian16 = require("obsidian");
-var makePowershellSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Powershell Settings" });
-  new import_obsidian16.Setting(containerEl).setName("Powershell path").setDesc("The path to Powershell.").addText((text) => text.setValue(tab.plugin.settings.powershellPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.powershellPath = sanitized;
-    console.log("Powershell path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian16.Setting(containerEl).setName("Powershell arguments").addText((text) => text.setValue(tab.plugin.settings.powershellArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.powershellArgs = value;
-    console.log("Powershell args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian16.Setting(containerEl).setName("Powershell file extension").setDesc("Changes the file extension for generated shell scripts. This is useful if you don't want to use PowerShell.").addText((text) => text.setValue(tab.plugin.settings.powershellFileExtension).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.powershellFileExtension = value;
-    console.log("Powershell file extension set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian16.Setting(containerEl).setName("PowerShell script encoding").setDesc('Windows still uses windows-1252 as default encoding on most systems for legacy reasons. If you change your encodings systemwide to UTF-8, you can change this setting to UTF-8 as well. Only use one of the following encodings: "ascii", "utf8", "utf-8", "utf16le", "ucs2", "ucs-2", "base64", "latin1", "binary", "hex" (default: "latin1")').addText((text) => text.setValue(tab.plugin.settings.powershellEncoding).onChange((value) => __async(void 0, null, function* () {
-    value = value.replace(/["'`´]/, "").trim().toLowerCase();
-    if (["ascii", "utf8", "utf-8", "utf16le", "ucs2", "ucs-2", "base64", "latin1", "binary", "hex"].includes(value)) {
-      tab.plugin.settings.powershellEncoding = value;
-      console.log("Powershell file extension set to: " + value);
-      yield tab.plugin.saveSettings();
-    } else {
-      console.error("Invalid encoding. " + value + 'Please use one of the following encodings: "ascii", "utf8", "utf-8", "utf16le", "ucs2", "ucs-2", "base64", "latin1", "binary", "hex"');
-    }
-  })));
-  tab.makeInjectSetting(containerEl, "powershell");
-};
-
-// src/settings/per-lang/makePrologSettings.ts
-var import_obsidian17 = require("obsidian");
-var makePrologSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Prolog Settings" });
-  new import_obsidian17.Setting(containerEl).setName("Prolog Answer Limit").setDesc("Maximal number of answers to be returned by the Prolog engine. tab is to prevent creating too huge texts in the notebook.").addText((text) => text.setValue("" + tab.plugin.settings.maxPrologAnswers).onChange((value) => __async(void 0, null, function* () {
-    if (Number(value) * 1e3) {
-      console.log("Prolog answer limit set to: " + value);
-      tab.plugin.settings.maxPrologAnswers = Number(value);
-    }
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "prolog");
-};
-
-// src/settings/per-lang/makePythonSettings.ts
-var import_obsidian18 = require("obsidian");
-var makePythonSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Python Settings" });
-  new import_obsidian18.Setting(containerEl).setName("Embed Python Plots").addToggle((toggle) => toggle.setValue(tab.plugin.settings.pythonEmbedPlots).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.pythonEmbedPlots = value;
-    console.log(value ? "Embedding Plots into Notes." : "Not embedding Plots into Notes.");
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian18.Setting(containerEl).setName("Python path").setDesc("The path to your Python installation.").addText((text) => text.setValue(tab.plugin.settings.pythonPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.pythonPath = sanitized;
-    console.log("Python path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian18.Setting(containerEl).setName("Python arguments").addText((text) => text.setValue(tab.plugin.settings.pythonArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.pythonArgs = value;
-    console.log("Python args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian18.Setting(containerEl).setName("Run Python blocks in Notebook Mode").addToggle((toggle) => toggle.setValue(tab.plugin.settings.pythonInteractive).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.pythonInteractive = value;
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "python");
-};
-
-// src/settings/per-lang/makeRSettings.ts
-var import_obsidian19 = require("obsidian");
-var makeRSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "R Settings" });
-  new import_obsidian19.Setting(containerEl).setName("Embed R Plots created via `plot()` into Notes").addToggle((toggle) => toggle.setValue(tab.plugin.settings.REmbedPlots).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.REmbedPlots = value;
-    console.log(value ? "Embedding R Plots into Notes." : "Not embedding R Plots into Notes.");
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian19.Setting(containerEl).setName("Rscript path").setDesc("The path to your Rscript installation. Ensure you provide the Rscript binary instead of the ordinary R binary.").addText((text) => text.setValue(tab.plugin.settings.RPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.RPath = sanitized;
-    console.log("R path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian19.Setting(containerEl).setName("R arguments").addText((text) => text.setValue(tab.plugin.settings.RArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.RArgs = value;
-    console.log("R args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian19.Setting(containerEl).setName("Run R blocks in Notebook Mode").addToggle((toggle) => toggle.setValue(tab.plugin.settings.rInteractive).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.rInteractive = value;
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "r");
-};
-
-// src/settings/per-lang/makeRubySettings.ts
-var import_obsidian20 = require("obsidian");
-var makeRubySettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Ruby Settings" });
-  new import_obsidian20.Setting(containerEl).setName("ruby path").setDesc("Path to your ruby installation").addText((text) => text.setValue(tab.plugin.settings.rubyPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.rubyPath = sanitized;
-    console.log("ruby path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian20.Setting(containerEl).setName("ruby arguments").addText((text) => text.setValue(tab.plugin.settings.rubyArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.rubyArgs = value;
-    console.log("ruby args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "ruby");
-};
-
-// src/settings/per-lang/makeRustSettings.ts
-var import_obsidian21 = require("obsidian");
-var makeRustSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Rust Settings" });
-  new import_obsidian21.Setting(containerEl).setName("Cargo Path").setDesc("The path to your Cargo installation.").addText((text) => text.setValue(tab.plugin.settings.cargoPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.cargoPath = sanitized;
-    console.log("Cargo path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "rust");
-};
-
-// src/settings/per-lang/makeScalaSettings.ts
-var import_obsidian22 = require("obsidian");
-var makeScalaSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Scala Settings" });
-  new import_obsidian22.Setting(containerEl).setName("scala path").setDesc("Path to your scala installation").addText((text) => text.setValue(tab.plugin.settings.scalaPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.scalaPath = sanitized;
-    console.log("scala path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian22.Setting(containerEl).setName("Scala arguments").addText((text) => text.setValue(tab.plugin.settings.scalaArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.scalaArgs = value;
-    console.log("Scala args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "scala");
-};
-
-// src/settings/per-lang/makeRacketSettings.ts
-var import_obsidian23 = require("obsidian");
-var makeRacketSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Racket Settings" });
-  new import_obsidian23.Setting(containerEl).setName("racket path").setDesc("Path to your racket installation").addText((text) => text.setValue(tab.plugin.settings.racketPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.racketPath = sanitized;
-    console.log("racket path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian23.Setting(containerEl).setName("Racket arguments").addText((text) => text.setValue(tab.plugin.settings.racketArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.racketArgs = value;
-    console.log("Racket args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "racket");
-};
-
-// src/settings/per-lang/makeShellSettings.ts
-var import_obsidian24 = require("obsidian");
-var makeShellSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Shell Settings" });
-  new import_obsidian24.Setting(containerEl).setName("Shell path").setDesc("The path to shell. Default is Bash but you can use any shell you want, e.g. bash, zsh, fish, ...").addText((text) => text.setValue(tab.plugin.settings.shellPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.shellPath = sanitized;
-    console.log("Shell path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian24.Setting(containerEl).setName("Shell arguments").addText((text) => text.setValue(tab.plugin.settings.shellArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.shellArgs = value;
-    console.log("Shell args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian24.Setting(containerEl).setName("Shell file extension").setDesc("Changes the file extension for generated shell scripts. This is useful if you want to use a shell other than bash.").addText((text) => text.setValue(tab.plugin.settings.shellFileExtension).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.shellFileExtension = value;
-    console.log("Shell file extension set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian24.Setting(containerEl).setName("Shell WSL mode").setDesc('Run the shell script in Windows Subsystem for Linux. This option is used if the global "WSL Mode" is disabled.').addToggle(
-    (toggle) => toggle.setValue(tab.plugin.settings.shellWSLMode).onChange((value) => __async(void 0, null, function* () {
-      tab.plugin.settings.shellWSLMode = value;
-      yield tab.plugin.saveSettings();
-    }))
-  );
-  tab.makeInjectSetting(containerEl, "shell");
-};
-
-// src/settings/per-lang/makeBatchSettings.ts
-var import_obsidian25 = require("obsidian");
-var makeBatchSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Batch Settings" });
-  new import_obsidian25.Setting(containerEl).setName("Batch path").setDesc("The path to the terminal. Default is command prompt.").addText((text) => text.setValue(tab.plugin.settings.batchPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.batchPath = sanitized;
-    console.log("Batch path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian25.Setting(containerEl).setName("Batch arguments").addText((text) => text.setValue(tab.plugin.settings.batchArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.batchArgs = value;
-    console.log("Batch args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian25.Setting(containerEl).setName("Batch file extension").setDesc("Changes the file extension for generated batch scripts. Default is .bat").addText((text) => text.setValue(tab.plugin.settings.batchFileExtension).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.batchFileExtension = value;
-    console.log("Batch file extension set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "batch");
-};
-
-// src/settings/per-lang/makeTsSettings.ts
-var import_obsidian26 = require("obsidian");
-var makeTsSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "TypeScript Settings" });
-  new import_obsidian26.Setting(containerEl).setName("ts-node path").addText((text) => text.setValue(tab.plugin.settings.tsPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.tsPath = sanitized;
-    console.log("ts-node path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian26.Setting(containerEl).setName("TypeScript arguments").addText((text) => text.setValue(tab.plugin.settings.tsArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.tsArgs = value;
-    console.log("TypeScript args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "ts");
-};
-
-// src/settings/per-lang/makeSQLSettings.ts
-var import_obsidian27 = require("obsidian");
-var makeSQLSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "SQL Settings" });
-  new import_obsidian27.Setting(containerEl).setName("SQL path").setDesc("Path to your SQL installation. You can select the SQL dialect you prefer but you need to set the right arguments by yourself.").addText((text) => text.setValue(tab.plugin.settings.sqlPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.sqlPath = sanitized;
-    console.log("ruby path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian27.Setting(containerEl).setName("SQL arguments").setDesc("Set the right arguments for your database.").addText((text) => text.setValue(tab.plugin.settings.sqlArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.sqlArgs = value;
-    console.log("SQL args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "sql");
-};
-
-// src/settings/per-lang/makeOctaveSettings.ts
-var import_obsidian28 = require("obsidian");
-var makeOctaveSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Octave Settings" });
-  new import_obsidian28.Setting(containerEl).setName("Octave path").setDesc("The path to your Octave installation.").addText((text) => text.setValue(tab.plugin.settings.octavePath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.octavePath = sanitized;
-    console.log("Octave path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian28.Setting(containerEl).setName("Octave arguments").addText((text) => text.setValue(tab.plugin.settings.octaveArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.octaveArgs = value;
-    console.log("Octave args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "octave");
-};
-
-// src/settings/per-lang/makeMaximaSettings.ts
-var import_obsidian29 = require("obsidian");
-var makeMaximaSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Maxima Settings" });
-  new import_obsidian29.Setting(containerEl).setName("Maxima path").setDesc("The path to your Maxima installation.").addText((text) => text.setValue(tab.plugin.settings.maximaPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.maximaPath = sanitized;
-    console.log("Maxima path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian29.Setting(containerEl).setName("Maxima arguments").addText((text) => text.setValue(tab.plugin.settings.maximaArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.maximaArgs = value;
-    console.log("Maxima args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "maxima");
-};
-
-// src/settings/per-lang/makeApplescriptSettings.ts
-var import_obsidian30 = require("obsidian");
-var makeApplescriptSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Applescript Settings" });
-  new import_obsidian30.Setting(containerEl).setName("Osascript path").setDesc("The path to your osascript installation (only available on MacOS).").addText((text) => text.setValue(tab.plugin.settings.applescriptPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.applescriptPath = sanitized;
-    console.log("Applescript path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian30.Setting(containerEl).setName("Applescript arguments").addText((text) => text.setValue(tab.plugin.settings.applescriptArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.applescriptArgs = value;
-    console.log("Applescript args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "applescript");
-};
-
-// src/settings/per-lang/makeZigSettings.ts
-var import_obsidian31 = require("obsidian");
-var makeZigSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Zig Settings" });
-  new import_obsidian31.Setting(containerEl).setName("zig path").setDesc("Path to your zig installation").addText((text) => text.setValue(tab.plugin.settings.zigPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.zigPath = sanitized;
-    console.log("zig path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian31.Setting(containerEl).setName("zig arguments").addText((text) => text.setValue(tab.plugin.settings.zigArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.zigArgs = value;
-    console.log("zig args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "zig");
-};
-
-// src/settings/per-lang/makeOCamlSettings.ts
-var import_obsidian32 = require("obsidian");
-var makeOCamlSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "OCaml Settings" });
-  new import_obsidian32.Setting(containerEl).setName("ocaml path").setDesc("Path to your ocaml installation").addText((text) => text.setValue(tab.plugin.settings.ocamlPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.ocamlPath = sanitized;
-    console.log("ocaml path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian32.Setting(containerEl).setName("ocaml arguments").addText((text) => text.setValue(tab.plugin.settings.ocamlArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.ocamlArgs = value;
-    console.log("ocaml args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "ocaml");
-};
-
-// src/settings/per-lang/makeSwiftSettings.ts
-var import_obsidian33 = require("obsidian");
-var makeSwiftSettings_default = (tab, containerEl) => {
-  containerEl.createEl("h3", { text: "Swift Settings" });
-  new import_obsidian33.Setting(containerEl).setName("Swift path").setDesc("The path to your Swift installation.").addText((text) => text.setValue(tab.plugin.settings.swiftPath).onChange((value) => __async(void 0, null, function* () {
-    const sanitized = tab.sanitizePath(value);
-    tab.plugin.settings.swiftPath = sanitized;
-    console.log("Swift path set to: " + sanitized);
-    yield tab.plugin.saveSettings();
-  })));
-  new import_obsidian33.Setting(containerEl).setName("Swift arguments").addText((text) => text.setValue(tab.plugin.settings.swiftArgs).onChange((value) => __async(void 0, null, function* () {
-    tab.plugin.settings.swiftArgs = value;
-    console.log("Swift args set to: " + value);
-    yield tab.plugin.saveSettings();
-  })));
-  tab.makeInjectSetting(containerEl, "swift");
-};
-
-// src/settings/SettingsTab.ts
-var SettingsTab = class extends import_obsidian34.PluginSettingTab {
-  constructor(app, plugin) {
-    super(app, plugin);
-    this.plugin = plugin;
-    this.languageContainers = {};
-  }
-  display() {
-    const { containerEl } = this;
-    containerEl.empty();
-    containerEl.createEl("h2", { text: "Settings for the Code Execution Plugin." });
-    containerEl.createEl("h3", { text: "General Settings" });
-    new import_obsidian34.Setting(containerEl).setName("Timeout (in seconds)").setDesc("The time after which a program gets shut down automatically. This is to prevent infinite loops. ").addText((text) => text.setValue("" + this.plugin.settings.timeout / 1e3).onChange((value) => __async(this, null, function* () {
-      if (Number(value) * 1e3) {
-        console.log("Timeout set to: " + value);
-        this.plugin.settings.timeout = Number(value) * 1e3;
-      }
-      yield this.plugin.saveSettings();
-    })));
-    new import_obsidian34.Setting(containerEl).setName("Allow Input").setDesc("Whether or not to include a stdin input box when running blocks. In order to apply changes to this, Obsidian must be refreshed. ").addToggle((text) => text.setValue(this.plugin.settings.allowInput).onChange((value) => __async(this, null, function* () {
-      console.log("Allow Input set to: " + value);
-      this.plugin.settings.allowInput = value;
-      yield this.plugin.saveSettings();
-    })));
-    if (process.platform === "win32") {
-      new import_obsidian34.Setting(containerEl).setName("WSL Mode").setDesc("Whether or not to run code in the Windows Subsystem for Linux. If you don't have WSL installed, don't turn this on!").addToggle((text) => text.setValue(this.plugin.settings.wslMode).onChange((value) => __async(this, null, function* () {
-        console.log("WSL Mode set to: " + value);
-        this.plugin.settings.wslMode = value;
-        yield this.plugin.saveSettings();
-      })));
-    }
-    new import_obsidian34.Setting(containerEl).setName("[Experimental] Persistent Output").setDesc("If enabled, the output of the code block is written into the markdown file. This feature is experimental and may not work as expected.").addToggle((text) => text.setValue(this.plugin.settings.persistentOuput).onChange((value) => __async(this, null, function* () {
-      console.log("Allow Input set to: " + value);
-      this.plugin.settings.persistentOuput = value;
-      yield this.plugin.saveSettings();
-    })));
-    containerEl.createEl("hr");
-    new import_obsidian34.Setting(containerEl).setName("Language-Specific Settings").setDesc("Pick a language to edit its language-specific settings").addDropdown(
-      (dropdown) => dropdown.addOptions(Object.fromEntries(
-        canonicalLanguages.map((lang) => [lang, DISPLAY_NAMES[lang]])
-      )).setValue(this.plugin.settings.lastOpenLanguageTab || canonicalLanguages[0]).onChange((value) => __async(this, null, function* () {
-        this.focusContainer(value);
-        this.plugin.settings.lastOpenLanguageTab = value;
-        yield this.plugin.saveSettings();
-      }))
-    ).settingEl.style.borderTop = "0";
-    makeJsSettings_default(this, this.makeContainerFor("js"));
-    makeTsSettings_default(this, this.makeContainerFor("ts"));
-    makeLeanSettings_default(this, this.makeContainerFor("lean"));
-    makeLuaSettings_default(this, this.makeContainerFor("lua"));
-    makeDartSettings_default(this, this.makeContainerFor("dart"));
-    makeCsSettings_default(this, this.makeContainerFor("cs"));
-    makeJavaSettings_default(this, this.makeContainerFor("java"));
-    makePythonSettings_default(this, this.makeContainerFor("python"));
-    makeGoSettings_default(this, this.makeContainerFor("go"));
-    makeRustSettings_default(this, this.makeContainerFor("rust"));
-    makeCppSettings_default(this, this.makeContainerFor("cpp"));
-    makeCSettings_default(this, this.makeContainerFor("c"));
-    makeBatchSettings_default(this, this.makeContainerFor("batch"));
-    makeShellSettings_default(this, this.makeContainerFor("shell"));
-    makePowershellSettings_default(this, this.makeContainerFor("powershell"));
-    makePrologSettings_default(this, this.makeContainerFor("prolog"));
-    makeGroovySettings_default(this, this.makeContainerFor("groovy"));
-    makeRSettings_default(this, this.makeContainerFor("r"));
-    makeKotlinSettings_default(this, this.makeContainerFor("kotlin"));
-    makeMathematicaSettings_default(this, this.makeContainerFor("mathematica"));
-    makeHaskellSettings_default(this, this.makeContainerFor("haskell"));
-    makeScalaSettings_default(this, this.makeContainerFor("scala"));
-    makeSwiftSettings_default(this, this.makeContainerFor("swift"));
-    makeRacketSettings_default(this, this.makeContainerFor("racket"));
-    makeFSharpSettings_default(this, this.makeContainerFor("fsharp"));
-    makeRubySettings_default(this, this.makeContainerFor("ruby"));
-    makeSQLSettings_default(this, this.makeContainerFor("sql"));
-    makeOctaveSettings_default(this, this.makeContainerFor("octave"));
-    makeMaximaSettings_default(this, this.makeContainerFor("maxima"));
-    makeApplescriptSettings_default(this, this.makeContainerFor("applescript"));
-    makeZigSettings_default(this, this.makeContainerFor("zig"));
-    makeOCamlSettings_default(this, this.makeContainerFor("ocaml"));
-    makePhpSettings_default(this, this.makeContainerFor("php"));
-    this.focusContainer(this.plugin.settings.lastOpenLanguageTab || canonicalLanguages[0]);
-  }
-  makeContainerFor(language) {
-    const container = this.containerEl.createDiv();
-    container.style.display = "none";
-    this.languageContainers[language] = container;
-    return container;
-  }
-  focusContainer(language) {
-    if (this.activeLanguageContainer)
-      this.activeLanguageContainer.style.display = "none";
-    if (language in this.languageContainers) {
-      this.activeLanguageContainer = this.languageContainers[language];
-      this.activeLanguageContainer.style.display = "block";
-    }
-  }
-  sanitizePath(path2) {
-    path2 = path2.replace(/\\/g, "/");
-    path2 = path2.replace(/['"`]/, "");
-    path2 = path2.trim();
-    return path2;
-  }
-  makeInjectSetting(containerEl, language) {
-    const languageAlt = DISPLAY_NAMES[language];
-    new import_obsidian34.Setting(containerEl).setName(`Inject ${languageAlt} code`).setDesc(`Code to add to the top of every ${languageAlt} code block before running.`).setClass("settings-code-input-box").addTextArea((textarea) => {
-      const val = this.plugin.settings[`${language}Inject`];
-      return textarea.setValue(val).onChange((value) => __async(this, null, function* () {
-        this.plugin.settings[`${language}Inject`] = value;
-        console.log(`${language} inject set to ${value}`);
-        yield this.plugin.saveSettings();
-      }));
-    });
-  }
-};
+// src/transforms/CodeInjector.ts
+var import_obsidian46 = require("obsidian");
 
 // src/transforms/Magic.ts
-var os = __toESM(require("os"));
-var import_obsidian35 = require("obsidian");
-var SHOW_REGEX = new RegExp(`@show\\(["'](?<path>[^<>?*=!\\n#()\\[\\]{}]+)["'](,\\s*(?<width>\\d+[\\w%]+),?\\s*(?<height>\\d+[\\w%]+))?(,\\s*(?<align>left|center|right))?\\)`, "g");
-var HTML_REGEX = new RegExp("@html\\((?<html>[^)]+)\\)", "g");
+var os3 = __toESM(require("os"));
+var import_obsidian43 = require("obsidian");
+var SHOW_REGEX = /@show\(["'](?<path>[^<>?*=!\n#()\[\]{}]+)["'](,\s*(?<width>\d+[\w%]+),?\s*(?<height>\d+[\w%]+))?(,\s*(?<align>left|center|right))?\)/g;
+var HTML_REGEX = /@html\((?<html>[^)]+)\)/g;
 var VAULT_REGEX = /@vault/g;
 var VAULT_PATH_REGEX = /@vault_path/g;
 var VAULT_URL_REGEX = /@vault_url/g;
@@ -12026,68 +13545,78 @@ var CURRENT_NOTE_REGEX = /@note/g;
 var CURRENT_NOTE_PATH_REGEX = /@note_path/g;
 var CURRENT_NOTE_URL_REGEX = /@note_url/g;
 var NOTE_TITLE_REGEX = /@title/g;
+var NOTE_CONTENT_REGEX = /@content/g;
 var COLOR_THEME_REGEX = /@theme/g;
 var PYTHON_PLOT_REGEX = /^(plt|matplotlib.pyplot|pyplot)\.show\(\)/gm;
 var R_PLOT_REGEX = /^plot\(.*\)/gm;
 var OCTAVE_PLOT_REGEX = /^plot\s*\(.*\);/gm;
 var MAXIMA_PLOT_REGEX = /^plot2d\s*\(.*\[.+\]\)\s*[$;]/gm;
-function insertVaultPath(source, vaultPath) {
+function expandVaultPath(source, vaultPath) {
+  let vaultPathClean = vaultPath.replace(/\\/g, "/").replace(/^\//, "");
   source = source.replace(VAULT_PATH_REGEX, `"${vaultPath.replace(/\\/g, "/")}"`);
-  source = source.replace(VAULT_URL_REGEX, `"${import_obsidian35.Platform.resourcePathPrefix + vaultPath.replace(/\\/g, "/")}"`);
-  source = source.replace(VAULT_REGEX, `"${import_obsidian35.Platform.resourcePathPrefix + vaultPath.replace(/\\/g, "/")}"`);
+  source = source.replace(VAULT_URL_REGEX, `"${import_obsidian43.Platform.resourcePathPrefix + vaultPathClean}"`);
+  source = source.replace(VAULT_REGEX, `"${import_obsidian43.Platform.resourcePathPrefix + vaultPathClean}"`);
   return source;
 }
-function insertNotePath(source, notePath) {
+function expandNotePath(source, notePath) {
+  let notePathClean = notePath.replace(/\\/g, "/").replace(/^\//, "");
   source = source.replace(CURRENT_NOTE_PATH_REGEX, `"${notePath.replace(/\\/g, "/")}"`);
-  source = source.replace(CURRENT_NOTE_URL_REGEX, `"${import_obsidian35.Platform.resourcePathPrefix + notePath.replace(/\\/g, "/")}"`);
-  source = source.replace(CURRENT_NOTE_REGEX, `"${import_obsidian35.Platform.resourcePathPrefix + notePath.replace(/\\/g, "/")}"`);
+  source = source.replace(CURRENT_NOTE_URL_REGEX, `"${import_obsidian43.Platform.resourcePathPrefix + notePathClean}"`);
+  source = source.replace(CURRENT_NOTE_REGEX, `"${import_obsidian43.Platform.resourcePathPrefix + notePathClean}"`);
   return source;
 }
-function insertNoteTitle(source, noteTitle) {
+function expandNoteTitle(source, noteTitle) {
   let t = "";
   if (noteTitle.contains("."))
     t = noteTitle.split(".").slice(0, -1).join(".");
   return source.replace(NOTE_TITLE_REGEX, `"${t}"`);
 }
-function insertColorTheme(source, theme) {
+function insertNoteContent(source, content) {
+  const escaped_content = JSON.stringify(content);
+  return source.replace(NOTE_CONTENT_REGEX, `${escaped_content}`);
+}
+function expandColorTheme(source, theme) {
   return source.replace(COLOR_THEME_REGEX, `"${theme}"`);
 }
-function addMagicToPython(source) {
-  source = pythonParseShowImage(source);
-  source = pythonParseHtmlFunction(source);
+function expandPython(source, settings) {
+  if (settings.pythonEmbedPlots) {
+    source = expandPythonPlots(source, TOGGLE_HTML_SIGIL);
+  }
+  source = expandPythonShowImage(source);
+  source = expandPythonHtmlMacro(source);
   return source;
 }
-function addMagicToJS(source) {
-  source = jsParseShowImage(source);
-  source = jsParseHtmlFunction(source);
+function expandJS(source) {
+  source = expandJsShowImage(source);
+  source = expandJsHtmlMacro(source);
   return source;
 }
-function addInlinePlotsToPython(source, toggleHtmlSigil) {
+function expandPythonPlots(source, toggleHtmlSigil) {
   const showPlot = `import io; import sys; __obsidian_execute_code_temp_pyplot_var__=io.BytesIO(); plt.plot(); plt.savefig(__obsidian_execute_code_temp_pyplot_var__, format='svg'); plt.close(); sys.stdout.write(${JSON.stringify(toggleHtmlSigil)}); sys.stdout.flush(); sys.stdout.buffer.write(__obsidian_execute_code_temp_pyplot_var__.getvalue()); sys.stdout.flush(); sys.stdout.write(${JSON.stringify(toggleHtmlSigil)}); sys.stdout.flush()`;
   return source.replace(PYTHON_PLOT_REGEX, showPlot);
 }
-function addInlinePlotsToR(source) {
+function expandRPlots(source) {
   const matches = source.matchAll(R_PLOT_REGEX);
   for (const match of matches) {
-    const tempFile = `${os.tmpdir()}/temp_${Date.now()}.png`.replace(/\\/g, "/");
-    const substitute = `png("${tempFile}"); ${match[0]}; dev.off(); cat('${TOGGLE_HTML_SIGIL}<img src="${import_obsidian35.Platform.resourcePathPrefix + tempFile}" align="center">${TOGGLE_HTML_SIGIL}')`;
+    const tempFile = `${os3.tmpdir()}/temp_${Date.now()}.png`.replace(/\\/g, "/").replace(/^\//, "");
+    const substitute = `png("${tempFile}"); ${match[0]}; dev.off(); cat('${TOGGLE_HTML_SIGIL}<img src="${import_obsidian43.Platform.resourcePathPrefix + tempFile}" align="center">${TOGGLE_HTML_SIGIL}')`;
     source = source.replace(match[0], substitute);
   }
   return source;
 }
-function pythonParseShowImage(source) {
+function expandPythonShowImage(source) {
   const matches = source.matchAll(SHOW_REGEX);
   for (const match of matches) {
     const imagePath = match.groups.path;
     const width = match.groups.width;
     const height = match.groups.height;
     const alignment = match.groups.align;
-    const image = buildMagicShowImage(imagePath.replace(/\\/g, "\\\\"), width, height, alignment);
+    const image = expandShowImage(imagePath.replace(/\\/g, "\\\\"), width, height, alignment);
     source = source.replace(match[0], "print('" + TOGGLE_HTML_SIGIL + image + TOGGLE_HTML_SIGIL + "')");
   }
   return source;
 }
-function pythonParseHtmlFunction(source) {
+function expandPythonHtmlMacro(source) {
   const matches = source.matchAll(HTML_REGEX);
   for (const match of matches) {
     const html = match.groups.html;
@@ -12096,20 +13625,20 @@ function pythonParseHtmlFunction(source) {
   }
   return source;
 }
-function jsParseShowImage(source) {
+function expandJsShowImage(source) {
   const matches = source.matchAll(SHOW_REGEX);
   for (const match of matches) {
     const imagePath = match.groups.path;
     const width = match.groups.width;
     const height = match.groups.height;
     const alignment = match.groups.align;
-    const image = buildMagicShowImage(imagePath.replace(/\\/g, "\\\\"), width, height, alignment);
+    const image = expandShowImage(imagePath.replace(/\\/g, "\\\\").replace(/^\//, ""), width, height, alignment);
     source = source.replace(match[0], "console.log('" + TOGGLE_HTML_SIGIL + image + TOGGLE_HTML_SIGIL + "')");
     console.log(source);
   }
   return source;
 }
-function jsParseHtmlFunction(source) {
+function expandJsHtmlMacro(source) {
   const matches = source.matchAll(HTML_REGEX);
   for (const match of matches) {
     const html = match.groups.html;
@@ -12118,7 +13647,7 @@ function jsParseHtmlFunction(source) {
   }
   return source;
 }
-function buildMagicShowImage(imagePath, width = "0", height = "0", alignment = "center") {
+function expandShowImage(imagePath, width = "0", height = "0", alignment = "center") {
   if (imagePath.contains("+")) {
     let splittedPath = imagePath.replace(/['"]/g, "").split("+");
     splittedPath = splittedPath.map((element) => element.trim());
@@ -12128,30 +13657,39 @@ function buildMagicShowImage(imagePath, width = "0", height = "0", alignment = "
     return `<img src="${imagePath}" align="${alignment}" alt="Image found at path ${imagePath}." />`;
   return `<img src="${imagePath}" width="${width}" height="${height}" align="${alignment}" alt="Image found at path ${imagePath}." />`;
 }
-function addInlinePlotsToOctave(source) {
+function expandOctavePlot(source) {
   const matches = source.matchAll(OCTAVE_PLOT_REGEX);
   for (const match of matches) {
-    const tempFile = `${os.tmpdir()}/temp_${Date.now()}.png`.replace(/\\/g, "/");
-    const substitute = `${match[0]}; print -dpng ${tempFile}; disp('${TOGGLE_HTML_SIGIL}<img src="${import_obsidian35.Platform.resourcePathPrefix + tempFile}" align="center">${TOGGLE_HTML_SIGIL}');`;
+    const tempFile = `${os3.tmpdir()}/temp_${Date.now()}.png`.replace(/\\/g, "/").replace(/^\//, "");
+    const substitute = `${match[0]}; print -dpng ${tempFile}; disp('${TOGGLE_HTML_SIGIL}<img src="${import_obsidian43.Platform.resourcePathPrefix + tempFile}" align="center">${TOGGLE_HTML_SIGIL}');`;
     source = source.replace(match[0], substitute);
   }
   return source;
 }
-function addInlinePlotsToMaxima(source) {
+function expandMaximaPlot(source) {
   const matches = source.matchAll(MAXIMA_PLOT_REGEX);
   for (const match of matches) {
-    const tempFile = `${os.tmpdir()}/temp_${Date.now()}.png`.replace(/\\/g, "/");
+    const tempFile = `${os3.tmpdir()}/temp_${Date.now()}.png`.replace(/\\/g, "/").replace(/^\//, "");
     const updated_plot_call = match[0].substring(0, match[0].lastIndexOf(")")) + `, [png_file, "${tempFile}"])`;
-    const substitute = `${updated_plot_call}; print ('${TOGGLE_HTML_SIGIL}<img src="${import_obsidian35.Platform.resourcePathPrefix + tempFile}" align="center">${TOGGLE_HTML_SIGIL}');`;
+    const substitute = `${updated_plot_call}; print ('${TOGGLE_HTML_SIGIL}<img src="${import_obsidian43.Platform.resourcePathPrefix + tempFile}" align="center">${TOGGLE_HTML_SIGIL}');`;
     source = source.replace(match[0], substitute);
   }
   return source;
 }
 
 // src/Vault.ts
-var import_obsidian36 = require("obsidian");
+var import_obsidian44 = require("obsidian");
+function getFullContentHtml(view) {
+  const codeMirror = view.editor.cm;
+  codeMirror.viewState.printing = true;
+  codeMirror.measure();
+  const html = view.contentEl.innerHTML;
+  codeMirror.viewState.printing = false;
+  codeMirror.measure();
+  return html;
+}
 function getVaultVariables(app) {
-  const activeView = app.workspace.getActiveViewOfType(import_obsidian36.MarkdownView);
+  const activeView = app.workspace.getActiveViewOfType(import_obsidian44.MarkdownView);
   if (activeView === null) {
     return null;
   }
@@ -12160,13 +13698,15 @@ function getVaultVariables(app) {
   const folder = activeView.file.parent.path;
   const fileName = activeView.file.name;
   const filePath = activeView.file.path;
+  const fileContent = getFullContentHtml(activeView);
   const theme = document.body.classList.contains("theme-light") ? "light" : "dark";
   return {
     vaultPath,
     folder,
     fileName,
     filePath,
-    theme
+    theme,
+    fileContent
   };
 }
 
@@ -12202,10 +13742,11 @@ function transformMagicCommands(app, srcCode) {
   let ret = srcCode;
   const vars = getVaultVariables(app);
   if (vars) {
-    ret = insertVaultPath(ret, vars.vaultPath);
-    ret = insertNotePath(ret, vars.filePath);
-    ret = insertNoteTitle(ret, vars.fileName);
-    ret = insertColorTheme(ret, vars.theme);
+    ret = expandVaultPath(ret, vars.vaultPath);
+    ret = expandNotePath(ret, vars.filePath);
+    ret = expandNoteTitle(ret, vars.fileName);
+    ret = expandColorTheme(ret, vars.theme);
+    ret = insertNoteContent(ret, vars.fileContent);
   } else {
     console.warn(`Could not load all Vault variables! ${vars}`);
   }
@@ -12222,11 +13763,8 @@ function isStringNotEmpty(str) {
   return !!str && str.trim().length > 0;
 }
 
-// src/transforms/CodeInjector.ts
-var import_obsidian38 = require("obsidian");
-
 // src/CodeBlockArgs.ts
-var import_obsidian37 = require("obsidian");
+var import_obsidian45 = require("obsidian");
 var JSON5 = __toESM(require_dist());
 function getArgs(firstLineOfCode) {
   if (!firstLineOfCode.contains("{") && !firstLineOfCode.contains("}"))
@@ -12251,7 +13789,7 @@ function getArgs(firstLineOfCode) {
     args = `{export: ['${exports.join("', '")}'], ${args}`;
     return JSON5.parse(args);
   } catch (err) {
-    new import_obsidian37.Notice(`Failed to parse code block arguments from line:
+    new import_obsidian45.Notice(`Failed to parse code block arguments from line:
 ${firstLineOfCode}
 
 Failed with error:
@@ -12272,117 +13810,111 @@ var CodeInjector = class {
     this.settings = settings;
     this.language = language;
   }
-  injectCode(srcCode) {
-    return __async(this, null, function* () {
-      const language = getLanguageAlias(this.language);
-      const activeView = this.app.workspace.getActiveViewOfType(import_obsidian38.MarkdownView);
-      if (activeView === null)
-        return srcCode;
-      yield this.parseFile(activeView.data, srcCode, language);
-      const realLanguage = /[^-]*$/.exec(language)[0];
-      const globalInject = this.settings[`${realLanguage}Inject`];
-      let injectedCode = `${this.namedImportSrcCode}
+  async injectCode(srcCode) {
+    const language = getLanguageAlias(this.language);
+    const activeView = this.app.workspace.getActiveViewOfType(import_obsidian46.MarkdownView);
+    if (activeView === null)
+      return srcCode;
+    await this.parseFile(activeView.data, srcCode, language);
+    const realLanguage = /[^-]*$/.exec(language)[0];
+    const globalInject = this.settings[`${realLanguage}Inject`];
+    let injectedCode = `${this.namedImportSrcCode}
 ${srcCode}`;
-      if (!this.mainArgs.ignore)
-        injectedCode = `${globalInject}
+    if (!this.mainArgs.ignore)
+      injectedCode = `${globalInject}
 ${this.prependSrcCode}
 ${injectedCode}
 ${this.appendSrcCode}`;
-      else {
-        if (!Array.isArray(this.mainArgs.ignore) && this.mainArgs.ignore !== "all")
-          this.mainArgs.ignore = [this.mainArgs.ignore];
-        if (this.mainArgs.ignore !== "all") {
-          if (!this.mainArgs.ignore.contains("pre"))
-            injectedCode = `${this.prependSrcCode}
+    else {
+      if (!Array.isArray(this.mainArgs.ignore) && this.mainArgs.ignore !== "all")
+        this.mainArgs.ignore = [this.mainArgs.ignore];
+      if (this.mainArgs.ignore !== "all") {
+        if (!this.mainArgs.ignore.contains("pre"))
+          injectedCode = `${this.prependSrcCode}
 ${injectedCode}`;
-          if (!this.mainArgs.ignore.contains("post"))
-            injectedCode = `${injectedCode}
+        if (!this.mainArgs.ignore.contains("post"))
+          injectedCode = `${injectedCode}
 ${this.appendSrcCode}`;
-          if (!this.mainArgs.ignore.contains("global"))
-            injectedCode = `${globalInject}
+        if (!this.mainArgs.ignore.contains("global"))
+          injectedCode = `${globalInject}
 ${injectedCode}`;
-        }
       }
-      return transformMagicCommands(this.app, injectedCode);
-    });
+    }
+    return transformMagicCommands(this.app, injectedCode);
   }
-  handleNamedImports(namedImports) {
-    return __async(this, null, function* () {
-      const handleNamedImport = (namedImport) => {
-        if (!this.namedExports.hasOwnProperty(namedImport)) {
-          new import_obsidian38.Notice(`Named export "${namedImport}" does not exist but was imported`);
-          return true;
-        }
-        this.namedImportSrcCode += `${this.disable_print(this.namedExports[namedImport])}
-`;
-        return false;
-      };
-      if (!Array.isArray(namedImports))
-        return handleNamedImport(namedImports);
-      for (const namedImport of namedImports) {
-        const err = handleNamedImport(namedImport);
-        if (err)
-          return true;
+  async handleNamedImports(namedImports) {
+    const handleNamedImport = (namedImport) => {
+      if (!this.namedExports.hasOwnProperty(namedImport)) {
+        new import_obsidian46.Notice(`Named export "${namedImport}" does not exist but was imported`);
+        return true;
       }
+      this.namedImportSrcCode += `${this.disable_print(this.namedExports[namedImport])}
+`;
       return false;
-    });
+    };
+    if (!Array.isArray(namedImports))
+      return handleNamedImport(namedImports);
+    for (const namedImport of namedImports) {
+      const err = handleNamedImport(namedImport);
+      if (err)
+        return true;
+    }
+    return false;
   }
-  parseFile(fileContents, srcCode, language) {
-    return __async(this, null, function* () {
-      let currentArgs = {};
-      let insideCodeBlock = false;
-      let isLanguageEqual = false;
-      let currentLanguage = "";
-      let currentCode = "";
-      let currentFirstLine = "";
-      for (const line of fileContents.split("\n")) {
-        if (line.startsWith("```")) {
-          if (insideCodeBlock) {
-            const srcCodeTrimmed = srcCode.trim();
-            const currentCodeTrimmed = currentCode.trim();
-            if (isLanguageEqual && srcCodeTrimmed.length === currentCodeTrimmed.length && srcCodeTrimmed === currentCodeTrimmed) {
-              this.mainArgs = getArgs(currentFirstLine);
-              if (this.mainArgs.import) {
-                const err = this.handleNamedImports(this.mainArgs.import);
-                if (err)
-                  return "";
-              }
-              break;
-            }
-            if (currentArgs.label) {
-              if (this.namedExports.hasOwnProperty(currentArgs.label)) {
-                new import_obsidian38.Notice(`Error: named export ${currentArgs.label} exported more than once`);
+  async parseFile(fileContents, srcCode, language) {
+    let currentArgs = {};
+    let insideCodeBlock = false;
+    let isLanguageEqual = false;
+    let currentLanguage = "";
+    let currentCode = "";
+    let currentFirstLine = "";
+    for (const line of fileContents.split("\n")) {
+      if (line.startsWith("```")) {
+        if (insideCodeBlock) {
+          const srcCodeTrimmed = srcCode.trim();
+          const currentCodeTrimmed = currentCode.trim();
+          if (isLanguageEqual && srcCodeTrimmed.length === currentCodeTrimmed.length && srcCodeTrimmed === currentCodeTrimmed) {
+            this.mainArgs = getArgs(currentFirstLine);
+            if (this.mainArgs.import) {
+              const err = this.handleNamedImports(this.mainArgs.import);
+              if (err)
                 return "";
-              }
-              this.namedExports[currentArgs.label] = currentCode;
             }
-            if (!Array.isArray(currentArgs.export))
-              currentArgs.export = [currentArgs.export];
-            if (currentArgs.export.contains("pre"))
-              this.prependSrcCode += `${this.disable_print(currentCode)}
-`;
-            if (currentArgs.export.contains("post"))
-              this.appendSrcCode += `${this.disable_print(currentCode)}
-`;
-            currentLanguage = "";
-            currentCode = "";
-            insideCodeBlock = false;
-            currentArgs = {};
-          } else {
-            currentLanguage = getCodeBlockLanguage(line);
-            isLanguageEqual = /[^-]*$/.exec(language)[0] === /[^-]*$/.exec(currentLanguage)[0];
-            if (isLanguageEqual) {
-              currentArgs = getArgs(line);
-              currentFirstLine = line;
-            }
-            insideCodeBlock = true;
+            break;
           }
-        } else if (insideCodeBlock && isLanguageEqual) {
-          currentCode += `${line}
+          if (currentArgs.label) {
+            if (this.namedExports.hasOwnProperty(currentArgs.label)) {
+              new import_obsidian46.Notice(`Error: named export ${currentArgs.label} exported more than once`);
+              return "";
+            }
+            this.namedExports[currentArgs.label] = currentCode;
+          }
+          if (!Array.isArray(currentArgs.export))
+            currentArgs.export = [currentArgs.export];
+          if (currentArgs.export.contains("pre"))
+            this.prependSrcCode += `${this.disable_print(currentCode)}
 `;
+          if (currentArgs.export.contains("post"))
+            this.appendSrcCode += `${this.disable_print(currentCode)}
+`;
+          currentLanguage = "";
+          currentCode = "";
+          insideCodeBlock = false;
+          currentArgs = {};
+        } else {
+          currentLanguage = getCodeBlockLanguage(line);
+          isLanguageEqual = /[^-]*$/.exec(language)[0] === /[^-]*$/.exec(currentLanguage)[0];
+          if (isLanguageEqual) {
+            currentArgs = getArgs(line);
+            currentFirstLine = line;
+          }
+          insideCodeBlock = true;
         }
+      } else if (insideCodeBlock && isLanguageEqual) {
+        currentCode += `${line}
+`;
       }
-    });
+    }
   }
   disable_print(code) {
     if (!this.settings.onlyCurrentBlock) {
@@ -12393,757 +13925,194 @@ ${injectedCode}`;
   }
 };
 
-// src/ExecutorContainer.ts
-var import_events2 = require("events");
-
-// src/executors/ReplExecutor.ts
-var import_child_process2 = require("child_process");
-var import_obsidian40 = require("obsidian");
-
-// src/executors/Executor.ts
-var import_obsidian39 = require("obsidian");
-var os2 = __toESM(require("os"));
-var path = __toESM(require("path"));
-var import_stream = require("stream");
-var Executor = class extends import_stream.EventEmitter {
-  constructor(file, language) {
-    super();
-    this.tempFileId = void 0;
-    this.file = file;
-    this.language = language;
+// src/RunButton.ts
+var buttonText = "Run";
+var buttonClass = "run-code-button";
+var disabledClass = "run-button-disabled";
+var codeBlockHasButtonClass = "has-run-code-button";
+async function handleExecution(block) {
+  const language = block.language;
+  const button = block.button;
+  const srcCode = block.srcCode;
+  const app = block.outputter.app;
+  const s = block.outputter.settings;
+  button.className = disabledClass;
+  block.srcCode = await new CodeInjector(app, s, language).injectCode(srcCode);
+  switch (language) {
+    case "js":
+      return runCode(s.nodePath, s.nodeArgs, s.jsFileExtension, block, { transform: (code) => expandJS(code) });
+    case "java":
+      return runCode(s.javaPath, s.javaArgs, s.javaFileExtension, block);
+    case "python":
+      return runCode(s.pythonPath, s.pythonArgs, s.pythonFileExtension, block, { transform: (code) => expandPython(code, s) });
+    case "shell":
+      return runCode(s.shellPath, s.shellArgs, s.shellFileExtension, block, { shell: true });
+    case "batch":
+      return runCode(s.batchPath, s.batchArgs, s.batchFileExtension, block, { shell: true });
+    case "powershell":
+      return runCode(s.powershellPath, s.powershellArgs, s.powershellFileExtension, block, { shell: true });
+    case "cpp":
+      return runCode(s.clingPath, `-std=${s.clingStd} ${s.clingArgs}`, s.cppFileExtension, block);
+    case "prolog":
+      runCode("", "", "", block);
+      button.className = buttonClass;
+      break;
+    case "groovy":
+      return runCode(s.groovyPath, s.groovyArgs, s.groovyFileExtension, block, { shell: true });
+    case "rust":
+      return runCode(s.cargoPath, "eval" + s.cargoEvalArgs, s.rustFileExtension, block);
+    case "r":
+      return runCode(s.RPath, s.RArgs, s.RFileExtension, block, { transform: (code) => expandRPlots(code) });
+    case "go":
+      return runCode(s.golangPath, s.golangArgs, s.golangFileExtension, block);
+    case "kotlin":
+      return runCode(s.kotlinPath, s.kotlinArgs, s.kotlinFileExtension, block, { shell: true });
+    case "ts":
+      return runCode(s.tsPath, s.tsArgs, "ts", block, { shell: true });
+    case "lua":
+      return runCode(s.luaPath, s.luaArgs, s.luaFileExtension, block, { shell: true });
+    case "dart":
+      return runCode(s.dartPath, s.dartArgs, s.dartFileExtension, block, { shell: true });
+    case "cs":
+      return runCode(s.csPath, s.csArgs, s.csFileExtension, block, { shell: true });
+    case "haskell":
+      return s.useGhci ? runCode(s.ghciPath, "", "hs", block, { shell: true }) : runCode(s.runghcPath, "-f " + s.ghcPath, "hs", block, { shell: true });
+    case "mathematica":
+      return runCode(s.mathematicaPath, s.mathematicaArgs, s.mathematicaFileExtension, block, { shell: true });
+    case "scala":
+      return runCode(s.scalaPath, s.scalaArgs, s.scalaFileExtension, block, { shell: true });
+    case "swift":
+      return runCode(s.swiftPath, s.swiftArgs, s.swiftFileExtension, block, { shell: true });
+    case "c":
+      return runCode(s.clingPath, s.clingArgs, "c", block, { shell: true });
+    case "ruby":
+      return runCode(s.rubyPath, s.rubyArgs, s.rubyFileExtension, block, { shell: true });
+    case "sql":
+      return runCode(s.sqlPath, s.sqlArgs, "sql", block, { shell: true });
+    case "octave":
+      return runCode(s.octavePath, s.octaveArgs, s.octaveFileExtension, block, { shell: true, transform: (code) => expandOctavePlot(code) });
+    case "maxima":
+      return runCode(s.maximaPath, s.maximaArgs, s.maximaFileExtension, block, { shell: true, transform: (code) => expandMaximaPlot(code) });
+    case "racket":
+      return runCode(s.racketPath, s.racketArgs, s.racketFileExtension, block, { shell: true });
+    case "applescript":
+      return runCode(s.applescriptPath, s.applescriptArgs, s.applescriptFileExtension, block, { shell: true });
+    case "zig":
+      return runCode(s.zigPath, s.zigArgs, "zig", block, { shell: true });
+    case "ocaml":
+      return runCode(s.ocamlPath, s.ocamlArgs, "ocaml", block, { shell: true });
+    case "php":
+      return runCode(s.phpPath, s.phpArgs, s.phpFileExtension, block, { shell: true });
+    case "latex":
+      const outputPath = await retrieveFigurePath(block.srcCode, s.latexFigureTitlePattern, block.markdownFile, s);
+      const invokeCompiler = [s.latexTexfotArgs, s.latexCompilerPath, s.latexCompilerArgs].join(" ");
+      return !s.latexDoFilter ? runCode(s.latexCompilerPath, s.latexCompilerArgs, outputPath, block, { transform: (code) => modifyLatexCode(code, s) }) : runCode(s.latexTexfotPath, invokeCompiler, outputPath, block, { transform: (code) => modifyLatexCode(code, s) });
+    default:
+      break;
   }
-  notifyError(cmd, cmdArgs, tempFileName, err, outputter, label = "Error while executing code") {
-    const errorMSG = `Error while executing ${cmd} ${cmdArgs} ${tempFileName}: ${err}`;
-    console.error(errorMSG);
-    if (outputter)
-      outputter.writeErr(errorMSG);
-    new import_obsidian39.Notice(label);
-  }
-  getTempFile(ext) {
-    if (this.tempFileId === void 0)
-      this.tempFileId = Date.now().toString();
-    return path.join(os2.tmpdir(), `temp_${this.tempFileId}.${ext}`);
-  }
-};
-
-// src/executors/AsyncExecutor.ts
-var AsyncExecutor = class extends Executor {
-  constructor() {
-    super(...arguments);
-    this.runningTask = Promise.resolve();
-  }
-  addJobToQueue(promiseCallback) {
-    return __async(this, null, function* () {
-      const previousJob = this.runningTask;
-      this.runningTask = new Promise((resolve, reject) => {
-        previousJob.finally(() => __async(this, null, function* () {
-          try {
-            yield new Promise((innerResolve, innerReject) => {
-              this.once("close", () => innerResolve(void 0));
-              promiseCallback(innerResolve, innerReject);
-            });
-            resolve();
-          } catch (e) {
-            reject(e);
-          }
-        }));
-      });
-      return this.runningTask;
-    });
-  }
-};
-
-// src/executors/killWithChildren.ts
-var import_child_process = require("child_process");
-var killWithChildren_default = (pid) => {
-  if (process.platform === "win32") {
-    (0, import_child_process.execSync)(`taskkill /pid ${pid} /T /F`);
-  } else {
-    try {
-      (0, import_child_process.execSync)(`pkill -P ${pid}`);
-    } catch (err) {
-      if (err.status !== 1)
-        throw err;
+}
+function addInOpenFiles(plugin) {
+  const workspace = plugin.app.workspace;
+  workspace.iterateRootLeaves((leaf) => {
+    if (leaf.view instanceof import_obsidian47.MarkdownView) {
+      addToAllCodeBlocks(leaf.view.contentEl, leaf.view.file.path, leaf.view, plugin);
     }
-    process.kill(pid);
+  });
+}
+function addToAllCodeBlocks(element, file, view, plugin) {
+  Array.from(element.getElementsByTagName("code")).forEach((codeBlock) => addToCodeBlock(codeBlock, file, view, plugin));
+}
+function addToCodeBlock(codeBlock, file, view, plugin) {
+  if (codeBlock.className.match(/^language-\{\w+/i)) {
+    codeBlock.className = codeBlock.className.replace(/^language-\{(\w+)/i, "language-$1 {");
+    codeBlock.parentElement.className = codeBlock.className;
   }
-};
-
-// src/executors/ReplExecutor.ts
-var ReplExecutor = class extends AsyncExecutor {
-  constructor(settings, path2, args, file, language) {
-    var _a;
-    super(file, language);
-    this.settings = settings;
-    if (this.settings.wslMode) {
-      args.unshift("-e", path2);
-      path2 = "wsl";
+  const language = codeBlock.className.toLowerCase();
+  if (!language || !language.contains("language-"))
+    return;
+  const pre = codeBlock.parentElement;
+  const parent = pre.parentElement;
+  const srcCode = codeBlock.getText();
+  let sanitizedClassList = sanitizeClassListOfCodeBlock(codeBlock);
+  const canonicalLanguage = getLanguageAlias(
+    supportedLanguages.find((lang) => sanitizedClassList.contains(`language-${lang}`))
+  );
+  const isLanguageSupported = canonicalLanguage !== void 0;
+  const hasBlockBeenButtonifiedAlready = parent.classList.contains(codeBlockHasButtonClass);
+  if (!isLanguageSupported || hasBlockBeenButtonifiedAlready)
+    return;
+  const outputter = new Outputter(codeBlock, plugin.settings, view, plugin.app, file);
+  parent.classList.add(codeBlockHasButtonClass);
+  const button = createButton();
+  pre.appendChild(button);
+  const block = {
+    srcCode,
+    language: canonicalLanguage,
+    markdownFile: file,
+    button,
+    outputter,
+    executors: plugin.executors
+  };
+  button.addEventListener("click", () => handleExecution(block));
+}
+function sanitizeClassListOfCodeBlock(codeBlock) {
+  let sanitizedClassList = Array.from(codeBlock.classList);
+  return sanitizedClassList.map((c) => c.toLowerCase());
+}
+function createButton() {
+  console.debug("Add run button");
+  const button = document.createElement("button");
+  button.classList.add(buttonClass);
+  button.setText(buttonText);
+  return button;
+}
+function runCode(cmd, cmdArgs, ext, block, options) {
+  const useShell = (options == null ? void 0 : options.shell) ? options.shell : false;
+  if (options == null ? void 0 : options.transform)
+    block.srcCode = options.transform(block.srcCode);
+  if (!useShell)
+    block.outputter.startBlock();
+  const executor = block.executors.getExecutorFor(block.markdownFile, block.language, useShell);
+  executor.run(block.srcCode, block.outputter, cmd, cmdArgs, ext).then(() => {
+    block.button.className = buttonClass;
+    if (!useShell) {
+      block.outputter.closeInput();
+      block.outputter.finishBlock();
     }
-    if (path2.includes("%USERNAME%") && ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.USERNAME))
-      path2 = path2.replace("%USERNAME%", process.env.USERNAME);
-    this.process = (0, import_child_process2.spawn)(path2, args, { env: process.env });
-    this.process.on("close", () => {
-      this.emit("close");
-      new import_obsidian40.Notice("Runtime exited");
-      this.process = null;
-    });
-    this.process.on("error", (err) => {
-      this.notifyError(settings.pythonPath, args.join(" "), "", err, void 0, "Error launching process: " + err);
-      this.stop();
-    });
-    this.setup().then(() => {
-    });
-  }
-  run(code, outputter, cmd, cmdArgs, ext) {
-    outputter.queueBlock();
-    return this.addJobToQueue((resolve, _reject) => {
-      if (this.process === null)
-        return resolve();
-      const finishSigil = `SIGIL_BLOCK_DONE_${Math.random()}_${Date.now()}_${code.length}`;
-      outputter.startBlock();
-      const wrappedCode = this.wrapCode(code, finishSigil);
-      this.process.stdin.write(wrappedCode);
-      outputter.clear();
-      outputter.on("data", (data) => {
-        this.process.stdin.write(data);
-      });
-      const writeToStdout = (data) => {
-        let str = data.toString();
-        if (str.endsWith(finishSigil)) {
-          str = str.substring(0, str.length - finishSigil.length);
-          this.process.stdout.removeListener("data", writeToStdout);
-          this.process.stderr.removeListener("data", writeToStderr);
-          this.process.removeListener("close", resolve);
-          outputter.write(str);
-          resolve();
-        } else {
-          outputter.write(str);
-        }
-      };
-      const writeToStderr = (data) => {
-        outputter.writeErr(
-          this.removePrompts(data.toString(), "stderr")
-        );
-      };
-      this.process.on("close", resolve);
-      this.process.stdout.on("data", writeToStdout);
-      this.process.stderr.on("data", writeToStderr);
-    });
-  }
-  stop() {
-    return new Promise((resolve, _reject) => {
-      this.process.on("close", () => {
-        resolve();
-      });
-      killWithChildren_default(this.process.pid);
-      this.process = null;
-    });
-  }
-};
-
-// src/executors/NodeJSExecutor.ts
-var NodeJSExecutor = class extends ReplExecutor {
-  constructor(settings, file) {
-    const args = settings.nodeArgs ? settings.nodeArgs.split(" ") : [];
-    args.unshift(`-e`, `require("repl").start({prompt: "", preview: false, ignoreUndefined: true}).on("exit", ()=>process.exit())`);
-    super(settings, settings.nodePath, args, file, "js");
-  }
-  setup() {
-    return __async(this, null, function* () {
-      this.process.stdin.write("\n");
-    });
-  }
-  wrapCode(code, finishSigil) {
-    return `try { eval(${JSON.stringify(code)}); }catch(e) { console.error(e); }finally { process.stdout.write(${JSON.stringify(finishSigil)}); }
-`;
-  }
-  removePrompts(output, source) {
-    return output;
-  }
-};
-
-// src/executors/NonInteractiveCodeExecutor.ts
-var import_obsidian41 = require("obsidian");
-var fs = __toESM(require("fs"));
-var child_process = __toESM(require("child_process"));
-
-// src/transforms/windowsPathToWsl.ts
-var import_posix = require("path/posix");
-var import_path = require("path");
-var windowsPathToWsl_default = (windowsPath) => {
-  const driveLetter = windowsPath[0].toLowerCase();
-  const posixyPath = windowsPath.replace(/^[^:]*:/, "").split(import_path.sep).join("/");
-  return (0, import_posix.join)("/mnt/", driveLetter, posixyPath);
-};
-
-// src/executors/NonInteractiveCodeExecutor.ts
-var NonInteractiveCodeExecutor = class extends Executor {
-  constructor(settings, usesShell, file, language) {
-    super(file, language);
-    this.resolveRun = void 0;
-    this.settings = settings;
-    this.usesShell = usesShell;
-  }
-  stop() {
-    return Promise.resolve();
-  }
-  run(codeBlockContent, outputter, cmd, cmdArgs, ext) {
-    if (this.resolveRun !== void 0)
-      this.resolveRun();
-    this.resolveRun = void 0;
-    return new Promise((resolve, reject) => {
-      const tempFileName = this.getTempFile(ext);
-      fs.promises.writeFile(tempFileName, codeBlockContent).then(() => {
-        const args = cmdArgs ? cmdArgs.split(" ") : [];
-        if (this.isWSLEnabled()) {
-          args.unshift("-e", cmd);
-          cmd = "wsl";
-          args.push(windowsPathToWsl_default(tempFileName));
-        } else {
-          args.push(tempFileName);
-        }
-        let child;
-        if (cmd.endsWith("gcc") || cmd.endsWith("gcc.exe")) {
-          const tempFileNameWExe = tempFileName.slice(0, -2) + ".out";
-          args.push("-o", tempFileNameWExe);
-          const childGCC = child_process.spawn(cmd, args, { env: process.env, shell: this.usesShell });
-          this.handleChildOutput(childGCC, outputter, tempFileName);
-          childGCC.on("exit", (code) => {
-            if (code === 0) {
-              child = child_process.spawn(tempFileNameWExe, { env: process.env, shell: this.usesShell });
-              this.handleChildOutput(child, outputter, tempFileNameWExe).then(() => {
-                this.tempFileId = void 0;
-              });
-            }
-          });
-        } else {
-          child = child_process.spawn(cmd, args, { env: process.env, shell: this.usesShell });
-          this.handleChildOutput(child, outputter, tempFileName).then(() => {
-            this.tempFileId = void 0;
-          });
-        }
-        this.resolveRun = resolve;
-      }).catch((err) => {
-        this.notifyError(cmd, cmdArgs, tempFileName, err, outputter);
-        resolve();
-      });
-    });
-  }
-  isWSLEnabled() {
-    if (this.settings.wslMode) {
-      return true;
-    }
-    if (this.language == "shell" && this.settings.shellWSLMode) {
-      return true;
-    }
-    return false;
-  }
-  handleChildOutput(child, outputter, fileName) {
-    return __async(this, null, function* () {
-      outputter.clear();
-      outputter.killBlock = () => {
-        child.kill("SIGINT");
-      };
-      this.stdoutCb = (data) => {
-        outputter.write(data.toString());
-      };
-      this.stderrCb = (data) => {
-        outputter.writeErr(data.toString());
-      };
-      child.stdout.on("data", this.stdoutCb);
-      child.stderr.on("data", this.stderrCb);
-      outputter.on("data", (data) => {
-        child.stdin.write(data);
-      });
-      child.on("close", (code) => {
-        if (code !== 0)
-          new import_obsidian41.Notice("Error!");
-        if (this.resolveRun !== void 0)
-          this.resolveRun();
-        outputter.closeInput();
-        if (fileName === void 0)
-          return;
-        fs.promises.rm(fileName).catch((err) => {
-          console.error("Error in 'Obsidian Execute Code' Plugin while removing file: " + err);
-        });
-      });
-      child.on("error", (err) => {
-        new import_obsidian41.Notice("Error!");
-        outputter.writeErr(err.toString());
-      });
-    });
-  }
-};
-
-// src/executors/PrologExecutor.ts
-var prolog = __toESM(require_core());
-var import_obsidian42 = require("obsidian");
-var PrologExecutor = class extends Executor {
-  constructor(settings, file) {
-    super(file, "prolog");
-    this.runQueries = true;
-    this.maxPrologAnswers = settings.maxPrologAnswers;
-  }
-  run(code, outputter, cmd, cmdArgs, ext) {
-    return __async(this, null, function* () {
-      const prologCode = code.split(/\n+%+\s*query\n+/);
-      if (prologCode.length < 2)
-        return;
-      outputter.closeInput();
-      outputter.clear();
-      this.runPrologCode(prologCode[0], prologCode[1], outputter);
-    });
-  }
-  stop() {
-    return __async(this, null, function* () {
-      this.runQueries = false;
-      this.emit("close");
-    });
-  }
-  runPrologCode(facts, queries, out) {
-    new import_obsidian42.Notice("Running...");
-    const session = prolog.create();
-    session.consult(
-      facts,
-      {
-        success: () => {
-          session.query(
-            queries,
-            {
-              success: (goal) => __async(this, null, function* () {
-                console.debug(`Prolog goal: ${goal}`);
-                let answersLeft = true;
-                let counter = 0;
-                while (answersLeft && counter < this.maxPrologAnswers) {
-                  yield session.answer({
-                    success: function(answer) {
-                      new import_obsidian42.Notice("Done!");
-                      console.debug(`Prolog result: ${session.format_answer(answer)}`);
-                      out.write(session.format_answer(answer) + "\n");
-                      out.closeInput();
-                    },
-                    fail: function() {
-                      answersLeft = false;
-                    },
-                    error: function(err) {
-                      new import_obsidian42.Notice("Error!");
-                      console.error(err);
-                      answersLeft = false;
-                      out.writeErr(`Error while executing code: ${err}`);
-                      out.closeInput();
-                    },
-                    limit: function() {
-                      answersLeft = false;
-                    }
-                  });
-                  counter++;
-                }
-              }),
-              error: (err) => {
-                new import_obsidian42.Notice("Error!");
-                out.writeErr("Query failed.\n");
-                out.writeErr(err.toString());
-              }
-            }
-          );
-        },
-        error: (err) => {
-          out.writeErr("Adding facts failed.\n");
-          out.writeErr(err.toString());
-        }
-      }
-    );
-  }
-};
-
-// src/executors/python/wrapPython.ts
-var PLT_DEFAULT_BACKEND_PY_VAR = "OBSIDIAN_EXECUTE_CODE_MATPLOTLIB_DEFAULT_BACKEND";
-var wrapPython_default = (code, globalsName, printName, finishSigil, embedPlots) => `
-${embedPlots ? `
-try:
-    matplotlib.use('agg')
-except:
-    pass
-` : `
-try:
-    matplotlib.use(${PLT_DEFAULT_BACKEND_PY_VAR})
-except:
-    pass
-`}
-
-try:
-    try:
-        ${printName}(eval(
-            compile(${JSON.stringify(code.replace(/\r\n/g, "\n") + "\n")}, "<code block>", "eval"),
-            ${globalsName}
-        ))
-    except SyntaxError:
-        exec(
-            compile(${JSON.stringify(code.replace(/\r\n/g, "\n") + "\n")}, "<code block>", "exec"),
-            ${globalsName}
-        )
-except Exception as e:
-    ${printName} (e, file=sys.stderr)
-finally:
-    ${printName} ("${finishSigil}", end="")
-
-`;
-
-// src/executors/python/PythonExecutor.ts
-var PythonExecutor = class extends ReplExecutor {
-  constructor(settings, file) {
-    const args = settings.pythonArgs ? settings.pythonArgs.split(" ") : [];
-    args.unshift("-i");
-    super(
-      settings,
-      settings.pythonPath,
-      args,
-      file,
-      "python"
-    );
-    this.printFunctionName = `__print_${Math.random().toString().substring(2)}_${Date.now()}`;
-    this.globalsDictionaryName = `__globals_${Math.random().toString().substring(2)}_${Date.now()}`;
-  }
-  removePrompts(output, source) {
-    if (source == "stderr") {
-      return output.replace(/(^((\.\.\.|>>>) )+)|(((\.\.\.|>>>) )+$)/g, "");
-    } else {
-      return output;
-    }
-  }
-  wrapCode(code, finishSigil) {
-    return wrapPython_default(
-      code,
-      this.globalsDictionaryName,
-      this.printFunctionName,
-      finishSigil,
-      this.settings.pythonEmbedPlots
-    );
-  }
-  setup() {
-    return __async(this, null, function* () {
-      this.addJobToQueue((resolve, reject) => {
-        this.process.stdin.write(
-          `
-${this.globalsDictionaryName} = {**globals()}
-${this.settings.pythonEmbedPlots ? `
-try:
-    import matplotlib
-    ${PLT_DEFAULT_BACKEND_PY_VAR} = matplotlib.get_backend()
-except:
-    pass
-` : ""}
-
-from __future__ import print_function
-import sys
-${this.printFunctionName} = print
-`.replace(/\r\n/g, "\n")
-        );
-        this.process.stderr.once("data", (data) => {
-          resolve();
-        });
-      }).then(() => {
-      });
-    });
-  }
-};
-
-// src/executors/ClingExecutor.ts
-var child_process2 = __toESM(require("child_process"));
-var ClingExecutor = class extends NonInteractiveCodeExecutor {
-  constructor(settings, file, language) {
-    super(settings, false, file, language);
-  }
-  run(codeBlockContent, outputter, cmd, args, ext) {
-    if (this.settings[`${this.language}UseMain`]) {
-      this.getTempFile(ext);
-      let code;
-      if (ext != "c") {
-        code = codeBlockContent.replace(/main\(\)/g, `temp_${this.tempFileId}()`);
-      } else {
-        code = codeBlockContent;
-      }
-      return super.run(code, outputter, this.settings.clingPath, args, ext);
-    }
-    return new Promise((resolve, reject) => {
-      const childArgs = [...args.split(" "), ...codeBlockContent.split("\n")];
-      const child = child_process2.spawn(this.settings.clingPath, childArgs, { env: process.env, shell: this.usesShell });
-      this.resolveRun = resolve;
-      this.handleChildOutput(child, outputter, this.tempFileId);
-    });
-  }
-  handleChildOutput(child, outputter, fileName) {
-    return __async(this, null, function* () {
-      __superGet(ClingExecutor.prototype, this, "handleChildOutput").call(this, child, outputter, fileName);
-      child.stdout.removeListener("data", this.stdoutCb);
-      child.stderr.removeListener("data", this.stderrCb);
-      const fileId = this.tempFileId;
-      const replaceTmpId = (data) => {
-        return data.replace(new RegExp(`temp_${fileId}\\(\\)`, "g"), "main()");
-      };
-      child.stdout.on("data", (data) => {
-        this.stdoutCb(replaceTmpId(data.toString()));
-      });
-      child.stderr.on("data", (data) => {
-        this.stderrCb(replaceTmpId(data.toString()));
-      });
-    });
-  }
-};
-
-// src/executors/CppExecutor.ts
-var CppExecutor = class extends ClingExecutor {
-  constructor(settings, file) {
-    super(settings, file, "cpp");
-  }
-  run(codeBlockContent, outputter, cmd, cmdArgs, ext) {
-    return super.run(codeBlockContent, outputter, cmd, `-std=${this.settings.clingStd} ${cmdArgs}`, "cpp");
-  }
-};
-
-// src/executors/RExecutor.ts
-var RExecutor = class extends ReplExecutor {
-  constructor(settings, file) {
-    const args = settings.RArgs ? settings.RArgs.split(" ") : [];
-    let conArgName = `notebook_connection_${Math.random().toString(16).substring(2)}`;
-    args.unshift(
-      `-e`,
-      `${conArgName}=file("stdin", "r"); while(1) { eval(parse(text=tail(readLines(con = ${conArgName}, n=1)))) }`
-    );
-    super(settings, settings.RPath, args, file, "r");
-  }
-  setup() {
-    return __async(this, null, function* () {
-      console.log("setup");
-    });
-  }
-  wrapCode(code, finishSigil) {
-    return `tryCatch({
-			cat(sprintf("%s", 
-				eval(parse(text = ${JSON.stringify(code)} ))
-			))
-		},
-		error = function(e){
-			cat(sprintf("%s", e), file=stderr())
-		}, 
-		finally = {
-			cat(${JSON.stringify(finishSigil)});
-			flush.console()
-		})`.replace(/\r?\n/g, "") + "\n";
-  }
-  removePrompts(output, source) {
-    return output;
-  }
-};
-
-// src/executors/CExecutor.ts
-var CExecutor = class extends ClingExecutor {
-  constructor(settings, file) {
-    super(settings, file, "c");
-  }
-  run(codeBlockContent, outputter, cmd, cmdArgs, ext) {
-    const install_path = this.settings[`clingPath`];
-    if (install_path.endsWith("cling") || install_path.endsWith("cling.exe")) {
-      return super.run(codeBlockContent, outputter, cmd, this.settings[`cArgs`], "cpp");
-    } else {
-      return super.run(codeBlockContent, outputter, cmd, this.settings[`cArgs`], "c");
-    }
-  }
-};
-
-// src/executors/FSharpExecutor.ts
-var FSharpExecutor = class extends NonInteractiveCodeExecutor {
-  constructor(settings, file) {
-    super(settings, false, file, "fsharp");
-  }
-  run(codeBlockContent, outputter, cmd, args, ext) {
-    return super.run(codeBlockContent, outputter, cmd, `fsi ${args}`, "cpp");
-  }
-};
-
-// src/ExecutorContainer.ts
-var interactiveExecutors = {
-  "js": NodeJSExecutor,
-  "python": PythonExecutor,
-  "r": RExecutor
-};
-var nonInteractiveExecutors = {
-  "prolog": PrologExecutor,
-  "cpp": CppExecutor,
-  "c": CExecutor,
-  "fsharp": FSharpExecutor
-};
-var ExecutorContainer = class extends import_events2.EventEmitter {
-  constructor(plugin) {
-    super();
-    this.executors = {};
-    this.plugin = plugin;
-    window.addEventListener("beforeunload", () => __async(this, null, function* () {
-      for (const executor of this) {
-        executor.stop();
-      }
-    }));
-  }
-  *[Symbol.iterator]() {
-    for (const language in this.executors) {
-      for (const file in this.executors[language]) {
-        yield this.executors[language][file];
-      }
-    }
-  }
-  getExecutorFor(file, language, needsShell) {
-    if (!this.executors[language])
-      this.executors[language] = {};
-    if (!this.executors[language][file])
-      this.setExecutorInExecutorsObject(file, language, needsShell);
-    return this.executors[language][file];
-  }
-  setExecutorInExecutorsObject(file, language, needsShell) {
-    const exe = this.createExecutorFor(file, language, needsShell);
-    if (!(exe instanceof NonInteractiveCodeExecutor))
-      this.emit("add", exe);
-    exe.on("close", () => {
-      delete this.executors[language][file];
-    });
-    this.executors[language][file] = exe;
-  }
-  createExecutorFor(file, language, needsShell) {
-    if (this.plugin.settings[`${language}Interactive`]) {
-      if (!(language in interactiveExecutors))
-        throw new Error(`Attempted to use interactive executor for '${language}' but no such executor exists`);
-      return new interactiveExecutors[language](this.plugin.settings, file);
-    } else if (language in nonInteractiveExecutors)
-      return new nonInteractiveExecutors[language](this.plugin.settings, file);
-    return new NonInteractiveCodeExecutor(this.plugin.settings, needsShell, file, language);
-  }
-};
-
-// src/ExecutorManagerView.ts
-var import_obsidian43 = require("obsidian");
-var import_path2 = require("path");
-var EXECUTOR_MANAGER_VIEW_ID = "code-execute-manage-executors";
-var EXECUTOR_MANAGER_OPEN_VIEW_COMMAND_ID = "code-execute-open-manage-executors";
-var ExecutorManagerView = class extends import_obsidian43.ItemView {
-  constructor(leaf, executors) {
-    super(leaf);
-    this.executors = executors;
-    this.executors.on("add", (executor) => {
-      this.addExecutorElement(executor);
-    });
-  }
-  static activate(workspace) {
-    return __async(this, null, function* () {
-      workspace.detachLeavesOfType(EXECUTOR_MANAGER_VIEW_ID);
-      yield workspace.getRightLeaf(false).setViewState({
-        type: EXECUTOR_MANAGER_VIEW_ID,
-        active: true
-      });
-      workspace.revealLeaf(
-        workspace.getLeavesOfType(EXECUTOR_MANAGER_VIEW_ID)[0]
-      );
-    });
-  }
-  getViewType() {
-    return EXECUTOR_MANAGER_VIEW_ID;
-  }
-  getDisplayText() {
-    return "Execution Runtimes";
-  }
-  getIcon() {
-    return "command-glyph";
-  }
-  onOpen() {
-    return __async(this, null, function* () {
-      const container = this.contentEl;
-      container.empty();
-      container.classList.add("manage-executors-view");
-      const header = document.createElement("h3");
-      header.textContent = "Runtimes";
-      container.appendChild(header);
-      this.list = document.createElement("ul");
-      container.appendChild(document.createElement("div")).appendChild(this.list);
-      for (const executor of this.executors) {
-        this.addExecutorElement(executor);
-      }
-      this.addEmptyState();
-    });
-  }
-  onClose() {
-    return __async(this, null, function* () {
-    });
-  }
-  addEmptyState() {
-    this.emptyStateElement = document.createElement("div");
-    this.emptyStateElement.classList.add("empty-state");
-    this.emptyStateElement.textContent = "There are currently no runtimes online. Run some code blocks, and their runtimes will appear here.";
-    this.list.parentElement.appendChild(this.emptyStateElement);
-    this.updateEmptyState();
-  }
-  updateEmptyState() {
-    if (this.list.childElementCount == 0) {
-      this.emptyStateElement.style.display = "block";
-    } else {
-      this.emptyStateElement.style.display = "none";
-    }
-  }
-  addExecutorElement(executor) {
-    const li = document.createElement("li");
-    const simpleName = (0, import_path2.basename)(executor.file);
-    const langElem = document.createElement("small");
-    langElem.textContent = executor.language;
-    li.appendChild(langElem);
-    li.appendChild(this.createFilenameRowElem(simpleName));
-    executor.on("close", () => {
-      li.remove();
-      this.updateEmptyState();
-    });
-    const button = document.createElement("button");
-    button.addEventListener("click", () => executor.stop());
-    (0, import_obsidian43.setIcon)(button, "trash");
-    button.setAttribute("aria-label", "Stop Runtime");
-    li.appendChild(button);
-    this.list.appendChild(li);
-    this.updateEmptyState();
-  }
-  createFilenameRowElem(text) {
-    const fElem = document.createElement("span");
-    fElem.textContent = text;
-    fElem.classList.add("filename");
-    return fElem;
-  }
-};
+  });
+}
 
 // src/runAllCodeBlocks.ts
-var import_obsidian44 = require("obsidian");
 function runAllCodeBlocks(workspace) {
   const lastActiveView = workspace.getMostRecentLeaf().view;
-  if (lastActiveView instanceof import_obsidian44.TextFileView) {
-    lastActiveView.containerEl.querySelectorAll("button." + runButtonClass).forEach((button) => {
+  if (lastActiveView instanceof import_obsidian48.TextFileView) {
+    lastActiveView.containerEl.querySelectorAll("button." + buttonClass).forEach((button) => {
       button.click();
     });
   }
 }
 
 // src/ReleaseNoteModal.ts
-var import_obsidian45 = require("obsidian");
-var ReleaseNoteModel = class extends import_obsidian45.Modal {
+var import_obsidian49 = require("obsidian");
+var ReleaseNoteModel = class extends import_obsidian49.Modal {
   constructor(app) {
     super(app);
-    this.component = new import_obsidian45.Component();
+    this.component = new import_obsidian49.Component();
   }
   onOpen() {
-    let text = "# Release Note: Execute Code Plugin v2.0.0\n\nWe are happy to announce the release of version 2.0.0. This release brings a special change: You can now make the output of your code blocks persistent.If enabled, the output of your code blocks will be saved in the markdown file and will also be exported to PDF.\n\n\nYou can enable this in the settings. Be aware that this feature is still experimental and might not work as expected. Check the [github page](https://github.com/twibiral/obsidian-execute-code) for more information.\n\n\nThank you for using the Execute Code Plugin! [Here you can find a detailed change log.](https://github.com/twibiral/obsidian-execute-code/blob/master/CHANGELOG.md)\n\n\nIf you enjoy using the plugin, consider supporting the development via [PayPal](https://www.paypal.com/paypalme/timwibiral) or [Buy Me a Coffee](https://www.buymeacoffee.com/twibiral).";
+    let text = "# Release Note: Execute Code Plugin v2.1.0\n\nThank you for updating to version 2.1.0! This update includes some bug fixes and improvements and brings two new features:\n- [LaTeX Support](https://github.com/twibiral/obsidian-execute-code/pull/400): You can now render LaTeX code in your code blocks. Just add the language tag `latex` to your code block.\n- New Magic command: [@content](https://github.com/twibiral/obsidian-execute-code/pull/390) allows you to load the file content of the open note into your code block.\n\n\n\n[Here you can find a detailed change log.](https://github.com/twibiral/obsidian-execute-code/blob/master/CHANGELOG.md)\n\n\nIf you enjoy using the plugin, consider supporting the development via [PayPal](https://www.paypal.com/paypalme/timwibiral) or [Buy Me a Coffee](https://www.buymeacoffee.com/twibiral).\n\n\n---\n\n\n[OLD] Release Notes v2.0.0\n\nWe are happy to announce the release of version 2.0.0. This release brings a special change: You can now make the output of your code blocks persistent.If enabled, the output of your code blocks will be saved in the markdown file and will also be exported to PDF.\n\n\nYou can enable this in the settings. Be aware that this feature is still experimental and might not work as expected. Check the [github page](https://github.com/twibiral/obsidian-execute-code) for more information.";
     this.component.load();
-    import_obsidian45.MarkdownRenderer.render(this.app, text, this.contentEl, this.app.workspace.getActiveFile().path, this.component);
+    import_obsidian49.MarkdownRenderer.render(this.app, text, this.contentEl, this.app.workspace.getActiveFile().path, this.component);
   }
 };
 
 // src/main.ts
-var languageAliases = ["javascript", "typescript", "bash", "csharp", "wolfram", "nb", "wl", "hs", "py"];
+var languageAliases = ["javascript", "typescript", "bash", "csharp", "wolfram", "nb", "wl", "hs", "py", "tex"];
 var canonicalLanguages = [
   "js",
   "ts",
   "cs",
+  "latex",
   "lean",
   "lua",
   "python",
@@ -13176,59 +14145,59 @@ var canonicalLanguages = [
   "php"
 ];
 var supportedLanguages = [...languageAliases, ...canonicalLanguages];
-var buttonText = "Run";
-var runButtonClass = "run-code-button";
-var runButtonDisabledClass = "run-button-disabled";
-var hasButtonClass = "has-run-code-button";
-var ExecuteCodePlugin2 = class extends import_obsidian46.Plugin {
-  onload() {
-    return __async(this, null, function* () {
-      yield this.loadSettings();
-      this.addSettingTab(new SettingsTab(this.app, this));
-      this.executors = new ExecutorContainer(this);
-      this.iterateOpenFilesAndAddRunButtons();
-      this.registerMarkdownPostProcessor((element, _context) => {
-        this.addRunButtons(element, _context.sourcePath, this.app.workspace.getActiveViewOfType(import_obsidian46.MarkdownView));
-      });
-      supportedLanguages.forEach((l) => {
-        console.debug(`Registering renderer for ${l}.`);
-        this.registerMarkdownCodeBlockProcessor(`run-${l}`, (src, el, _ctx) => __async(this, null, function* () {
-          yield import_obsidian46.MarkdownRenderer.renderMarkdown("```" + l + "\n" + src + (src.endsWith("\n") ? "" : "\n") + "```", el, _ctx.sourcePath, null);
-        }));
-      });
-      this.registerView(
-        EXECUTOR_MANAGER_VIEW_ID,
-        (leaf) => new ExecutorManagerView(leaf, this.executors)
-      );
-      this.addCommand({
-        id: EXECUTOR_MANAGER_OPEN_VIEW_COMMAND_ID,
-        name: "Open Code Runtime Management",
-        callback: () => ExecutorManagerView.activate(this.app.workspace)
-      });
-      this.addCommand({
-        id: "run-all-code-blocks-in-file",
-        name: "Run all Code Blocks in Current File",
-        callback: () => runAllCodeBlocks(this.app.workspace)
-      });
-      if (!this.settings.releaseNote2_0_0wasShowed) {
-        this.app.workspace.onLayoutReady(() => {
-          new ReleaseNoteModel(this.app).open();
-        });
-        this.settings.releaseNote2_0_0wasShowed = true;
-        this.saveSettings();
-      }
+var ExecuteCodePlugin2 = class extends import_obsidian50.Plugin {
+  async onload() {
+    await this.loadSettings();
+    this.addSettingTab(new SettingsTab(this.app, this));
+    this.executors = new ExecutorContainer(this);
+    const context = {
+      app: this.app,
+      settings: this.settings,
+      executors: this.executors
+    };
+    addInOpenFiles(context);
+    this.registerMarkdownPostProcessor((element, _context) => {
+      addToAllCodeBlocks(element, _context.sourcePath, this.app.workspace.getActiveViewOfType(import_obsidian50.MarkdownView), context);
     });
+    supportedLanguages.forEach((l) => {
+      console.debug(`Registering renderer for ${l}.`);
+      this.registerMarkdownCodeBlockProcessor(`run-${l}`, async (src, el, _ctx) => {
+        await import_obsidian50.MarkdownRenderer.render(this.app, "```" + l + "\n" + src + (src.endsWith("\n") ? "" : "\n") + "```", el, _ctx.sourcePath, new import_obsidian50.Component());
+      });
+    });
+    this.registerView(
+      EXECUTOR_MANAGER_VIEW_ID,
+      (leaf) => new ExecutorManagerView(leaf, this.executors)
+    );
+    this.addCommand({
+      id: EXECUTOR_MANAGER_OPEN_VIEW_COMMAND_ID,
+      name: "Open Code Runtime Management",
+      callback: () => ExecutorManagerView.activate(this.app.workspace)
+    });
+    this.addCommand({
+      id: "run-all-code-blocks-in-file",
+      name: "Run all Code Blocks in Current File",
+      callback: () => runAllCodeBlocks(this.app.workspace)
+    });
+    if (!this.settings.releaseNote2_1_0wasShowed) {
+      this.app.workspace.onLayoutReady(() => {
+        new ReleaseNoteModel(this.app).open();
+      });
+      this.settings.releaseNote2_1_0wasShowed = true;
+      this.saveSettings();
+    }
+    applyLatexBodyClasses(this.app, this.settings);
   }
   onunload() {
     document.querySelectorAll("pre > code").forEach((codeBlock) => {
       const pre = codeBlock.parentElement;
       const parent = pre.parentElement;
-      if (parent.hasClass(hasButtonClass)) {
-        parent.removeClass(hasButtonClass);
+      if (parent.hasClass(codeBlockHasButtonClass)) {
+        parent.removeClass(codeBlockHasButtonClass);
       }
     });
-    document.querySelectorAll("." + runButtonClass).forEach((button) => button.remove());
-    document.querySelectorAll("." + runButtonDisabledClass).forEach((button) => button.remove());
+    document.querySelectorAll("." + buttonClass).forEach((button) => button.remove());
+    document.querySelectorAll("." + disabledClass).forEach((button) => button.remove());
     document.querySelectorAll(".clear-button").forEach((button) => button.remove());
     document.querySelectorAll(".language-output").forEach((out) => out.remove());
     for (const executor of this.executors) {
@@ -13237,273 +14206,14 @@ var ExecuteCodePlugin2 = class extends import_obsidian46.Plugin {
     }
     console.log("Unloaded plugin: Execute Code");
   }
-  loadSettings() {
-    return __async(this, null, function* () {
-      this.settings = Object.assign({}, DEFAULT_SETTINGS, yield this.loadData());
-      if (process.platform !== "win32") {
-        this.settings.wslMode = false;
-      }
-    });
-  }
-  saveSettings() {
-    return __async(this, null, function* () {
-      yield this.saveData(this.settings);
-    });
-  }
-  iterateOpenFilesAndAddRunButtons() {
-    this.app.workspace.iterateRootLeaves((leaf) => {
-      if (leaf.view instanceof import_obsidian46.MarkdownView) {
-        this.addRunButtons(leaf.view.contentEl, leaf.view.file.path, leaf.view);
-      }
-    });
-  }
-  addRunButtons(element, file, view) {
-    Array.from(element.getElementsByTagName("code")).forEach((codeBlock) => {
-      if (codeBlock.className.match(/^language-\{\w+/i)) {
-        codeBlock.className = codeBlock.className.replace(/^language-\{(\w+)/i, "language-$1 {");
-        codeBlock.parentElement.className = codeBlock.className;
-      }
-      const language = codeBlock.className.toLowerCase();
-      if (!language || !language.contains("language-"))
-        return;
-      const pre = codeBlock.parentElement;
-      const parent = pre.parentElement;
-      const srcCode = codeBlock.getText();
-      let sanitizedClassList = this.sanitizeClassListOfCodeBlock(codeBlock);
-      const canonicalLanguage = getLanguageAlias(
-        supportedLanguages.find((lang) => sanitizedClassList.contains(`language-${lang}`))
-      );
-      if (canonicalLanguage && !parent.classList.contains(hasButtonClass)) {
-        const out = new Outputter(codeBlock, this.settings, view);
-        parent.classList.add(hasButtonClass);
-        const button = this.createRunButton();
-        pre.appendChild(button);
-        this.addListenerToButton(canonicalLanguage, srcCode, button, out, file);
-      }
-    });
-  }
-  sanitizeClassListOfCodeBlock(codeBlock) {
-    let sanitizedClassList = Array.from(codeBlock.classList);
-    return sanitizedClassList.map((c) => c.toLowerCase());
-  }
-  addListenerToButton(language, srcCode, button, out, file) {
-    if (language === "js") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        let transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        transformedCode = addMagicToJS(transformedCode);
-        this.runCode(transformedCode, out, button, this.settings.nodePath, this.settings.nodeArgs, this.settings.jsFileExtension, language, file);
-      }));
-    } else if (language === "java") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCode(transformedCode, out, button, this.settings.javaPath, this.settings.javaArgs, this.settings.javaFileExtension, language, file);
-      }));
-    } else if (language === "python") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        let transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        if (this.settings.pythonEmbedPlots)
-          transformedCode = addInlinePlotsToPython(transformedCode, TOGGLE_HTML_SIGIL);
-        transformedCode = addMagicToPython(transformedCode);
-        this.runCode(transformedCode, out, button, this.settings.pythonPath, this.settings.pythonArgs, this.settings.pythonFileExtension, language, file);
-      }));
-    } else if (language === "shell") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.shellPath, this.settings.shellArgs, this.settings.shellFileExtension, language, file);
-      }));
-    } else if (language === "batch") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.batchPath, this.settings.batchArgs, this.settings.batchFileExtension, language, file);
-      }));
-    } else if (language === "powershell") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.powershellPath, this.settings.powershellArgs, this.settings.powershellFileExtension, language, file);
-      }));
-    } else if (language === "cpp") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCode(transformedCode, out, button, this.settings.clingPath, `-std=${this.settings.clingStd} ${this.settings.clingArgs}`, this.settings.cppFileExtension, language, file);
-      }));
-    } else if (language === "prolog") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCode(transformedCode, out, button, "", "", "", language, file);
-        button.className = runButtonClass;
-      }));
-    } else if (language === "groovy") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.groovyPath, this.settings.groovyArgs, this.settings.groovyFileExtension, language, file);
-      }));
-    } else if (language === "rust") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCode(transformedCode, out, button, this.settings.cargoPath, "eval" + this.settings.cargoEvalArgs, this.settings.rustFileExtension, language, file);
-      }));
-    } else if (language === "r") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        let transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        transformedCode = addInlinePlotsToR(transformedCode);
-        this.runCode(transformedCode, out, button, this.settings.RPath, this.settings.RArgs, this.settings.RFileExtension, language, file);
-      }));
-    } else if (language === "go") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCode(transformedCode, out, button, this.settings.golangPath, this.settings.golangArgs, this.settings.golangFileExtension, language, file);
-      }));
-    } else if (language === "kotlin") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.kotlinPath, this.settings.kotlinArgs, this.settings.kotlinFileExtension, language, file);
-      }));
-    } else if (language === "ts") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.tsPath, this.settings.tsArgs, "ts", language, file);
-      }));
-    } else if (language === "lua") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.luaPath, this.settings.luaArgs, this.settings.luaFileExtension, language, file);
-      }));
-    } else if (language === "dart") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.dartPath, this.settings.dartArgs, this.settings.dartFileExtension, language, file);
-      }));
-    } else if (language === "cs") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.csPath, this.settings.csArgs, this.settings.csFileExtension, language, file);
-      }));
-    } else if (language === "haskell") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, "haskell").injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.useGhci ? this.settings.ghciPath : this.settings.runghcPath, this.settings.useGhci ? "" : "-f " + this.settings.ghcPath, "hs", language, file);
-      }));
-    } else if (language === "mathematica") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.mathematicaPath, this.settings.mathematicaArgs, this.settings.mathematicaFileExtension, language, file);
-      }));
-    } else if (language === "scala") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.scalaPath, this.settings.scalaArgs, this.settings.scalaFileExtension, language, file);
-      }));
-    } else if (language === "swift") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.swiftPath, this.settings.swiftArgs, this.settings.swiftFileExtension, language, file);
-      }));
-    } else if (language === "c") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.clingPath, this.settings.clingArgs, "c", language, file);
-      }));
-    } else if (language === "ruby") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.rubyPath, this.settings.rubyArgs, this.settings.rubyFileExtension, language, file);
-      }));
-    } else if (language === "sql") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.sqlPath, this.settings.sqlArgs, "sql", language, file);
-      }));
-    } else if (language === "octave") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        let transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        transformedCode = addInlinePlotsToOctave(transformedCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.octavePath, this.settings.octaveArgs, this.settings.octaveFileExtension, language, file);
-      }));
-    } else if (language === "maxima") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        let transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        transformedCode = addInlinePlotsToMaxima(transformedCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.maximaPath, this.settings.maximaArgs, this.settings.maximaFileExtension, language, file);
-      }));
-    } else if (language === "racket") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.racketPath, this.settings.racketArgs, this.settings.racketFileExtension, language, file);
-      }));
-    } else if (language === "applescript") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.applescriptPath, this.settings.applescriptArgs, this.settings.applescriptFileExtension, language, file);
-      }));
-    } else if (language === "zig") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.zigPath, this.settings.zigArgs, "zig", language, file);
-      }));
-    } else if (language === "ocaml") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.ocamlPath, this.settings.ocamlArgs, "ocaml", language, file);
-      }));
-    } else if (language === "php") {
-      button.addEventListener("click", () => __async(this, null, function* () {
-        button.className = runButtonDisabledClass;
-        const transformedCode = yield new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-        this.runCodeInShell(transformedCode, out, button, this.settings.phpPath, this.settings.phpArgs, this.settings.phpFileExtension, language, file);
-      }));
+  async loadSettings() {
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    if (process.platform !== "win32") {
+      this.settings.wslMode = false;
     }
   }
-  createRunButton() {
-    console.debug("Add run button");
-    const button = document.createElement("button");
-    button.classList.add(runButtonClass);
-    button.setText(buttonText);
-    return button;
-  }
-  runCode(codeBlockContent, outputter, button, cmd, cmdArgs, ext, language, file) {
-    outputter.startBlock();
-    const executor = this.executors.getExecutorFor(file, language, false);
-    executor.run(codeBlockContent, outputter, cmd, cmdArgs, ext).then(() => {
-      button.className = runButtonClass;
-      outputter.closeInput();
-      outputter.finishBlock();
-    });
-  }
-  runCodeInShell(codeBlockContent, outputter, button, cmd, cmdArgs, ext, language, file) {
-    const executor = this.executors.getExecutorFor(file, language, true);
-    executor.run(codeBlockContent, outputter, cmd, cmdArgs, ext).then(() => {
-      button.className = runButtonClass;
-    });
+  async saveSettings() {
+    await this.saveData(this.settings);
   }
 };
 

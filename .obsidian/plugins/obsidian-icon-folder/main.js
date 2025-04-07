@@ -6834,7 +6834,7 @@ class IconizePlugin extends obsidian.Plugin {
                     return;
                 }
                 for (const openedFile of getAllOpenedFiles(this)) {
-                    if (openedFile.path !== file.path) {
+                    if (!file || !openedFile || openedFile.path !== file.path) {
                         continue;
                     }
                     const leaf = openedFile.leaf.view;
