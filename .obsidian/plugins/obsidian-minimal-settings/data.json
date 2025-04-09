@@ -15,7 +15,7 @@
   "tableWidth": "table-default-width",
   "iframeWidth": "iframe-max",
   "mapWidth": "map-default-width",
-  "chartWidth": "chart-default-width",
+  "chartWidth": "chart-max",
   "colorfulHeadings": false,
   "colorfulFrame": true,
   "colorfulActiveStates": true,
