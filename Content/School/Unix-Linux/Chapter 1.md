@@ -19,9 +19,10 @@ There are now hunderds of different linux distributions, each distro comes with 
 
 [Linux vs. Windows](https://vimeo.com/383402074)
 
-![[Pasted image 20250405221742.png|500]]
+<img src="https://i.postimg.cc/1ttRNQcw/Pasted-image-20250405221742.png" alt="Pasted-image-20250405221742"/>
 
-![[Pasted image 20250405222351.png|400]]
+
+<img src="https://i.postimg.cc/cHbxRbXj/Pasted-image-20250405222351.png" alt="Pasted-image-20250405222351"/>
 
 
 

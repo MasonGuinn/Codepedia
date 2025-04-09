@@ -16,5 +16,6 @@
   "showUnsupportedFiles": true,
   "userIgnoreFilters": [
     "Config/"
-  ]
+  ],
+  "promptDelete": false
 }

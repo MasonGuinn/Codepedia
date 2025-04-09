@@ -1,6 +1,4 @@
 <div class="content-menu">
-  <!-- CHAPTER 1 -->
-  <h3>CHAPTER 1: A TUTORIAL INTRODUCTION</h3>
   <ul>
     <li>
       <a style="background-color: transparent;" href="obsidian://open?vault=Codepedia&file=Content%2FDevelopment%2FAssembly%2FWelcome%20to%20Assembly">

@@ -1,6 +1,7 @@
 ---
-Unix-Linux Chapter: 1
 Unix-Linux Chapter: 2
+Intro to Sociology Chapter: 1
+Database Design Chapter: 1
 ---
 #  %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">Unix-Linux</span></button>
 Current Chapter: `INPUT[number:["Unix-Linux Chapter"]]`
@@ -61,7 +62,7 @@ Current Chapter: `INPUT[number:["Unix-Linux Chapter"]]`
 </div>
 
 #  %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">Intro to Sociology </span></button>
-Current Chapter: `INPUT[number:["Unix-Linux Chapter"]]`
+Current Chapter: `INPUT[number:["Intro to Sociology Chapter"]]`
 
 <div class="content-menu">
   <ul>
@@ -120,61 +121,59 @@ Current Chapter: `INPUT[number:["Unix-Linux Chapter"]]`
 
 
 #  %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">Database Design </span></button>
-Current Chapter: `INPUT[number:["Unix-Linux Chapter"]]`
+Current Chapter: `INPUT[number:["Database Design Chapter"]]`
 
 <div class="content-menu">
   <ul>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Intro to Sociology/Chapter 1">
+      <a href="obsidian://open?vault=Codepedia&file=Database Design/Chapter 1">
         <span>Chapter 1</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Intro to Sociology/Chapter 2">
+      <a href="obsidian://open?vault=Codepedia&file=Database Design/Chapter 2">
         <span>Chapter 2</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Intro to Sociology/Chapter 3">
+      <a href="obsidian://open?vault=Codepedia&file=Database Design/Chapter 3">
         <span>Chapter 3</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Intro to Sociology/Chapter 4">
+      <a href="obsidian://open?vault=Codepedia&file=Database Design/Chapter 4">
         <span>Chapter 4</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Intro to Sociology/Chapter 5">
+      <a href="obsidian://open?vault=Codepedia&file=Database Design/Chapter 5">
         <span>Chapter 5</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Intro to Sociology/Chapter 6">
+      <a href="obsidian://open?vault=Codepedia&file=Database Design/Chapter 6">
         <span>Chapter 6</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Intro to Sociology/Chapter 7">
+      <a href="obsidian://open?vault=Codepedia&file=Database Design/Chapter 7">
         <span>Chapter 7</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Intro to Sociology/Chapter 8">
+      <a href="obsidian://open?vault=Codepedia&file=Database Design/Chapter 8">
         <span>Chapter 8</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Intro to Sociology/Chapter 9">
+      <a href="obsidian://open?vault=Codepedia&file=Database Design/Chapter 9">
         <span>Chapter 9</span>
       </a>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Intro to Sociology/Chapter 10">
+      <a href="obsidian://open?vault=Codepedia&file=Database Design/Chapter 10">
         <span>Chapter 10</span>
       </a>
     </li>
   </ul>
 </div>
-
-
