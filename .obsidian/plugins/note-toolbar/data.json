@@ -2250,45 +2250,6 @@
           "inGallery": false
         },
         {
-          "uuid": "6fd8fd9a-7a58-4711-ba70-872b8d32ad25",
-          "label": "",
-          "icon": "lucide-edit",
-          "link": "39cd58d5-5fe8-4715-bcad-20831a7af34f",
-          "linkAttr": {
-            "commandId": "",
-            "hasVars": false,
-            "type": "menu"
-          },
-          "tooltip": "Edit",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          },
-          "inGallery": false
-        },
-        {
           "uuid": "a606b2f0-c018-45dd-b1ea-6ae3339efa98",
           "label": "",
           "icon": "lucide-settings-2",
@@ -2465,7 +2426,7 @@
           }
         }
       },
-      "updated": "2025-04-06T06:29:33.537Z",
+      "updated": "2025-04-09T02:20:13.553Z",
       "hasCommand": false
     },
     {
@@ -2480,7 +2441,7 @@
           "uuid": "676ac0ab-ae5f-4658-8430-06a6862e6562",
           "label": "School",
           "icon": "lucide-graduation-cap",
-          "link": "Content/Notes/School/Welcome to School.md",
+          "link": "Content/School/Spring 2025.md",
           "linkAttr": {
             "commandId": "",
             "hasVars": false,

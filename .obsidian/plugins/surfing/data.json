@@ -24,7 +24,7 @@
   "useCustomIcons": false,
   "useWebview": false,
   "useIconList": true,
-  "darkMode": false,
+  "darkMode": true,
   "randomBackground": false,
   "lastOpenedFiles": false,
   "bookmarkManager": {

@@ -1,3 +1,4 @@
 > [!note-toolbar|button-center-border] Notes-Menu
-> - [[Content/Notes/School/Welcome to School.md|:LiGraduationCap: School]]
+> - [[Spring 2025|:LiGraduationCap: Spring 2025]]
+
 

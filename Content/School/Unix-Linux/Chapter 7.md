@@ -1,7 +1,7 @@
 ---
-backward: "[[Content/Notes/School/Unix-Linux/Chapter 6]]"
-forward: "[[Content/Notes/School/Unix-Linux/Chapter 8]]"
-parent: "[[Welcome to School]]"
+backward: "[[Content/School/Unix-Linux/Chapter 6]]"
+forward: "[[Content/School/Unix-Linux/Chapter 8]]"
+parent: "[[Spring 2025]]"
 ---
 
  ## <span class="section-sub-heading heading-collapse-indicator">Windows Server 2016 Storage Options Summary</span>

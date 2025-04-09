@@ -1,7 +1,7 @@
 ---
-backward: "[[Welcome to School]]"
-forward: "[[Content/Notes/School/Unix-Linux/Chapter 2]]"
-parent: "[[Welcome to School]]"
+backward: "[[Spring 2025]]"
+forward: "[[Content/School/Unix-Linux/Chapter 2]]"
+parent: "[[Spring 2025]]"
 ---
 
 

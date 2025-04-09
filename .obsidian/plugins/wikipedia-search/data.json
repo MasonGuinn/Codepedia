@@ -13,11 +13,11 @@
       "templateFilePath": ""
     }
   ],
-  "autoInsertSingleResponseQueries": false,
-  "autoSearchNoteTitle": false,
+  "autoInsertSingleResponseQueries": true,
+  "autoSearchNoteTitle": true,
   "prioritizeArticleTitle": false,
   "cleanupIntros": true,
-  "openArticleInFullscreen": false,
+  "openArticleInFullscreen": true,
   "openCreatedNotes": false,
   "overrideFiles": false,
   "showedWebviewerMessage": false,

@@ -5,11 +5,16 @@
   "readableLineLength": true,
   "strictLineBreaks": false,
   "showIndentGuide": false,
-  "spellcheck": false,
+  "spellcheck": true,
   "newFileLocation": "current",
   "attachmentFolderPath": "Config/Resources",
   "showInlineTitle": true,
   "showLineNumber": false,
   "foldHeading": true,
-  "foldIndent": true
+  "foldIndent": true,
+  "livePreview": true,
+  "showUnsupportedFiles": true,
+  "userIgnoreFilters": [
+    "Config/"
+  ]
 }

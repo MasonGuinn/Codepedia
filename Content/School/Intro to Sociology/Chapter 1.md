@@ -1,7 +1,7 @@
 ---
-backward: "[[Welcome to School]]"
-forward: "[[Content/Notes/School/Intro to Sociology/Chapter 2]]"
-parent: "[[Welcome to School]]"
+backward: "[[Spring 2025]]"
+forward: "[[Content/School/Intro to Sociology/Chapter 2]]"
+parent: "[[Spring 2025]]"
 ---
 <center>
 	<a style="text-decoration: none; font-size: 20;" href="https://prezi.com/qkammtyvpcwp/the-three-major-sociologcal-perspectives/?utm_campaign=share&utm_medium=copy">Three Major Sociological Perspectives</a>

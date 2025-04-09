@@ -14,13 +14,8 @@
       "autoCreate": false,
       "autoScroll": false,
       "pin": false,
-      "commands": [
-        {
-          "id": "editor:fold-all",
-          "period": "Both"
-        }
-      ],
-      "alwaysApply": false,
+      "commands": [],
+      "alwaysApply": true,
       "hideReleaseNotes": true
     }
   },
