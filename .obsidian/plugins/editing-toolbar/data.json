@@ -24,6 +24,16 @@
       "icon": "eraser"
     },
     {
+      "id": "editing-toolbar:header2-text",
+      "name": "Header 2",
+      "icon": "header-2"
+    },
+    {
+      "id": "editing-toolbar:header3-text",
+      "name": "Header 3",
+      "icon": "header-3"
+    },
+    {
       "id": "SubmenuCommands-header",
       "name": "submenu",
       "icon": "header-n",
@@ -32,16 +42,6 @@
           "id": "editing-toolbar:header1-text",
           "name": "Header 1",
           "icon": "header-1"
-        },
-        {
-          "id": "editing-toolbar:header2-text",
-          "name": "Header 2",
-          "icon": "header-2"
-        },
-        {
-          "id": "editing-toolbar:header3-text",
-          "name": "Header 3",
-          "icon": "header-3"
         },
         {
           "id": "editing-toolbar:header4-text",
@@ -84,6 +84,38 @@
       "id": "editing-toolbar:toggle-highlight",
       "name": "==Highlight==",
       "icon": "highlight-glyph"
+    },
+    {
+      "id": "SubmenuCommands-lucdf3en5",
+      "name": "submenu",
+      "icon": "edit",
+      "SubmenuCommands": [
+        {
+          "id": "editing-toolbar:editor-copy",
+          "name": "Copy",
+          "icon": "lucide-copy"
+        },
+        {
+          "id": "editing-toolbar:editor-cut",
+          "name": "Cut",
+          "icon": "lucide-scissors"
+        },
+        {
+          "id": "editing-toolbar:editor-paste",
+          "name": "Paste",
+          "icon": "lucide-clipboard-type"
+        },
+        {
+          "id": "editing-toolbar:editor:swap-line-down",
+          "name": "Swap line down",
+          "icon": "lucide-corner-right-down"
+        },
+        {
+          "id": "editing-toolbar:editor:swap-line-up",
+          "name": "Swap line up",
+          "icon": "lucide-corner-right-up"
+        }
+      ]
     },
     {
       "id": "editing-toolbar:editor:attach-file",
