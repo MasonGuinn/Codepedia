@@ -198,12 +198,13 @@
 
 /* Misc */
 
-/* Fixing the note content so it lines up with the note inline title */
-.markdown-preview-view .heading-collapse-indicator {
-    margin-inline-start: initial;
-}
-
 /* Fix code block comments in read-mode */
 .comment {
     display: initial;
+}
+
+/* Hide the heading-collapse-indicator icon if it's sibling has the class ".code-styler-inline.mb-input.mb-input-inline" */
+h2[data-heading]:has(> .code-styler-inline.mb-input.mb-input-inline)>.heading-collapse-indicator.collapse-indicator.collapse-icon.is-collapsed,
+h2[data-heading]:has(> .code-styler-inline.mb-input.mb-input-inline)>.heading-collapse-indicator.collapse-indicator.collapse-icon {
+    display: none;
 }

@@ -3,51 +3,125 @@ backward: "[[Content/School/Database Design/Chapter 1]]"
 forward: "[[Content/School/Database Design/Chapter 3]]"
 parent: "[[Spring 2025]]"
 ---
-![[hoffer_mdm12e_pp_ch02 - Tagged.pdf]]
---
-Example of Strong Entities and binary relationship
+[Open PDF](DatabaseDesignCh2.pdf)
 
-![[Pasted image 20250409175903.png]]
+## 🧱 Entity Types %% fold %% 
 
-**Strong Entity** exists independtly of other types of entities, has its own unique identifier
-**Weak Entity** cannot exist by itself, its tied to an entity, only has partial identifier
-**Identifier Attribute** is an attribute that uniquely identifies indivual instances of an entity type (PrimaryKey), you can use composite primary keys as well.
+### **Strong Entity**
 
-**Composite Primary Key** example: DoctorID, PatientID, DrugID inside one table/entity, the DrugID would give you an error, because it has to be unique, if the same patient came, and got the same drug, it would have the SAME DrugID.
+- Exists independently of other entity types.
+    
+- Has its own **unique identifier** (primary key).
+    
 
-**Foreign Key** is a reference to a primary key, it does NOT have to be unique
+### **Weak Entity**
 
-**Associate Entity** is also a relationship, its a bridge between many-to-many, or associates between entities.
+- Cannot exist on its own.
+    
+- Depends on a **related strong entity**.
+    
+- Identified by a **partial key** and the **primary key of the related entity**.
+    
 
-**Attribute Symbols** consist of Entity Name and the attributes.
+### **Associative (Bridge) Entity**
 
-**Derived attribute** has `[brackets]` around it, a attribute that comes from maybe a calculation (like an age), since it changes, its best to be a derived attribute that calculates the agree (don't hard-code it)
+- Represents a **relationship** (often many-to-many) between two or more entities.
+    
+- Typically includes **foreign keys** referencing related entities.
+    
+- May also contain additional attributes related to the relationship.
+    
 
-**Multi-valued attribute** has `{curly braces}`, for example cell-phone, home-phone, etc, anything with several values.
+---
 
-**Composite attributes** can be further broken down, lets say you just put Name, its a composite attribute because it could be further broken down later into firstName, lastName, etc. Address is also an example.
+## 🆔 Identifiers %% fold %% 
 
-**Relationships** can also have **degrees** (how many entity instances is it going to parcipate with)
+### **Identifier Attribute**
 
-**urinary relationships** have a relationship with itself, for example, if you have an Employee table, all employees have a Manager, so Manager ID would be a foreign key of Employee. A **binary** is between two entities, and a **ternary**, a relationship between three entities.
+- Uniquely identifies each instance of an entity.
+    
+- Also known as a **Primary Key (PK)**.
+    
+- Can be **simple** or **composite**.
+    
 
-Entities **equate** to tables, attributes equate to fields, relationships just show where we put our foreign keys.
+### **Composite Primary Key**
 
-Most often you don't want **optional attributes**.
+- Combines multiple attributes to uniquely identify a record.
+    
+- Example:
+    
+    - `DoctorID`, `PatientID`, and `DrugID` together form a composite PK.
+        
+    - `DrugID` alone may not be unique, especially if the same patient receives the same drug more than once.
+        
 
-0| optional one
-|| mandatory one
-0> Optional Many
-|> Mandatory Many
+### **Foreign Key (FK)**
 
-An entity should not be a system user, or system output.
+- An attribute that references a **primary key** in another table.
+    
+- **Does not need to be unique** (allows many-to-one relationships).
+    
 
-**One to Many Example**: A Customer may have MANY orders, but an order belongs to one and ONLY one customer. **Customer || ---------- 0> Order**
+---
 
-When asked to create an ERD
-1. Find the nouns (ex. departments, divisions, employees, projects, and etc) these will be the tables
-2. Find any business rules, or find information how these entities relate to another (ex. A division operates many departments)
+## 🧩 Attribute Types & Notation %% fold %% 
 
+| Attribute Type        | Description                                                                 | Symbol           |
+| --------------------- | --------------------------------------------------------------------------- | ---------------- |
+| **Derived Attribute** | Calculated from other attributes (e.g., age from DOB). Not stored directly. | `[Brackets]`     |
+| **Multi-valued**      | Can hold multiple values (e.g., phone numbers).                             | `{Curly Braces}` |
+| **Composite**         | Can be broken into smaller parts (e.g., Name → FirstName, LastName).        | —                |
 
-# Tests 
+---
 
+## 🔗 Relationships %% fold %% 
+
+### Degrees of Relationships:
+
+- **Unary** (recursive): Entity relates to itself.  
+    _Example: An `Employee` has a `ManagerID` that references another `Employee`._
+    
+- **Binary**: Relationship between **two** entities.
+    
+- **Ternary**: Relationship between **three** entities.
+    
+
+### Cardinality Notation:
+
+| Symbol | Meaning        |
+| ------ | -------------- |
+| 0\|    | Optional One   |
+| 0>     | Optional Many  |
+| \|\|   | Mandatory One  |
+| \|>    | Mandatory Many |
+
+## 🛠 Design Principles %% fold %% 
+
+- **Entities = Tables**
+    
+- **Attributes = Columns / Fields**
+    
+- **Relationships = Foreign Keys**
+    
+
+> 🛑 Avoid creating entities for **system users** or **system outputs** — entities should represent real-world business objects.
+
+---
+
+## 📐 ERD Design Process %% fold %% 
+
+When asked to create an **Entity-Relationship Diagram (ERD)**:
+
+1. **Identify Nouns**
+    
+    - Find business objects (e.g., departments, employees, projects). These become **entities**.
+        
+2. **Define Relationships**
+    
+    - Use business rules to describe how entities relate to each other.  
+        _Example: “A division operates many departments” → One-to-Many._
+
+## Examples %% fold %% 
+
+![Pasted image 20250409175903.png](app://9c353e2e7618ea687d524125d9d8db69d74b/C:/dev/Obsidian/Codepedia/Config/Resources/Pasted%20image%2020250409175903.png?1744246743390)
