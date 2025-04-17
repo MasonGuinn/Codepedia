@@ -42,7 +42,7 @@
 }
 
 /* Home Note - Music Player Buttons */
-.vert > div {
+.vert>div {
     background-color: transparent;
     opacity: 1.0;
     cursor: pointer;
@@ -206,9 +206,4 @@
 /* Fix code block comments in read-mode */
 .comment {
     display: initial;
-}
-
-/* Hide the collapsible button e.g -> */
-span.heading-collapse-indicator.collapse-indicator.collapse-icon.is-collapsed {
-    display: none;
 }

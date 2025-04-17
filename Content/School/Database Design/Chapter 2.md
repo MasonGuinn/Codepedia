@@ -47,4 +47,7 @@ An entity should not be a system user, or system output.
 When asked to create an ERD
 1. Find the nouns (ex. departments, divisions, employees, projects, and etc) these will be the tables
 2. Find any business rules, or find information how these entities relate to another (ex. A division operates many departments)
-3. 
+
+
+# Tests 
+
