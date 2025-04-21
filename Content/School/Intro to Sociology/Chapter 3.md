@@ -51,9 +51,12 @@ parent: "[[Spring 2025]]"
 
 **Alienation**: A condition in which individuals become disconnected from the products of their labor, the labor process, their own essence, and other people. Marx argued that this is a result of the capitalist mode of production.​
 
+In other words, lack of fulfilment and power experienced by workers in a capitalist society - where means of production is privately owned.
+
 Marx identified four types of alienation:
 1. **Alienation from the Product of Labor**: Workers do not own or control the products they create, leading to a sense of disconnection from the outcome of their work.​
 2. **Alienation from the Process of Labor**: Workers have little control over the production process, performing repetitive tasks that do not allow for creativity or personal input.​
 3. **Alienation from the Self**: The work does not allow individuals to express their human potential and creativity, leading to a loss of self and personal fulfillment.​
-4. **Alienation from Others**: The competitive nature of capitalism isolates workers from one another, hindering genuine social relationships.​
+4. **Alienation from Others**: The competitive nature of capitalism isolates workers from one another, hindering genuine social relationships.​ Since the goal is profit, human resources like employees are fired if profit goes down thus the competitive nature.
+
 
