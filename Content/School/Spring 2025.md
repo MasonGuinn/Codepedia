@@ -1,6 +1,6 @@
 ---
 Unix-Linux Chapter: 2
-Intro to Sociology Chapter: 1
+Intro to Sociology Chapter: 3
 Database Design Chapter: 1
 ---
 #  %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">Unix-Linux</span></button>

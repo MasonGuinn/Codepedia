@@ -4,40 +4,59 @@ forward: "[[Content/School/Intro to Sociology/Chapter 3]]"
 parent: "[[Spring 2025]]"
 ---
 
+### Research Methodologies
 
+#### **Qualitative Research**
+- **Ethnography**: In-depth study of people and cultures through firsthand observation, participation, and interviews.
+- **Participant Observation**: Researcher immerses themselves in a community to observe behaviors and interactions.
+- **Interviews**: Structured or unstructured conversations to gather detailed information.
+- **Meta-Analysis**: Combining data from multiple studies to identify patterns.
+#### **Quantitative Research**
+- **Surveys**: Standardized questionnaires with closed or open-ended questions to collect data on behaviors and opinions.
+- **Experiments**: Controlled studies simulating real-world scenarios to test hypotheses.
+- **Comparative Research**: Analyzing differences and similarities across cultures or societies.​
 
+### Notable Studies & Ethical Considerations
 
+#### **Stanford Prison Experiment (1971)**
 
-Lecture 4/9/2025
---
-**Qualitative Research**
-**Ethnography** - Firsthand study of people using participant observation
-Could be participant observation or interviewing, also meta-analysis
+- **Overview**: Conducted by Philip Zimbardo to examine the psychological effects of perceived power. College students were assigned roles of guards or prisoners in a simulated prison environment.
+    
+- **Outcome**: The study was terminated after six days due to participants exhibiting extreme stress and abusive behaviors.
+    
+- **Ethical Issues**:
+    - Lack of informed consent regarding the potential psychological impact.
+    - Participants were not adequately protected from harm.
+    - Zimbardo's dual role as researcher and prison superintendent compromised objectivity.​
 
-**Quantitative Research**
-**Survey** - standardized and open ended
-**Experiments** - simulating the real world in an artificial environment
-**Comparative research**
+#### **Tearoom Trade Study (1970)**
+- **Overview**: Laud Humphreys studied anonymous sexual encounters between men in public restrooms, known as "tearooms."
+    
+- **Methodology**:
+    - Humphreys misrepresented his identity to participants.
+    - Recorded license plate numbers to track individuals without consent.
+    - Obtained personal information under false pretenses.
+        
+- **Ethical Issues**:
+    - Violation of privacy and lack of informed consent.
+    - Deception and potential harm to participants' reputations.
 
-**The Stanford prison experiment**
-Hard to do experiments in sociology, too much potential for abuse
+### Research Ethics Principle
+- **Respect for Persons**: Acknowledging the autonomy and dignity of participants.
+- **Beneficence**: Maximizing benefits while minimizing potential harm.
+- **Justice**: Ensuring fair distribution of research benefits and burdens.
+- **Informed Consent**: Participants must be fully informed about the study and voluntarily agree to participate.
+- **Institutional Review Board (IRB)**: A committee that reviews research proposals to ensure ethical standards are met.​
 
-**Ethics**
-is the study benefiting at the expense of the subject's physical or emotional well being (respect for persons, do no harm, justice, benefit everyone in society, free of bias)
+### Key Concepts
+- **Sociology as a Science**: A social science that relies on systematic methods to study human behavior and societies.
+- **Empirical Investigation**: Gathering data through direct observation or experimentation to test hypotheses.
+- **Hawthorne Effect**: The alteration of behavior by study participants due to their awareness of being observed.
+- **Obedience & Diffusion of Responsibility**: Individuals may comply with authority or assume others will take action, leading to ethical lapses.
 
-**Sociology is a science**, unlike natural sciences, it is a social science.
-****Empirical investigation****
-
-**Tearoom Trade** - Later came out as gay
-
-Before **Institutional Review Board - IRB**
-
-**Obedience** - Diffusion of responsibility
-
----
-**Research Quiz**
-1. When conducting Sociological research we should be free of: **Bias**
-2. Collecting data from subjects who respond to a series of questions about thinking, behaviors, and opinions, often in the form of a questionnaire: **Survey**
-3. Evidence that comes from direct observations, scientifically gathered data, or experimentation: **Empirical**
-4. When study subjects behave in a certain manner due to their awareness of being observed by a researcher: **Hawthorne effect**
-5. Why don't we do more 'experiments' or experimental research in Sociology?: **It is very difficult to recreate the real world in a lab**
+### Research Quiz Review
+1. **Bias**: Researchers should strive to remain objective and free from personal biases.
+2. **Survey**: A method of collecting data through questionnaires to understand behaviors and opinions.
+3. **Empirical Evidence**: Information obtained through observation or experimentation.
+4. **Hawthorne Effect**: Changes in participant behavior due to awareness of being observed.
+5. **Challenges in Sociological Experiments**: Difficulty in replicating real-world conditions and ethical concerns limit experimental research in sociology.

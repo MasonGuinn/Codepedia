@@ -167,10 +167,3 @@ Robert Park - Thought students should actually get out and do research. Hit the 
 
 William Ogburn - Wanted sociology to be more like the natural sciences. He thought all sociological study should be **quantitative**. 
 
-Qualitative Research:
-Ethnography - Firsthand study of people using participant observation, could be participant observation or interviewing, also meta-analysis
-
-Quantitative Research:
-Survey - standarized and open extended
-Experiments - 
-
