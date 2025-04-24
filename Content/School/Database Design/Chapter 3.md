@@ -18,9 +18,9 @@ parent: "[[Spring 2025]]"
 
 ### 🔄 **Generalization vs Specialization**
 
-- **Generalization (Bottom-Up)**: Combine similar entity types into one supertype.
+- **Generalization (Bottom-Up)**: Combine similar entity types into one supertype. (you identify common traits in multiple entities and combine them into a supertype.)
     
-- **Specialization (Top-Down)**: Create subtypes from a general supertype.
+- **Specialization (Top-Down)**: Create subtypes from a general supertype. (you start with a supertype and create subtypes)
 
 ### 🔗 **Relationships in Supertypes/Subtypes**
 
@@ -133,5 +133,9 @@ parent: "[[Spring 2025]]"
 > EER diagram of PVF entity clusters
 
 [[DatabaseDesignCh3.pdf#page=26&selection=7,13,7,47|DatabaseDesignCh3, page 26]]
+
+> Basic PARTY universal data model
+
+[[DatabaseDesignCh3.pdf#page=30&selection=27,4,29,20|DatabaseDesignCh3, page 30]]
 
 
