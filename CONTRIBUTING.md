@@ -8,7 +8,8 @@ Thank you for considering contributing to Codepedia! Your help is greatly apprec
 - **Pull Requests**: When you are ready to submit your changes, create a pull request (PR) targeting the `features` branch. Ensure your PR includes a clear description of the changes and any relevant issue numbers.
 
 > ## Custom CSS
-Our custom CSS is located in `Codepedia\.obsidian\snippets\custom.css`. Please ensure any new styles are added here.
+Our custom CSS is located in `Codepedia\.obsidian\snippets\' Please ensure any new styles are added here.
+Outdated CSS is in the file `custom.css`
 
 > ## Templates
 All templates, including newly created ones, should be placed in `Codepedia\Config\Templates`.

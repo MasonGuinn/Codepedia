@@ -17,21 +17,15 @@ Welcome to Codepedia! This project is a comprehensive collection of coding knowl
 
 Codepedia is designed to be a comprehensive resource for developers of all skill levels, providing valuable information and enhancing coding skills.
 
-## Update 1/10/2025
-Sorry it's been so long, been busy with school work.
-- Did a bit of stuff but honestly forgot what it was lol
-- Better looking development section
-[Video here](Config/Resources/20250111-0058-03.8214527.mp4)
+## Update 4/23/2025
+A lot has been changed/added. Newest feature is MUSIC. Simply click the Music icon on the left sidebar, and a Soundcloud playlist (my personal playlist) will open in the side pane. The Music works throughout all your notes, and you can easily pick a song, pause, and etc. Simply add your own playlist in Community Plugins -> Custom Frames -> SoundCloud -> Show Settings -> URL
 
-(hopefully the video works, because its beautiful)
-
-
-
-⚠️ Minor bug: When placing the cursor on the edge of the global navigation buttons, they may not register and navigate to the note. This was **not** introduced in this update and will be fixed asap.
+Oh yeah, added a editing toolbar for easily making new content when you switch to Editing View.
 
 ## Showcase
 
-Here are some images and videos showcasing Codepedia:
+[🎥 Watch Vault Tour](./20250424-0452-29.7526686.mp4)
+
 
 <img src="Config/Resources/showcase_pic01.png" alt="Showcase picture 1" width="300"/>
 
