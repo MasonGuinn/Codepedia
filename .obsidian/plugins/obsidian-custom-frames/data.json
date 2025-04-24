@@ -1,0 +1,17 @@
+{
+  "frames": [
+    {
+      "url": "https://soundcloud.com/masonguinn/sets/2020-1",
+      "displayName": "SoundCloud",
+      "icon": "music",
+      "hideOnMobile": false,
+      "addRibbonIcon": true,
+      "openInCenter": false,
+      "zoomLevel": 1,
+      "forceIframe": false,
+      "customCss": "",
+      "customJs": ""
+    }
+  ],
+  "padding": 5
+}
