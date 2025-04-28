@@ -4,6 +4,7 @@ forward: "[[Content/School/Intro to Sociology/Chapter 5]]"
 parent: "[[Spring 2025]]"
 ---
 
+We learn culture from socialization 
 
 
 # Lecture 4/21
