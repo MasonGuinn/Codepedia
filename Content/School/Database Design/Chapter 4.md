@@ -6,6 +6,76 @@ parent: "[[Spring 2025]]"
 
 ![[hoffer_mdm12e_pp_ch04-1 1.pptx]]
 
+
+## Why do we need Relational Models?
+You need to **convert entities and relationships into relations (tables)** to actually:
+
+- **Store data**
+    
+- **Run SQL queries**
+    
+- **Enforce integrity rules**
+    
+- **Build applications**
+
+### 📊 Real-World Analogy:
+
+Think of it like this:
+
+|**ER Model**|**Relational Model (Tables)**|
+|---|---|
+|Like a **blueprint**|Like a **house built from the blueprint**|
+|Conceptual & high-level|Concrete & implementable|
+|Helps you understand design|Actually holds your data in a running system|
+
+---
+
+### 🔄 Why We Transform ER Diagrams into Relations:
+
+1. **Computers Don’t Understand “Entities”**
+    
+    - A database engine (like PostgreSQL, MySQL, Oracle) needs tables, not abstract diagrams.
+        
+    - Relations define exactly **how data is stored**—types, constraints, keys.
+        
+2. **ER Diagrams Miss Critical Implementation Details**
+    
+    - In the ER model, you just say:
+        
+        > "Student enrolls in Courses."
+        
+    - In the relational model, you need a **whole join table** with:
+        
+        - Student ID (FK)
+            
+        - Course ID (FK)
+            
+        - Maybe a grade, semester, timestamp
+            
+    - Without converting to relations, there’s no place to store that enrollment info.
+        
+3. **ER Diagrams Have No Integrity Rules Built In**
+    
+    - Relations let you enforce:
+        
+        - **Primary Keys**
+            
+        - **Foreign Keys**
+            
+        - **Data types**
+            
+        - **Not null constraints**
+            
+4. **Applications and Queries Run on Tables**
+    
+    - All real databases—whether you’re building an app, dashboard, or report—**require tables to function**.
+        
+    - You can't SELECT or JOIN from an ER diagram!
+        
+
+---
+
+
 ## Objectives:
 
 - Define key database terms
@@ -23,7 +93,32 @@ parent: "[[Spring 2025]]"
 - Create tables with integrity constraints
     
 - Use normalization to remove anomalies and produce well-structured relations
+
+## 📚 Definition Breakdown:
+
+#### 🔷 **Relation = Table**
+
+- A **relation** is the formal name for a **table** in the **relational model** of a database.
     
+- It consists of:
+    
+    - **Attributes** (columns)
+        
+    - **Tuples** (rows)
+        
+- Example: A `Students` table is a **relation**.
+- Your entities will be your relations/tables
+- Your rows will be your entity instances 
+- Your columns will be your attributes
+    
+
+#### 🔶 **Relationship = Association Between Tables**
+
+- A **relationship** describes how **two or more entities** (tables) are **connected**.
+    
+- Relationships are modeled using **foreign keys**.
+    
+- Example: If each student is enrolled in multiple classes, the **relationship** between `Students` and `Courses` is **many-to-many**.
 
 ## Relational Model Components:
 
@@ -31,7 +126,7 @@ parent: "[[Spring 2025]]"
     
 2. **Data Manipulation:** SQL operations for retrieval and update
     
-3. **Data Integrity:** Business rules to ensure consistent and valid data
+3. **Data Integrity:** Business rules to ensure consistent and valid data (enforced through a set of rules and constraints that prevent invalid, duplicate, or conflicting data from being entered or maintained in the database.)
     
 
 ### Relation Definition: A relation is a named, two-dimensional table.
@@ -170,3 +265,29 @@ parent: "[[Spring 2025]]"
     - Supertype/subtype relationships might be obscured
         
     - **Enterprise Key:** Shared identifier across multiple tables/models
+
+
+## Examples 
+![[Pasted image 20250430175038.png]]
+![[Pasted image 20250430180019.png]]
+
+![[Pasted image 20250430180511.png]]![[Pasted image 20250430180608.png]]
+
+![[Pasted image 20250430180730.png]]![[Pasted image 20250430181322.png]]
+
+![[Pasted image 20250430181806.png]]
+![[Pasted image 20250430182135.png]]
+
+![[Pasted image 20250430182344.png]]
+![[Pasted image 20250430182746.png]]
+
+![[Pasted image 20250430182928.png]]
+![[Pasted image 20250430183034.png]]
+
+![[Pasted image 20250430183341.png]]
+![[Pasted image 20250430184126.png]]
+
+![[Pasted image 20250430184435.png]]
+![[Pasted image 20250430184756.png]]
+
+![[Pasted image 20250430184906.png]]
