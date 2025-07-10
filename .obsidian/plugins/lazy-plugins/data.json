@@ -68,6 +68,12 @@
       },
       "wikipedia-search": {
         "startupType": "instant"
+      },
+      "obsidian-excalidraw-plugin": {
+        "startupType": "short"
+      },
+      "obsidian-kanban": {
+        "startupType": "short"
       }
     }
   }
