@@ -1,0 +1,74 @@
+{
+  "dualConfigs": false,
+  "showConsoleLog": false,
+  "desktop": {
+    "shortDelaySeconds": 5,
+    "longDelaySeconds": 15,
+    "delayBetweenPlugins": 40,
+    "defaultStartupType": "short",
+    "showDescriptions": true,
+    "enableDependencies": false,
+    "plugins": {
+      "code-styler": {
+        "startupType": "long"
+      },
+      "creases": {
+        "startupType": "instant"
+      },
+      "obsidian-custom-frames": {
+        "startupType": "instant"
+      },
+      "dataview": {
+        "startupType": "long"
+      },
+      "editing-toolbar": {
+        "startupType": "instant"
+      },
+      "execute-code": {
+        "startupType": "instant"
+      },
+      "obsidian-git": {
+        "startupType": "instant"
+      },
+      "obsidian-hider": {
+        "startupType": "instant"
+      },
+      "homepage": {
+        "startupType": "instant"
+      },
+      "obsidian-icon-folder": {
+        "startupType": "instant"
+      },
+      "js-engine": {
+        "startupType": "short"
+      },
+      "obsidian-meta-bind-plugin": {
+        "startupType": "instant"
+      },
+      "obsidian-minimal-settings": {
+        "startupType": "instant"
+      },
+      "note-toolbar": {
+        "startupType": "instant"
+      },
+      "omnisearch": {
+        "startupType": "long"
+      },
+      "obsidian-style-settings": {
+        "startupType": "instant"
+      },
+      "surfing": {
+        "startupType": "short"
+      },
+      "templater-obsidian": {
+        "startupType": "instant"
+      },
+      "various-complements": {
+        "startupType": "long"
+      },
+      "wikipedia-search": {
+        "startupType": "instant"
+      }
+    }
+  }
+}

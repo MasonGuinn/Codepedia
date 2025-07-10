@@ -10,6 +10,9 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __typeError = (msg) => {
+  throw TypeError(msg);
+};
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
@@ -36,6 +39,11 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+var __accessCheck = (obj, member, msg) => member.has(obj) || __typeError("Cannot " + msg);
+var __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read from private field"), getter ? getter.call(obj) : member.get(obj));
+var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
+var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 
 // node_modules/.pnpm/prettify-pinyin@0.1.5/node_modules/prettify-pinyin/index.js
 var require_prettify_pinyin = __commonJS({
@@ -137,9 +145,9 @@ var require_cedict = __commonJS({
     var { prettify } = require_prettify_pinyin();
     var Trie = require_trie();
     function parseLine(line) {
-      let match = line.match(/^(\S+)\s(\S+)\s\[([^\]]+)\]\s\/(.+)\//);
-      if (match == null) return;
-      let [, traditional, simplified, pinyin, english] = match;
+      let match2 = line.match(/^(\S+)\s(\S+)\s\[([^\]]+)\]\s\/(.+)\//);
+      if (match2 == null) return;
+      let [, traditional, simplified, pinyin, english] = match2;
       pinyin = pinyin.replace(/u:/g, "\xFC");
       let pinyinPretty = prettify(pinyin);
       return { traditional, simplified, pinyin, pinyinPretty, english };
@@ -291,8 +299,47 @@ __export(main_exports, {
 module.exports = __toCommonJS(main_exports);
 var import_obsidian9 = require("obsidian");
 
-// src/ui/AutoCompleteSuggest.ts
-var import_obsidian5 = require("obsidian");
+// node_modules/.pnpm/ts-deepmerge@7.0.1/node_modules/ts-deepmerge/esm/index.js
+var isObject = (obj) => {
+  if (typeof obj === "object" && obj !== null) {
+    if (typeof Object.getPrototypeOf === "function") {
+      const prototype = Object.getPrototypeOf(obj);
+      return prototype === Object.prototype || prototype === null;
+    }
+    return Object.prototype.toString.call(obj) === "[object Object]";
+  }
+  return false;
+};
+var merge = (...objects) => objects.reduce((result, current) => {
+  if (Array.isArray(current)) {
+    throw new TypeError("Arguments provided to ts-deepmerge must be objects, not arrays.");
+  }
+  Object.keys(current).forEach((key) => {
+    if (["__proto__", "constructor", "prototype"].includes(key)) {
+      return;
+    }
+    if (Array.isArray(result[key]) && Array.isArray(current[key])) {
+      result[key] = merge.options.mergeArrays ? merge.options.uniqueArrayItems ? Array.from(new Set(result[key].concat(current[key]))) : [...result[key], ...current[key]] : current[key];
+    } else if (isObject(result[key]) && isObject(current[key])) {
+      result[key] = merge(result[key], current[key]);
+    } else {
+      result[key] = current[key] === void 0 ? merge.options.allowUndefinedOverrides ? current[key] : result[key] : current[key];
+    }
+  });
+  return result;
+}, {});
+var defaultOptions = {
+  allowUndefinedOverrides: true,
+  mergeArrays: true,
+  uniqueArrayItems: true
+};
+merge.options = defaultOptions;
+merge.withOptions = (options, ...objects) => {
+  merge.options = Object.assign(Object.assign({}, defaultOptions), options);
+  const result = merge(...objects);
+  merge.options = defaultOptions;
+  return result;
+};
 
 // src/app-helper.ts
 var import_obsidian = require("obsidian");
@@ -300,20 +347,20 @@ var AppHelper = class {
   constructor(app2) {
     this.unsafeApp = app2;
   }
-  async exists(path) {
-    return await this.unsafeApp.vault.adapter.exists(path);
+  async exists(path2) {
+    return await this.unsafeApp.vault.adapter.exists(path2);
   }
-  async loadFile(path) {
-    if (!await this.exists(path)) {
-      throw Error(`The file is not found: ${path}`);
+  async loadFile(path2) {
+    if (!await this.exists(path2)) {
+      throw Error(`The file is not found: ${path2}`);
     }
-    return this.unsafeApp.vault.adapter.read(path);
+    return this.unsafeApp.vault.adapter.read(path2);
   }
-  async loadJson(path) {
-    return JSON.parse(await this.loadFile(path));
+  async loadJson(path2) {
+    return JSON.parse(await this.loadFile(path2));
   }
-  async saveJson(path, data) {
-    await this.unsafeApp.vault.adapter.write(path, JSON.stringify(data));
+  async saveJson(path2, data) {
+    await this.unsafeApp.vault.adapter.write(path2, JSON.stringify(data));
   }
   equalsAsEditorPosition(one, other) {
     return one.line === other.line && one.ch === other.ch;
@@ -345,6 +392,14 @@ var AppHelper = class {
       aliases,
       alias: aliases
     };
+  }
+  getTagsProperty(file) {
+    var _a, _b, _c;
+    const frontMatter = (_a = this.unsafeApp.metadataCache.getFileCache(file)) == null ? void 0 : _a.frontmatter;
+    if (!frontMatter) {
+      return [];
+    }
+    return (_c = (_b = (0, import_obsidian.parseFrontMatterTags)(frontMatter)) == null ? void 0 : _b.map((x) => x.slice(1))) != null ? _c : [];
   }
   getBoolFrontMatter(file, key) {
     var _a, _b;
@@ -403,11 +458,11 @@ var AppHelper = class {
     if (!activeFile) {
       return null;
     }
-    const path = this.linkText2Path(linkText);
-    if (!path) {
+    const path2 = this.linkText2Path(linkText);
+    if (!path2) {
       return { displayed: linkText, link: linkText };
     }
-    const file = this.getMarkdownFileByPath(path);
+    const file = this.getMarkdownFileByPath(path2);
     if (!file) {
       return null;
     }
@@ -419,7 +474,7 @@ var AppHelper = class {
       const text2 = (_a = markdownLink.matchAll(/^\[\[(?<text>.+)]]$/g).next().value.groups) == null ? void 0 : _a.text;
       return { displayed: text2, link: text2 };
     } else {
-      const { displayed, link } = markdownLink.matchAll(/^\[(?<displayed>.+)]\((?<link>.+)\.md\)$/g).next().value.groups;
+      const { displayed, link } = markdownLink.matchAll(/^\[(?<displayed>.+)]\(\<?(?<link>.+)\.md\>?\)$/g).next().value.groups;
       return { displayed, link };
     }
   }
@@ -441,19 +496,25 @@ var AppHelper = class {
   }
   searchPhantomLinks() {
     return Object.entries(this.unsafeApp.metadataCache.unresolvedLinks).flatMap(
-      ([path, obj]) => Object.keys(obj).map((link) => ({ path, link }))
+      ([path2, obj]) => Object.keys(obj).map((link) => ({ path: path2, link }))
     );
+  }
+  getResolvedLinks(file) {
+    var _a, _b;
+    return (_b = Object.keys(
+      (_a = this.unsafeApp.metadataCache.resolvedLinks[file.path]) != null ? _a : {}
+    )) != null ? _b : [];
   }
   getUnresolvedLinks(file) {
     var _a;
     const countsByLink = (_a = this.unsafeApp.metadataCache.unresolvedLinks[file.path]) != null ? _a : {};
     return new Set(Object.keys(countsByLink));
   }
-  getMarkdownFileByPath(path) {
-    if (!path.endsWith(".md")) {
+  getMarkdownFileByPath(path2) {
+    if (!path2.endsWith(".md")) {
       return null;
     }
-    const abstractFile = this.unsafeApp.vault.getAbstractFileByPath(path);
+    const abstractFile = this.unsafeApp.vault.getAbstractFileByPath(path2);
     if (!abstractFile) {
       return null;
     }
@@ -532,6 +593,82 @@ var AppHelper = class {
   }
 };
 
+// src/setting/settings.ts
+var import_obsidian3 = require("obsidian");
+
+// src/keys.ts
+var import_obsidian2 = require("obsidian");
+
+// src/util/collection-helper.ts
+var groupBy = (values, toKey) => values.reduce(
+  (prev, cur, _1, _2, k = toKey(cur)) => ((prev[k] || (prev[k] = [])).push(cur), prev),
+  {}
+);
+function uniq(values) {
+  return [...new Set(values)];
+}
+function uniqBy(values, fn) {
+  const m = /* @__PURE__ */ new Map();
+  values.forEach((x) => {
+    const k = fn(x);
+    if (!m.has(k)) {
+      m.set(k, x);
+    }
+  });
+  return Array.from(m.values());
+}
+function uniqWith(arr, fn) {
+  return arr.filter(
+    (element2, index) => arr.findIndex((step) => fn(element2, step)) === index
+  );
+}
+function hasSameElement(arr1, arr2) {
+  return arr1.some((x) => arr2.includes(x));
+}
+function setEquals(set1, set2) {
+  if (set1.size !== set2.size) {
+    return false;
+  }
+  return Array.from(set1).every((element2) => set2.has(element2));
+}
+function mirrorMap(collection, toValue) {
+  return collection.reduce((p, c) => ({ ...p, [toValue(c)]: toValue(c) }), {});
+}
+function max(collection, emptyValue) {
+  const select2 = (a, b) => a >= b ? a : b;
+  return collection.reduce(select2, emptyValue);
+}
+
+// src/keys.ts
+var MOD = import_obsidian2.Platform.isMacOS ? "Cmd" : "Ctrl";
+var ALT = import_obsidian2.Platform.isMacOS ? "Option" : "Alt";
+function hotkey2String(hk) {
+  if (!hk) {
+    return "";
+  }
+  const hotkey = hk.key === " " ? "Space" : hk.key;
+  const mods = hk.modifiers.join(" ");
+  return mods ? `${mods} ${hotkey}` : hotkey;
+}
+function string2Hotkey(hotKey, hideHotkeyGuide) {
+  const keys = hotKey.split(" ");
+  if (keys.length === 0 || keys[0] === "") {
+    return null;
+  }
+  if (keys.length === 1) {
+    return {
+      modifiers: [],
+      key: keys[0].replace("Space", " "),
+      hideHotkeyGuide
+    };
+  }
+  return {
+    modifiers: keys.slice(0, -1),
+    key: keys.last().replace("Space", " "),
+    hideHotkeyGuide
+  };
+}
+
 // src/option/ColumnDelimiter.ts
 var _ColumnDelimiter = class _ColumnDelimiter {
   constructor(name, value) {
@@ -553,17 +690,17 @@ _ColumnDelimiter.PIPE = new _ColumnDelimiter("Pipe", "|");
 var ColumnDelimiter = _ColumnDelimiter;
 
 // src/util/path.ts
-function basename(path, ext) {
+function basename(path2, ext2) {
   var _a, _b;
-  const name = (_b = (_a = path.match(/.+[\\/]([^\\/]+)[\\/]?$/)) == null ? void 0 : _a[1]) != null ? _b : path;
-  return ext && name.endsWith(ext) ? name.replace(ext, "") : name;
+  const name = (_b = (_a = path2.match(/.+[\\/]([^\\/]+)[\\/]?$/)) == null ? void 0 : _a[1]) != null ? _b : path2;
+  return ext2 && name.endsWith(ext2) ? name.replace(ext2, "") : name;
 }
-function dirname(path) {
+function dirname(path2) {
   var _a, _b;
-  return (_b = (_a = path.match(/(.+)[\\/].+$/)) == null ? void 0 : _a[1]) != null ? _b : ".";
+  return (_b = (_a = path2.match(/(.+)[\\/].+$/)) == null ? void 0 : _a[1]) != null ? _b : ".";
 }
-function isURL(path) {
-  return Boolean(path.match(new RegExp("^https?://")));
+function isURL(path2) {
+  return Boolean(path2.match(new RegExp("^https?://")));
 }
 var DEFAULT_HISTORIES_PATH = ".obsidian/plugins/various-complements/histories.json";
 
@@ -598,42 +735,55 @@ _DescriptionOnSuggestion.FULL = new _DescriptionOnSuggestion(
 );
 var DescriptionOnSuggestion = _DescriptionOnSuggestion;
 
-// src/util/collection-helper.ts
-var groupBy = (values, toKey) => values.reduce(
-  (prev, cur, _1, _2, k = toKey(cur)) => ((prev[k] || (prev[k] = [])).push(cur), prev),
-  {}
-);
-function uniq(values) {
-  return [...new Set(values)];
-}
-function uniqBy(values, fn) {
-  const m = /* @__PURE__ */ new Map();
-  values.forEach((x) => {
-    const k = fn(x);
-    if (!m.has(k)) {
-      m.set(k, x);
-    }
-  });
-  return Array.from(m.values());
-}
-function uniqWith(arr, fn) {
-  return arr.filter(
-    (element2, index) => arr.findIndex((step) => fn(element2, step)) === index
-  );
-}
-function setEquals(set1, set2) {
-  if (set1.size !== set2.size) {
-    return false;
+// src/model/Word.ts
+var _WordTypeMeta = class _WordTypeMeta {
+  constructor(type, priority, group) {
+    this.type = type;
+    this.priority = priority;
+    this.group = group;
+    _WordTypeMeta._values.push(this);
+    _WordTypeMeta._dict[type] = this;
   }
-  return Array.from(set1).every((element2) => set2.has(element2));
-}
-function mirrorMap(collection, toValue) {
-  return collection.reduce((p, c) => ({ ...p, [toValue(c)]: toValue(c) }), {});
-}
-function max(collection, emptyValue) {
-  const select2 = (a, b) => a >= b ? a : b;
-  return collection.reduce(select2, emptyValue);
-}
+  static of(type) {
+    return _WordTypeMeta._dict[type];
+  }
+  static values() {
+    return _WordTypeMeta._values;
+  }
+};
+_WordTypeMeta._values = [];
+_WordTypeMeta._dict = {};
+_WordTypeMeta.FRONT_MATTER = new _WordTypeMeta(
+  "frontMatter",
+  100,
+  "frontMatter"
+);
+_WordTypeMeta.INTERNAL_LINK = new _WordTypeMeta(
+  "internalLink",
+  90,
+  "internalLink"
+);
+_WordTypeMeta.CUSTOM_DICTIONARY = new _WordTypeMeta(
+  "customDictionary",
+  80,
+  "suggestion"
+);
+_WordTypeMeta.CURRENT_FILE = new _WordTypeMeta(
+  "currentFile",
+  70,
+  "suggestion"
+);
+_WordTypeMeta.CURRENT_VAULT = new _WordTypeMeta(
+  "currentVault",
+  60,
+  "suggestion"
+);
+var WordTypeMeta = _WordTypeMeta;
+
+// node_modules/.pnpm/emoji-regex@10.3.0/node_modules/emoji-regex/index.mjs
+var emoji_regex_default = () => {
+  return /[#*0-9]\uFE0F?\u20E3|[\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23ED-\u23EF\u23F1\u23F2\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB\u25FC\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u267F\u2692\u2694-\u2697\u2699\u269B\u269C\u26A0\u26A7\u26AA\u26B0\u26B1\u26BD\u26BE\u26C4\u26C8\u26CF\u26D1\u26E9\u26F0-\u26F5\u26F7\u26F8\u26FA\u2702\u2708\u2709\u270F\u2712\u2714\u2716\u271D\u2721\u2733\u2734\u2744\u2747\u2757\u2763\u27A1\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B55\u3030\u303D\u3297\u3299]\uFE0F?|[\u261D\u270C\u270D](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?|[\u270A\u270B](?:\uD83C[\uDFFB-\uDFFF])?|[\u23E9-\u23EC\u23F0\u23F3\u25FD\u2693\u26A1\u26AB\u26C5\u26CE\u26D4\u26EA\u26FD\u2705\u2728\u274C\u274E\u2753-\u2755\u2795-\u2797\u27B0\u27BF\u2B50]|\u26D3\uFE0F?(?:\u200D\uD83D\uDCA5)?|\u26F9(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|\u2764\uFE0F?(?:\u200D(?:\uD83D\uDD25|\uD83E\uDE79))?|\uD83C(?:[\uDC04\uDD70\uDD71\uDD7E\uDD7F\uDE02\uDE37\uDF21\uDF24-\uDF2C\uDF36\uDF7D\uDF96\uDF97\uDF99-\uDF9B\uDF9E\uDF9F\uDFCD\uDFCE\uDFD4-\uDFDF\uDFF5\uDFF7]\uFE0F?|[\uDF85\uDFC2\uDFC7](?:\uD83C[\uDFFB-\uDFFF])?|[\uDFC4\uDFCA](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDFCB\uDFCC](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDCCF\uDD8E\uDD91-\uDD9A\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF43\uDF45-\uDF4A\uDF4C-\uDF7C\uDF7E-\uDF84\uDF86-\uDF93\uDFA0-\uDFC1\uDFC5\uDFC6\uDFC8\uDFC9\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF8-\uDFFF]|\uDDE6\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF]|\uDDE7\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF]|\uDDE8\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF5\uDDF7\uDDFA-\uDDFF]|\uDDE9\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF]|\uDDEA\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA]|\uDDEB\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7]|\uDDEC\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE]|\uDDED\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA]|\uDDEE\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9]|\uDDEF\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5]|\uDDF0\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF]|\uDDF1\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE]|\uDDF2\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF]|\uDDF3\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF]|\uDDF4\uD83C\uDDF2|\uDDF5\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE]|\uDDF6\uD83C\uDDE6|\uDDF7\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC]|\uDDF8\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF]|\uDDF9\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF]|\uDDFA\uD83C[\uDDE6\uDDEC\uDDF2\uDDF3\uDDF8\uDDFE\uDDFF]|\uDDFB\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA]|\uDDFC\uD83C[\uDDEB\uDDF8]|\uDDFD\uD83C\uDDF0|\uDDFE\uD83C[\uDDEA\uDDF9]|\uDDFF\uD83C[\uDDE6\uDDF2\uDDFC]|\uDF44(?:\u200D\uD83D\uDFEB)?|\uDF4B(?:\u200D\uD83D\uDFE9)?|\uDFC3(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDFF3\uFE0F?(?:\u200D(?:\u26A7\uFE0F?|\uD83C\uDF08))?|\uDFF4(?:\u200D\u2620\uFE0F?|\uDB40\uDC67\uDB40\uDC62\uDB40(?:\uDC65\uDB40\uDC6E\uDB40\uDC67|\uDC73\uDB40\uDC63\uDB40\uDC74|\uDC77\uDB40\uDC6C\uDB40\uDC73)\uDB40\uDC7F)?)|\uD83D(?:[\uDC3F\uDCFD\uDD49\uDD4A\uDD6F\uDD70\uDD73\uDD76-\uDD79\uDD87\uDD8A-\uDD8D\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA\uDECB\uDECD-\uDECF\uDEE0-\uDEE5\uDEE9\uDEF0\uDEF3]\uFE0F?|[\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDC8F\uDC91\uDCAA\uDD7A\uDD95\uDD96\uDE4C\uDE4F\uDEC0\uDECC](?:\uD83C[\uDFFB-\uDFFF])?|[\uDC6E\uDC70\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4\uDEB5](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD74\uDD90](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?|[\uDC00-\uDC07\uDC09-\uDC14\uDC16-\uDC25\uDC27-\uDC3A\uDC3C-\uDC3E\uDC40\uDC44\uDC45\uDC51-\uDC65\uDC6A\uDC79-\uDC7B\uDC7D-\uDC80\uDC84\uDC88-\uDC8E\uDC90\uDC92-\uDCA9\uDCAB-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDDA4\uDDFB-\uDE2D\uDE2F-\uDE34\uDE37-\uDE41\uDE43\uDE44\uDE48-\uDE4A\uDE80-\uDEA2\uDEA4-\uDEB3\uDEB7-\uDEBF\uDEC1-\uDEC5\uDED0-\uDED2\uDED5-\uDED7\uDEDC-\uDEDF\uDEEB\uDEEC\uDEF4-\uDEFC\uDFE0-\uDFEB\uDFF0]|\uDC08(?:\u200D\u2B1B)?|\uDC15(?:\u200D\uD83E\uDDBA)?|\uDC26(?:\u200D(?:\u2B1B|\uD83D\uDD25))?|\uDC3B(?:\u200D\u2744\uFE0F?)?|\uDC41\uFE0F?(?:\u200D\uD83D\uDDE8\uFE0F?)?|\uDC68(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDC68\uDC69]\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFE])))?))?|\uDC69(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?[\uDC68\uDC69]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?|\uDC69\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?))|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFE])))?))?|\uDC6F(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDD75(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDE2E(?:\u200D\uD83D\uDCA8)?|\uDE35(?:\u200D\uD83D\uDCAB)?|\uDE36(?:\u200D\uD83C\uDF2B\uFE0F?)?|\uDE42(?:\u200D[\u2194\u2195]\uFE0F?)?|\uDEB6(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?)|\uD83E(?:[\uDD0C\uDD0F\uDD18-\uDD1F\uDD30-\uDD34\uDD36\uDD77\uDDB5\uDDB6\uDDBB\uDDD2\uDDD3\uDDD5\uDEC3-\uDEC5\uDEF0\uDEF2-\uDEF8](?:\uD83C[\uDFFB-\uDFFF])?|[\uDD26\uDD35\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD\uDDCF\uDDD4\uDDD6-\uDDDD](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDDDE\uDDDF](?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD0D\uDD0E\uDD10-\uDD17\uDD20-\uDD25\uDD27-\uDD2F\uDD3A\uDD3F-\uDD45\uDD47-\uDD76\uDD78-\uDDB4\uDDB7\uDDBA\uDDBC-\uDDCC\uDDD0\uDDE0-\uDDFF\uDE70-\uDE7C\uDE80-\uDE88\uDE90-\uDEBD\uDEBF-\uDEC2\uDECE-\uDEDB\uDEE0-\uDEE8]|\uDD3C(?:\u200D[\u2640\u2642]\uFE0F?|\uD83C[\uDFFB-\uDFFF])?|\uDDCE(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDDD1(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1|\uDDD1\u200D\uD83E\uDDD2(?:\u200D\uD83E\uDDD2)?|\uDDD2(?:\u200D\uD83E\uDDD2)?))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?))?|\uDEF1(?:\uD83C(?:\uDFFB(?:\u200D\uD83E\uDEF2\uD83C[\uDFFC-\uDFFF])?|\uDFFC(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFD-\uDFFF])?|\uDFFD(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])?|\uDFFE(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFD\uDFFF])?|\uDFFF(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFE])?))?)/g;
+};
 
 // src/util/diacritics-map.ts
 var defaultDiacriticsRemovalMap = [
@@ -863,11 +1013,6 @@ for (let i = 0; i < defaultDiacriticsRemovalMap.length; i++) {
 }
 var diacritics_map_default = diacriticsMap;
 
-// node_modules/.pnpm/emoji-regex@10.3.0/node_modules/emoji-regex/index.mjs
-var emoji_regex_default = () => {
-  return /[#*0-9]\uFE0F?\u20E3|[\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23ED-\u23EF\u23F1\u23F2\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB\u25FC\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u267F\u2692\u2694-\u2697\u2699\u269B\u269C\u26A0\u26A7\u26AA\u26B0\u26B1\u26BD\u26BE\u26C4\u26C8\u26CF\u26D1\u26E9\u26F0-\u26F5\u26F7\u26F8\u26FA\u2702\u2708\u2709\u270F\u2712\u2714\u2716\u271D\u2721\u2733\u2734\u2744\u2747\u2757\u2763\u27A1\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B55\u3030\u303D\u3297\u3299]\uFE0F?|[\u261D\u270C\u270D](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?|[\u270A\u270B](?:\uD83C[\uDFFB-\uDFFF])?|[\u23E9-\u23EC\u23F0\u23F3\u25FD\u2693\u26A1\u26AB\u26C5\u26CE\u26D4\u26EA\u26FD\u2705\u2728\u274C\u274E\u2753-\u2755\u2795-\u2797\u27B0\u27BF\u2B50]|\u26D3\uFE0F?(?:\u200D\uD83D\uDCA5)?|\u26F9(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|\u2764\uFE0F?(?:\u200D(?:\uD83D\uDD25|\uD83E\uDE79))?|\uD83C(?:[\uDC04\uDD70\uDD71\uDD7E\uDD7F\uDE02\uDE37\uDF21\uDF24-\uDF2C\uDF36\uDF7D\uDF96\uDF97\uDF99-\uDF9B\uDF9E\uDF9F\uDFCD\uDFCE\uDFD4-\uDFDF\uDFF5\uDFF7]\uFE0F?|[\uDF85\uDFC2\uDFC7](?:\uD83C[\uDFFB-\uDFFF])?|[\uDFC4\uDFCA](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDFCB\uDFCC](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDCCF\uDD8E\uDD91-\uDD9A\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF43\uDF45-\uDF4A\uDF4C-\uDF7C\uDF7E-\uDF84\uDF86-\uDF93\uDFA0-\uDFC1\uDFC5\uDFC6\uDFC8\uDFC9\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF8-\uDFFF]|\uDDE6\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF]|\uDDE7\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF]|\uDDE8\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF5\uDDF7\uDDFA-\uDDFF]|\uDDE9\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF]|\uDDEA\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA]|\uDDEB\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7]|\uDDEC\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE]|\uDDED\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA]|\uDDEE\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9]|\uDDEF\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5]|\uDDF0\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF]|\uDDF1\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE]|\uDDF2\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF]|\uDDF3\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF]|\uDDF4\uD83C\uDDF2|\uDDF5\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE]|\uDDF6\uD83C\uDDE6|\uDDF7\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC]|\uDDF8\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF]|\uDDF9\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF]|\uDDFA\uD83C[\uDDE6\uDDEC\uDDF2\uDDF3\uDDF8\uDDFE\uDDFF]|\uDDFB\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA]|\uDDFC\uD83C[\uDDEB\uDDF8]|\uDDFD\uD83C\uDDF0|\uDDFE\uD83C[\uDDEA\uDDF9]|\uDDFF\uD83C[\uDDE6\uDDF2\uDDFC]|\uDF44(?:\u200D\uD83D\uDFEB)?|\uDF4B(?:\u200D\uD83D\uDFE9)?|\uDFC3(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDFF3\uFE0F?(?:\u200D(?:\u26A7\uFE0F?|\uD83C\uDF08))?|\uDFF4(?:\u200D\u2620\uFE0F?|\uDB40\uDC67\uDB40\uDC62\uDB40(?:\uDC65\uDB40\uDC6E\uDB40\uDC67|\uDC73\uDB40\uDC63\uDB40\uDC74|\uDC77\uDB40\uDC6C\uDB40\uDC73)\uDB40\uDC7F)?)|\uD83D(?:[\uDC3F\uDCFD\uDD49\uDD4A\uDD6F\uDD70\uDD73\uDD76-\uDD79\uDD87\uDD8A-\uDD8D\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA\uDECB\uDECD-\uDECF\uDEE0-\uDEE5\uDEE9\uDEF0\uDEF3]\uFE0F?|[\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDC8F\uDC91\uDCAA\uDD7A\uDD95\uDD96\uDE4C\uDE4F\uDEC0\uDECC](?:\uD83C[\uDFFB-\uDFFF])?|[\uDC6E\uDC70\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4\uDEB5](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD74\uDD90](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?|[\uDC00-\uDC07\uDC09-\uDC14\uDC16-\uDC25\uDC27-\uDC3A\uDC3C-\uDC3E\uDC40\uDC44\uDC45\uDC51-\uDC65\uDC6A\uDC79-\uDC7B\uDC7D-\uDC80\uDC84\uDC88-\uDC8E\uDC90\uDC92-\uDCA9\uDCAB-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDDA4\uDDFB-\uDE2D\uDE2F-\uDE34\uDE37-\uDE41\uDE43\uDE44\uDE48-\uDE4A\uDE80-\uDEA2\uDEA4-\uDEB3\uDEB7-\uDEBF\uDEC1-\uDEC5\uDED0-\uDED2\uDED5-\uDED7\uDEDC-\uDEDF\uDEEB\uDEEC\uDEF4-\uDEFC\uDFE0-\uDFEB\uDFF0]|\uDC08(?:\u200D\u2B1B)?|\uDC15(?:\u200D\uD83E\uDDBA)?|\uDC26(?:\u200D(?:\u2B1B|\uD83D\uDD25))?|\uDC3B(?:\u200D\u2744\uFE0F?)?|\uDC41\uFE0F?(?:\u200D\uD83D\uDDE8\uFE0F?)?|\uDC68(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDC68\uDC69]\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFE])))?))?|\uDC69(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?[\uDC68\uDC69]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?|\uDC69\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?))|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFE])))?))?|\uDC6F(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDD75(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDE2E(?:\u200D\uD83D\uDCA8)?|\uDE35(?:\u200D\uD83D\uDCAB)?|\uDE36(?:\u200D\uD83C\uDF2B\uFE0F?)?|\uDE42(?:\u200D[\u2194\u2195]\uFE0F?)?|\uDEB6(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?)|\uD83E(?:[\uDD0C\uDD0F\uDD18-\uDD1F\uDD30-\uDD34\uDD36\uDD77\uDDB5\uDDB6\uDDBB\uDDD2\uDDD3\uDDD5\uDEC3-\uDEC5\uDEF0\uDEF2-\uDEF8](?:\uD83C[\uDFFB-\uDFFF])?|[\uDD26\uDD35\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD\uDDCF\uDDD4\uDDD6-\uDDDD](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDDDE\uDDDF](?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD0D\uDD0E\uDD10-\uDD17\uDD20-\uDD25\uDD27-\uDD2F\uDD3A\uDD3F-\uDD45\uDD47-\uDD76\uDD78-\uDDB4\uDDB7\uDDBA\uDDBC-\uDDCC\uDDD0\uDDE0-\uDDFF\uDE70-\uDE7C\uDE80-\uDE88\uDE90-\uDEBD\uDEBF-\uDEC2\uDECE-\uDEDB\uDEE0-\uDEE8]|\uDD3C(?:\u200D[\u2640\u2642]\uFE0F?|\uD83C[\uDFFB-\uDFFF])?|\uDDCE(?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D(?:[\u2640\u2642]\uFE0F?(?:\u200D\u27A1\uFE0F?)?|\u27A1\uFE0F?))?|\uDDD1(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1|\uDDD1\u200D\uD83E\uDDD2(?:\u200D\uD83E\uDDD2)?|\uDDD2(?:\u200D\uD83E\uDDD2)?))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF\uDDBC\uDDBD](?:\u200D\u27A1\uFE0F?)?|[\uDDB0-\uDDB3]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?))?|\uDEF1(?:\uD83C(?:\uDFFB(?:\u200D\uD83E\uDEF2\uD83C[\uDFFC-\uDFFF])?|\uDFFC(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFD-\uDFFF])?|\uDFFD(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])?|\uDFFE(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFD\uDFFF])?|\uDFFF(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFE])?))?)/g;
-};
-
 // src/util/strings.ts
 var regEmoji = new RegExp(` *(${emoji_regex_default().source}) *`, "g");
 function equalsAsLiterals(one, another) {
@@ -1010,51 +1155,6 @@ function joinNumberWithSymbol(tokens) {
   return ret;
 }
 
-// src/model/Word.ts
-var _WordTypeMeta = class _WordTypeMeta {
-  constructor(type, priority, group) {
-    this.type = type;
-    this.priority = priority;
-    this.group = group;
-    _WordTypeMeta._values.push(this);
-    _WordTypeMeta._dict[type] = this;
-  }
-  static of(type) {
-    return _WordTypeMeta._dict[type];
-  }
-  static values() {
-    return _WordTypeMeta._values;
-  }
-};
-_WordTypeMeta._values = [];
-_WordTypeMeta._dict = {};
-_WordTypeMeta.FRONT_MATTER = new _WordTypeMeta(
-  "frontMatter",
-  100,
-  "frontMatter"
-);
-_WordTypeMeta.INTERNAL_LINK = new _WordTypeMeta(
-  "internalLink",
-  90,
-  "internalLink"
-);
-_WordTypeMeta.CUSTOM_DICTIONARY = new _WordTypeMeta(
-  "customDictionary",
-  80,
-  "suggestion"
-);
-_WordTypeMeta.CURRENT_FILE = new _WordTypeMeta(
-  "currentFile",
-  70,
-  "suggestion"
-);
-_WordTypeMeta.CURRENT_VAULT = new _WordTypeMeta(
-  "currentVault",
-  60,
-  "suggestion"
-);
-var WordTypeMeta = _WordTypeMeta;
-
 // src/provider/suggester.ts
 function suggestionUniqPredicate(a, b) {
   if (a.value !== b.value) {
@@ -1097,7 +1197,8 @@ function judge(word, query, queryStartWithUpper, options) {
           ...word,
           value: c,
           hit: c,
-          fuzzy: matched.type === "fuzzy_match"
+          fuzzy: matched.type === "fuzzy_match",
+          query
         },
         value: c,
         alias: false
@@ -1107,7 +1208,8 @@ function judge(word, query, queryStartWithUpper, options) {
         word: {
           ...word,
           hit: word.value,
-          fuzzy: matched.type === "fuzzy_match"
+          fuzzy: matched.type === "fuzzy_match",
+          query
         },
         value: word.value,
         alias: false
@@ -1122,7 +1224,8 @@ function judge(word, query, queryStartWithUpper, options) {
       word: {
         ...word,
         hit: matchedAlias.aliases,
-        fuzzy: matchedAlias.matched.type === "fuzzy_match"
+        fuzzy: matchedAlias.matched.type === "fuzzy_match",
+        query
       },
       value: matchedAlias.aliases,
       alias: true
@@ -1135,8 +1238,20 @@ function judge(word, query, queryStartWithUpper, options) {
 }
 function suggestWords(indexedWords, query, maxNum, option = {}) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p;
-  const { frontMatter, selectionHistoryStorage } = option;
+  const {
+    frontMatter,
+    selectionHistoryStorage,
+    providerMinChars,
+    globalMinChar
+  } = option;
   const queryStartWithUpper = capitalizeFirstLetter(query) === query;
+  const shouldIncludeProvider = (providerType) => {
+    if (!providerMinChars) {
+      return true;
+    }
+    const minChars = providerMinChars[providerType] || globalMinChar || 0;
+    return query.length >= minChars;
+  };
   const flattenFrontMatterWords = () => {
     var _a2, _b2;
     if (frontMatter === "alias" || frontMatter === "aliases") {
@@ -1148,23 +1263,23 @@ function suggestWords(indexedWords, query, maxNum, option = {}) {
     return [];
   };
   const words = queryStartWithUpper ? frontMatter ? flattenFrontMatterWords() : [
-    ...(_a = indexedWords.currentFile[query.charAt(0)]) != null ? _a : [],
-    ...(_b = indexedWords.currentFile[query.charAt(0).toLowerCase()]) != null ? _b : [],
-    ...(_c = indexedWords.currentVault[query.charAt(0)]) != null ? _c : [],
-    ...(_d = indexedWords.currentVault[query.charAt(0).toLowerCase()]) != null ? _d : [],
-    ...(_e = indexedWords.customDictionary[query.charAt(0)]) != null ? _e : [],
-    ...(_f = indexedWords.customDictionary[query.charAt(0).toLowerCase()]) != null ? _f : [],
-    ...(_g = indexedWords.internalLink[query.charAt(0)]) != null ? _g : [],
-    ...(_h = indexedWords.internalLink[query.charAt(0).toLowerCase()]) != null ? _h : []
+    ...shouldIncludeProvider("currentFile") ? (_a = indexedWords.currentFile[query.charAt(0)]) != null ? _a : [] : [],
+    ...shouldIncludeProvider("currentFile") ? (_b = indexedWords.currentFile[query.charAt(0).toLowerCase()]) != null ? _b : [] : [],
+    ...shouldIncludeProvider("currentVault") ? (_c = indexedWords.currentVault[query.charAt(0)]) != null ? _c : [] : [],
+    ...shouldIncludeProvider("currentVault") ? (_d = indexedWords.currentVault[query.charAt(0).toLowerCase()]) != null ? _d : [] : [],
+    ...shouldIncludeProvider("customDictionary") ? (_e = indexedWords.customDictionary[query.charAt(0)]) != null ? _e : [] : [],
+    ...shouldIncludeProvider("customDictionary") ? (_f = indexedWords.customDictionary[query.charAt(0).toLowerCase()]) != null ? _f : [] : [],
+    ...shouldIncludeProvider("internalLink") ? (_g = indexedWords.internalLink[query.charAt(0)]) != null ? _g : [] : [],
+    ...shouldIncludeProvider("internalLink") ? (_h = indexedWords.internalLink[query.charAt(0).toLowerCase()]) != null ? _h : [] : []
   ] : frontMatter ? flattenFrontMatterWords() : [
-    ...(_i = indexedWords.currentFile[query.charAt(0)]) != null ? _i : [],
-    ...(_j = indexedWords.currentFile[query.charAt(0).toUpperCase()]) != null ? _j : [],
-    ...(_k = indexedWords.currentVault[query.charAt(0)]) != null ? _k : [],
-    ...(_l = indexedWords.currentVault[query.charAt(0).toUpperCase()]) != null ? _l : [],
-    ...(_m = indexedWords.customDictionary[query.charAt(0)]) != null ? _m : [],
-    ...(_n = indexedWords.customDictionary[query.charAt(0).toUpperCase()]) != null ? _n : [],
-    ...(_o = indexedWords.internalLink[query.charAt(0)]) != null ? _o : [],
-    ...(_p = indexedWords.internalLink[query.charAt(0).toUpperCase()]) != null ? _p : []
+    ...shouldIncludeProvider("currentFile") ? (_i = indexedWords.currentFile[query.charAt(0)]) != null ? _i : [] : [],
+    ...shouldIncludeProvider("currentFile") ? (_j = indexedWords.currentFile[query.charAt(0).toUpperCase()]) != null ? _j : [] : [],
+    ...shouldIncludeProvider("currentVault") ? (_k = indexedWords.currentVault[query.charAt(0)]) != null ? _k : [] : [],
+    ...shouldIncludeProvider("currentVault") ? (_l = indexedWords.currentVault[query.charAt(0).toUpperCase()]) != null ? _l : [] : [],
+    ...shouldIncludeProvider("customDictionary") ? (_m = indexedWords.customDictionary[query.charAt(0)]) != null ? _m : [] : [],
+    ...shouldIncludeProvider("customDictionary") ? (_n = indexedWords.customDictionary[query.charAt(0).toUpperCase()]) != null ? _n : [] : [],
+    ...shouldIncludeProvider("internalLink") ? (_o = indexedWords.internalLink[query.charAt(0)]) != null ? _o : [] : [],
+    ...shouldIncludeProvider("internalLink") ? (_p = indexedWords.internalLink[query.charAt(0).toUpperCase()]) != null ? _p : [] : []
   ];
   const filteredJudgement = Array.from(words).map((x) => judge(x, query, queryStartWithUpper, option)).filter((x) => x.value !== void 0);
   const latestUpdated = max(
@@ -1229,7 +1344,8 @@ function judgeByPartialMatch(word, query, queryStartWithUpper, options) {
           ...word,
           value: c,
           hit: c,
-          fuzzy: startsWithMatched.type === "fuzzy_match"
+          fuzzy: startsWithMatched.type === "fuzzy_match",
+          query
         },
         value: c,
         alias: false
@@ -1239,7 +1355,8 @@ function judgeByPartialMatch(word, query, queryStartWithUpper, options) {
         word: {
           ...word,
           hit: word.value,
-          fuzzy: startsWithMatched.type === "fuzzy_match"
+          fuzzy: startsWithMatched.type === "fuzzy_match",
+          query
         },
         value: word.value,
         alias: false
@@ -1254,7 +1371,8 @@ function judgeByPartialMatch(word, query, queryStartWithUpper, options) {
       word: {
         ...word,
         hit: startsWithAliasMatched.aliases,
-        fuzzy: startsWithAliasMatched.matched.type === "fuzzy_match"
+        fuzzy: startsWithAliasMatched.matched.type === "fuzzy_match",
+        query
       },
       value: startsWithAliasMatched.aliases,
       alias: true
@@ -1266,7 +1384,8 @@ function judgeByPartialMatch(word, query, queryStartWithUpper, options) {
       word: {
         ...word,
         hit: word.value,
-        fuzzy: includesMatched.type === "fuzzy_match"
+        fuzzy: includesMatched.type === "fuzzy_match",
+        query
       },
       value: word.value,
       alias: false
@@ -1280,7 +1399,8 @@ function judgeByPartialMatch(word, query, queryStartWithUpper, options) {
       word: {
         ...word,
         hit: matchedAliasIncluded.aliases,
-        fuzzy: matchedAliasIncluded.matched.type === "fuzzy_match"
+        fuzzy: matchedAliasIncluded.matched.type === "fuzzy_match",
+        query
       },
       value: matchedAliasIncluded.aliases,
       alias: true
@@ -1289,8 +1409,20 @@ function judgeByPartialMatch(word, query, queryStartWithUpper, options) {
   return { word, alias: false };
 }
 function suggestWordsByPartialMatch(indexedWords, query, maxNum, option = {}) {
-  const { frontMatter, selectionHistoryStorage } = option;
+  const {
+    frontMatter,
+    selectionHistoryStorage,
+    providerMinChars,
+    globalMinChar
+  } = option;
   const queryStartWithUpper = capitalizeFirstLetter(query) === query;
+  const shouldIncludeProvider = (providerType) => {
+    if (!providerMinChars) {
+      return true;
+    }
+    const minChars = providerMinChars[providerType] || globalMinChar || 0;
+    return query.length >= minChars;
+  };
   const flatObjectValues = (object) => Object.values(object).flat();
   const flattenFrontMatterWords = () => {
     var _a, _b;
@@ -1303,10 +1435,10 @@ function suggestWordsByPartialMatch(indexedWords, query, maxNum, option = {}) {
     return [];
   };
   const words = frontMatter ? flattenFrontMatterWords() : [
-    ...flatObjectValues(indexedWords.currentFile),
-    ...flatObjectValues(indexedWords.currentVault),
-    ...flatObjectValues(indexedWords.customDictionary),
-    ...flatObjectValues(indexedWords.internalLink)
+    ...shouldIncludeProvider("currentFile") ? flatObjectValues(indexedWords.currentFile) : [],
+    ...shouldIncludeProvider("currentVault") ? flatObjectValues(indexedWords.currentVault) : [],
+    ...shouldIncludeProvider("customDictionary") ? flatObjectValues(indexedWords.customDictionary) : [],
+    ...shouldIncludeProvider("internalLink") ? flatObjectValues(indexedWords.internalLink) : []
   ];
   const filteredJudgement = Array.from(words).map((x) => judgeByPartialMatch(x, query, queryStartWithUpper, option)).filter((x) => x.value !== void 0);
   const latestUpdated = max(
@@ -1356,6 +1488,1089 @@ function suggestWordsByPartialMatch(indexedWords, query, maxNum, option = {}) {
   }).map((x) => x.word).slice(0, maxNum);
   return uniqWith(candidate, suggestionUniqPredicate);
 }
+
+// src/provider/MatchStrategy.ts
+var _MatchStrategy = class _MatchStrategy {
+  constructor(name, handler) {
+    this.name = name;
+    this.handler = handler;
+    _MatchStrategy._values.push(this);
+  }
+  static fromName(name) {
+    return _MatchStrategy._values.find((x) => x.name === name);
+  }
+  static values() {
+    return _MatchStrategy._values;
+  }
+};
+_MatchStrategy._values = [];
+_MatchStrategy.PREFIX = new _MatchStrategy("prefix", suggestWords);
+_MatchStrategy.PARTIAL = new _MatchStrategy(
+  "partial",
+  suggestWordsByPartialMatch
+);
+var MatchStrategy = _MatchStrategy;
+
+// src/provider/SpecificMatchStrategy.ts
+var neverUsedHandler = (..._args) => [];
+var _SpecificMatchStrategy = class _SpecificMatchStrategy {
+  constructor(name, handler) {
+    this.name = name;
+    this.handler = handler;
+    _SpecificMatchStrategy._values.push(this);
+  }
+  static fromName(name) {
+    return _SpecificMatchStrategy._values.find((x) => x.name === name);
+  }
+  static values() {
+    return _SpecificMatchStrategy._values;
+  }
+};
+_SpecificMatchStrategy._values = [];
+_SpecificMatchStrategy.INHERIT = new _SpecificMatchStrategy(
+  "inherit",
+  neverUsedHandler
+);
+_SpecificMatchStrategy.PREFIX = new _SpecificMatchStrategy("prefix", suggestWords);
+_SpecificMatchStrategy.PARTIAL = new _SpecificMatchStrategy(
+  "partial",
+  suggestWordsByPartialMatch
+);
+var SpecificMatchStrategy = _SpecificMatchStrategy;
+
+// src/tokenizer/TokenizeStrategy.ts
+var _TokenizeStrategy = class _TokenizeStrategy {
+  constructor(name, triggerThreshold, indexingThreshold, canTreatUnderscoreAsPartOfWord) {
+    this.name = name;
+    this.triggerThreshold = triggerThreshold;
+    this.indexingThreshold = indexingThreshold;
+    this.canTreatUnderscoreAsPartOfWord = canTreatUnderscoreAsPartOfWord;
+    _TokenizeStrategy._values.push(this);
+  }
+  static fromName(name) {
+    return _TokenizeStrategy._values.find((x) => x.name === name);
+  }
+  static values() {
+    return _TokenizeStrategy._values;
+  }
+};
+_TokenizeStrategy._values = [];
+_TokenizeStrategy.DEFAULT = new _TokenizeStrategy("default", 3, 5, true);
+_TokenizeStrategy.ENGLISH_ONLY = new _TokenizeStrategy(
+  "english-only",
+  3,
+  5,
+  true
+);
+_TokenizeStrategy.JAPANESE = new _TokenizeStrategy("japanese", 2, 2, false);
+_TokenizeStrategy.ARABIC = new _TokenizeStrategy("arabic", 3, 3, false);
+_TokenizeStrategy.CHINESE = new _TokenizeStrategy("chinese", 1, 2, false);
+_TokenizeStrategy.KOREAN = new _TokenizeStrategy("korean", 1, 2, true);
+var TokenizeStrategy = _TokenizeStrategy;
+
+// src/types.ts
+function isPresent(arg) {
+  return arg != null;
+}
+
+// src/setting/settings-helper.ts
+var TextComponentEvent;
+((TextComponentEvent2) => {
+  function onChange(component, handler, option) {
+    component.inputEl.addEventListener("change", async (ev) => {
+      if (!(ev.target instanceof HTMLInputElement)) {
+        return;
+      }
+      handler(ev.target.value);
+    });
+    if (option == null ? void 0 : option.className) {
+      component.inputEl.className = option.className;
+    }
+    return component;
+  }
+  TextComponentEvent2.onChange = onChange;
+})(TextComponentEvent || (TextComponentEvent = {}));
+
+// src/setting/settings.ts
+var DEFAULT_SETTINGS = {
+  // general
+  strategy: "default",
+  cedictPath: "./cedict_ts.u8",
+  matchStrategy: "prefix",
+  fuzzyMatch: true,
+  minFuzzyMatchScore: 0.5,
+  matchingWithoutEmoji: true,
+  treatAccentDiacriticsAsAlphabeticCharacters: false,
+  treatUnderscoreAsPartOfWord: false,
+  maxNumberOfSuggestions: 5,
+  maxNumberOfWordsAsPhrase: 3,
+  minNumberOfCharactersTriggered: 0,
+  minNumberOfWordsTriggeredPhrase: 1,
+  complementAutomatically: true,
+  delayMilliSeconds: 0,
+  disableSuggestionsDuringImeOn: false,
+  disableSuggestionsInMathBlock: false,
+  insertSpaceAfterCompletion: false,
+  firstCharactersDisableSuggestions: ":/^",
+  patternsToSuppressTrigger: ["^~~~.*", "^```.*"],
+  phrasePatternsToSuppressTrigger: [],
+  noAutoFocusUntilCycle: false,
+  // appearance
+  showMatchStrategy: false,
+  showComplementAutomatically: false,
+  showIndexingStatus: false,
+  descriptionOnSuggestion: "Short",
+  // key customization
+  hotkeys: {
+    select: [{ modifiers: [], key: "Enter" }],
+    "select with custom alias": [],
+    "select with query alias": [],
+    up: [{ modifiers: [], key: "ArrowUp" }],
+    down: [{ modifiers: [], key: "ArrowDown" }],
+    "select 1st": [],
+    "select 2nd": [],
+    "select 3rd": [],
+    "select 4th": [],
+    "select 5th": [],
+    "select 6th": [],
+    "select 7th": [],
+    "select 8th": [],
+    "select 9th": [],
+    open: [],
+    completion: [],
+    "insert as text": []
+  },
+  propagateEsc: false,
+  // current file complement
+  enableCurrentFileComplement: true,
+  currentFileMinNumberOfCharacters: 0,
+  onlyComplementEnglishOnCurrentFileComplement: false,
+  excludeCurrentFileWordPatterns: [],
+  // current vault complement
+  enableCurrentVaultComplement: false,
+  currentVaultMinNumberOfCharacters: 0,
+  includeCurrentVaultPathPrefixPatterns: "",
+  excludeCurrentVaultPathPrefixPatterns: "",
+  excludeCurrentVaultPathGlobPatterns: [],
+  includeCurrentVaultOnlyFilesUnderCurrentDirectory: false,
+  excludeCurrentVaultWordPatterns: [],
+  // custom dictionary complement
+  enableCustomDictionaryComplement: false,
+  customDictionaryPaths: `https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-no-swears.txt`,
+  columnDelimiter: "Tab",
+  customDictionaryWordRegexPattern: "",
+  delimiterToHideSuggestion: "",
+  delimiterToDivideSuggestionsForDisplayFromInsertion: "",
+  caretLocationSymbolAfterComplement: "",
+  displayedTextSuffix: " => ...",
+  // internal link complement
+  enableInternalLinkComplement: true,
+  suggestInternalLinkWithAlias: false,
+  excludeInternalLinkPathPrefixPatterns: "",
+  excludeInternalLinkPathGlobPatterns: [],
+  excludeSelfInternalLink: false,
+  excludeExistingInActiveFileInternalLinks: false,
+  updateInternalLinksOnSave: true,
+  insertAliasTransformedFromDisplayedInternalLink: {
+    enabled: false,
+    beforeRegExp: "",
+    after: ""
+  },
+  frontMatterKeyForExclusionInternalLink: "",
+  tagsForExclusionInternalLink: [],
+  // front matter complement
+  enableFrontMatterComplement: false,
+  frontMatterComplementMatchStrategy: "inherit",
+  insertCommaAfterFrontMatterCompletion: false,
+  // provider-specific trigger settings
+  currentFileMinNumberOfCharactersForTrigger: 0,
+  currentVaultMinNumberOfCharactersForTrigger: 0,
+  customDictionaryMinNumberOfCharactersForTrigger: 0,
+  internalLinkMinNumberOfCharactersForTrigger: 0,
+  intelligentSuggestionPrioritization: {
+    enabled: true,
+    historyFilePath: "",
+    maxDaysToKeepHistory: 30,
+    maxNumberOfHistoryToKeep: 0
+  },
+  // mobile
+  disableOnMobile: false,
+  // debug
+  showLogAboutPerformanceInConsole: false
+};
+var VariousComplementsSettingTab = class extends import_obsidian3.PluginSettingTab {
+  constructor(app2, plugin) {
+    super(app2, plugin);
+    this.plugin = plugin;
+  }
+  async display() {
+    let { containerEl } = this;
+    containerEl.empty();
+    containerEl.createEl("h2", { text: "Various Complements - Settings" });
+    await this.addMainSettings(containerEl);
+    this.addAppearanceSettings(containerEl);
+    this.addKeyCustomizationSettings(containerEl);
+    this.addCurrentFileComplementSettings(containerEl);
+    this.addCurrentVaultComplementSettings(containerEl);
+    this.addCustomDictionaryComplementSettings(containerEl);
+    this.addInternalLinkComplementSettings(containerEl);
+    this.addFrontMatterComplementSettings(containerEl);
+    this.addIntelligentSuggestionPrioritizationSettings(containerEl);
+    this.addMobileSettings(containerEl);
+    this.addDebugSettings(containerEl);
+  }
+  async addMainSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Main",
+      cls: "various-complements__settings__header various-complements__settings__header__main"
+    });
+    new import_obsidian3.Setting(containerEl).setName("Strategy").addDropdown(
+      (tc) => tc.addOptions(mirrorMap(TokenizeStrategy.values(), (x) => x.name)).setValue(this.plugin.settings.strategy).onChange(async (value) => {
+        this.plugin.settings.strategy = value;
+        this.display();
+        await this.plugin.saveSettings({
+          currentFile: true,
+          currentVault: true
+        });
+      })
+    );
+    if (this.plugin.settings.strategy === TokenizeStrategy.CHINESE.name) {
+      const df = document.createDocumentFragment();
+      df.append(
+        createSpan({
+          text: "The path to `cedict_ts.u8`. You can download it from "
+        }),
+        createEl("a", {
+          href: "https://www.mdbg.net/chinese/dictionary?page=cc-cedict",
+          text: " the site "
+        })
+      );
+      new import_obsidian3.Setting(containerEl).setName("CC-CEDICT path").setDesc(df).setClass("various-complements__settings__nested").addText((cb) => {
+        TextComponentEvent.onChange(cb, async (value) => {
+          this.plugin.settings.cedictPath = value;
+          await this.plugin.saveSettings();
+          await this.display();
+        }).setValue(this.plugin.settings.cedictPath);
+      });
+      const hasCedict = await app.vault.adapter.exists(
+        this.plugin.settings.cedictPath
+      );
+      if (!hasCedict) {
+        containerEl.createEl("div", {
+          text: `\u26A0 cedict_ts.u8 doesn't exist in ${this.plugin.settings.cedictPath}.`,
+          cls: "various-complements__settings__warning"
+        });
+      }
+    }
+    new import_obsidian3.Setting(containerEl).setName("Match strategy").addDropdown(
+      (tc) => tc.addOptions(mirrorMap(MatchStrategy.values(), (x) => x.name)).setValue(this.plugin.settings.matchStrategy).onChange(async (value) => {
+        this.plugin.settings.matchStrategy = value;
+        await this.plugin.saveSettings();
+        this.display();
+      })
+    );
+    if (this.plugin.settings.matchStrategy === MatchStrategy.PARTIAL.name) {
+      containerEl.createEl("div", {
+        text: "\u26A0 `partial` is more than 10 times slower than `prefix`",
+        cls: "various-complements__settings__warning"
+      });
+    }
+    new import_obsidian3.Setting(containerEl).setName("Fuzzy match").addToggle((tc) => {
+      tc.setValue(this.plugin.settings.fuzzyMatch).onChange(async (value) => {
+        this.plugin.settings.fuzzyMatch = value;
+        await this.plugin.saveSettings();
+      });
+    });
+    new import_obsidian3.Setting(containerEl).setName("Min fuzzy match score").setDesc(
+      "It only shows suggestions whose fuzzy matched score is more than the specific value."
+    ).addSlider(
+      (sc) => sc.setLimits(0, 5, 0.1).setValue(this.plugin.settings.minFuzzyMatchScore).setDynamicTooltip().onChange(async (value) => {
+        this.plugin.settings.minFuzzyMatchScore = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian3.Setting(containerEl).setName("Treat accent diacritics as alphabetic characters.").setDesc("Ex: If enabled, 'aaa' matches with '\xE1\xE4\u0101'").addToggle((tc) => {
+      tc.setValue(
+        this.plugin.settings.treatAccentDiacriticsAsAlphabeticCharacters
+      ).onChange(async (value) => {
+        this.plugin.settings.treatAccentDiacriticsAsAlphabeticCharacters = value;
+        await this.plugin.saveSettings({
+          internalLink: true,
+          customDictionary: true,
+          currentVault: true,
+          currentFile: true
+        });
+      });
+    });
+    if (TokenizeStrategy.fromName(this.plugin.settings.strategy).canTreatUnderscoreAsPartOfWord) {
+      new import_obsidian3.Setting(containerEl).setName("Treat an underscore as a part of a word.").setDesc(
+        "If this setting is enabled, aaa_bbb will be tokenized as a single token aaa_bbb, rather than being split into aaa and bbb."
+      ).addToggle((tc) => {
+        tc.setValue(
+          this.plugin.settings.treatUnderscoreAsPartOfWord
+        ).onChange(async (value) => {
+          this.plugin.settings.treatUnderscoreAsPartOfWord = value;
+          await this.plugin.saveSettings({
+            internalLink: true,
+            customDictionary: true,
+            currentVault: true,
+            currentFile: true
+          });
+        });
+      });
+    }
+    new import_obsidian3.Setting(containerEl).setName("Matching without emoji").setDesc("Ex: If enabled, 'aaa' matches with '\u{1F600}aaa'").addToggle((tc) => {
+      tc.setValue(this.plugin.settings.matchingWithoutEmoji).onChange(
+        async (value) => {
+          this.plugin.settings.matchingWithoutEmoji = value;
+          await this.plugin.saveSettings({
+            internalLink: true,
+            customDictionary: true,
+            currentVault: true,
+            currentFile: true
+          });
+        }
+      );
+    });
+    new import_obsidian3.Setting(containerEl).setName("Max number of suggestions").addSlider(
+      (sc) => sc.setLimits(1, 255, 1).setValue(this.plugin.settings.maxNumberOfSuggestions).setDynamicTooltip().onChange(async (value) => {
+        this.plugin.settings.maxNumberOfSuggestions = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian3.Setting(containerEl).setName("Max number of words as a phrase").setDesc(`[\u26A0Warning] It makes slower more than N times (N is set value)`).addSlider(
+      (sc) => sc.setLimits(1, 10, 1).setValue(this.plugin.settings.maxNumberOfWordsAsPhrase).setDynamicTooltip().onChange(async (value) => {
+        this.plugin.settings.maxNumberOfWordsAsPhrase = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian3.Setting(containerEl).setName("Min number of characters for trigger").setDesc(
+      "Setting the value to 0 does not mean the suggestion will be triggered without any inputted character. Instead, a designated value will be used depending on the Strategy you choose."
+    ).addSlider(
+      (sc) => sc.setLimits(0, 10, 1).setValue(this.plugin.settings.minNumberOfCharactersTriggered).setDynamicTooltip().onChange(async (value) => {
+        this.plugin.settings.minNumberOfCharactersTriggered = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian3.Setting(containerEl).setName("Min number of words for trigger").addSlider(
+      (sc) => sc.setLimits(1, 10, 1).setValue(this.plugin.settings.minNumberOfWordsTriggeredPhrase).setDynamicTooltip().onChange(async (value) => {
+        this.plugin.settings.minNumberOfWordsTriggeredPhrase = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian3.Setting(containerEl).setName("Complement automatically").addToggle((tc) => {
+      tc.setValue(this.plugin.settings.complementAutomatically).onChange(
+        async (value) => {
+          this.plugin.settings.complementAutomatically = value;
+          await this.plugin.saveSettings();
+        }
+      );
+    });
+    new import_obsidian3.Setting(containerEl).setName("Delay milli-seconds for trigger").addSlider(
+      (sc) => sc.setLimits(0, 1e3, 10).setValue(this.plugin.settings.delayMilliSeconds).setDynamicTooltip().onChange(async (value) => {
+        this.plugin.settings.delayMilliSeconds = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian3.Setting(containerEl).setName("Disable suggestions during IME on").addToggle((tc) => {
+      tc.setValue(
+        this.plugin.settings.disableSuggestionsDuringImeOn
+      ).onChange(async (value) => {
+        this.plugin.settings.disableSuggestionsDuringImeOn = value;
+        await this.plugin.saveSettings();
+      });
+    });
+    new import_obsidian3.Setting(containerEl).setName("Disable suggestions in the Math block").setDesc("It doesn't support the inline Math block.").addToggle((tc) => {
+      tc.setValue(
+        this.plugin.settings.disableSuggestionsInMathBlock
+      ).onChange(async (value) => {
+        this.plugin.settings.disableSuggestionsInMathBlock = value;
+        await this.plugin.saveSettings();
+      });
+    });
+    new import_obsidian3.Setting(containerEl).setName("Insert space after completion").addToggle((tc) => {
+      tc.setValue(this.plugin.settings.insertSpaceAfterCompletion).onChange(
+        async (value) => {
+          this.plugin.settings.insertSpaceAfterCompletion = value;
+          await this.plugin.saveSettings();
+        }
+      );
+    });
+    new import_obsidian3.Setting(containerEl).setName("First characters to disable suggestions").addText((cb) => {
+      cb.setValue(
+        this.plugin.settings.firstCharactersDisableSuggestions
+      ).onChange(async (value) => {
+        this.plugin.settings.firstCharactersDisableSuggestions = value;
+        await this.plugin.saveSettings();
+      });
+    });
+    new import_obsidian3.Setting(containerEl).setName("Line patterns to suppress trigger").setDesc(
+      "Regular expression line patterns (partial match) until the cursor, that suppresses the activation of autocomplete. Multiple patterns can be defined with line breaks."
+    ).addTextArea((tc) => {
+      const el = tc.setValue(this.plugin.settings.patternsToSuppressTrigger.join("\n")).onChange(async (value) => {
+        this.plugin.settings.patternsToSuppressTrigger = smartLineBreakSplit(value);
+        await this.plugin.saveSettings();
+      });
+      el.inputEl.className = "various-complements__settings__text-area-path-dense";
+      return el;
+    });
+    new import_obsidian3.Setting(containerEl).setName("Phrase patterns to suppress trigger").setDesc(
+      "Regular expression patterns (exact match) that suppress the activation of autocomplete. Multiple patterns can be defined with line breaks."
+    ).addTextArea((tc) => {
+      const el = tc.setValue(
+        this.plugin.settings.phrasePatternsToSuppressTrigger.join("\n")
+      ).onChange(async (value) => {
+        this.plugin.settings.phrasePatternsToSuppressTrigger = smartLineBreakSplit(value);
+        await this.plugin.saveSettings();
+      });
+      el.inputEl.className = "various-complements__settings__text-area-path-dense";
+      return el;
+    });
+    new import_obsidian3.Setting(containerEl).setName("No auto-focus until the cycle").setDesc("No focus on the suggestions until the cycle key is pressed.").addToggle((tc) => {
+      tc.setValue(this.plugin.settings.noAutoFocusUntilCycle).onChange(
+        async (value) => {
+          this.plugin.settings.noAutoFocusUntilCycle = value;
+          await this.plugin.saveSettings();
+        }
+      );
+    });
+  }
+  addAppearanceSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Appearance",
+      cls: "various-complements__settings__header various-complements__settings__header__appearance"
+    });
+    new import_obsidian3.Setting(containerEl).setName("Show Match strategy").setDesc(
+      "Show Match strategy at the status bar. Changing this option requires a restart to take effect."
+    ).addToggle((tc) => {
+      tc.setValue(this.plugin.settings.showMatchStrategy).onChange(
+        async (value) => {
+          this.plugin.settings.showMatchStrategy = value;
+          await this.plugin.saveSettings();
+        }
+      );
+    });
+    new import_obsidian3.Setting(containerEl).setName("Show Complement automatically").setDesc(
+      "Show complement automatically at the status bar. Changing this option requires a restart to take effect."
+    ).addToggle((tc) => {
+      tc.setValue(this.plugin.settings.showComplementAutomatically).onChange(
+        async (value) => {
+          this.plugin.settings.showComplementAutomatically = value;
+          await this.plugin.saveSettings();
+        }
+      );
+    });
+    new import_obsidian3.Setting(containerEl).setName("Show Indexing status").setDesc(
+      "Show indexing status at the status bar. Changing this option requires a restart to take effect."
+    ).addToggle((tc) => {
+      tc.setValue(this.plugin.settings.showIndexingStatus).onChange(
+        async (value) => {
+          this.plugin.settings.showIndexingStatus = value;
+          await this.plugin.saveSettings();
+        }
+      );
+    });
+    new import_obsidian3.Setting(containerEl).setName("Description on a suggestion").addDropdown(
+      (tc) => tc.addOptions(
+        mirrorMap(DescriptionOnSuggestion.values(), (x) => x.name)
+      ).setValue(this.plugin.settings.descriptionOnSuggestion).onChange(async (value) => {
+        this.plugin.settings.descriptionOnSuggestion = value;
+        await this.plugin.saveSettings();
+      })
+    );
+  }
+  addKeyCustomizationSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Key customization",
+      cls: "various-complements__settings__header various-complements__settings__header__key-customization"
+    });
+    const div = createDiv({
+      cls: "various-complements__settings__popup-hotkey"
+    });
+    containerEl.append(div);
+    const li = createEl("li");
+    li.append(
+      "You can find the keycode at ",
+      createEl("a", {
+        text: "keycode.info",
+        href: "https://keycode.info/"
+      }),
+      ". Press any key to see the '",
+      createEl("code", {
+        text: "event.key"
+      }),
+      "' value, ",
+      createEl("b", {
+        text: "except for the space key"
+      }),
+      ". Set the space key as '",
+      createEl("code", {
+        text: "Space"
+      }),
+      "'."
+    );
+    const ul = createEl("ul");
+    ul.createEl("li", {
+      text: "'Ctrl a' means pressing the Ctrl key and the A key."
+    });
+    ul.createEl("li", {
+      text: "'Enter|Tab' means pressing the Enter key or the Tab key."
+    });
+    ul.createEl("li", {
+      text: "Use 'Mod' instead of 'Ctrl' on Windows or 'Cmd' on macOS."
+    });
+    ul.append(li);
+    const df = document.createDocumentFragment();
+    df.append(ul);
+    new import_obsidian3.Setting(div).setHeading().setName("Hotkeys").setDesc(df);
+    const hotkeys = this.plugin.settings.hotkeys;
+    Object.keys(hotkeys).forEach((k) => {
+      const key = k;
+      new import_obsidian3.Setting(div).setName(key).setClass("various-complements__settings__popup-hotkey-item").addText((cb) => {
+        return cb.setValue(hotkeys[key].map(hotkey2String).join("|")).onChange(async (value) => {
+          hotkeys[key] = value.split("|").map((x) => string2Hotkey(x, false)).filter(isPresent);
+          await this.plugin.saveSettings();
+        });
+      });
+    });
+    new import_obsidian3.Setting(containerEl).setName("Propagate ESC").setDesc(
+      "It is handy if you use Vim mode because you can switch to Normal mode by one ESC, whether it shows suggestions or not."
+    ).addToggle((tc) => {
+      tc.setValue(this.plugin.settings.propagateEsc).onChange(
+        async (value) => {
+          this.plugin.settings.propagateEsc = value;
+          await this.plugin.saveSettings();
+        }
+      );
+    });
+  }
+  addCurrentFileComplementSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Current file complement",
+      cls: "various-complements__settings__header various-complements__settings__header__current-file"
+    });
+    new import_obsidian3.Setting(containerEl).setName("Enable Current file complement").addToggle((tc) => {
+      tc.setValue(this.plugin.settings.enableCurrentFileComplement).onChange(
+        async (value) => {
+          this.plugin.settings.enableCurrentFileComplement = value;
+          await this.plugin.saveSettings({ currentFile: true });
+          this.display();
+        }
+      );
+    });
+    if (this.plugin.settings.enableCurrentFileComplement) {
+      new import_obsidian3.Setting(containerEl).setName("Min number of characters for indexing").setDesc("It uses a default value of Strategy if set 0.").addSlider(
+        (sc) => sc.setLimits(0, 15, 1).setValue(this.plugin.settings.currentFileMinNumberOfCharacters).setDynamicTooltip().onChange(async (value) => {
+          this.plugin.settings.currentFileMinNumberOfCharacters = value;
+          await this.plugin.saveSettings({ currentFile: true });
+        })
+      );
+      new import_obsidian3.Setting(containerEl).setName("Only complement English on current file complement").addToggle((tc) => {
+        tc.setValue(
+          this.plugin.settings.onlyComplementEnglishOnCurrentFileComplement
+        ).onChange(async (value) => {
+          this.plugin.settings.onlyComplementEnglishOnCurrentFileComplement = value;
+          await this.plugin.saveSettings({ currentFile: true });
+        });
+      });
+      new import_obsidian3.Setting(containerEl).setName("Min number of characters for trigger").setDesc(
+        "Override the main trigger setting for this provider. Set 0 to use the main setting value."
+      ).addSlider(
+        (sc) => sc.setLimits(0, 10, 1).setValue(
+          this.plugin.settings.currentFileMinNumberOfCharactersForTrigger
+        ).setDynamicTooltip().onChange(async (value) => {
+          this.plugin.settings.currentFileMinNumberOfCharactersForTrigger = value;
+          await this.plugin.saveSettings();
+        })
+      );
+      new import_obsidian3.Setting(containerEl).setName("Exclude word patterns for indexing").setDesc(
+        "Regexp patterns for words to be excluded from the suggestions, separated by line breaks."
+      ).addTextArea((tc) => {
+        const el = tc.setValue(
+          this.plugin.settings.excludeCurrentFileWordPatterns.join("\n")
+        ).onChange(async (value) => {
+          this.plugin.settings.excludeCurrentFileWordPatterns = smartLineBreakSplit(value);
+          await this.plugin.saveSettings();
+        });
+        el.inputEl.className = "various-complements__settings__text-area-path-dense";
+        return el;
+      });
+    }
+  }
+  addCurrentVaultComplementSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Current vault complement",
+      cls: "various-complements__settings__header various-complements__settings__header__current-vault"
+    });
+    new import_obsidian3.Setting(containerEl).setName("Enable Current vault complement").addToggle((tc) => {
+      tc.setValue(this.plugin.settings.enableCurrentVaultComplement).onChange(
+        async (value) => {
+          this.plugin.settings.enableCurrentVaultComplement = value;
+          this.display();
+          await this.plugin.saveSettings({ currentVault: true });
+        }
+      );
+    });
+    if (this.plugin.settings.enableCurrentVaultComplement) {
+      new import_obsidian3.Setting(containerEl).setName("Min number of characters for indexing").setDesc("It uses a default value of Strategy if set 0.").addSlider(
+        (sc) => sc.setLimits(0, 15, 1).setValue(this.plugin.settings.currentVaultMinNumberOfCharacters).setDynamicTooltip().onChange(async (value) => {
+          this.plugin.settings.currentVaultMinNumberOfCharacters = value;
+          await this.plugin.saveSettings();
+        })
+      );
+      new import_obsidian3.Setting(containerEl).setName("Include prefix path patterns").setDesc("Prefix match path patterns to include files.").addTextArea((tac) => {
+        const el = tac.setValue(
+          this.plugin.settings.includeCurrentVaultPathPrefixPatterns
+        ).setPlaceholder("Private/").onChange(async (value) => {
+          this.plugin.settings.includeCurrentVaultPathPrefixPatterns = value;
+          await this.plugin.saveSettings();
+        });
+        el.inputEl.className = "various-complements__settings__text-area-path";
+        return el;
+      });
+      new import_obsidian3.Setting(containerEl).setName("Exclude prefix path patterns").setDesc("Prefix match path patterns to exclude files.").addTextArea((tac) => {
+        const el = tac.setValue(
+          this.plugin.settings.excludeCurrentVaultPathPrefixPatterns
+        ).setPlaceholder("Private/").onChange(async (value) => {
+          this.plugin.settings.excludeCurrentVaultPathPrefixPatterns = value;
+          await this.plugin.saveSettings();
+        });
+        el.inputEl.className = "various-complements__settings__text-area-path";
+        return el;
+      });
+      new import_obsidian3.Setting(containerEl).setName("Exclude path glob patterns").setDesc(
+        "Glob patterns to exclude files. Supports wildcards like **/attachments, **/*.png, etc."
+      ).addTextArea((tac) => {
+        const el = tac.setValue(
+          this.plugin.settings.excludeCurrentVaultPathGlobPatterns.join(
+            "\n"
+          )
+        ).setPlaceholder("**/attachments\n**/*.png").onChange(async (value) => {
+          this.plugin.settings.excludeCurrentVaultPathGlobPatterns = smartLineBreakSplit(value);
+          await this.plugin.saveSettings();
+          this.display();
+        });
+        el.inputEl.className = "various-complements__settings__text-area-path";
+        return el;
+      });
+      containerEl.createEl("div", {
+        text: "\u26A0 Glob patterns add processing overhead. Use prefix path patterns above for better performance when possible.",
+        cls: "various-complements__settings__warning"
+      });
+      new import_obsidian3.Setting(containerEl).setName("Include only files under current directory").addToggle((tc) => {
+        tc.setValue(
+          this.plugin.settings.includeCurrentVaultOnlyFilesUnderCurrentDirectory
+        ).onChange(async (value) => {
+          this.plugin.settings.includeCurrentVaultOnlyFilesUnderCurrentDirectory = value;
+          await this.plugin.saveSettings();
+        });
+      });
+      new import_obsidian3.Setting(containerEl).setName("Min number of characters for trigger").setDesc(
+        "Override the main trigger setting for this provider. Set 0 to use the main setting value."
+      ).addSlider(
+        (sc) => sc.setLimits(0, 10, 1).setValue(
+          this.plugin.settings.currentVaultMinNumberOfCharactersForTrigger
+        ).setDynamicTooltip().onChange(async (value) => {
+          this.plugin.settings.currentVaultMinNumberOfCharactersForTrigger = value;
+          await this.plugin.saveSettings();
+        })
+      );
+      new import_obsidian3.Setting(containerEl).setName("Exclude word patterns for indexing").setDesc(
+        "Regexp patterns for words to be excluded from the suggestions, separated by line breaks."
+      ).addTextArea((tc) => {
+        const el = tc.setValue(
+          this.plugin.settings.excludeCurrentVaultWordPatterns.join("\n")
+        ).onChange(async (value) => {
+          this.plugin.settings.excludeCurrentVaultWordPatterns = smartLineBreakSplit(value);
+          await this.plugin.saveSettings();
+        });
+        el.inputEl.className = "various-complements__settings__text-area-path-dense";
+        return el;
+      });
+    }
+  }
+  addCustomDictionaryComplementSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Custom dictionary complement",
+      cls: "various-complements__settings__header various-complements__settings__header__custom-dictionary"
+    });
+    new import_obsidian3.Setting(containerEl).setName("Enable Custom dictionary complement").addToggle((tc) => {
+      tc.setValue(
+        this.plugin.settings.enableCustomDictionaryComplement
+      ).onChange(async (value) => {
+        this.plugin.settings.enableCustomDictionaryComplement = value;
+        await this.plugin.saveSettings({ customDictionary: true });
+        this.display();
+      });
+    });
+    if (this.plugin.settings.enableCustomDictionaryComplement) {
+      new import_obsidian3.Setting(containerEl).setName("Custom dictionary paths").setDesc(
+        "Specify either a relative path from Vault root or URL for each line."
+      ).addTextArea((tac) => {
+        const el = tac.setValue(this.plugin.settings.customDictionaryPaths).setPlaceholder("dictionary.md").onChange(async (value) => {
+          this.plugin.settings.customDictionaryPaths = value;
+          await this.plugin.saveSettings();
+        });
+        el.inputEl.className = "various-complements__settings__text-area-path";
+        return el;
+      });
+      new import_obsidian3.Setting(containerEl).setName("Column delimiter").addDropdown(
+        (tc) => tc.addOptions(mirrorMap(ColumnDelimiter.values(), (x) => x.name)).setValue(this.plugin.settings.columnDelimiter).onChange(async (value) => {
+          this.plugin.settings.columnDelimiter = value;
+          await this.plugin.saveSettings();
+        })
+      );
+      new import_obsidian3.Setting(containerEl).setName("Word regex pattern").setDesc("Only load words that match the regular expression pattern.").addText((cb) => {
+        cb.setValue(
+          this.plugin.settings.customDictionaryWordRegexPattern
+        ).onChange(async (value) => {
+          this.plugin.settings.customDictionaryWordRegexPattern = value;
+          await this.plugin.saveSettings();
+        });
+      });
+      new import_obsidian3.Setting(containerEl).setName("Delimiter to hide a suggestion").setDesc(
+        "If set ';;;', 'abcd;;;efg' is shown as 'abcd' on suggestions, but completes to 'abcdefg'."
+      ).addText((cb) => {
+        cb.setValue(this.plugin.settings.delimiterToHideSuggestion).onChange(
+          async (value) => {
+            this.plugin.settings.delimiterToHideSuggestion = value;
+            await this.plugin.saveSettings();
+          }
+        );
+      });
+      new import_obsidian3.Setting(containerEl).setName(
+        "Delimiter to divide suggestions for display from ones for insertion"
+      ).setDesc(
+        "If set ' >>> ', 'displayed >>> inserted' is shown as 'displayed' on suggestions, but completes to 'inserted'."
+      ).addText((cb) => {
+        cb.setValue(
+          this.plugin.settings.delimiterToDivideSuggestionsForDisplayFromInsertion
+        ).onChange(async (value) => {
+          this.plugin.settings.delimiterToDivideSuggestionsForDisplayFromInsertion = value;
+          await this.plugin.saveSettings();
+        });
+      });
+      new import_obsidian3.Setting(containerEl).setName("Caret location symbol after complement").setDesc(
+        "If set '<CARET>' and there is '<li><CARET></li>' in custom dictionary, it complements '<li></li>' and move a caret where between '<li>' and `</li>`."
+      ).addText((cb) => {
+        cb.setValue(
+          this.plugin.settings.caretLocationSymbolAfterComplement
+        ).onChange(async (value) => {
+          this.plugin.settings.caretLocationSymbolAfterComplement = value;
+          await this.plugin.saveSettings();
+        });
+      });
+      new import_obsidian3.Setting(containerEl).setName("Displayed text suffix").setDesc(
+        "It shows as a suffix of displayed text if there is a difference between displayed and inserted"
+      ).addText((cb) => {
+        cb.setValue(this.plugin.settings.displayedTextSuffix).onChange(
+          async (value) => {
+            this.plugin.settings.displayedTextSuffix = value;
+            await this.plugin.saveSettings();
+          }
+        );
+      });
+      new import_obsidian3.Setting(containerEl).setName("Min number of characters for trigger").setDesc(
+        "Override the main trigger setting for this provider. Set 0 to use the main setting value."
+      ).addSlider(
+        (sc) => sc.setLimits(0, 10, 1).setValue(
+          this.plugin.settings.customDictionaryMinNumberOfCharactersForTrigger
+        ).setDynamicTooltip().onChange(async (value) => {
+          this.plugin.settings.customDictionaryMinNumberOfCharactersForTrigger = value;
+          await this.plugin.saveSettings();
+        })
+      );
+    }
+  }
+  addInternalLinkComplementSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Internal link complement",
+      cls: "various-complements__settings__header various-complements__settings__header__internal-link"
+    });
+    new import_obsidian3.Setting(containerEl).setName("Enable Internal link complement").addToggle((tc) => {
+      tc.setValue(this.plugin.settings.enableInternalLinkComplement).onChange(
+        async (value) => {
+          this.plugin.settings.enableInternalLinkComplement = value;
+          await this.plugin.saveSettings({ internalLink: true });
+          this.display();
+        }
+      );
+    });
+    if (this.plugin.settings.enableInternalLinkComplement) {
+      new import_obsidian3.Setting(containerEl).setName("Suggest with an alias").addToggle((tc) => {
+        tc.setValue(
+          this.plugin.settings.suggestInternalLinkWithAlias
+        ).onChange(async (value) => {
+          this.plugin.settings.suggestInternalLinkWithAlias = value;
+          await this.plugin.saveSettings({ internalLink: true });
+        });
+      });
+      new import_obsidian3.Setting(containerEl).setName("Update internal links on save").addToggle((tc) => {
+        tc.setValue(this.plugin.settings.updateInternalLinksOnSave).onChange(
+          async (value) => {
+            this.plugin.settings.updateInternalLinksOnSave = value;
+            await this.plugin.saveSettings({ internalLink: true });
+          }
+        );
+      });
+      new import_obsidian3.Setting(containerEl).setName("Exclude self internal link").addToggle((tc) => {
+        tc.setValue(this.plugin.settings.excludeSelfInternalLink).onChange(
+          async (value) => {
+            this.plugin.settings.excludeSelfInternalLink = value;
+            await this.plugin.saveSettings({ internalLink: true });
+          }
+        );
+      });
+      new import_obsidian3.Setting(containerEl).setName("Exclude existing in active file internal links").setDesc(
+        "Exclude internal links present in the current file from the suggestions. Note that the number of excluded suggestions will reduce the total suggestions by the value set in the 'Max number of suggestions' option."
+      ).addToggle((tc) => {
+        tc.setValue(
+          this.plugin.settings.excludeExistingInActiveFileInternalLinks
+        ).onChange(async (value) => {
+          this.plugin.settings.excludeExistingInActiveFileInternalLinks = value;
+          await this.plugin.saveSettings({ internalLink: true });
+        });
+      });
+      new import_obsidian3.Setting(containerEl).setName(
+        "Insert an alias that is transformed from the displayed internal link"
+      ).addToggle((tc) => {
+        tc.setValue(
+          this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.enabled
+        ).onChange(async (value) => {
+          this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.enabled = value;
+          await this.plugin.saveSettings();
+          this.display();
+        });
+      });
+      if (this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.enabled) {
+        new import_obsidian3.Setting(containerEl).setName("Before: regular expression pattern with captures").setDesc(String.raw`Ex: (?<name>.+) \(.+\)$`).setClass("various-complements__settings__nested").addText((cb) => {
+          cb.setValue(
+            this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.beforeRegExp
+          ).onChange(async (value) => {
+            this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.beforeRegExp = value;
+            await this.plugin.saveSettings();
+          });
+        });
+        new import_obsidian3.Setting(containerEl).setName("After").setDesc("Ex: $<name>").setClass("various-complements__settings__nested").addText((cb) => {
+          cb.setValue(
+            this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.after
+          ).onChange(async (value) => {
+            this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.after = value;
+            await this.plugin.saveSettings();
+          });
+        });
+      }
+      new import_obsidian3.Setting(containerEl).setName("Exclude prefix path patterns").setDesc("Prefix match path patterns to exclude files.").addTextArea((tac) => {
+        const el = tac.setValue(
+          this.plugin.settings.excludeInternalLinkPathPrefixPatterns
+        ).setPlaceholder("Private/").onChange(async (value) => {
+          this.plugin.settings.excludeInternalLinkPathPrefixPatterns = value;
+          await this.plugin.saveSettings();
+        });
+        el.inputEl.className = "various-complements__settings__text-area-path";
+        return el;
+      });
+      new import_obsidian3.Setting(containerEl).setName("Exclude path glob patterns").setDesc(
+        "Glob patterns to exclude files. Supports wildcards like **/attachments, **/*.png, etc."
+      ).addTextArea((tac) => {
+        const el = tac.setValue(
+          this.plugin.settings.excludeInternalLinkPathGlobPatterns.join(
+            "\n"
+          )
+        ).setPlaceholder("**/attachments\n**/*.png").onChange(async (value) => {
+          this.plugin.settings.excludeInternalLinkPathGlobPatterns = smartLineBreakSplit(value);
+          await this.plugin.saveSettings();
+        });
+        el.inputEl.className = "various-complements__settings__text-area-path";
+        return el;
+      });
+      containerEl.createEl("div", {
+        text: "\u26A0 Glob patterns add processing overhead. Use prefix path patterns above for better performance when possible.",
+        cls: "various-complements__settings__warning"
+      });
+      new import_obsidian3.Setting(containerEl).setName("Front matter key for exclusion").setDesc(
+        "Exclude internal links from the suggestions if whose front matters have the key whose name is same as this setting, and the value is 'true'"
+      ).addText((cb) => {
+        TextComponentEvent.onChange(cb, async (value) => {
+          this.plugin.settings.frontMatterKeyForExclusionInternalLink = value;
+          await this.plugin.saveSettings({ internalLink: true });
+        }).setValue(
+          this.plugin.settings.frontMatterKeyForExclusionInternalLink
+        );
+      });
+      new import_obsidian3.Setting(containerEl).setName("Tags for exclusion").setDesc(
+        "Tags to exclude suggestions for internal links. If specifying multiple tags, separate them with line breaks."
+      ).addTextArea((tc) => {
+        const el = tc.setValue(
+          this.plugin.settings.tagsForExclusionInternalLink.join("\n")
+        ).onChange(async (value) => {
+          this.plugin.settings.tagsForExclusionInternalLink = smartLineBreakSplit(value);
+          await this.plugin.saveSettings();
+        });
+        el.inputEl.className = "various-complements__settings__text-area-path-mini";
+        return el;
+      });
+      new import_obsidian3.Setting(containerEl).setName("Min number of characters for trigger").setDesc(
+        "Override the main trigger setting for this provider. Set 0 to use the main setting value."
+      ).addSlider(
+        (sc) => sc.setLimits(0, 10, 1).setValue(
+          this.plugin.settings.internalLinkMinNumberOfCharactersForTrigger
+        ).setDynamicTooltip().onChange(async (value) => {
+          this.plugin.settings.internalLinkMinNumberOfCharactersForTrigger = value;
+          await this.plugin.saveSettings();
+        })
+      );
+    }
+  }
+  addFrontMatterComplementSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Front matter complement",
+      cls: "various-complements__settings__header various-complements__settings__header__front-matter"
+    });
+    new import_obsidian3.Setting(containerEl).setName("Enable Front matter complement").addToggle((tc) => {
+      tc.setValue(this.plugin.settings.enableFrontMatterComplement).onChange(
+        async (value) => {
+          this.plugin.settings.enableFrontMatterComplement = value;
+          await this.plugin.saveSettings({ frontMatter: true });
+          this.display();
+        }
+      );
+    });
+    if (this.plugin.settings.enableFrontMatterComplement) {
+      new import_obsidian3.Setting(containerEl).setName("Match strategy in the front matter").addDropdown(
+        (tc) => tc.addOptions(
+          mirrorMap(SpecificMatchStrategy.values(), (x) => x.name)
+        ).setValue(this.plugin.settings.frontMatterComplementMatchStrategy).onChange(async (value) => {
+          this.plugin.settings.frontMatterComplementMatchStrategy = value;
+          await this.plugin.saveSettings();
+        })
+      );
+      new import_obsidian3.Setting(containerEl).setName("Insert comma after completion").addToggle((tc) => {
+        tc.setValue(
+          this.plugin.settings.insertCommaAfterFrontMatterCompletion
+        ).onChange(async (value) => {
+          this.plugin.settings.insertCommaAfterFrontMatterCompletion = value;
+          await this.plugin.saveSettings();
+        });
+      });
+    }
+  }
+  addIntelligentSuggestionPrioritizationSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Intelligent suggestion prioritization",
+      cls: "various-complements__settings__header various-complements__settings__header__intelligent-suggestion-prioritization"
+    });
+    new import_obsidian3.Setting(containerEl).setName("Enable Intelligent Suggestion Prioritization").addToggle((tc) => {
+      tc.setValue(
+        this.plugin.settings.intelligentSuggestionPrioritization.enabled
+      ).onChange(async (value) => {
+        this.plugin.settings.intelligentSuggestionPrioritization.enabled = value;
+        await this.plugin.saveSettings({
+          intelligentSuggestionPrioritization: true
+        });
+        this.display();
+      });
+    });
+    if (this.plugin.settings.intelligentSuggestionPrioritization.enabled) {
+      new import_obsidian3.Setting(containerEl).setName("history file path").setDesc(`Default: ${DEFAULT_HISTORIES_PATH}`).addText((cb) => {
+        TextComponentEvent.onChange(cb, async (value) => {
+          this.plugin.settings.intelligentSuggestionPrioritization.historyFilePath = value;
+          await this.plugin.saveSettings({
+            intelligentSuggestionPrioritization: true
+          });
+        }).setValue(
+          this.plugin.settings.intelligentSuggestionPrioritization.historyFilePath
+        );
+      });
+      new import_obsidian3.Setting(containerEl).setName("Max days to keep history").setDesc("If set 0, it will never remove").addSlider(
+        (sc) => sc.setLimits(0, 365, 1).setValue(
+          this.plugin.settings.intelligentSuggestionPrioritization.maxDaysToKeepHistory
+        ).setDynamicTooltip().onChange(async (value) => {
+          this.plugin.settings.intelligentSuggestionPrioritization.maxDaysToKeepHistory = value;
+          await this.plugin.saveSettings();
+        })
+      );
+      new import_obsidian3.Setting(containerEl).setName("Max number of history to keep").setDesc("If set 0, it will never remove").addSlider(
+        (sc) => sc.setLimits(0, 1e4, 1).setValue(
+          this.plugin.settings.intelligentSuggestionPrioritization.maxNumberOfHistoryToKeep
+        ).setDynamicTooltip().onChange(async (value) => {
+          this.plugin.settings.intelligentSuggestionPrioritization.maxNumberOfHistoryToKeep = value;
+          await this.plugin.saveSettings();
+        })
+      );
+    }
+  }
+  addMobileSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Mobile",
+      cls: "various-complements__settings__header various-complements__settings__header__mobile"
+    });
+    new import_obsidian3.Setting(containerEl).setName("Disable on mobile").addToggle((tc) => {
+      tc.setValue(this.plugin.settings.disableOnMobile).onChange(
+        async (value) => {
+          this.plugin.settings.disableOnMobile = value;
+          await this.plugin.saveSettings();
+        }
+      );
+    });
+  }
+  addDebugSettings(containerEl) {
+    containerEl.createEl("h3", {
+      text: "Debug",
+      cls: "various-complements__settings__header various-complements__settings__header__debug"
+    });
+    new import_obsidian3.Setting(containerEl).setName("Show log about performance in a console").addToggle((tc) => {
+      tc.setValue(
+        this.plugin.settings.showLogAboutPerformanceInConsole
+      ).onChange(async (value) => {
+        this.plugin.settings.showLogAboutPerformanceInConsole = value;
+        await this.plugin.saveSettings();
+      });
+    });
+  }
+  async toggleMatchStrategy() {
+    switch (this.plugin.settings.matchStrategy) {
+      case "prefix":
+        this.plugin.settings.matchStrategy = "partial";
+        break;
+      case "partial":
+        this.plugin.settings.matchStrategy = "prefix";
+        break;
+      default:
+        new import_obsidian3.Notice("\u26A0Unexpected error");
+    }
+    await this.plugin.saveSettings();
+  }
+  async toggleComplementAutomatically() {
+    this.plugin.settings.complementAutomatically = !this.plugin.settings.complementAutomatically;
+    await this.plugin.saveSettings();
+  }
+  async ensureCustomDictionaryPath(path2, state) {
+    const paths = this.plugin.settings.customDictionaryPaths.split("\n");
+    const exists = paths.some((x) => x === path2);
+    if (exists && state === "present" || !exists && state === "absent") {
+      return false;
+    }
+    const newPaths = state === "present" ? [...paths, path2] : paths.filter((x) => x !== path2);
+    this.plugin.settings.customDictionaryPaths = newPaths.join("\n");
+    await this.plugin.saveSettings({ customDictionary: true });
+    return true;
+  }
+  getPluginSettingsAsJsonString() {
+    return JSON.stringify(
+      {
+        version: this.plugin.manifest.version,
+        mobile: this.app.isMobile,
+        settings: this.plugin.settings
+      },
+      null,
+      4
+    );
+  }
+};
+
+// src/ui/AutoCompleteSuggest.ts
+var import_obsidian7 = require("obsidian");
 
 // src/provider/CurrentFileWordProvider.ts
 var CurrentFileWordProvider = class {
@@ -1420,6 +2635,1581 @@ var CurrentFileWordProvider = class {
   }
 };
 
+// node_modules/.pnpm/@isaacs+balanced-match@4.0.1/node_modules/@isaacs/balanced-match/dist/esm/index.js
+var balanced = (a, b, str) => {
+  const ma = a instanceof RegExp ? maybeMatch(a, str) : a;
+  const mb = b instanceof RegExp ? maybeMatch(b, str) : b;
+  const r = ma !== null && mb != null && range(ma, mb, str);
+  return r && {
+    start: r[0],
+    end: r[1],
+    pre: str.slice(0, r[0]),
+    body: str.slice(r[0] + ma.length, r[1]),
+    post: str.slice(r[1] + mb.length)
+  };
+};
+var maybeMatch = (reg, str) => {
+  const m = str.match(reg);
+  return m ? m[0] : null;
+};
+var range = (a, b, str) => {
+  let begs, beg, left, right = void 0, result;
+  let ai = str.indexOf(a);
+  let bi = str.indexOf(b, ai + 1);
+  let i = ai;
+  if (ai >= 0 && bi > 0) {
+    if (a === b) {
+      return [ai, bi];
+    }
+    begs = [];
+    left = str.length;
+    while (i >= 0 && !result) {
+      if (i === ai) {
+        begs.push(i);
+        ai = str.indexOf(a, i + 1);
+      } else if (begs.length === 1) {
+        const r = begs.pop();
+        if (r !== void 0)
+          result = [r, bi];
+      } else {
+        beg = begs.pop();
+        if (beg !== void 0 && beg < left) {
+          left = beg;
+          right = bi;
+        }
+        bi = str.indexOf(b, i + 1);
+      }
+      i = ai < bi && ai >= 0 ? ai : bi;
+    }
+    if (begs.length && right !== void 0) {
+      result = [left, right];
+    }
+  }
+  return result;
+};
+
+// node_modules/.pnpm/@isaacs+brace-expansion@5.0.0/node_modules/@isaacs/brace-expansion/dist/esm/index.js
+var escSlash = "\0SLASH" + Math.random() + "\0";
+var escOpen = "\0OPEN" + Math.random() + "\0";
+var escClose = "\0CLOSE" + Math.random() + "\0";
+var escComma = "\0COMMA" + Math.random() + "\0";
+var escPeriod = "\0PERIOD" + Math.random() + "\0";
+var escSlashPattern = new RegExp(escSlash, "g");
+var escOpenPattern = new RegExp(escOpen, "g");
+var escClosePattern = new RegExp(escClose, "g");
+var escCommaPattern = new RegExp(escComma, "g");
+var escPeriodPattern = new RegExp(escPeriod, "g");
+var slashPattern = /\\\\/g;
+var openPattern = /\\{/g;
+var closePattern = /\\}/g;
+var commaPattern = /\\,/g;
+var periodPattern = /\\./g;
+function numeric(str) {
+  return !isNaN(str) ? parseInt(str, 10) : str.charCodeAt(0);
+}
+function escapeBraces(str) {
+  return str.replace(slashPattern, escSlash).replace(openPattern, escOpen).replace(closePattern, escClose).replace(commaPattern, escComma).replace(periodPattern, escPeriod);
+}
+function unescapeBraces(str) {
+  return str.replace(escSlashPattern, "\\").replace(escOpenPattern, "{").replace(escClosePattern, "}").replace(escCommaPattern, ",").replace(escPeriodPattern, ".");
+}
+function parseCommaParts(str) {
+  if (!str) {
+    return [""];
+  }
+  const parts = [];
+  const m = balanced("{", "}", str);
+  if (!m) {
+    return str.split(",");
+  }
+  const { pre, body, post } = m;
+  const p = pre.split(",");
+  p[p.length - 1] += "{" + body + "}";
+  const postParts = parseCommaParts(post);
+  if (post.length) {
+    ;
+    p[p.length - 1] += postParts.shift();
+    p.push.apply(p, postParts);
+  }
+  parts.push.apply(parts, p);
+  return parts;
+}
+function expand(str) {
+  if (!str) {
+    return [];
+  }
+  if (str.slice(0, 2) === "{}") {
+    str = "\\{\\}" + str.slice(2);
+  }
+  return expand_(escapeBraces(str), true).map(unescapeBraces);
+}
+function embrace(str) {
+  return "{" + str + "}";
+}
+function isPadded(el) {
+  return /^-?0\d/.test(el);
+}
+function lte(i, y) {
+  return i <= y;
+}
+function gte(i, y) {
+  return i >= y;
+}
+function expand_(str, isTop) {
+  const expansions = [];
+  const m = balanced("{", "}", str);
+  if (!m)
+    return [str];
+  const pre = m.pre;
+  const post = m.post.length ? expand_(m.post, false) : [""];
+  if (/\$$/.test(m.pre)) {
+    for (let k = 0; k < post.length; k++) {
+      const expansion = pre + "{" + m.body + "}" + post[k];
+      expansions.push(expansion);
+    }
+  } else {
+    const isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
+    const isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
+    const isSequence = isNumericSequence || isAlphaSequence;
+    const isOptions = m.body.indexOf(",") >= 0;
+    if (!isSequence && !isOptions) {
+      if (m.post.match(/,(?!,).*\}/)) {
+        str = m.pre + "{" + m.body + escClose + m.post;
+        return expand_(str);
+      }
+      return [str];
+    }
+    let n;
+    if (isSequence) {
+      n = m.body.split(/\.\./);
+    } else {
+      n = parseCommaParts(m.body);
+      if (n.length === 1 && n[0] !== void 0) {
+        n = expand_(n[0], false).map(embrace);
+        if (n.length === 1) {
+          return post.map((p) => m.pre + n[0] + p);
+        }
+      }
+    }
+    let N;
+    if (isSequence && n[0] !== void 0 && n[1] !== void 0) {
+      const x = numeric(n[0]);
+      const y = numeric(n[1]);
+      const width = Math.max(n[0].length, n[1].length);
+      let incr = n.length === 3 && n[2] !== void 0 ? Math.abs(numeric(n[2])) : 1;
+      let test = lte;
+      const reverse = y < x;
+      if (reverse) {
+        incr *= -1;
+        test = gte;
+      }
+      const pad = n.some(isPadded);
+      N = [];
+      for (let i = x; test(i, y); i += incr) {
+        let c;
+        if (isAlphaSequence) {
+          c = String.fromCharCode(i);
+          if (c === "\\") {
+            c = "";
+          }
+        } else {
+          c = String(i);
+          if (pad) {
+            const need = width - c.length;
+            if (need > 0) {
+              const z = new Array(need + 1).join("0");
+              if (i < 0) {
+                c = "-" + z + c.slice(1);
+              } else {
+                c = z + c;
+              }
+            }
+          }
+        }
+        N.push(c);
+      }
+    } else {
+      N = [];
+      for (let j = 0; j < n.length; j++) {
+        N.push.apply(N, expand_(n[j], false));
+      }
+    }
+    for (let j = 0; j < N.length; j++) {
+      for (let k = 0; k < post.length; k++) {
+        const expansion = pre + N[j] + post[k];
+        if (!isTop || isSequence || expansion) {
+          expansions.push(expansion);
+        }
+      }
+    }
+  }
+  return expansions;
+}
+
+// node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+var MAX_PATTERN_LENGTH = 1024 * 64;
+var assertValidPattern = (pattern) => {
+  if (typeof pattern !== "string") {
+    throw new TypeError("invalid pattern");
+  }
+  if (pattern.length > MAX_PATTERN_LENGTH) {
+    throw new TypeError("pattern is too long");
+  }
+};
+
+// node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/brace-expressions.js
+var posixClasses = {
+  "[:alnum:]": ["\\p{L}\\p{Nl}\\p{Nd}", true],
+  "[:alpha:]": ["\\p{L}\\p{Nl}", true],
+  "[:ascii:]": ["\\x00-\\x7f", false],
+  "[:blank:]": ["\\p{Zs}\\t", true],
+  "[:cntrl:]": ["\\p{Cc}", true],
+  "[:digit:]": ["\\p{Nd}", true],
+  "[:graph:]": ["\\p{Z}\\p{C}", true, true],
+  "[:lower:]": ["\\p{Ll}", true],
+  "[:print:]": ["\\p{C}", true],
+  "[:punct:]": ["\\p{P}", true],
+  "[:space:]": ["\\p{Z}\\t\\r\\n\\v\\f", true],
+  "[:upper:]": ["\\p{Lu}", true],
+  "[:word:]": ["\\p{L}\\p{Nl}\\p{Nd}\\p{Pc}", true],
+  "[:xdigit:]": ["A-Fa-f0-9", false]
+};
+var braceEscape = (s) => s.replace(/[[\]\\-]/g, "\\$&");
+var regexpEscape = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+var rangesToString = (ranges) => ranges.join("");
+var parseClass = (glob, position) => {
+  const pos = position;
+  if (glob.charAt(pos) !== "[") {
+    throw new Error("not in a brace expression");
+  }
+  const ranges = [];
+  const negs = [];
+  let i = pos + 1;
+  let sawStart = false;
+  let uflag = false;
+  let escaping = false;
+  let negate = false;
+  let endPos = pos;
+  let rangeStart = "";
+  WHILE: while (i < glob.length) {
+    const c = glob.charAt(i);
+    if ((c === "!" || c === "^") && i === pos + 1) {
+      negate = true;
+      i++;
+      continue;
+    }
+    if (c === "]" && sawStart && !escaping) {
+      endPos = i + 1;
+      break;
+    }
+    sawStart = true;
+    if (c === "\\") {
+      if (!escaping) {
+        escaping = true;
+        i++;
+        continue;
+      }
+    }
+    if (c === "[" && !escaping) {
+      for (const [cls, [unip, u, neg]] of Object.entries(posixClasses)) {
+        if (glob.startsWith(cls, i)) {
+          if (rangeStart) {
+            return ["$.", false, glob.length - pos, true];
+          }
+          i += cls.length;
+          if (neg)
+            negs.push(unip);
+          else
+            ranges.push(unip);
+          uflag = uflag || u;
+          continue WHILE;
+        }
+      }
+    }
+    escaping = false;
+    if (rangeStart) {
+      if (c > rangeStart) {
+        ranges.push(braceEscape(rangeStart) + "-" + braceEscape(c));
+      } else if (c === rangeStart) {
+        ranges.push(braceEscape(c));
+      }
+      rangeStart = "";
+      i++;
+      continue;
+    }
+    if (glob.startsWith("-]", i + 1)) {
+      ranges.push(braceEscape(c + "-"));
+      i += 2;
+      continue;
+    }
+    if (glob.startsWith("-", i + 1)) {
+      rangeStart = c;
+      i += 2;
+      continue;
+    }
+    ranges.push(braceEscape(c));
+    i++;
+  }
+  if (endPos < i) {
+    return ["", false, 0, false];
+  }
+  if (!ranges.length && !negs.length) {
+    return ["$.", false, glob.length - pos, true];
+  }
+  if (negs.length === 0 && ranges.length === 1 && /^\\?.$/.test(ranges[0]) && !negate) {
+    const r = ranges[0].length === 2 ? ranges[0].slice(-1) : ranges[0];
+    return [regexpEscape(r), false, endPos - pos, false];
+  }
+  const sranges = "[" + (negate ? "^" : "") + rangesToString(ranges) + "]";
+  const snegs = "[" + (negate ? "" : "^") + rangesToString(negs) + "]";
+  const comb = ranges.length && negs.length ? "(" + sranges + "|" + snegs + ")" : ranges.length ? sranges : snegs;
+  return [comb, uflag, endPos - pos, true];
+};
+
+// node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/unescape.js
+var unescape = (s, { windowsPathsNoEscape = false } = {}) => {
+  return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
+};
+
+// node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/ast.js
+var types = /* @__PURE__ */ new Set(["!", "?", "+", "*", "@"]);
+var isExtglobType = (c) => types.has(c);
+var startNoTraversal = "(?!(?:^|/)\\.\\.?(?:$|/))";
+var startNoDot = "(?!\\.)";
+var addPatternStart = /* @__PURE__ */ new Set(["[", "."]);
+var justDots = /* @__PURE__ */ new Set(["..", "."]);
+var reSpecials = new Set("().*{}+?[]^$\\!");
+var regExpEscape = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+var qmark = "[^/]";
+var star = qmark + "*?";
+var starNoEmpty = qmark + "+?";
+var _root, _hasMagic, _uflag, _parts, _parent, _parentIndex, _negs, _filledNegs, _options, _toString, _emptyExt, _AST_instances, fillNegs_fn, _AST_static, parseAST_fn, partsToRegExp_fn, parseGlob_fn;
+var _AST = class _AST {
+  constructor(type, parent, options = {}) {
+    __privateAdd(this, _AST_instances);
+    __publicField(this, "type");
+    __privateAdd(this, _root);
+    __privateAdd(this, _hasMagic);
+    __privateAdd(this, _uflag, false);
+    __privateAdd(this, _parts, []);
+    __privateAdd(this, _parent);
+    __privateAdd(this, _parentIndex);
+    __privateAdd(this, _negs);
+    __privateAdd(this, _filledNegs, false);
+    __privateAdd(this, _options);
+    __privateAdd(this, _toString);
+    // set to true if it's an extglob with no children
+    // (which really means one child of '')
+    __privateAdd(this, _emptyExt, false);
+    this.type = type;
+    if (type)
+      __privateSet(this, _hasMagic, true);
+    __privateSet(this, _parent, parent);
+    __privateSet(this, _root, __privateGet(this, _parent) ? __privateGet(__privateGet(this, _parent), _root) : this);
+    __privateSet(this, _options, __privateGet(this, _root) === this ? options : __privateGet(__privateGet(this, _root), _options));
+    __privateSet(this, _negs, __privateGet(this, _root) === this ? [] : __privateGet(__privateGet(this, _root), _negs));
+    if (type === "!" && !__privateGet(__privateGet(this, _root), _filledNegs))
+      __privateGet(this, _negs).push(this);
+    __privateSet(this, _parentIndex, __privateGet(this, _parent) ? __privateGet(__privateGet(this, _parent), _parts).length : 0);
+  }
+  get hasMagic() {
+    if (__privateGet(this, _hasMagic) !== void 0)
+      return __privateGet(this, _hasMagic);
+    for (const p of __privateGet(this, _parts)) {
+      if (typeof p === "string")
+        continue;
+      if (p.type || p.hasMagic)
+        return __privateSet(this, _hasMagic, true);
+    }
+    return __privateGet(this, _hasMagic);
+  }
+  // reconstructs the pattern
+  toString() {
+    if (__privateGet(this, _toString) !== void 0)
+      return __privateGet(this, _toString);
+    if (!this.type) {
+      return __privateSet(this, _toString, __privateGet(this, _parts).map((p) => String(p)).join(""));
+    } else {
+      return __privateSet(this, _toString, this.type + "(" + __privateGet(this, _parts).map((p) => String(p)).join("|") + ")");
+    }
+  }
+  push(...parts) {
+    for (const p of parts) {
+      if (p === "")
+        continue;
+      if (typeof p !== "string" && !(p instanceof _AST && __privateGet(p, _parent) === this)) {
+        throw new Error("invalid part: " + p);
+      }
+      __privateGet(this, _parts).push(p);
+    }
+  }
+  toJSON() {
+    var _a;
+    const ret = this.type === null ? __privateGet(this, _parts).slice().map((p) => typeof p === "string" ? p : p.toJSON()) : [this.type, ...__privateGet(this, _parts).map((p) => p.toJSON())];
+    if (this.isStart() && !this.type)
+      ret.unshift([]);
+    if (this.isEnd() && (this === __privateGet(this, _root) || __privateGet(__privateGet(this, _root), _filledNegs) && ((_a = __privateGet(this, _parent)) == null ? void 0 : _a.type) === "!")) {
+      ret.push({});
+    }
+    return ret;
+  }
+  isStart() {
+    var _a;
+    if (__privateGet(this, _root) === this)
+      return true;
+    if (!((_a = __privateGet(this, _parent)) == null ? void 0 : _a.isStart()))
+      return false;
+    if (__privateGet(this, _parentIndex) === 0)
+      return true;
+    const p = __privateGet(this, _parent);
+    for (let i = 0; i < __privateGet(this, _parentIndex); i++) {
+      const pp = __privateGet(p, _parts)[i];
+      if (!(pp instanceof _AST && pp.type === "!")) {
+        return false;
+      }
+    }
+    return true;
+  }
+  isEnd() {
+    var _a, _b, _c;
+    if (__privateGet(this, _root) === this)
+      return true;
+    if (((_a = __privateGet(this, _parent)) == null ? void 0 : _a.type) === "!")
+      return true;
+    if (!((_b = __privateGet(this, _parent)) == null ? void 0 : _b.isEnd()))
+      return false;
+    if (!this.type)
+      return (_c = __privateGet(this, _parent)) == null ? void 0 : _c.isEnd();
+    const pl = __privateGet(this, _parent) ? __privateGet(__privateGet(this, _parent), _parts).length : 0;
+    return __privateGet(this, _parentIndex) === pl - 1;
+  }
+  copyIn(part) {
+    if (typeof part === "string")
+      this.push(part);
+    else
+      this.push(part.clone(this));
+  }
+  clone(parent) {
+    const c = new _AST(this.type, parent);
+    for (const p of __privateGet(this, _parts)) {
+      c.copyIn(p);
+    }
+    return c;
+  }
+  static fromGlob(pattern, options = {}) {
+    var _a;
+    const ast = new _AST(null, void 0, options);
+    __privateMethod(_a = _AST, _AST_static, parseAST_fn).call(_a, pattern, ast, 0, options);
+    return ast;
+  }
+  // returns the regular expression if there's magic, or the unescaped
+  // string if not.
+  toMMPattern() {
+    if (this !== __privateGet(this, _root))
+      return __privateGet(this, _root).toMMPattern();
+    const glob = this.toString();
+    const [re, body, hasMagic, uflag] = this.toRegExpSource();
+    const anyMagic = hasMagic || __privateGet(this, _hasMagic) || __privateGet(this, _options).nocase && !__privateGet(this, _options).nocaseMagicOnly && glob.toUpperCase() !== glob.toLowerCase();
+    if (!anyMagic) {
+      return body;
+    }
+    const flags = (__privateGet(this, _options).nocase ? "i" : "") + (uflag ? "u" : "");
+    return Object.assign(new RegExp(`^${re}$`, flags), {
+      _src: re,
+      _glob: glob
+    });
+  }
+  get options() {
+    return __privateGet(this, _options);
+  }
+  // returns the string match, the regexp source, whether there's magic
+  // in the regexp (so a regular expression is required) and whether or
+  // not the uflag is needed for the regular expression (for posix classes)
+  // TODO: instead of injecting the start/end at this point, just return
+  // the BODY of the regexp, along with the start/end portions suitable
+  // for binding the start/end in either a joined full-path makeRe context
+  // (where we bind to (^|/), or a standalone matchPart context (where
+  // we bind to ^, and not /).  Otherwise slashes get duped!
+  //
+  // In part-matching mode, the start is:
+  // - if not isStart: nothing
+  // - if traversal possible, but not allowed: ^(?!\.\.?$)
+  // - if dots allowed or not possible: ^
+  // - if dots possible and not allowed: ^(?!\.)
+  // end is:
+  // - if not isEnd(): nothing
+  // - else: $
+  //
+  // In full-path matching mode, we put the slash at the START of the
+  // pattern, so start is:
+  // - if first pattern: same as part-matching mode
+  // - if not isStart(): nothing
+  // - if traversal possible, but not allowed: /(?!\.\.?(?:$|/))
+  // - if dots allowed or not possible: /
+  // - if dots possible and not allowed: /(?!\.)
+  // end is:
+  // - if last pattern, same as part-matching mode
+  // - else nothing
+  //
+  // Always put the (?:$|/) on negated tails, though, because that has to be
+  // there to bind the end of the negated pattern portion, and it's easier to
+  // just stick it in now rather than try to inject it later in the middle of
+  // the pattern.
+  //
+  // We can just always return the same end, and leave it up to the caller
+  // to know whether it's going to be used joined or in parts.
+  // And, if the start is adjusted slightly, can do the same there:
+  // - if not isStart: nothing
+  // - if traversal possible, but not allowed: (?:/|^)(?!\.\.?$)
+  // - if dots allowed or not possible: (?:/|^)
+  // - if dots possible and not allowed: (?:/|^)(?!\.)
+  //
+  // But it's better to have a simpler binding without a conditional, for
+  // performance, so probably better to return both start options.
+  //
+  // Then the caller just ignores the end if it's not the first pattern,
+  // and the start always gets applied.
+  //
+  // But that's always going to be $ if it's the ending pattern, or nothing,
+  // so the caller can just attach $ at the end of the pattern when building.
+  //
+  // So the todo is:
+  // - better detect what kind of start is needed
+  // - return both flavors of starting pattern
+  // - attach $ at the end of the pattern when creating the actual RegExp
+  //
+  // Ah, but wait, no, that all only applies to the root when the first pattern
+  // is not an extglob. If the first pattern IS an extglob, then we need all
+  // that dot prevention biz to live in the extglob portions, because eg
+  // +(*|.x*) can match .xy but not .yx.
+  //
+  // So, return the two flavors if it's #root and the first child is not an
+  // AST, otherwise leave it to the child AST to handle it, and there,
+  // use the (?:^|/) style of start binding.
+  //
+  // Even simplified further:
+  // - Since the start for a join is eg /(?!\.) and the start for a part
+  // is ^(?!\.), we can just prepend (?!\.) to the pattern (either root
+  // or start or whatever) and prepend ^ or / at the Regexp construction.
+  toRegExpSource(allowDot) {
+    var _a;
+    const dot = allowDot != null ? allowDot : !!__privateGet(this, _options).dot;
+    if (__privateGet(this, _root) === this)
+      __privateMethod(this, _AST_instances, fillNegs_fn).call(this);
+    if (!this.type) {
+      const noEmpty = this.isStart() && this.isEnd();
+      const src = __privateGet(this, _parts).map((p) => {
+        var _a2;
+        const [re, _, hasMagic, uflag] = typeof p === "string" ? __privateMethod(_a2 = _AST, _AST_static, parseGlob_fn).call(_a2, p, __privateGet(this, _hasMagic), noEmpty) : p.toRegExpSource(allowDot);
+        __privateSet(this, _hasMagic, __privateGet(this, _hasMagic) || hasMagic);
+        __privateSet(this, _uflag, __privateGet(this, _uflag) || uflag);
+        return re;
+      }).join("");
+      let start2 = "";
+      if (this.isStart()) {
+        if (typeof __privateGet(this, _parts)[0] === "string") {
+          const dotTravAllowed = __privateGet(this, _parts).length === 1 && justDots.has(__privateGet(this, _parts)[0]);
+          if (!dotTravAllowed) {
+            const aps = addPatternStart;
+            const needNoTrav = (
+              // dots are allowed, and the pattern starts with [ or .
+              dot && aps.has(src.charAt(0)) || // the pattern starts with \., and then [ or .
+              src.startsWith("\\.") && aps.has(src.charAt(2)) || // the pattern starts with \.\., and then [ or .
+              src.startsWith("\\.\\.") && aps.has(src.charAt(4))
+            );
+            const needNoDot = !dot && !allowDot && aps.has(src.charAt(0));
+            start2 = needNoTrav ? startNoTraversal : needNoDot ? startNoDot : "";
+          }
+        }
+      }
+      let end = "";
+      if (this.isEnd() && __privateGet(__privateGet(this, _root), _filledNegs) && ((_a = __privateGet(this, _parent)) == null ? void 0 : _a.type) === "!") {
+        end = "(?:$|\\/)";
+      }
+      const final2 = start2 + src + end;
+      return [
+        final2,
+        unescape(src),
+        __privateSet(this, _hasMagic, !!__privateGet(this, _hasMagic)),
+        __privateGet(this, _uflag)
+      ];
+    }
+    const repeated = this.type === "*" || this.type === "+";
+    const start = this.type === "!" ? "(?:(?!(?:" : "(?:";
+    let body = __privateMethod(this, _AST_instances, partsToRegExp_fn).call(this, dot);
+    if (this.isStart() && this.isEnd() && !body && this.type !== "!") {
+      const s = this.toString();
+      __privateSet(this, _parts, [s]);
+      this.type = null;
+      __privateSet(this, _hasMagic, void 0);
+      return [s, unescape(this.toString()), false, false];
+    }
+    let bodyDotAllowed = !repeated || allowDot || dot || !startNoDot ? "" : __privateMethod(this, _AST_instances, partsToRegExp_fn).call(this, true);
+    if (bodyDotAllowed === body) {
+      bodyDotAllowed = "";
+    }
+    if (bodyDotAllowed) {
+      body = `(?:${body})(?:${bodyDotAllowed})*?`;
+    }
+    let final = "";
+    if (this.type === "!" && __privateGet(this, _emptyExt)) {
+      final = (this.isStart() && !dot ? startNoDot : "") + starNoEmpty;
+    } else {
+      const close = this.type === "!" ? (
+        // !() must match something,but !(x) can match ''
+        "))" + (this.isStart() && !dot && !allowDot ? startNoDot : "") + star + ")"
+      ) : this.type === "@" ? ")" : this.type === "?" ? ")?" : this.type === "+" && bodyDotAllowed ? ")" : this.type === "*" && bodyDotAllowed ? `)?` : `)${this.type}`;
+      final = start + body + close;
+    }
+    return [
+      final,
+      unescape(body),
+      __privateSet(this, _hasMagic, !!__privateGet(this, _hasMagic)),
+      __privateGet(this, _uflag)
+    ];
+  }
+};
+_root = new WeakMap();
+_hasMagic = new WeakMap();
+_uflag = new WeakMap();
+_parts = new WeakMap();
+_parent = new WeakMap();
+_parentIndex = new WeakMap();
+_negs = new WeakMap();
+_filledNegs = new WeakMap();
+_options = new WeakMap();
+_toString = new WeakMap();
+_emptyExt = new WeakMap();
+_AST_instances = new WeakSet();
+fillNegs_fn = function() {
+  if (this !== __privateGet(this, _root))
+    throw new Error("should only call on root");
+  if (__privateGet(this, _filledNegs))
+    return this;
+  this.toString();
+  __privateSet(this, _filledNegs, true);
+  let n;
+  while (n = __privateGet(this, _negs).pop()) {
+    if (n.type !== "!")
+      continue;
+    let p = n;
+    let pp = __privateGet(p, _parent);
+    while (pp) {
+      for (let i = __privateGet(p, _parentIndex) + 1; !pp.type && i < __privateGet(pp, _parts).length; i++) {
+        for (const part of __privateGet(n, _parts)) {
+          if (typeof part === "string") {
+            throw new Error("string part in extglob AST??");
+          }
+          part.copyIn(__privateGet(pp, _parts)[i]);
+        }
+      }
+      p = pp;
+      pp = __privateGet(p, _parent);
+    }
+  }
+  return this;
+};
+_AST_static = new WeakSet();
+parseAST_fn = function(str, ast, pos, opt) {
+  var _a, _b;
+  let escaping = false;
+  let inBrace = false;
+  let braceStart = -1;
+  let braceNeg = false;
+  if (ast.type === null) {
+    let i2 = pos;
+    let acc2 = "";
+    while (i2 < str.length) {
+      const c = str.charAt(i2++);
+      if (escaping || c === "\\") {
+        escaping = !escaping;
+        acc2 += c;
+        continue;
+      }
+      if (inBrace) {
+        if (i2 === braceStart + 1) {
+          if (c === "^" || c === "!") {
+            braceNeg = true;
+          }
+        } else if (c === "]" && !(i2 === braceStart + 2 && braceNeg)) {
+          inBrace = false;
+        }
+        acc2 += c;
+        continue;
+      } else if (c === "[") {
+        inBrace = true;
+        braceStart = i2;
+        braceNeg = false;
+        acc2 += c;
+        continue;
+      }
+      if (!opt.noext && isExtglobType(c) && str.charAt(i2) === "(") {
+        ast.push(acc2);
+        acc2 = "";
+        const ext2 = new _AST(c, ast);
+        i2 = __privateMethod(_a = _AST, _AST_static, parseAST_fn).call(_a, str, ext2, i2, opt);
+        ast.push(ext2);
+        continue;
+      }
+      acc2 += c;
+    }
+    ast.push(acc2);
+    return i2;
+  }
+  let i = pos + 1;
+  let part = new _AST(null, ast);
+  const parts = [];
+  let acc = "";
+  while (i < str.length) {
+    const c = str.charAt(i++);
+    if (escaping || c === "\\") {
+      escaping = !escaping;
+      acc += c;
+      continue;
+    }
+    if (inBrace) {
+      if (i === braceStart + 1) {
+        if (c === "^" || c === "!") {
+          braceNeg = true;
+        }
+      } else if (c === "]" && !(i === braceStart + 2 && braceNeg)) {
+        inBrace = false;
+      }
+      acc += c;
+      continue;
+    } else if (c === "[") {
+      inBrace = true;
+      braceStart = i;
+      braceNeg = false;
+      acc += c;
+      continue;
+    }
+    if (isExtglobType(c) && str.charAt(i) === "(") {
+      part.push(acc);
+      acc = "";
+      const ext2 = new _AST(c, part);
+      part.push(ext2);
+      i = __privateMethod(_b = _AST, _AST_static, parseAST_fn).call(_b, str, ext2, i, opt);
+      continue;
+    }
+    if (c === "|") {
+      part.push(acc);
+      acc = "";
+      parts.push(part);
+      part = new _AST(null, ast);
+      continue;
+    }
+    if (c === ")") {
+      if (acc === "" && __privateGet(ast, _parts).length === 0) {
+        __privateSet(ast, _emptyExt, true);
+      }
+      part.push(acc);
+      acc = "";
+      ast.push(...parts, part);
+      return i;
+    }
+    acc += c;
+  }
+  ast.type = null;
+  __privateSet(ast, _hasMagic, void 0);
+  __privateSet(ast, _parts, [str.substring(pos - 1)]);
+  return i;
+};
+partsToRegExp_fn = function(dot) {
+  return __privateGet(this, _parts).map((p) => {
+    if (typeof p === "string") {
+      throw new Error("string type in extglob ast??");
+    }
+    const [re, _, _hasMagic2, uflag] = p.toRegExpSource(dot);
+    __privateSet(this, _uflag, __privateGet(this, _uflag) || uflag);
+    return re;
+  }).filter((p) => !(this.isStart() && this.isEnd()) || !!p).join("|");
+};
+parseGlob_fn = function(glob, hasMagic, noEmpty = false) {
+  let escaping = false;
+  let re = "";
+  let uflag = false;
+  for (let i = 0; i < glob.length; i++) {
+    const c = glob.charAt(i);
+    if (escaping) {
+      escaping = false;
+      re += (reSpecials.has(c) ? "\\" : "") + c;
+      continue;
+    }
+    if (c === "\\") {
+      if (i === glob.length - 1) {
+        re += "\\\\";
+      } else {
+        escaping = true;
+      }
+      continue;
+    }
+    if (c === "[") {
+      const [src, needUflag, consumed, magic] = parseClass(glob, i);
+      if (consumed) {
+        re += src;
+        uflag = uflag || needUflag;
+        i += consumed - 1;
+        hasMagic = hasMagic || magic;
+        continue;
+      }
+    }
+    if (c === "*") {
+      if (noEmpty && glob === "*")
+        re += starNoEmpty;
+      else
+        re += star;
+      hasMagic = true;
+      continue;
+    }
+    if (c === "?") {
+      re += qmark;
+      hasMagic = true;
+      continue;
+    }
+    re += regExpEscape(c);
+  }
+  return [re, unescape(glob), !!hasMagic, uflag];
+};
+__privateAdd(_AST, _AST_static);
+var AST = _AST;
+
+// node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/escape.js
+var escape = (s, { windowsPathsNoEscape = false } = {}) => {
+  return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
+};
+
+// node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/index.js
+var minimatch = (p, pattern, options = {}) => {
+  assertValidPattern(pattern);
+  if (!options.nocomment && pattern.charAt(0) === "#") {
+    return false;
+  }
+  return new Minimatch(pattern, options).match(p);
+};
+var starDotExtRE = /^\*+([^+@!?\*\[\(]*)$/;
+var starDotExtTest = (ext2) => (f) => !f.startsWith(".") && f.endsWith(ext2);
+var starDotExtTestDot = (ext2) => (f) => f.endsWith(ext2);
+var starDotExtTestNocase = (ext2) => {
+  ext2 = ext2.toLowerCase();
+  return (f) => !f.startsWith(".") && f.toLowerCase().endsWith(ext2);
+};
+var starDotExtTestNocaseDot = (ext2) => {
+  ext2 = ext2.toLowerCase();
+  return (f) => f.toLowerCase().endsWith(ext2);
+};
+var starDotStarRE = /^\*+\.\*+$/;
+var starDotStarTest = (f) => !f.startsWith(".") && f.includes(".");
+var starDotStarTestDot = (f) => f !== "." && f !== ".." && f.includes(".");
+var dotStarRE = /^\.\*+$/;
+var dotStarTest = (f) => f !== "." && f !== ".." && f.startsWith(".");
+var starRE = /^\*+$/;
+var starTest = (f) => f.length !== 0 && !f.startsWith(".");
+var starTestDot = (f) => f.length !== 0 && f !== "." && f !== "..";
+var qmarksRE = /^\?+([^+@!?\*\[\(]*)?$/;
+var qmarksTestNocase = ([$0, ext2 = ""]) => {
+  const noext = qmarksTestNoExt([$0]);
+  if (!ext2)
+    return noext;
+  ext2 = ext2.toLowerCase();
+  return (f) => noext(f) && f.toLowerCase().endsWith(ext2);
+};
+var qmarksTestNocaseDot = ([$0, ext2 = ""]) => {
+  const noext = qmarksTestNoExtDot([$0]);
+  if (!ext2)
+    return noext;
+  ext2 = ext2.toLowerCase();
+  return (f) => noext(f) && f.toLowerCase().endsWith(ext2);
+};
+var qmarksTestDot = ([$0, ext2 = ""]) => {
+  const noext = qmarksTestNoExtDot([$0]);
+  return !ext2 ? noext : (f) => noext(f) && f.endsWith(ext2);
+};
+var qmarksTest = ([$0, ext2 = ""]) => {
+  const noext = qmarksTestNoExt([$0]);
+  return !ext2 ? noext : (f) => noext(f) && f.endsWith(ext2);
+};
+var qmarksTestNoExt = ([$0]) => {
+  const len = $0.length;
+  return (f) => f.length === len && !f.startsWith(".");
+};
+var qmarksTestNoExtDot = ([$0]) => {
+  const len = $0.length;
+  return (f) => f.length === len && f !== "." && f !== "..";
+};
+var defaultPlatform = typeof process === "object" && process ? typeof process.env === "object" && process.env && process.env.__MINIMATCH_TESTING_PLATFORM__ || process.platform : "posix";
+var path = {
+  win32: { sep: "\\" },
+  posix: { sep: "/" }
+};
+var sep = defaultPlatform === "win32" ? path.win32.sep : path.posix.sep;
+minimatch.sep = sep;
+var GLOBSTAR = Symbol("globstar **");
+minimatch.GLOBSTAR = GLOBSTAR;
+var qmark2 = "[^/]";
+var star2 = qmark2 + "*?";
+var twoStarDot = "(?:(?!(?:\\/|^)(?:\\.{1,2})($|\\/)).)*?";
+var twoStarNoDot = "(?:(?!(?:\\/|^)\\.).)*?";
+var filter = (pattern, options = {}) => (p) => minimatch(p, pattern, options);
+minimatch.filter = filter;
+var ext = (a, b = {}) => Object.assign({}, a, b);
+var defaults = (def) => {
+  if (!def || typeof def !== "object" || !Object.keys(def).length) {
+    return minimatch;
+  }
+  const orig = minimatch;
+  const m = (p, pattern, options = {}) => orig(p, pattern, ext(def, options));
+  return Object.assign(m, {
+    Minimatch: class Minimatch extends orig.Minimatch {
+      constructor(pattern, options = {}) {
+        super(pattern, ext(def, options));
+      }
+      static defaults(options) {
+        return orig.defaults(ext(def, options)).Minimatch;
+      }
+    },
+    AST: class AST extends orig.AST {
+      /* c8 ignore start */
+      constructor(type, parent, options = {}) {
+        super(type, parent, ext(def, options));
+      }
+      /* c8 ignore stop */
+      static fromGlob(pattern, options = {}) {
+        return orig.AST.fromGlob(pattern, ext(def, options));
+      }
+    },
+    unescape: (s, options = {}) => orig.unescape(s, ext(def, options)),
+    escape: (s, options = {}) => orig.escape(s, ext(def, options)),
+    filter: (pattern, options = {}) => orig.filter(pattern, ext(def, options)),
+    defaults: (options) => orig.defaults(ext(def, options)),
+    makeRe: (pattern, options = {}) => orig.makeRe(pattern, ext(def, options)),
+    braceExpand: (pattern, options = {}) => orig.braceExpand(pattern, ext(def, options)),
+    match: (list, pattern, options = {}) => orig.match(list, pattern, ext(def, options)),
+    sep: orig.sep,
+    GLOBSTAR
+  });
+};
+minimatch.defaults = defaults;
+var braceExpand = (pattern, options = {}) => {
+  assertValidPattern(pattern);
+  if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
+    return [pattern];
+  }
+  return expand(pattern);
+};
+minimatch.braceExpand = braceExpand;
+var makeRe = (pattern, options = {}) => new Minimatch(pattern, options).makeRe();
+minimatch.makeRe = makeRe;
+var match = (list, pattern, options = {}) => {
+  const mm = new Minimatch(pattern, options);
+  list = list.filter((f) => mm.match(f));
+  if (mm.options.nonull && !list.length) {
+    list.push(pattern);
+  }
+  return list;
+};
+minimatch.match = match;
+var globMagic = /[?*]|[+@!]\(.*?\)|\[|\]/;
+var regExpEscape2 = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+var Minimatch = class {
+  constructor(pattern, options = {}) {
+    __publicField(this, "options");
+    __publicField(this, "set");
+    __publicField(this, "pattern");
+    __publicField(this, "windowsPathsNoEscape");
+    __publicField(this, "nonegate");
+    __publicField(this, "negate");
+    __publicField(this, "comment");
+    __publicField(this, "empty");
+    __publicField(this, "preserveMultipleSlashes");
+    __publicField(this, "partial");
+    __publicField(this, "globSet");
+    __publicField(this, "globParts");
+    __publicField(this, "nocase");
+    __publicField(this, "isWindows");
+    __publicField(this, "platform");
+    __publicField(this, "windowsNoMagicRoot");
+    __publicField(this, "regexp");
+    assertValidPattern(pattern);
+    options = options || {};
+    this.options = options;
+    this.pattern = pattern;
+    this.platform = options.platform || defaultPlatform;
+    this.isWindows = this.platform === "win32";
+    this.windowsPathsNoEscape = !!options.windowsPathsNoEscape || options.allowWindowsEscape === false;
+    if (this.windowsPathsNoEscape) {
+      this.pattern = this.pattern.replace(/\\/g, "/");
+    }
+    this.preserveMultipleSlashes = !!options.preserveMultipleSlashes;
+    this.regexp = null;
+    this.negate = false;
+    this.nonegate = !!options.nonegate;
+    this.comment = false;
+    this.empty = false;
+    this.partial = !!options.partial;
+    this.nocase = !!this.options.nocase;
+    this.windowsNoMagicRoot = options.windowsNoMagicRoot !== void 0 ? options.windowsNoMagicRoot : !!(this.isWindows && this.nocase);
+    this.globSet = [];
+    this.globParts = [];
+    this.set = [];
+    this.make();
+  }
+  hasMagic() {
+    if (this.options.magicalBraces && this.set.length > 1) {
+      return true;
+    }
+    for (const pattern of this.set) {
+      for (const part of pattern) {
+        if (typeof part !== "string")
+          return true;
+      }
+    }
+    return false;
+  }
+  debug(..._) {
+  }
+  make() {
+    const pattern = this.pattern;
+    const options = this.options;
+    if (!options.nocomment && pattern.charAt(0) === "#") {
+      this.comment = true;
+      return;
+    }
+    if (!pattern) {
+      this.empty = true;
+      return;
+    }
+    this.parseNegate();
+    this.globSet = [...new Set(this.braceExpand())];
+    if (options.debug) {
+      this.debug = (...args) => console.error(...args);
+    }
+    this.debug(this.pattern, this.globSet);
+    const rawGlobParts = this.globSet.map((s) => this.slashSplit(s));
+    this.globParts = this.preprocess(rawGlobParts);
+    this.debug(this.pattern, this.globParts);
+    let set = this.globParts.map((s, _, __) => {
+      if (this.isWindows && this.windowsNoMagicRoot) {
+        const isUNC = s[0] === "" && s[1] === "" && (s[2] === "?" || !globMagic.test(s[2])) && !globMagic.test(s[3]);
+        const isDrive = /^[a-z]:/i.test(s[0]);
+        if (isUNC) {
+          return [...s.slice(0, 4), ...s.slice(4).map((ss) => this.parse(ss))];
+        } else if (isDrive) {
+          return [s[0], ...s.slice(1).map((ss) => this.parse(ss))];
+        }
+      }
+      return s.map((ss) => this.parse(ss));
+    });
+    this.debug(this.pattern, set);
+    this.set = set.filter((s) => s.indexOf(false) === -1);
+    if (this.isWindows) {
+      for (let i = 0; i < this.set.length; i++) {
+        const p = this.set[i];
+        if (p[0] === "" && p[1] === "" && this.globParts[i][2] === "?" && typeof p[3] === "string" && /^[a-z]:$/i.test(p[3])) {
+          p[2] = "?";
+        }
+      }
+    }
+    this.debug(this.pattern, this.set);
+  }
+  // various transforms to equivalent pattern sets that are
+  // faster to process in a filesystem walk.  The goal is to
+  // eliminate what we can, and push all ** patterns as far
+  // to the right as possible, even if it increases the number
+  // of patterns that we have to process.
+  preprocess(globParts) {
+    if (this.options.noglobstar) {
+      for (let i = 0; i < globParts.length; i++) {
+        for (let j = 0; j < globParts[i].length; j++) {
+          if (globParts[i][j] === "**") {
+            globParts[i][j] = "*";
+          }
+        }
+      }
+    }
+    const { optimizationLevel = 1 } = this.options;
+    if (optimizationLevel >= 2) {
+      globParts = this.firstPhasePreProcess(globParts);
+      globParts = this.secondPhasePreProcess(globParts);
+    } else if (optimizationLevel >= 1) {
+      globParts = this.levelOneOptimize(globParts);
+    } else {
+      globParts = this.adjascentGlobstarOptimize(globParts);
+    }
+    return globParts;
+  }
+  // just get rid of adjascent ** portions
+  adjascentGlobstarOptimize(globParts) {
+    return globParts.map((parts) => {
+      let gs = -1;
+      while (-1 !== (gs = parts.indexOf("**", gs + 1))) {
+        let i = gs;
+        while (parts[i + 1] === "**") {
+          i++;
+        }
+        if (i !== gs) {
+          parts.splice(gs, i - gs);
+        }
+      }
+      return parts;
+    });
+  }
+  // get rid of adjascent ** and resolve .. portions
+  levelOneOptimize(globParts) {
+    return globParts.map((parts) => {
+      parts = parts.reduce((set, part) => {
+        const prev = set[set.length - 1];
+        if (part === "**" && prev === "**") {
+          return set;
+        }
+        if (part === "..") {
+          if (prev && prev !== ".." && prev !== "." && prev !== "**") {
+            set.pop();
+            return set;
+          }
+        }
+        set.push(part);
+        return set;
+      }, []);
+      return parts.length === 0 ? [""] : parts;
+    });
+  }
+  levelTwoFileOptimize(parts) {
+    if (!Array.isArray(parts)) {
+      parts = this.slashSplit(parts);
+    }
+    let didSomething = false;
+    do {
+      didSomething = false;
+      if (!this.preserveMultipleSlashes) {
+        for (let i = 1; i < parts.length - 1; i++) {
+          const p = parts[i];
+          if (i === 1 && p === "" && parts[0] === "")
+            continue;
+          if (p === "." || p === "") {
+            didSomething = true;
+            parts.splice(i, 1);
+            i--;
+          }
+        }
+        if (parts[0] === "." && parts.length === 2 && (parts[1] === "." || parts[1] === "")) {
+          didSomething = true;
+          parts.pop();
+        }
+      }
+      let dd = 0;
+      while (-1 !== (dd = parts.indexOf("..", dd + 1))) {
+        const p = parts[dd - 1];
+        if (p && p !== "." && p !== ".." && p !== "**") {
+          didSomething = true;
+          parts.splice(dd - 1, 2);
+          dd -= 2;
+        }
+      }
+    } while (didSomething);
+    return parts.length === 0 ? [""] : parts;
+  }
+  // First phase: single-pattern processing
+  // <pre> is 1 or more portions
+  // <rest> is 1 or more portions
+  // <p> is any portion other than ., .., '', or **
+  // <e> is . or ''
+  //
+  // **/.. is *brutal* for filesystem walking performance, because
+  // it effectively resets the recursive walk each time it occurs,
+  // and ** cannot be reduced out by a .. pattern part like a regexp
+  // or most strings (other than .., ., and '') can be.
+  //
+  // <pre>/**/../<p>/<p>/<rest> -> {<pre>/../<p>/<p>/<rest>,<pre>/**/<p>/<p>/<rest>}
+  // <pre>/<e>/<rest> -> <pre>/<rest>
+  // <pre>/<p>/../<rest> -> <pre>/<rest>
+  // **/**/<rest> -> **/<rest>
+  //
+  // **/*/<rest> -> */**/<rest> <== not valid because ** doesn't follow
+  // this WOULD be allowed if ** did follow symlinks, or * didn't
+  firstPhasePreProcess(globParts) {
+    let didSomething = false;
+    do {
+      didSomething = false;
+      for (let parts of globParts) {
+        let gs = -1;
+        while (-1 !== (gs = parts.indexOf("**", gs + 1))) {
+          let gss = gs;
+          while (parts[gss + 1] === "**") {
+            gss++;
+          }
+          if (gss > gs) {
+            parts.splice(gs + 1, gss - gs);
+          }
+          let next = parts[gs + 1];
+          const p = parts[gs + 2];
+          const p2 = parts[gs + 3];
+          if (next !== "..")
+            continue;
+          if (!p || p === "." || p === ".." || !p2 || p2 === "." || p2 === "..") {
+            continue;
+          }
+          didSomething = true;
+          parts.splice(gs, 1);
+          const other = parts.slice(0);
+          other[gs] = "**";
+          globParts.push(other);
+          gs--;
+        }
+        if (!this.preserveMultipleSlashes) {
+          for (let i = 1; i < parts.length - 1; i++) {
+            const p = parts[i];
+            if (i === 1 && p === "" && parts[0] === "")
+              continue;
+            if (p === "." || p === "") {
+              didSomething = true;
+              parts.splice(i, 1);
+              i--;
+            }
+          }
+          if (parts[0] === "." && parts.length === 2 && (parts[1] === "." || parts[1] === "")) {
+            didSomething = true;
+            parts.pop();
+          }
+        }
+        let dd = 0;
+        while (-1 !== (dd = parts.indexOf("..", dd + 1))) {
+          const p = parts[dd - 1];
+          if (p && p !== "." && p !== ".." && p !== "**") {
+            didSomething = true;
+            const needDot = dd === 1 && parts[dd + 1] === "**";
+            const splin = needDot ? ["."] : [];
+            parts.splice(dd - 1, 2, ...splin);
+            if (parts.length === 0)
+              parts.push("");
+            dd -= 2;
+          }
+        }
+      }
+    } while (didSomething);
+    return globParts;
+  }
+  // second phase: multi-pattern dedupes
+  // {<pre>/*/<rest>,<pre>/<p>/<rest>} -> <pre>/*/<rest>
+  // {<pre>/<rest>,<pre>/<rest>} -> <pre>/<rest>
+  // {<pre>/**/<rest>,<pre>/<rest>} -> <pre>/**/<rest>
+  //
+  // {<pre>/**/<rest>,<pre>/**/<p>/<rest>} -> <pre>/**/<rest>
+  // ^-- not valid because ** doens't follow symlinks
+  secondPhasePreProcess(globParts) {
+    for (let i = 0; i < globParts.length - 1; i++) {
+      for (let j = i + 1; j < globParts.length; j++) {
+        const matched = this.partsMatch(globParts[i], globParts[j], !this.preserveMultipleSlashes);
+        if (matched) {
+          globParts[i] = [];
+          globParts[j] = matched;
+          break;
+        }
+      }
+    }
+    return globParts.filter((gs) => gs.length);
+  }
+  partsMatch(a, b, emptyGSMatch = false) {
+    let ai = 0;
+    let bi = 0;
+    let result = [];
+    let which = "";
+    while (ai < a.length && bi < b.length) {
+      if (a[ai] === b[bi]) {
+        result.push(which === "b" ? b[bi] : a[ai]);
+        ai++;
+        bi++;
+      } else if (emptyGSMatch && a[ai] === "**" && b[bi] === a[ai + 1]) {
+        result.push(a[ai]);
+        ai++;
+      } else if (emptyGSMatch && b[bi] === "**" && a[ai] === b[bi + 1]) {
+        result.push(b[bi]);
+        bi++;
+      } else if (a[ai] === "*" && b[bi] && (this.options.dot || !b[bi].startsWith(".")) && b[bi] !== "**") {
+        if (which === "b")
+          return false;
+        which = "a";
+        result.push(a[ai]);
+        ai++;
+        bi++;
+      } else if (b[bi] === "*" && a[ai] && (this.options.dot || !a[ai].startsWith(".")) && a[ai] !== "**") {
+        if (which === "a")
+          return false;
+        which = "b";
+        result.push(b[bi]);
+        ai++;
+        bi++;
+      } else {
+        return false;
+      }
+    }
+    return a.length === b.length && result;
+  }
+  parseNegate() {
+    if (this.nonegate)
+      return;
+    const pattern = this.pattern;
+    let negate = false;
+    let negateOffset = 0;
+    for (let i = 0; i < pattern.length && pattern.charAt(i) === "!"; i++) {
+      negate = !negate;
+      negateOffset++;
+    }
+    if (negateOffset)
+      this.pattern = pattern.slice(negateOffset);
+    this.negate = negate;
+  }
+  // set partial to true to test if, for example,
+  // "/a/b" matches the start of "/*/b/*/d"
+  // Partial means, if you run out of file before you run
+  // out of pattern, then that's fine, as long as all
+  // the parts match.
+  matchOne(file, pattern, partial = false) {
+    const options = this.options;
+    if (this.isWindows) {
+      const fileDrive = typeof file[0] === "string" && /^[a-z]:$/i.test(file[0]);
+      const fileUNC = !fileDrive && file[0] === "" && file[1] === "" && file[2] === "?" && /^[a-z]:$/i.test(file[3]);
+      const patternDrive = typeof pattern[0] === "string" && /^[a-z]:$/i.test(pattern[0]);
+      const patternUNC = !patternDrive && pattern[0] === "" && pattern[1] === "" && pattern[2] === "?" && typeof pattern[3] === "string" && /^[a-z]:$/i.test(pattern[3]);
+      const fdi = fileUNC ? 3 : fileDrive ? 0 : void 0;
+      const pdi = patternUNC ? 3 : patternDrive ? 0 : void 0;
+      if (typeof fdi === "number" && typeof pdi === "number") {
+        const [fd, pd] = [file[fdi], pattern[pdi]];
+        if (fd.toLowerCase() === pd.toLowerCase()) {
+          pattern[pdi] = fd;
+          if (pdi > fdi) {
+            pattern = pattern.slice(pdi);
+          } else if (fdi > pdi) {
+            file = file.slice(fdi);
+          }
+        }
+      }
+    }
+    const { optimizationLevel = 1 } = this.options;
+    if (optimizationLevel >= 2) {
+      file = this.levelTwoFileOptimize(file);
+    }
+    this.debug("matchOne", this, { file, pattern });
+    this.debug("matchOne", file.length, pattern.length);
+    for (var fi = 0, pi = 0, fl = file.length, pl = pattern.length; fi < fl && pi < pl; fi++, pi++) {
+      this.debug("matchOne loop");
+      var p = pattern[pi];
+      var f = file[fi];
+      this.debug(pattern, p, f);
+      if (p === false) {
+        return false;
+      }
+      if (p === GLOBSTAR) {
+        this.debug("GLOBSTAR", [pattern, p, f]);
+        var fr = fi;
+        var pr = pi + 1;
+        if (pr === pl) {
+          this.debug("** at the end");
+          for (; fi < fl; fi++) {
+            if (file[fi] === "." || file[fi] === ".." || !options.dot && file[fi].charAt(0) === ".")
+              return false;
+          }
+          return true;
+        }
+        while (fr < fl) {
+          var swallowee = file[fr];
+          this.debug("\nglobstar while", file, fr, pattern, pr, swallowee);
+          if (this.matchOne(file.slice(fr), pattern.slice(pr), partial)) {
+            this.debug("globstar found match!", fr, fl, swallowee);
+            return true;
+          } else {
+            if (swallowee === "." || swallowee === ".." || !options.dot && swallowee.charAt(0) === ".") {
+              this.debug("dot detected!", file, fr, pattern, pr);
+              break;
+            }
+            this.debug("globstar swallow a segment, and continue");
+            fr++;
+          }
+        }
+        if (partial) {
+          this.debug("\n>>> no match, partial?", file, fr, pattern, pr);
+          if (fr === fl) {
+            return true;
+          }
+        }
+        return false;
+      }
+      let hit;
+      if (typeof p === "string") {
+        hit = f === p;
+        this.debug("string match", p, f, hit);
+      } else {
+        hit = p.test(f);
+        this.debug("pattern match", p, f, hit);
+      }
+      if (!hit)
+        return false;
+    }
+    if (fi === fl && pi === pl) {
+      return true;
+    } else if (fi === fl) {
+      return partial;
+    } else if (pi === pl) {
+      return fi === fl - 1 && file[fi] === "";
+    } else {
+      throw new Error("wtf?");
+    }
+  }
+  braceExpand() {
+    return braceExpand(this.pattern, this.options);
+  }
+  parse(pattern) {
+    assertValidPattern(pattern);
+    const options = this.options;
+    if (pattern === "**")
+      return GLOBSTAR;
+    if (pattern === "")
+      return "";
+    let m;
+    let fastTest = null;
+    if (m = pattern.match(starRE)) {
+      fastTest = options.dot ? starTestDot : starTest;
+    } else if (m = pattern.match(starDotExtRE)) {
+      fastTest = (options.nocase ? options.dot ? starDotExtTestNocaseDot : starDotExtTestNocase : options.dot ? starDotExtTestDot : starDotExtTest)(m[1]);
+    } else if (m = pattern.match(qmarksRE)) {
+      fastTest = (options.nocase ? options.dot ? qmarksTestNocaseDot : qmarksTestNocase : options.dot ? qmarksTestDot : qmarksTest)(m);
+    } else if (m = pattern.match(starDotStarRE)) {
+      fastTest = options.dot ? starDotStarTestDot : starDotStarTest;
+    } else if (m = pattern.match(dotStarRE)) {
+      fastTest = dotStarTest;
+    }
+    const re = AST.fromGlob(pattern, this.options).toMMPattern();
+    if (fastTest && typeof re === "object") {
+      Reflect.defineProperty(re, "test", { value: fastTest });
+    }
+    return re;
+  }
+  makeRe() {
+    if (this.regexp || this.regexp === false)
+      return this.regexp;
+    const set = this.set;
+    if (!set.length) {
+      this.regexp = false;
+      return this.regexp;
+    }
+    const options = this.options;
+    const twoStar = options.noglobstar ? star2 : options.dot ? twoStarDot : twoStarNoDot;
+    const flags = new Set(options.nocase ? ["i"] : []);
+    let re = set.map((pattern) => {
+      const pp = pattern.map((p) => {
+        if (p instanceof RegExp) {
+          for (const f of p.flags.split(""))
+            flags.add(f);
+        }
+        return typeof p === "string" ? regExpEscape2(p) : p === GLOBSTAR ? GLOBSTAR : p._src;
+      });
+      pp.forEach((p, i) => {
+        const next = pp[i + 1];
+        const prev = pp[i - 1];
+        if (p !== GLOBSTAR || prev === GLOBSTAR) {
+          return;
+        }
+        if (prev === void 0) {
+          if (next !== void 0 && next !== GLOBSTAR) {
+            pp[i + 1] = "(?:\\/|" + twoStar + "\\/)?" + next;
+          } else {
+            pp[i] = twoStar;
+          }
+        } else if (next === void 0) {
+          pp[i - 1] = prev + "(?:\\/|" + twoStar + ")?";
+        } else if (next !== GLOBSTAR) {
+          pp[i - 1] = prev + "(?:\\/|\\/" + twoStar + "\\/)" + next;
+          pp[i + 1] = GLOBSTAR;
+        }
+      });
+      return pp.filter((p) => p !== GLOBSTAR).join("/");
+    }).join("|");
+    const [open2, close] = set.length > 1 ? ["(?:", ")"] : ["", ""];
+    re = "^" + open2 + re + close + "$";
+    if (this.negate)
+      re = "^(?!" + re + ").+$";
+    try {
+      this.regexp = new RegExp(re, [...flags].join(""));
+    } catch (ex) {
+      this.regexp = false;
+    }
+    return this.regexp;
+  }
+  slashSplit(p) {
+    if (this.preserveMultipleSlashes) {
+      return p.split("/");
+    } else if (this.isWindows && /^\/\/[^\/]+/.test(p)) {
+      return ["", ...p.split(/\/+/)];
+    } else {
+      return p.split(/\/+/);
+    }
+  }
+  match(f, partial = this.partial) {
+    this.debug("match", f, this.pattern);
+    if (this.comment) {
+      return false;
+    }
+    if (this.empty) {
+      return f === "";
+    }
+    if (f === "/" && partial) {
+      return true;
+    }
+    const options = this.options;
+    if (this.isWindows) {
+      f = f.split("\\").join("/");
+    }
+    const ff = this.slashSplit(f);
+    this.debug(this.pattern, "split", ff);
+    const set = this.set;
+    this.debug(this.pattern, "set", set);
+    let filename = ff[ff.length - 1];
+    if (!filename) {
+      for (let i = ff.length - 2; !filename && i >= 0; i--) {
+        filename = ff[i];
+      }
+    }
+    for (let i = 0; i < set.length; i++) {
+      const pattern = set[i];
+      let file = ff;
+      if (options.matchBase && pattern.length === 1) {
+        file = [filename];
+      }
+      const hit = this.matchOne(file, pattern, partial);
+      if (hit) {
+        if (options.flipNegate) {
+          return true;
+        }
+        return !this.negate;
+      }
+    }
+    if (options.flipNegate) {
+      return false;
+    }
+    return this.negate;
+  }
+  static defaults(def) {
+    return minimatch.defaults(def).Minimatch;
+  }
+};
+minimatch.AST = AST;
+minimatch.Minimatch = Minimatch;
+minimatch.escape = escape;
+minimatch.unescape = unescape;
+
+// src/util/glob.ts
+function isMatchedGlobPatterns(path2, patterns) {
+  if (patterns.length === 0) {
+    return false;
+  }
+  try {
+    return patterns.some((p) => minimatch(path2, p));
+  } catch (error) {
+    console.warn(`Invalid glob pattern detected: ${error}`);
+    return false;
+  }
+}
+
 // src/provider/CurrentVaultWordProvider.ts
 var CurrentVaultWordProvider = class {
   constructor(app2, appHelper) {
@@ -1432,15 +4222,15 @@ var CurrentVaultWordProvider = class {
     var _a;
     this.clearWords();
     const currentDirname = this.appHelper.getCurrentDirname();
-    const markdownFilePaths = this.app.vault.getMarkdownFiles().map((x) => x.path).filter((p) => this.includePrefixPatterns.every((x) => p.startsWith(x))).filter((p) => this.excludePrefixPatterns.every((x) => !p.startsWith(x))).filter(
+    const markdownFilePaths = this.app.vault.getMarkdownFiles().map((x) => x.path).filter((p) => this.includePrefixPatterns.every((x) => p.startsWith(x))).filter((p) => this.excludePrefixPatterns.every((x) => !p.startsWith(x))).filter((p) => !isMatchedGlobPatterns(p, this.excludePathGlobPatterns)).filter(
       (p) => !this.onlyUnderCurrentDirectory || dirname(p) === currentDirname
     );
     const excludePatterns = option.excludeWordPatterns.map(
       (x) => new RegExp(`^${x}$`)
     );
     let wordByValue = {};
-    for (const path of markdownFilePaths) {
-      const content = await this.app.vault.adapter.read(path);
+    for (const path2 of markdownFilePaths) {
+      const content = await this.app.vault.adapter.read(path2);
       const tokens = this.tokenizer.tokenize(content).filter(
         (x) => x.length >= option.minNumberOfCharacters && !this.tokenizer.shouldIgnoreOnCurrent(x)
       ).map((x) => startsSmallLetterOnlyFirst(x) ? x.toLowerCase() : x).filter((x) => !excludePatterns.some((rp) => x.match(rp)));
@@ -1448,8 +4238,8 @@ var CurrentVaultWordProvider = class {
         wordByValue[token] = {
           value: token,
           type: "currentVault",
-          createdPath: path,
-          description: path,
+          createdPath: path2,
+          description: path2,
           aliases: synonymAliases(token, {
             emoji: option.makeSynonymAboutEmoji,
             accentsDiacritics: option.makeSynonymAboutAccentsDiacritics
@@ -1472,23 +4262,24 @@ var CurrentVaultWordProvider = class {
   get wordCount() {
     return this.words.length;
   }
-  setSettings(tokenizer, includePrefixPatterns, excludePrefixPatterns, onlyUnderCurrentDirectory) {
+  setSettings(tokenizer, includePrefixPatterns, excludePrefixPatterns, excludePathGlobPatterns, onlyUnderCurrentDirectory) {
     this.tokenizer = tokenizer;
     this.includePrefixPatterns = includePrefixPatterns;
     this.excludePrefixPatterns = excludePrefixPatterns;
+    this.excludePathGlobPatterns = excludePathGlobPatterns;
     this.onlyUnderCurrentDirectory = onlyUnderCurrentDirectory;
   }
 };
 
 // src/provider/CustomDictionaryWordProvider.ts
-var import_obsidian2 = require("obsidian");
-function escape(value) {
+var import_obsidian4 = require("obsidian");
+function escape2(value) {
   return value.replace(/\\/g, "__VariousComplementsEscape__").replace(/\n/g, "\\n").replace(/\t/g, "\\t").replace(/__VariousComplementsEscape__/g, "\\\\");
 }
-function unescape(value) {
+function unescape2(value) {
   return value.replace(/\\\\/g, "__VariousComplementsEscape__").replace(/\\n/g, "\n").replace(/\\t/g, "	").replace(/__VariousComplementsEscape__/g, "\\");
 }
-function jsonToWords(json, path, systemCaretSymbol) {
+function jsonToWords(json, path2, systemCaretSymbol) {
   return json.words.map((x) => {
     var _a;
     return {
@@ -1496,16 +4287,16 @@ function jsonToWords(json, path, systemCaretSymbol) {
       description: x.description,
       aliases: x.aliases,
       type: "customDictionary",
-      createdPath: path,
+      createdPath: path2,
       insertedText: x.displayed ? x.value : void 0,
       caretSymbol: (_a = json.caretSymbol) != null ? _a : systemCaretSymbol,
       ignoreSpaceAfterCompletion: json.ignoreSpaceAfterCompletion
     };
   });
 }
-function lineToWord(line, delimiter, path, delimiterForDisplay, delimiterForHide, systemCaretSymbol) {
+function lineToWord(line, delimiter, path2, delimiterForDisplay, delimiterForHide, systemCaretSymbol) {
   const [v, description, ...aliases] = line.split(delimiter.value);
-  let value = unescape(v);
+  let value = unescape2(v);
   let insertedText;
   let displayedText = value;
   if (delimiterForDisplay && value.includes(delimiterForDisplay)) {
@@ -1520,14 +4311,14 @@ function lineToWord(line, delimiter, path, delimiterForDisplay, delimiterForHide
     description,
     aliases,
     type: "customDictionary",
-    createdPath: path,
+    createdPath: path2,
     insertedText,
     caretSymbol: systemCaretSymbol
   };
 }
 function wordToLine(word, delimiter, dividerForDisplay) {
   const value = word.insertedText && dividerForDisplay ? `${word.value}${dividerForDisplay}${word.insertedText}` : word.value;
-  const escapedValue = escape(value);
+  const escapedValue = escape2(value);
   if (!word.description && !word.aliases) {
     return escapedValue;
   }
@@ -1549,13 +4340,13 @@ var CustomDictionaryWordProvider = class {
   get editablePaths() {
     return this.paths.filter((x) => !isURL(x) && !x.endsWith(".json"));
   }
-  async loadWords(path, option) {
-    const contents = isURL(path) ? await (0, import_obsidian2.request)({ url: path }) : await this.fileSystemAdapter.read(path);
-    const words = path.endsWith(".json") ? jsonToWords(JSON.parse(contents), path, option.caretSymbol) : contents.split(/\r\n|\n/).map((x) => x.replace(/%%.*%%/g, "")).filter((x) => x).map(
+  async loadWords(path2, option) {
+    const contents = isURL(path2) ? await (0, import_obsidian4.request)({ url: path2 }) : await this.fileSystemAdapter.read(path2);
+    const words = path2.endsWith(".json") ? jsonToWords(JSON.parse(contents), path2, option.caretSymbol) : contents.split(/\r\n|\n/).map((x) => x.replace(/%%.*%%/g, "")).filter((x) => x).map(
       (x) => lineToWord(
         x,
         this.delimiter,
-        path,
+        path2,
         option.delimiterForDisplay,
         option.delimiterForHide,
         option.caretSymbol
@@ -1567,9 +4358,9 @@ var CustomDictionaryWordProvider = class {
   }
   async refreshCustomWords(option) {
     this.clearWords();
-    for (const path of this.paths) {
+    for (const path2 of this.paths) {
       try {
-        const words = await this.loadWords(path, option);
+        const words = await this.loadWords(path2, option);
         words.forEach(
           (x) => this.addWord(x, {
             emoji: option.makeSynonymAboutEmoji,
@@ -1577,8 +4368,8 @@ var CustomDictionaryWordProvider = class {
           })
         );
       } catch (e) {
-        new import_obsidian2.Notice(
-          `\u26A0 Fail to load ${path} -- Various Complements Plugin -- 
+        new import_obsidian4.Notice(
+          `\u26A0 Fail to load ${path2} -- Various Complements Plugin -- 
  ${e}`,
           0
         );
@@ -1717,13 +4508,20 @@ var InternalLinkWordProvider = class {
       if (option.excludePathPrefixPatterns.some((x) => f.path.startsWith(x))) {
         return false;
       }
-      if (!option.frontMatterKeyForExclusion) {
-        return true;
+      if (isMatchedGlobPatterns(f.path, option.excludePathGlobPatterns)) {
+        return false;
       }
-      return !this.appHelper.getBoolFrontMatter(
-        f,
-        option.frontMatterKeyForExclusion
-      );
+      const fmkfc = option.frontMatterKeyForExclusion;
+      if (fmkfc && this.appHelper.getBoolFrontMatter(f, fmkfc)) {
+        return false;
+      }
+      if (option.tagsForExclusion.length > 0) {
+        const tags = this.appHelper.getTagsProperty(f);
+        if (hasSameElement(option.tagsForExclusion, tags)) {
+          return false;
+        }
+      }
+      return true;
     }).flatMap((x) => {
       const aliases = this.appHelper.getAliases(x);
       if (option.wordAsInternalLinkAlias) {
@@ -1776,16 +4574,16 @@ var InternalLinkWordProvider = class {
         ];
       }
     });
-    const unresolvedInternalLinkWords = this.appHelper.searchPhantomLinks().map(({ path, link }) => {
+    const unresolvedInternalLinkWords = this.appHelper.searchPhantomLinks().map(({ path: path2, link }) => {
       return {
         value: link,
         type: "internalLink",
-        createdPath: path,
+        createdPath: path2,
         aliases: synonymAliases(link, {
           emoji: option.makeSynonymAboutEmoji,
           accentsDiacritics: option.makeSynonymAboutAccentsDiacritics
         }),
-        description: `Appeared in -> ${path}`,
+        description: `Appeared in -> ${path2}`,
         phantom: true
       };
     });
@@ -1805,55 +4603,6 @@ var InternalLinkWordProvider = class {
     return this.words.length;
   }
 };
-
-// src/provider/MatchStrategy.ts
-var _MatchStrategy = class _MatchStrategy {
-  constructor(name, handler) {
-    this.name = name;
-    this.handler = handler;
-    _MatchStrategy._values.push(this);
-  }
-  static fromName(name) {
-    return _MatchStrategy._values.find((x) => x.name === name);
-  }
-  static values() {
-    return _MatchStrategy._values;
-  }
-};
-_MatchStrategy._values = [];
-_MatchStrategy.PREFIX = new _MatchStrategy("prefix", suggestWords);
-_MatchStrategy.PARTIAL = new _MatchStrategy(
-  "partial",
-  suggestWordsByPartialMatch
-);
-var MatchStrategy = _MatchStrategy;
-
-// src/provider/SpecificMatchStrategy.ts
-var neverUsedHandler = (..._args) => [];
-var _SpecificMatchStrategy = class _SpecificMatchStrategy {
-  constructor(name, handler) {
-    this.name = name;
-    this.handler = handler;
-    _SpecificMatchStrategy._values.push(this);
-  }
-  static fromName(name) {
-    return _SpecificMatchStrategy._values.find((x) => x.name === name);
-  }
-  static values() {
-    return _SpecificMatchStrategy._values;
-  }
-};
-_SpecificMatchStrategy._values = [];
-_SpecificMatchStrategy.INHERIT = new _SpecificMatchStrategy(
-  "inherit",
-  neverUsedHandler
-);
-_SpecificMatchStrategy.PREFIX = new _SpecificMatchStrategy("prefix", suggestWords);
-_SpecificMatchStrategy.PARTIAL = new _SpecificMatchStrategy(
-  "partial",
-  suggestWordsByPartialMatch
-);
-var SpecificMatchStrategy = _SpecificMatchStrategy;
 
 // src/storage/SelectionHistoryStorage.ts
 var SEC = 1e3;
@@ -1913,7 +4662,7 @@ var SelectionHistoryStorage = class {
       }
     }
     if (this.maxNumberOfHistoryToKeep) {
-      const threshold = (_a = times.sort((a, b) => a > b ? -1 : 1).slice(0, this.maxNumberOfHistoryToKeep).at(-1)) != null ? _a : 0;
+      const threshold = (_a = times.sort((a, b) => a > b ? -1 : 1).slice(0, this.maxNumberOfHistoryToKeep).last()) != null ? _a : 0;
       for (const hit of Object.keys(this.data)) {
         for (const value of Object.keys(this.data[hit])) {
           for (const kind of Object.keys(this.data[hit][value])) {
@@ -1939,16 +4688,25 @@ var SelectionHistoryStorage = class {
     if (!this.data[word.hit]) {
       this.data[word.hit] = {};
     }
-    if (!this.data[word.hit][word.value]) {
-      this.data[word.hit][word.value] = {};
+    let valueRef;
+    if (word.valueForHistory) {
+      if (!this.data[word.hit][word.valueForHistory]) {
+        this.data[word.hit][word.valueForHistory] = {};
+      }
+      valueRef = this.data[word.hit][word.valueForHistory];
+    } else {
+      if (!this.data[word.hit][word.value]) {
+        this.data[word.hit][word.value] = {};
+      }
+      valueRef = this.data[word.hit][word.value];
     }
-    if (this.data[word.hit][word.value][word.type]) {
-      this.data[word.hit][word.value][word.type] = {
-        count: this.data[word.hit][word.value][word.type].count + 1,
+    if (valueRef[word.type]) {
+      valueRef[word.type] = {
+        count: valueRef[word.type].count + 1,
         lastUpdated: Date.now()
       };
     } else {
-      this.data[word.hit][word.value][word.type] = {
+      valueRef[word.type] = {
         count: 1,
         lastUpdated: Date.now()
       };
@@ -2034,6 +4792,85 @@ var ArabicTokenizer = class extends DefaultTokenizer {
     super();
     this.inputTrimCharPattern = INPUT_ARABIC_TRIM_CHAR_PATTERN;
     this.indexingTrimCharPattern = INDEXING_ARABIC_TRIM_CHAR_PATTERN;
+  }
+};
+
+// src/tokenizer/tokenizers/ChineseTokenizer.ts
+var import_chinese_tokenizer = __toESM(require_main());
+var ChineseTokenizer = class _ChineseTokenizer extends AbstractTokenizer {
+  static create(dict) {
+    const ins = new _ChineseTokenizer();
+    ins._tokenize = import_chinese_tokenizer.default.load(dict);
+    return ins;
+  }
+  tokenize(content, raw) {
+    return content.split(raw ? / /g : this.getTrimPattern("indexing")).filter((x) => x !== "").flatMap((x) => this._tokenize(x)).map((x) => x.text);
+  }
+  recursiveTokenize(content) {
+    const tokens = this._tokenize(content).map((x) => x.text);
+    const ret = [];
+    for (let i = 0; i < tokens.length; i++) {
+      if (i === 0 || tokens[i].length !== 1 || !Boolean(tokens[i].match(this.getTrimPattern("input")))) {
+        ret.push({
+          word: tokens.slice(i).join(""),
+          offset: tokens.slice(0, i).join("").length
+        });
+      }
+    }
+    return ret;
+  }
+};
+
+// src/tokenizer/tokenizers/EnglishOnlyTokenizer.ts
+var ENGLISH_PATTERN = /[a-zA-Z0-9_\-\\]/;
+var EnglishOnlyTokenizer = class extends DefaultTokenizer {
+  tokenize(content, raw) {
+    const tokenized = Array.from(this._tokenize(content, "indexing")).filter(
+      (x) => x.word.match(ENGLISH_PATTERN)
+    );
+    return raw ? tokenized.map((x) => x.word) : tokenized.map((x) => x.word).filter((x) => !x.match(this.getTrimPattern("indexing")));
+  }
+  recursiveTokenize(content) {
+    const offsets = Array.from(this._tokenize(content, "input")).filter((x) => !x.word.match(this.getTrimPattern("input"))).map((x) => x.offset);
+    return [
+      ...offsets.map((i) => ({
+        word: content.slice(i),
+        offset: i
+      }))
+    ];
+  }
+  *_tokenize(content, target) {
+    let startIndex = 0;
+    let previousType = "none";
+    for (let i = 0; i < content.length; i++) {
+      if (content[i].match(super.getTrimPattern(target))) {
+        yield { word: content.slice(startIndex, i), offset: startIndex };
+        previousType = "trim";
+        startIndex = i;
+        continue;
+      }
+      if (content[i].match(ENGLISH_PATTERN)) {
+        if (previousType === "english" || previousType === "none") {
+          previousType = "english";
+          continue;
+        }
+        yield { word: content.slice(startIndex, i), offset: startIndex };
+        previousType = "english";
+        startIndex = i;
+        continue;
+      }
+      if (previousType === "others" || previousType === "none") {
+        previousType = "others";
+        continue;
+      }
+      yield { word: content.slice(startIndex, i), offset: startIndex };
+      previousType = "others";
+      startIndex = i;
+    }
+    yield {
+      word: content.slice(startIndex, content.length),
+      offset: startIndex
+    };
   }
 };
 
@@ -3563,17 +6400,36 @@ var JapaneseTokenizer = class extends AbstractTokenizer {
   }
 };
 
-// src/tokenizer/tokenizers/EnglishOnlyTokenizer.ts
-var ENGLISH_PATTERN = /[a-zA-Z0-9_\-\\]/;
-var EnglishOnlyTokenizer = class extends DefaultTokenizer {
+// src/tokenizer/tokenizers/KoreanTokenizer.ts
+var INPUT_TRIM_CHAR_PATTERN2 = /[\r\n\t\[\]$/:?!=()<>"',|;*~ `_“„«»‹›‚‘’”。、·ㆍ∼《》〈〉『』「」≪≫｢｣<>―～…]/;
+var INDEXING_TRIM_CHAR_PATTERN2 = /[\r\n\t\[\]/:?!=()<>"',|;*~ `_“„«»‹›‚‘’”。、·ㆍ∼《》〈〉『』「」≪≫｢｣<>―～…]/;
+var HANGUL_JAMO = "\u1100-\u11FF";
+var HANGUL_COMPATIBILITY_JAMO = "\u3130-\u318F";
+var ENCLOSED_JAMO = "\u3200-\u321E\u3260-\u327F";
+var CJK_COMPAT_KO = "\u3371-\u33FF";
+var HANGUL_JAMO_EXTENDED_A = "\uA960-\uA97F";
+var HANGUL_SYLLABLES = "\uAC00-\uD7AF";
+var HANGUL_JAMO_EXTENDED_B = "\uD7B0-\uD7FF";
+var HALFWIDTH_FULLWIDTH_FORMS_KO = "\uFFA0-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC\uFFE0-\uFFE6\uFFE8-\uFFEE";
+var EXTRA_WORD_CHARACTERS = "\u25CB\xD7\u25A1";
+var KOREAN_PATTERN = new RegExp(
+  `[a-zA-Z0-9_\\-\\\\${HANGUL_JAMO}${HANGUL_COMPATIBILITY_JAMO}${ENCLOSED_JAMO}${CJK_COMPAT_KO}${HANGUL_JAMO_EXTENDED_A}${HANGUL_JAMO}${HANGUL_SYLLABLES}${HANGUL_JAMO_EXTENDED_B}${HALFWIDTH_FULLWIDTH_FORMS_KO}${EXTRA_WORD_CHARACTERS}]`
+);
+var HANJA_PATTERN = /[\u4E00-\u9FFF0-9]/;
+var KoreanTokenizer = class extends DefaultTokenizer {
+  constructor(args) {
+    super();
+    this.inputTrimCharPattern = (args == null ? void 0 : args.treatUnderscoreAsPartOfWord) ? removeFromPattern(INPUT_TRIM_CHAR_PATTERN2, "_") : INPUT_TRIM_CHAR_PATTERN2;
+    this.indexingTrimCharPattern = (args == null ? void 0 : args.treatUnderscoreAsPartOfWord) ? removeFromPattern(INDEXING_TRIM_CHAR_PATTERN2, "_") : INDEXING_TRIM_CHAR_PATTERN2;
+  }
   tokenize(content, raw) {
     const tokenized = Array.from(this._tokenize(content, "indexing")).filter(
-      (x) => x.word.match(ENGLISH_PATTERN)
+      (x) => x.type === "korean" || x.type === "hanja"
     );
-    return raw ? tokenized.map((x) => x.word) : tokenized.map((x) => x.word).filter((x) => !x.match(this.getTrimPattern("indexing")));
+    return raw ? tokenized.map((x) => x.word) : tokenized.map((x) => x.word).filter((x) => !this.indexingTrimCharPattern.test(x));
   }
   recursiveTokenize(content) {
-    const offsets = Array.from(this._tokenize(content, "input")).filter((x) => !x.word.match(this.getTrimPattern("input"))).map((x) => x.offset);
+    const offsets = Array.from(this._tokenize(content, "input")).filter((x) => !this.inputTrimCharPattern.test(x.word)).map((x) => x.offset);
     return [
       ...offsets.map((i) => ({
         word: content.slice(i),
@@ -3584,20 +6440,44 @@ var EnglishOnlyTokenizer = class extends DefaultTokenizer {
   *_tokenize(content, target) {
     let startIndex = 0;
     let previousType = "none";
+    const trimPattern = super.getTrimPattern(target);
     for (let i = 0; i < content.length; i++) {
-      if (content[i].match(super.getTrimPattern(target))) {
-        yield { word: content.slice(startIndex, i), offset: startIndex };
+      const char = content[i];
+      if (trimPattern.test(char)) {
+        yield {
+          word: content.slice(startIndex, i),
+          offset: startIndex,
+          type: previousType
+        };
         previousType = "trim";
         startIndex = i;
         continue;
       }
-      if (content[i].match(ENGLISH_PATTERN)) {
-        if (previousType === "english" || previousType === "none") {
-          previousType = "english";
+      if (KOREAN_PATTERN.test(char)) {
+        if (previousType === "korean" || previousType === "none") {
+          previousType = "korean";
           continue;
         }
-        yield { word: content.slice(startIndex, i), offset: startIndex };
-        previousType = "english";
+        yield {
+          word: content.slice(startIndex, i),
+          offset: startIndex,
+          type: previousType
+        };
+        previousType = "korean";
+        startIndex = i;
+        continue;
+      }
+      if (HANJA_PATTERN.test(char)) {
+        if (previousType === "hanja" || previousType === "none") {
+          previousType = "hanja";
+          continue;
+        }
+        yield {
+          word: content.slice(startIndex, i),
+          offset: startIndex,
+          type: previousType
+        };
+        previousType = "hanja";
         startIndex = i;
         continue;
       }
@@ -3605,40 +6485,19 @@ var EnglishOnlyTokenizer = class extends DefaultTokenizer {
         previousType = "others";
         continue;
       }
-      yield { word: content.slice(startIndex, i), offset: startIndex };
+      yield {
+        word: content.slice(startIndex, i),
+        offset: startIndex,
+        type: previousType
+      };
       previousType = "others";
       startIndex = i;
     }
     yield {
       word: content.slice(startIndex, content.length),
-      offset: startIndex
+      offset: startIndex,
+      type: previousType
     };
-  }
-};
-
-// src/tokenizer/tokenizers/ChineseTokenizer.ts
-var import_chinese_tokenizer = __toESM(require_main());
-var ChineseTokenizer = class _ChineseTokenizer extends AbstractTokenizer {
-  static create(dict) {
-    const ins = new _ChineseTokenizer();
-    ins._tokenize = import_chinese_tokenizer.default.load(dict);
-    return ins;
-  }
-  tokenize(content, raw) {
-    return content.split(raw ? / /g : this.getTrimPattern("indexing")).filter((x) => x !== "").flatMap((x) => this._tokenize(x)).map((x) => x.text);
-  }
-  recursiveTokenize(content) {
-    const tokens = this._tokenize(content).map((x) => x.text);
-    const ret = [];
-    for (let i = 0; i < tokens.length; i++) {
-      if (i === 0 || tokens[i].length !== 1 || !Boolean(tokens[i].match(this.getTrimPattern("input")))) {
-        ret.push({
-          word: tokens.slice(i).join(""),
-          offset: tokens.slice(0, i).join("").length
-        });
-      }
-    }
-    return ret;
   }
 };
 
@@ -3666,44 +6525,17 @@ async function createTokenizer(strategy, app2, settings) {
       }
       const dict = await app2.vault.adapter.read(settings.cedictPath);
       return ChineseTokenizer.create(dict);
+    case "korean":
+      return new KoreanTokenizer();
   }
 }
 
-// src/tokenizer/TokenizeStrategy.ts
-var _TokenizeStrategy = class _TokenizeStrategy {
-  constructor(name, triggerThreshold, indexingThreshold, canTreatUnderscoreAsPartOfWord) {
-    this.name = name;
-    this.triggerThreshold = triggerThreshold;
-    this.indexingThreshold = indexingThreshold;
-    this.canTreatUnderscoreAsPartOfWord = canTreatUnderscoreAsPartOfWord;
-    _TokenizeStrategy._values.push(this);
-  }
-  static fromName(name) {
-    return _TokenizeStrategy._values.find((x) => x.name === name);
-  }
-  static values() {
-    return _TokenizeStrategy._values;
-  }
-};
-_TokenizeStrategy._values = [];
-_TokenizeStrategy.DEFAULT = new _TokenizeStrategy("default", 3, 5, true);
-_TokenizeStrategy.ENGLISH_ONLY = new _TokenizeStrategy(
-  "english-only",
-  3,
-  5,
-  true
-);
-_TokenizeStrategy.JAPANESE = new _TokenizeStrategy("japanese", 2, 2, false);
-_TokenizeStrategy.ARABIC = new _TokenizeStrategy("arabic", 3, 3, false);
-_TokenizeStrategy.CHINESE = new _TokenizeStrategy("chinese", 1, 2, false);
-var TokenizeStrategy = _TokenizeStrategy;
-
 // src/ui/popup-commands.ts
-var import_obsidian4 = require("obsidian");
+var import_obsidian6 = require("obsidian");
 
 // src/ui/component/InputDialog.ts
-var import_obsidian3 = require("obsidian");
-var InputDialog = class extends import_obsidian3.Modal {
+var import_obsidian5 = require("obsidian");
+var InputDialog = class extends import_obsidian5.Modal {
   constructor(args) {
     super(app);
     this.args = args;
@@ -3801,6 +6633,27 @@ async function selectWithCustomAlias(popup, evt) {
   item.value = input;
   return item;
 }
+function selectWithQueryAlias(popup, evt) {
+  var _a, _b;
+  if (!popup.context || evt.isComposing) {
+    return null;
+  }
+  if (popup.selectionLock) {
+    popup.close();
+    return null;
+  }
+  const item = popup.suggestions.values[popup.suggestions.selectedItem];
+  if (item.type !== "internalLink") {
+    select(popup, evt);
+    return null;
+  }
+  item.aliasMeta = {
+    origin: (_b = (_a = item.aliasMeta) == null ? void 0 : _a.origin) != null ? _b : item.value
+  };
+  item.valueForHistory = item.value;
+  item.value = item.query;
+  return item;
+}
 function insertAsText(popup, evt) {
   if (!popup.context || evt.isComposing) {
     return;
@@ -3844,7 +6697,7 @@ function open(popup) {
   }
   const markdownFile = popup.appHelper.getMarkdownFileByPath(item.createdPath);
   if (!markdownFile) {
-    new import_obsidian4.Notice(`Can't open ${item.createdPath}`);
+    new import_obsidian6.Notice(`Can't open ${item.createdPath}`);
     return false;
   }
   popup.appHelper.openMarkdownFile(markdownFile, true);
@@ -3887,7 +6740,7 @@ function completion(popup) {
 function buildLogMessage(message, msec) {
   return `${message}: ${Math.round(msec)}[ms]`;
 }
-var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.EditorSuggest {
+var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian7.EditorSuggest {
   constructor(app2, statusBar) {
     super(app2);
     this.selectionLock = false;
@@ -3918,7 +6771,7 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
    * This method update settings
    */
   async unsafeLoadHistoryData() {
-    const historyPath = (0, import_obsidian5.normalizePath)(
+    const historyPath = (0, import_obsidian7.normalizePath)(
       this.settings.intelligentSuggestionPrioritization.historyFilePath || DEFAULT_HISTORIES_PATH
     );
     if (await this.appHelper.exists(historyPath)) {
@@ -4040,7 +6893,17 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
     );
   }
   get minNumberTriggered() {
-    return this.settings.minNumberOfCharactersTriggered || this.tokenizerStrategy.triggerThreshold;
+    const globalMinChars = this.settings.minNumberOfCharactersTriggered || this.tokenizerStrategy.triggerThreshold;
+    const providerMinChars = [
+      this.settings.currentFileMinNumberOfCharactersForTrigger,
+      this.settings.currentVaultMinNumberOfCharactersForTrigger,
+      this.settings.customDictionaryMinNumberOfCharactersForTrigger,
+      this.settings.internalLinkMinNumberOfCharactersForTrigger
+    ].filter((x) => x > 0);
+    if (providerMinChars.length === 0) {
+      return globalMinChars;
+    }
+    return Math.min(globalMinChars, ...providerMinChars);
   }
   get currentFileMinNumberOfCharacters() {
     return this.settings.currentFileMinNumberOfCharacters || this.tokenizerStrategy.indexingThreshold;
@@ -4079,13 +6942,14 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
         this.settings
       );
     } catch (e) {
-      new import_obsidian5.Notice(e.message);
+      new import_obsidian7.Notice(e.message);
     }
     this.currentFileWordProvider.setSettings(this.tokenizer);
     this.currentVaultWordProvider.setSettings(
       this.tokenizer,
       settings.includeCurrentVaultPathPrefixPatterns.split("\n").filter((x) => x),
       settings.excludeCurrentVaultPathPrefixPatterns.split("\n").filter((x) => x),
+      settings.excludeCurrentVaultPathGlobPatterns,
       settings.includeCurrentVaultOnlyFilesUnderCurrentDirectory
     );
     this.customDictionaryWordProvider.setSettings(
@@ -4093,7 +6957,7 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
       ColumnDelimiter.fromName(settings.columnDelimiter),
       settings.delimiterToDivideSuggestionsForDisplayFromInsertion || null
     );
-    this.debounceGetSuggestions = (0, import_obsidian5.debounce)(
+    this.debounceGetSuggestions = (0, import_obsidian7.debounce)(
       (context, cb) => {
         const start = performance.now();
         this.showDebugLog(() => `[context.query]: ${context.query}`);
@@ -4125,7 +6989,14 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
               selectionHistoryStorage: this.selectionHistoryStorage,
               fuzzy: this.settings.fuzzyMatch ? {
                 minMatchScore: this.settings.minFuzzyMatchScore
-              } : void 0
+              } : void 0,
+              providerMinChars: {
+                currentFile: this.settings.currentFileMinNumberOfCharactersForTrigger,
+                currentVault: this.settings.currentVaultMinNumberOfCharactersForTrigger,
+                customDictionary: this.settings.customDictionaryMinNumberOfCharactersForTrigger,
+                internalLink: this.settings.internalLinkMinNumberOfCharactersForTrigger
+              },
+              globalMinChar: this.settings.minNumberOfCharactersTriggered || this.tokenizerStrategy.triggerThreshold
             }
           ).map((word) => ({ ...word, offset: q.offset }));
         }).flat().sort((a, b) => Number(a.fuzzy) - Number(b.fuzzy));
@@ -4135,6 +7006,21 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
             cb(createNewLinkSuggestions());
             return;
           }
+        }
+        if (this.settings.excludeSelfInternalLink) {
+          words = words.filter(
+            (x) => {
+              var _a;
+              return x.type !== "internalLink" || x.createdPath !== ((_a = this.appHelper.getActiveFile()) == null ? void 0 : _a.path);
+            }
+          );
+        }
+        if (this.settings.excludeExistingInActiveFileInternalLinks) {
+          const activeFile = this.appHelper.getActiveFile();
+          const linkPaths = this.appHelper.getResolvedLinks(activeFile);
+          words = words.filter(
+            (x) => x.type !== "internalLink" || !linkPaths.includes(x.createdPath)
+          );
         }
         cb(
           uniqWith(words, suggestionUniqPredicate).slice(
@@ -4149,7 +7035,7 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
       this.settings.delayMilliSeconds,
       true
     );
-    this.debounceClose = (0, import_obsidian5.debounce)(() => {
+    this.debounceClose = (0, import_obsidian7.debounce)(() => {
       this.close();
     }, this.settings.delayMilliSeconds + 50);
     this.registerHotkeys();
@@ -4214,6 +7100,16 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
               this.selectSuggestion(item);
             }
           });
+          return false;
+        }
+      ],
+      [
+        "select with query alias",
+        (evt) => {
+          const item = selectWithQueryAlias(this, evt);
+          if (item) {
+            this.selectSuggestion(item);
+          }
           return false;
         }
       ],
@@ -4327,9 +7223,11 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
     this.internalLinkWordProvider.refreshWords({
       wordAsInternalLinkAlias: this.settings.suggestInternalLinkWithAlias,
       excludePathPrefixPatterns: this.excludeInternalLinkPrefixPathPatterns,
+      excludePathGlobPatterns: this.settings.excludeInternalLinkPathGlobPatterns,
       makeSynonymAboutEmoji: this.settings.matchingWithoutEmoji,
       makeSynonymAboutAccentsDiacritics: this.settings.treatAccentDiacriticsAsAlphabeticCharacters,
-      frontMatterKeyForExclusion: this.settings.frontMatterKeyForExclusionInternalLink
+      frontMatterKeyForExclusion: this.settings.frontMatterKeyForExclusionInternalLink,
+      tagsForExclusion: this.settings.tagsForExclusionInternalLink
     });
     this.statusBar.setInternalLinkIndexed(
       this.internalLinkWordProvider.wordCount
@@ -4598,7 +7496,7 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
     const pattern = this.settings.insertAliasTransformedFromDisplayedInternalLink.enabled ? new RegExp(
       this.settings.insertAliasTransformedFromDisplayedInternalLink.beforeRegExp
     ) : null;
-    const match = (value) => pattern ? Boolean(value.match(pattern)) : false;
+    const match2 = (value) => pattern ? Boolean(value.match(pattern)) : false;
     const replaceByPattern = (value) => pattern ? value.replace(
       pattern,
       this.settings.insertAliasTransformedFromDisplayedInternalLink.after
@@ -4610,9 +7508,9 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
       return this.appHelper.useWikiLinks ? `[[${link}|${word.value}]]` : `[${word.value}](${encodeSpace(link)}.md)`;
     }
     if (this.appHelper.useWikiLinks) {
-      return match(link) ? `[[${link}|${replaceByPattern(link)}]]` : `[[${link}]]`;
+      return match2(link) ? `[[${link}|${replaceByPattern(link)}]]` : `[[${link}]]`;
     }
-    return match(displayed) ? `[${replaceByPattern(displayed)}](${encodeSpace(link)}.md)` : `[${displayed}](${encodeSpace(link)}.md)`;
+    return match2(displayed) ? `[${replaceByPattern(displayed)}](${encodeSpace(link)}.md)` : `[${displayed}](${encodeSpace(link)}.md)`;
   }
   selectSuggestion(word) {
     var _a, _b;
@@ -4699,1051 +7597,6 @@ var AutoCompleteSuggest = class _AutoCompleteSuggest extends import_obsidian5.Ed
     } else {
       body.removeClass(lockClass);
     }
-  }
-};
-
-// src/setting/settings.ts
-var import_obsidian7 = require("obsidian");
-
-// src/keys.ts
-var import_obsidian6 = require("obsidian");
-var MOD = import_obsidian6.Platform.isMacOS ? "Cmd" : "Ctrl";
-var ALT = import_obsidian6.Platform.isMacOS ? "Option" : "Alt";
-function hotkey2String(hk) {
-  if (!hk) {
-    return "";
-  }
-  const hotkey = hk.key === " " ? "Space" : hk.key;
-  const mods = hk.modifiers.join(" ");
-  return mods ? `${mods} ${hotkey}` : hotkey;
-}
-function string2Hotkey(hotKey, hideHotkeyGuide) {
-  const keys = hotKey.split(" ");
-  if (keys.length === 0 || keys[0] === "") {
-    return null;
-  }
-  if (keys.length === 1) {
-    return {
-      modifiers: [],
-      key: keys[0].replace("Space", " "),
-      hideHotkeyGuide
-    };
-  }
-  return {
-    modifiers: keys.slice(0, -1),
-    key: keys.at(-1).replace("Space", " "),
-    hideHotkeyGuide
-  };
-}
-
-// src/types.ts
-function isPresent(arg) {
-  return arg != null;
-}
-
-// src/setting/settings-helper.ts
-var TextComponentEvent;
-((TextComponentEvent2) => {
-  function onChange(component, handler, option) {
-    component.inputEl.addEventListener("change", async (ev) => {
-      if (!(ev.target instanceof HTMLInputElement)) {
-        return;
-      }
-      handler(ev.target.value);
-    });
-    if (option == null ? void 0 : option.className) {
-      component.inputEl.className = option.className;
-    }
-    return component;
-  }
-  TextComponentEvent2.onChange = onChange;
-})(TextComponentEvent || (TextComponentEvent = {}));
-
-// src/setting/settings.ts
-var DEFAULT_SETTINGS = {
-  // general
-  strategy: "default",
-  cedictPath: "./cedict_ts.u8",
-  matchStrategy: "prefix",
-  fuzzyMatch: true,
-  minFuzzyMatchScore: 0.5,
-  matchingWithoutEmoji: true,
-  treatAccentDiacriticsAsAlphabeticCharacters: false,
-  treatUnderscoreAsPartOfWord: false,
-  maxNumberOfSuggestions: 5,
-  maxNumberOfWordsAsPhrase: 3,
-  minNumberOfCharactersTriggered: 0,
-  minNumberOfWordsTriggeredPhrase: 1,
-  complementAutomatically: true,
-  delayMilliSeconds: 0,
-  disableSuggestionsDuringImeOn: false,
-  disableSuggestionsInMathBlock: false,
-  insertSpaceAfterCompletion: false,
-  firstCharactersDisableSuggestions: ":/^",
-  patternsToSuppressTrigger: ["^~~~.*", "^```.*"],
-  phrasePatternsToSuppressTrigger: [],
-  noAutoFocusUntilCycle: false,
-  // appearance
-  showMatchStrategy: false,
-  showComplementAutomatically: false,
-  showIndexingStatus: false,
-  descriptionOnSuggestion: "Short",
-  // key customization
-  hotkeys: {
-    select: [{ modifiers: [], key: "Enter" }],
-    "select with custom alias": [],
-    up: [{ modifiers: [], key: "ArrowUp" }],
-    down: [{ modifiers: [], key: "ArrowDown" }],
-    "select 1st": [],
-    "select 2nd": [],
-    "select 3rd": [],
-    "select 4th": [],
-    "select 5th": [],
-    "select 6th": [],
-    "select 7th": [],
-    "select 8th": [],
-    "select 9th": [],
-    open: [],
-    completion: [],
-    "insert as text": []
-  },
-  propagateEsc: false,
-  // current file complement
-  enableCurrentFileComplement: true,
-  currentFileMinNumberOfCharacters: 0,
-  onlyComplementEnglishOnCurrentFileComplement: false,
-  excludeCurrentFileWordPatterns: [],
-  // current vault complement
-  enableCurrentVaultComplement: false,
-  currentVaultMinNumberOfCharacters: 0,
-  includeCurrentVaultPathPrefixPatterns: "",
-  excludeCurrentVaultPathPrefixPatterns: "",
-  includeCurrentVaultOnlyFilesUnderCurrentDirectory: false,
-  excludeCurrentVaultWordPatterns: [],
-  // custom dictionary complement
-  enableCustomDictionaryComplement: false,
-  customDictionaryPaths: `https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-no-swears.txt`,
-  columnDelimiter: "Tab",
-  customDictionaryWordRegexPattern: "",
-  delimiterToHideSuggestion: "",
-  delimiterToDivideSuggestionsForDisplayFromInsertion: "",
-  caretLocationSymbolAfterComplement: "",
-  displayedTextSuffix: " => ...",
-  // internal link complement
-  enableInternalLinkComplement: true,
-  suggestInternalLinkWithAlias: false,
-  excludeInternalLinkPathPrefixPatterns: "",
-  updateInternalLinksOnSave: true,
-  insertAliasTransformedFromDisplayedInternalLink: {
-    enabled: false,
-    beforeRegExp: "",
-    after: ""
-  },
-  frontMatterKeyForExclusionInternalLink: "",
-  // front matter complement
-  enableFrontMatterComplement: false,
-  frontMatterComplementMatchStrategy: "inherit",
-  insertCommaAfterFrontMatterCompletion: false,
-  intelligentSuggestionPrioritization: {
-    enabled: true,
-    historyFilePath: "",
-    maxDaysToKeepHistory: 30,
-    maxNumberOfHistoryToKeep: 0
-  },
-  // mobile
-  disableOnMobile: false,
-  // debug
-  showLogAboutPerformanceInConsole: false
-};
-var VariousComplementsSettingTab = class extends import_obsidian7.PluginSettingTab {
-  constructor(app2, plugin) {
-    super(app2, plugin);
-    this.plugin = plugin;
-  }
-  async display() {
-    let { containerEl } = this;
-    containerEl.empty();
-    containerEl.createEl("h2", { text: "Various Complements - Settings" });
-    await this.addMainSettings(containerEl);
-    this.addAppearanceSettings(containerEl);
-    this.addKeyCustomizationSettings(containerEl);
-    this.addCurrentFileComplementSettings(containerEl);
-    this.addCurrentVaultComplementSettings(containerEl);
-    this.addCustomDictionaryComplementSettings(containerEl);
-    this.addInternalLinkComplementSettings(containerEl);
-    this.addFrontMatterComplementSettings(containerEl);
-    this.addIntelligentSuggestionPrioritizationSettings(containerEl);
-    this.addMobileSettings(containerEl);
-    this.addDebugSettings(containerEl);
-  }
-  async addMainSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Main",
-      cls: "various-complements__settings__header various-complements__settings__header__main"
-    });
-    new import_obsidian7.Setting(containerEl).setName("Strategy").addDropdown(
-      (tc) => tc.addOptions(mirrorMap(TokenizeStrategy.values(), (x) => x.name)).setValue(this.plugin.settings.strategy).onChange(async (value) => {
-        this.plugin.settings.strategy = value;
-        this.display();
-        await this.plugin.saveSettings({
-          currentFile: true,
-          currentVault: true
-        });
-      })
-    );
-    if (this.plugin.settings.strategy === TokenizeStrategy.CHINESE.name) {
-      const df = document.createDocumentFragment();
-      df.append(
-        createSpan({
-          text: "The path to `cedict_ts.u8`. You can download it from "
-        }),
-        createEl("a", {
-          href: "https://www.mdbg.net/chinese/dictionary?page=cc-cedict",
-          text: " the site "
-        })
-      );
-      new import_obsidian7.Setting(containerEl).setName("CC-CEDICT path").setDesc(df).setClass("various-complements__settings__nested").addText((cb) => {
-        TextComponentEvent.onChange(cb, async (value) => {
-          this.plugin.settings.cedictPath = value;
-          await this.plugin.saveSettings();
-          await this.display();
-        }).setValue(this.plugin.settings.cedictPath);
-      });
-      const hasCedict = await app.vault.adapter.exists(
-        this.plugin.settings.cedictPath
-      );
-      if (!hasCedict) {
-        containerEl.createEl("div", {
-          text: `\u26A0 cedict_ts.u8 doesn't exist in ${this.plugin.settings.cedictPath}.`,
-          cls: "various-complements__settings__warning"
-        });
-      }
-    }
-    new import_obsidian7.Setting(containerEl).setName("Match strategy").addDropdown(
-      (tc) => tc.addOptions(mirrorMap(MatchStrategy.values(), (x) => x.name)).setValue(this.plugin.settings.matchStrategy).onChange(async (value) => {
-        this.plugin.settings.matchStrategy = value;
-        await this.plugin.saveSettings();
-        this.display();
-      })
-    );
-    if (this.plugin.settings.matchStrategy === MatchStrategy.PARTIAL.name) {
-      containerEl.createEl("div", {
-        text: "\u26A0 `partial` is more than 10 times slower than `prefix`",
-        cls: "various-complements__settings__warning"
-      });
-    }
-    new import_obsidian7.Setting(containerEl).setName("Fuzzy match").addToggle((tc) => {
-      tc.setValue(this.plugin.settings.fuzzyMatch).onChange(async (value) => {
-        this.plugin.settings.fuzzyMatch = value;
-        await this.plugin.saveSettings();
-      });
-    });
-    new import_obsidian7.Setting(containerEl).setName("Min fuzzy match score").setDesc(
-      "It only shows suggestions whose fuzzy matched score is more than the specific value."
-    ).addSlider(
-      (sc) => sc.setLimits(0, 5, 0.1).setValue(this.plugin.settings.minFuzzyMatchScore).setDynamicTooltip().onChange(async (value) => {
-        this.plugin.settings.minFuzzyMatchScore = value;
-        await this.plugin.saveSettings();
-      })
-    );
-    new import_obsidian7.Setting(containerEl).setName("Treat accent diacritics as alphabetic characters.").setDesc("Ex: If enabled, 'aaa' matches with '\xE1\xE4\u0101'").addToggle((tc) => {
-      tc.setValue(
-        this.plugin.settings.treatAccentDiacriticsAsAlphabeticCharacters
-      ).onChange(async (value) => {
-        this.plugin.settings.treatAccentDiacriticsAsAlphabeticCharacters = value;
-        await this.plugin.saveSettings({
-          internalLink: true,
-          customDictionary: true,
-          currentVault: true,
-          currentFile: true
-        });
-      });
-    });
-    if (TokenizeStrategy.fromName(this.plugin.settings.strategy).canTreatUnderscoreAsPartOfWord) {
-      new import_obsidian7.Setting(containerEl).setName("Treat an underscore as a part of a word.").setDesc(
-        "If this setting is enabled, aaa_bbb will be tokenized as a single token aaa_bbb, rather than being split into aaa and bbb."
-      ).addToggle((tc) => {
-        tc.setValue(
-          this.plugin.settings.treatUnderscoreAsPartOfWord
-        ).onChange(async (value) => {
-          this.plugin.settings.treatUnderscoreAsPartOfWord = value;
-          await this.plugin.saveSettings({
-            internalLink: true,
-            customDictionary: true,
-            currentVault: true,
-            currentFile: true
-          });
-        });
-      });
-    }
-    new import_obsidian7.Setting(containerEl).setName("Matching without emoji").setDesc("Ex: If enabled, 'aaa' matches with '\u{1F600}aaa'").addToggle((tc) => {
-      tc.setValue(this.plugin.settings.matchingWithoutEmoji).onChange(
-        async (value) => {
-          this.plugin.settings.matchingWithoutEmoji = value;
-          await this.plugin.saveSettings({
-            internalLink: true,
-            customDictionary: true,
-            currentVault: true,
-            currentFile: true
-          });
-        }
-      );
-    });
-    new import_obsidian7.Setting(containerEl).setName("Max number of suggestions").addSlider(
-      (sc) => sc.setLimits(1, 255, 1).setValue(this.plugin.settings.maxNumberOfSuggestions).setDynamicTooltip().onChange(async (value) => {
-        this.plugin.settings.maxNumberOfSuggestions = value;
-        await this.plugin.saveSettings();
-      })
-    );
-    new import_obsidian7.Setting(containerEl).setName("Max number of words as a phrase").setDesc(`[\u26A0Warning] It makes slower more than N times (N is set value)`).addSlider(
-      (sc) => sc.setLimits(1, 10, 1).setValue(this.plugin.settings.maxNumberOfWordsAsPhrase).setDynamicTooltip().onChange(async (value) => {
-        this.plugin.settings.maxNumberOfWordsAsPhrase = value;
-        await this.plugin.saveSettings();
-      })
-    );
-    new import_obsidian7.Setting(containerEl).setName("Min number of characters for trigger").setDesc(
-      "Setting the value to 0 does not mean the suggestion will be triggered without any inputted character. Instead, a designated value will be used depending on the Strategy you choose."
-    ).addSlider(
-      (sc) => sc.setLimits(0, 10, 1).setValue(this.plugin.settings.minNumberOfCharactersTriggered).setDynamicTooltip().onChange(async (value) => {
-        this.plugin.settings.minNumberOfCharactersTriggered = value;
-        await this.plugin.saveSettings();
-      })
-    );
-    new import_obsidian7.Setting(containerEl).setName("Min number of words for trigger").addSlider(
-      (sc) => sc.setLimits(1, 10, 1).setValue(this.plugin.settings.minNumberOfWordsTriggeredPhrase).setDynamicTooltip().onChange(async (value) => {
-        this.plugin.settings.minNumberOfWordsTriggeredPhrase = value;
-        await this.plugin.saveSettings();
-      })
-    );
-    new import_obsidian7.Setting(containerEl).setName("Complement automatically").addToggle((tc) => {
-      tc.setValue(this.plugin.settings.complementAutomatically).onChange(
-        async (value) => {
-          this.plugin.settings.complementAutomatically = value;
-          await this.plugin.saveSettings();
-        }
-      );
-    });
-    new import_obsidian7.Setting(containerEl).setName("Delay milli-seconds for trigger").addSlider(
-      (sc) => sc.setLimits(0, 1e3, 10).setValue(this.plugin.settings.delayMilliSeconds).setDynamicTooltip().onChange(async (value) => {
-        this.plugin.settings.delayMilliSeconds = value;
-        await this.plugin.saveSettings();
-      })
-    );
-    new import_obsidian7.Setting(containerEl).setName("Disable suggestions during IME on").addToggle((tc) => {
-      tc.setValue(
-        this.plugin.settings.disableSuggestionsDuringImeOn
-      ).onChange(async (value) => {
-        this.plugin.settings.disableSuggestionsDuringImeOn = value;
-        await this.plugin.saveSettings();
-      });
-    });
-    new import_obsidian7.Setting(containerEl).setName("Disable suggestions in the Math block").setDesc("It doesn't support the inline Math block.").addToggle((tc) => {
-      tc.setValue(
-        this.plugin.settings.disableSuggestionsInMathBlock
-      ).onChange(async (value) => {
-        this.plugin.settings.disableSuggestionsInMathBlock = value;
-        await this.plugin.saveSettings();
-      });
-    });
-    new import_obsidian7.Setting(containerEl).setName("Insert space after completion").addToggle((tc) => {
-      tc.setValue(this.plugin.settings.insertSpaceAfterCompletion).onChange(
-        async (value) => {
-          this.plugin.settings.insertSpaceAfterCompletion = value;
-          await this.plugin.saveSettings();
-        }
-      );
-    });
-    new import_obsidian7.Setting(containerEl).setName("First characters to disable suggestions").addText((cb) => {
-      cb.setValue(
-        this.plugin.settings.firstCharactersDisableSuggestions
-      ).onChange(async (value) => {
-        this.plugin.settings.firstCharactersDisableSuggestions = value;
-        await this.plugin.saveSettings();
-      });
-    });
-    new import_obsidian7.Setting(containerEl).setName("Line patterns to suppress trigger").setDesc(
-      "Regular expression line patterns (partial match) until the cursor, that suppresses the activation of autocomplete. Multiple patterns can be defined with line breaks."
-    ).addTextArea((tc) => {
-      const el = tc.setValue(this.plugin.settings.patternsToSuppressTrigger.join("\n")).onChange(async (value) => {
-        this.plugin.settings.patternsToSuppressTrigger = smartLineBreakSplit(value);
-        await this.plugin.saveSettings();
-      });
-      el.inputEl.className = "various-complements__settings__text-area-path-dense";
-      return el;
-    });
-    new import_obsidian7.Setting(containerEl).setName("Phrase patterns to suppress trigger").setDesc(
-      "Regular expression patterns (exact match) that suppress the activation of autocomplete. Multiple patterns can be defined with line breaks."
-    ).addTextArea((tc) => {
-      const el = tc.setValue(
-        this.plugin.settings.phrasePatternsToSuppressTrigger.join("\n")
-      ).onChange(async (value) => {
-        this.plugin.settings.phrasePatternsToSuppressTrigger = smartLineBreakSplit(value);
-        await this.plugin.saveSettings();
-      });
-      el.inputEl.className = "various-complements__settings__text-area-path-dense";
-      return el;
-    });
-    new import_obsidian7.Setting(containerEl).setName("No auto-focus until the cycle").setDesc("No focus on the suggestions until the cycle key is pressed.").addToggle((tc) => {
-      tc.setValue(this.plugin.settings.noAutoFocusUntilCycle).onChange(
-        async (value) => {
-          this.plugin.settings.noAutoFocusUntilCycle = value;
-          await this.plugin.saveSettings();
-        }
-      );
-    });
-  }
-  addAppearanceSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Appearance",
-      cls: "various-complements__settings__header various-complements__settings__header__appearance"
-    });
-    new import_obsidian7.Setting(containerEl).setName("Show Match strategy").setDesc(
-      "Show Match strategy at the status bar. Changing this option requires a restart to take effect."
-    ).addToggle((tc) => {
-      tc.setValue(this.plugin.settings.showMatchStrategy).onChange(
-        async (value) => {
-          this.plugin.settings.showMatchStrategy = value;
-          await this.plugin.saveSettings();
-        }
-      );
-    });
-    new import_obsidian7.Setting(containerEl).setName("Show Complement automatically").setDesc(
-      "Show complement automatically at the status bar. Changing this option requires a restart to take effect."
-    ).addToggle((tc) => {
-      tc.setValue(this.plugin.settings.showComplementAutomatically).onChange(
-        async (value) => {
-          this.plugin.settings.showComplementAutomatically = value;
-          await this.plugin.saveSettings();
-        }
-      );
-    });
-    new import_obsidian7.Setting(containerEl).setName("Show Indexing status").setDesc(
-      "Show indexing status at the status bar. Changing this option requires a restart to take effect."
-    ).addToggle((tc) => {
-      tc.setValue(this.plugin.settings.showIndexingStatus).onChange(
-        async (value) => {
-          this.plugin.settings.showIndexingStatus = value;
-          await this.plugin.saveSettings();
-        }
-      );
-    });
-    new import_obsidian7.Setting(containerEl).setName("Description on a suggestion").addDropdown(
-      (tc) => tc.addOptions(
-        mirrorMap(DescriptionOnSuggestion.values(), (x) => x.name)
-      ).setValue(this.plugin.settings.descriptionOnSuggestion).onChange(async (value) => {
-        this.plugin.settings.descriptionOnSuggestion = value;
-        await this.plugin.saveSettings();
-      })
-    );
-  }
-  addKeyCustomizationSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Key customization",
-      cls: "various-complements__settings__header various-complements__settings__header__key-customization"
-    });
-    const div = createDiv({
-      cls: "various-complements__settings__popup-hotkey"
-    });
-    containerEl.append(div);
-    const li = createEl("li");
-    li.append(
-      "You can find the keycode at ",
-      createEl("a", {
-        text: "keycode.info",
-        href: "https://keycode.info/"
-      }),
-      ". Press any key to see the '",
-      createEl("code", {
-        text: "event.key"
-      }),
-      "' value, ",
-      createEl("b", {
-        text: "except for the space key"
-      }),
-      ". Set the space key as '",
-      createEl("code", {
-        text: "Space"
-      }),
-      "'."
-    );
-    const ul = createEl("ul");
-    ul.createEl("li", {
-      text: "'Ctrl a' means pressing the Ctrl key and the A key."
-    });
-    ul.createEl("li", {
-      text: "'Enter|Tab' means pressing the Enter key or the Tab key."
-    });
-    ul.createEl("li", {
-      text: "Use 'Mod' instead of 'Ctrl' on Windows or 'Cmd' on macOS."
-    });
-    ul.append(li);
-    const df = document.createDocumentFragment();
-    df.append(ul);
-    new import_obsidian7.Setting(div).setHeading().setName("Hotkeys").setDesc(df);
-    const hotkeys = this.plugin.settings.hotkeys;
-    Object.keys(hotkeys).forEach((k) => {
-      const key = k;
-      new import_obsidian7.Setting(div).setName(key).setClass("various-complements__settings__popup-hotkey-item").addText((cb) => {
-        return cb.setValue(hotkeys[key].map(hotkey2String).join("|")).onChange(async (value) => {
-          hotkeys[key] = value.split("|").map((x) => string2Hotkey(x, false)).filter(isPresent);
-          await this.plugin.saveSettings();
-        });
-      });
-    });
-    new import_obsidian7.Setting(containerEl).setName("Propagate ESC").setDesc(
-      "It is handy if you use Vim mode because you can switch to Normal mode by one ESC, whether it shows suggestions or not."
-    ).addToggle((tc) => {
-      tc.setValue(this.plugin.settings.propagateEsc).onChange(
-        async (value) => {
-          this.plugin.settings.propagateEsc = value;
-          await this.plugin.saveSettings();
-        }
-      );
-    });
-  }
-  addCurrentFileComplementSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Current file complement",
-      cls: "various-complements__settings__header various-complements__settings__header__current-file"
-    });
-    new import_obsidian7.Setting(containerEl).setName("Enable Current file complement").addToggle((tc) => {
-      tc.setValue(this.plugin.settings.enableCurrentFileComplement).onChange(
-        async (value) => {
-          this.plugin.settings.enableCurrentFileComplement = value;
-          await this.plugin.saveSettings({ currentFile: true });
-          this.display();
-        }
-      );
-    });
-    if (this.plugin.settings.enableCurrentFileComplement) {
-      new import_obsidian7.Setting(containerEl).setName("Min number of characters for indexing").setDesc("It uses a default value of Strategy if set 0.").addSlider(
-        (sc) => sc.setLimits(0, 15, 1).setValue(this.plugin.settings.currentFileMinNumberOfCharacters).setDynamicTooltip().onChange(async (value) => {
-          this.plugin.settings.currentFileMinNumberOfCharacters = value;
-          await this.plugin.saveSettings({ currentFile: true });
-        })
-      );
-      new import_obsidian7.Setting(containerEl).setName("Only complement English on current file complement").addToggle((tc) => {
-        tc.setValue(
-          this.plugin.settings.onlyComplementEnglishOnCurrentFileComplement
-        ).onChange(async (value) => {
-          this.plugin.settings.onlyComplementEnglishOnCurrentFileComplement = value;
-          await this.plugin.saveSettings({ currentFile: true });
-        });
-      });
-      new import_obsidian7.Setting(containerEl).setName("Exclude word patterns for indexing").setDesc(
-        "Regexp patterns for words to be excluded from the suggestions, separated by line breaks."
-      ).addTextArea((tc) => {
-        const el = tc.setValue(
-          this.plugin.settings.excludeCurrentFileWordPatterns.join("\n")
-        ).onChange(async (value) => {
-          this.plugin.settings.excludeCurrentFileWordPatterns = smartLineBreakSplit(value);
-          await this.plugin.saveSettings();
-        });
-        el.inputEl.className = "various-complements__settings__text-area-path-dense";
-        return el;
-      });
-    }
-  }
-  addCurrentVaultComplementSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Current vault complement",
-      cls: "various-complements__settings__header various-complements__settings__header__current-vault"
-    });
-    new import_obsidian7.Setting(containerEl).setName("Enable Current vault complement").addToggle((tc) => {
-      tc.setValue(this.plugin.settings.enableCurrentVaultComplement).onChange(
-        async (value) => {
-          this.plugin.settings.enableCurrentVaultComplement = value;
-          this.display();
-          await this.plugin.saveSettings({ currentVault: true });
-        }
-      );
-    });
-    if (this.plugin.settings.enableCurrentVaultComplement) {
-      new import_obsidian7.Setting(containerEl).setName("Min number of characters for indexing").setDesc("It uses a default value of Strategy if set 0.").addSlider(
-        (sc) => sc.setLimits(0, 15, 1).setValue(this.plugin.settings.currentVaultMinNumberOfCharacters).setDynamicTooltip().onChange(async (value) => {
-          this.plugin.settings.currentVaultMinNumberOfCharacters = value;
-          await this.plugin.saveSettings();
-        })
-      );
-      new import_obsidian7.Setting(containerEl).setName("Include prefix path patterns").setDesc("Prefix match path patterns to include files.").addTextArea((tac) => {
-        const el = tac.setValue(
-          this.plugin.settings.includeCurrentVaultPathPrefixPatterns
-        ).setPlaceholder("Private/").onChange(async (value) => {
-          this.plugin.settings.includeCurrentVaultPathPrefixPatterns = value;
-          await this.plugin.saveSettings();
-        });
-        el.inputEl.className = "various-complements__settings__text-area-path";
-        return el;
-      });
-      new import_obsidian7.Setting(containerEl).setName("Exclude prefix path patterns").setDesc("Prefix match path patterns to exclude files.").addTextArea((tac) => {
-        const el = tac.setValue(
-          this.plugin.settings.excludeCurrentVaultPathPrefixPatterns
-        ).setPlaceholder("Private/").onChange(async (value) => {
-          this.plugin.settings.excludeCurrentVaultPathPrefixPatterns = value;
-          await this.plugin.saveSettings();
-        });
-        el.inputEl.className = "various-complements__settings__text-area-path";
-        return el;
-      });
-      new import_obsidian7.Setting(containerEl).setName("Include only files under current directory").addToggle((tc) => {
-        tc.setValue(
-          this.plugin.settings.includeCurrentVaultOnlyFilesUnderCurrentDirectory
-        ).onChange(async (value) => {
-          this.plugin.settings.includeCurrentVaultOnlyFilesUnderCurrentDirectory = value;
-          await this.plugin.saveSettings();
-        });
-      });
-      new import_obsidian7.Setting(containerEl).setName("Exclude word patterns for indexing").setDesc(
-        "Regexp patterns for words to be excluded from the suggestions, separated by line breaks."
-      ).addTextArea((tc) => {
-        const el = tc.setValue(
-          this.plugin.settings.excludeCurrentVaultWordPatterns.join("\n")
-        ).onChange(async (value) => {
-          this.plugin.settings.excludeCurrentVaultWordPatterns = smartLineBreakSplit(value);
-          await this.plugin.saveSettings();
-        });
-        el.inputEl.className = "various-complements__settings__text-area-path-dense";
-        return el;
-      });
-    }
-  }
-  addCustomDictionaryComplementSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Custom dictionary complement",
-      cls: "various-complements__settings__header various-complements__settings__header__custom-dictionary"
-    });
-    new import_obsidian7.Setting(containerEl).setName("Enable Custom dictionary complement").addToggle((tc) => {
-      tc.setValue(
-        this.plugin.settings.enableCustomDictionaryComplement
-      ).onChange(async (value) => {
-        this.plugin.settings.enableCustomDictionaryComplement = value;
-        await this.plugin.saveSettings({ customDictionary: true });
-        this.display();
-      });
-    });
-    if (this.plugin.settings.enableCustomDictionaryComplement) {
-      new import_obsidian7.Setting(containerEl).setName("Custom dictionary paths").setDesc(
-        "Specify either a relative path from Vault root or URL for each line."
-      ).addTextArea((tac) => {
-        const el = tac.setValue(this.plugin.settings.customDictionaryPaths).setPlaceholder("dictionary.md").onChange(async (value) => {
-          this.plugin.settings.customDictionaryPaths = value;
-          await this.plugin.saveSettings();
-        });
-        el.inputEl.className = "various-complements__settings__text-area-path";
-        return el;
-      });
-      new import_obsidian7.Setting(containerEl).setName("Column delimiter").addDropdown(
-        (tc) => tc.addOptions(mirrorMap(ColumnDelimiter.values(), (x) => x.name)).setValue(this.plugin.settings.columnDelimiter).onChange(async (value) => {
-          this.plugin.settings.columnDelimiter = value;
-          await this.plugin.saveSettings();
-        })
-      );
-      new import_obsidian7.Setting(containerEl).setName("Word regex pattern").setDesc("Only load words that match the regular expression pattern.").addText((cb) => {
-        cb.setValue(
-          this.plugin.settings.customDictionaryWordRegexPattern
-        ).onChange(async (value) => {
-          this.plugin.settings.customDictionaryWordRegexPattern = value;
-          await this.plugin.saveSettings();
-        });
-      });
-      new import_obsidian7.Setting(containerEl).setName("Delimiter to hide a suggestion").setDesc(
-        "If set ';;;', 'abcd;;;efg' is shown as 'abcd' on suggestions, but completes to 'abcdefg'."
-      ).addText((cb) => {
-        cb.setValue(this.plugin.settings.delimiterToHideSuggestion).onChange(
-          async (value) => {
-            this.plugin.settings.delimiterToHideSuggestion = value;
-            await this.plugin.saveSettings();
-          }
-        );
-      });
-      new import_obsidian7.Setting(containerEl).setName(
-        "Delimiter to divide suggestions for display from ones for insertion"
-      ).setDesc(
-        "If set ' >>> ', 'displayed >>> inserted' is shown as 'displayed' on suggestions, but completes to 'inserted'."
-      ).addText((cb) => {
-        cb.setValue(
-          this.plugin.settings.delimiterToDivideSuggestionsForDisplayFromInsertion
-        ).onChange(async (value) => {
-          this.plugin.settings.delimiterToDivideSuggestionsForDisplayFromInsertion = value;
-          await this.plugin.saveSettings();
-        });
-      });
-      new import_obsidian7.Setting(containerEl).setName("Caret location symbol after complement").setDesc(
-        "If set '<CARET>' and there is '<li><CARET></li>' in custom dictionary, it complements '<li></li>' and move a caret where between '<li>' and `</li>`."
-      ).addText((cb) => {
-        cb.setValue(
-          this.plugin.settings.caretLocationSymbolAfterComplement
-        ).onChange(async (value) => {
-          this.plugin.settings.caretLocationSymbolAfterComplement = value;
-          await this.plugin.saveSettings();
-        });
-      });
-      new import_obsidian7.Setting(containerEl).setName("Displayed text suffix").setDesc(
-        "It shows as a suffix of displayed text if there is a difference between displayed and inserted"
-      ).addText((cb) => {
-        cb.setValue(this.plugin.settings.displayedTextSuffix).onChange(
-          async (value) => {
-            this.plugin.settings.displayedTextSuffix = value;
-            await this.plugin.saveSettings();
-          }
-        );
-      });
-    }
-  }
-  addInternalLinkComplementSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Internal link complement",
-      cls: "various-complements__settings__header various-complements__settings__header__internal-link"
-    });
-    new import_obsidian7.Setting(containerEl).setName("Enable Internal link complement").addToggle((tc) => {
-      tc.setValue(this.plugin.settings.enableInternalLinkComplement).onChange(
-        async (value) => {
-          this.plugin.settings.enableInternalLinkComplement = value;
-          await this.plugin.saveSettings({ internalLink: true });
-          this.display();
-        }
-      );
-    });
-    if (this.plugin.settings.enableInternalLinkComplement) {
-      new import_obsidian7.Setting(containerEl).setName("Suggest with an alias").addToggle((tc) => {
-        tc.setValue(
-          this.plugin.settings.suggestInternalLinkWithAlias
-        ).onChange(async (value) => {
-          this.plugin.settings.suggestInternalLinkWithAlias = value;
-          await this.plugin.saveSettings({ internalLink: true });
-        });
-      });
-      new import_obsidian7.Setting(containerEl).setName("Update internal links on save").addToggle((tc) => {
-        tc.setValue(this.plugin.settings.updateInternalLinksOnSave).onChange(
-          async (value) => {
-            this.plugin.settings.updateInternalLinksOnSave = value;
-            await this.plugin.saveSettings({ internalLink: true });
-          }
-        );
-      });
-      new import_obsidian7.Setting(containerEl).setName(
-        "Insert an alias that is transformed from the displayed internal link"
-      ).addToggle((tc) => {
-        tc.setValue(
-          this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.enabled
-        ).onChange(async (value) => {
-          this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.enabled = value;
-          await this.plugin.saveSettings();
-          this.display();
-        });
-      });
-      if (this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.enabled) {
-        new import_obsidian7.Setting(containerEl).setName("Before: regular expression pattern with captures").setDesc(String.raw`Ex: (?<name>.+) \(.+\)$`).setClass("various-complements__settings__nested").addText((cb) => {
-          cb.setValue(
-            this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.beforeRegExp
-          ).onChange(async (value) => {
-            this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.beforeRegExp = value;
-            await this.plugin.saveSettings();
-          });
-        });
-        new import_obsidian7.Setting(containerEl).setName("After").setDesc("Ex: $<name>").setClass("various-complements__settings__nested").addText((cb) => {
-          cb.setValue(
-            this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.after
-          ).onChange(async (value) => {
-            this.plugin.settings.insertAliasTransformedFromDisplayedInternalLink.after = value;
-            await this.plugin.saveSettings();
-          });
-        });
-      }
-      new import_obsidian7.Setting(containerEl).setName("Exclude prefix path patterns").setDesc("Prefix match path patterns to exclude files.").addTextArea((tac) => {
-        const el = tac.setValue(
-          this.plugin.settings.excludeInternalLinkPathPrefixPatterns
-        ).setPlaceholder("Private/").onChange(async (value) => {
-          this.plugin.settings.excludeInternalLinkPathPrefixPatterns = value;
-          await this.plugin.saveSettings();
-        });
-        el.inputEl.className = "various-complements__settings__text-area-path";
-        return el;
-      });
-      new import_obsidian7.Setting(containerEl).setName("Front matter key for exclusion").setDesc(
-        "Exclude internal links from the suggestions if whose front matters have the key whose name is same as this setting, and the value is 'true'"
-      ).addText((cb) => {
-        TextComponentEvent.onChange(cb, async (value) => {
-          this.plugin.settings.frontMatterKeyForExclusionInternalLink = value;
-          await this.plugin.saveSettings({ internalLink: true });
-        }).setValue(
-          this.plugin.settings.frontMatterKeyForExclusionInternalLink
-        );
-      });
-    }
-  }
-  addFrontMatterComplementSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Front matter complement",
-      cls: "various-complements__settings__header various-complements__settings__header__front-matter"
-    });
-    new import_obsidian7.Setting(containerEl).setName("Enable Front matter complement").addToggle((tc) => {
-      tc.setValue(this.plugin.settings.enableFrontMatterComplement).onChange(
-        async (value) => {
-          this.plugin.settings.enableFrontMatterComplement = value;
-          await this.plugin.saveSettings({ frontMatter: true });
-          this.display();
-        }
-      );
-    });
-    if (this.plugin.settings.enableFrontMatterComplement) {
-      new import_obsidian7.Setting(containerEl).setName("Match strategy in the front matter").addDropdown(
-        (tc) => tc.addOptions(
-          mirrorMap(SpecificMatchStrategy.values(), (x) => x.name)
-        ).setValue(this.plugin.settings.frontMatterComplementMatchStrategy).onChange(async (value) => {
-          this.plugin.settings.frontMatterComplementMatchStrategy = value;
-          await this.plugin.saveSettings();
-        })
-      );
-      new import_obsidian7.Setting(containerEl).setName("Insert comma after completion").addToggle((tc) => {
-        tc.setValue(
-          this.plugin.settings.insertCommaAfterFrontMatterCompletion
-        ).onChange(async (value) => {
-          this.plugin.settings.insertCommaAfterFrontMatterCompletion = value;
-          await this.plugin.saveSettings();
-        });
-      });
-    }
-  }
-  addIntelligentSuggestionPrioritizationSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Intelligent suggestion prioritization",
-      cls: "various-complements__settings__header various-complements__settings__header__intelligent-suggestion-prioritization"
-    });
-    new import_obsidian7.Setting(containerEl).setName("Enable Intelligent Suggestion Prioritization").addToggle((tc) => {
-      tc.setValue(
-        this.plugin.settings.intelligentSuggestionPrioritization.enabled
-      ).onChange(async (value) => {
-        this.plugin.settings.intelligentSuggestionPrioritization.enabled = value;
-        await this.plugin.saveSettings({
-          intelligentSuggestionPrioritization: true
-        });
-        this.display();
-      });
-    });
-    if (this.plugin.settings.intelligentSuggestionPrioritization.enabled) {
-      new import_obsidian7.Setting(containerEl).setName("history file path").setDesc(`Default: ${DEFAULT_HISTORIES_PATH}`).addText((cb) => {
-        TextComponentEvent.onChange(cb, async (value) => {
-          this.plugin.settings.intelligentSuggestionPrioritization.historyFilePath = value;
-          await this.plugin.saveSettings({
-            intelligentSuggestionPrioritization: true
-          });
-        }).setValue(
-          this.plugin.settings.intelligentSuggestionPrioritization.historyFilePath
-        );
-      });
-      new import_obsidian7.Setting(containerEl).setName("Max days to keep history").setDesc("If set 0, it will never remove").addSlider(
-        (sc) => sc.setLimits(0, 365, 1).setValue(
-          this.plugin.settings.intelligentSuggestionPrioritization.maxDaysToKeepHistory
-        ).setDynamicTooltip().onChange(async (value) => {
-          this.plugin.settings.intelligentSuggestionPrioritization.maxDaysToKeepHistory = value;
-          await this.plugin.saveSettings();
-        })
-      );
-      new import_obsidian7.Setting(containerEl).setName("Max number of history to keep").setDesc("If set 0, it will never remove").addSlider(
-        (sc) => sc.setLimits(0, 1e4, 1).setValue(
-          this.plugin.settings.intelligentSuggestionPrioritization.maxNumberOfHistoryToKeep
-        ).setDynamicTooltip().onChange(async (value) => {
-          this.plugin.settings.intelligentSuggestionPrioritization.maxNumberOfHistoryToKeep = value;
-          await this.plugin.saveSettings();
-        })
-      );
-    }
-  }
-  addMobileSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Mobile",
-      cls: "various-complements__settings__header various-complements__settings__header__mobile"
-    });
-    new import_obsidian7.Setting(containerEl).setName("Disable on mobile").addToggle((tc) => {
-      tc.setValue(this.plugin.settings.disableOnMobile).onChange(
-        async (value) => {
-          this.plugin.settings.disableOnMobile = value;
-          await this.plugin.saveSettings();
-        }
-      );
-    });
-  }
-  addDebugSettings(containerEl) {
-    containerEl.createEl("h3", {
-      text: "Debug",
-      cls: "various-complements__settings__header various-complements__settings__header__debug"
-    });
-    new import_obsidian7.Setting(containerEl).setName("Show log about performance in a console").addToggle((tc) => {
-      tc.setValue(
-        this.plugin.settings.showLogAboutPerformanceInConsole
-      ).onChange(async (value) => {
-        this.plugin.settings.showLogAboutPerformanceInConsole = value;
-        await this.plugin.saveSettings();
-      });
-    });
-  }
-  async toggleMatchStrategy() {
-    switch (this.plugin.settings.matchStrategy) {
-      case "prefix":
-        this.plugin.settings.matchStrategy = "partial";
-        break;
-      case "partial":
-        this.plugin.settings.matchStrategy = "prefix";
-        break;
-      default:
-        new import_obsidian7.Notice("\u26A0Unexpected error");
-    }
-    await this.plugin.saveSettings();
-  }
-  async toggleComplementAutomatically() {
-    this.plugin.settings.complementAutomatically = !this.plugin.settings.complementAutomatically;
-    await this.plugin.saveSettings();
-  }
-  async ensureCustomDictionaryPath(path, state) {
-    const paths = this.plugin.settings.customDictionaryPaths.split("\n");
-    const exists = paths.some((x) => x === path);
-    if (exists && state === "present" || !exists && state === "absent") {
-      return false;
-    }
-    const newPaths = state === "present" ? [...paths, path] : paths.filter((x) => x !== path);
-    this.plugin.settings.customDictionaryPaths = newPaths.join("\n");
-    await this.plugin.saveSettings({ customDictionary: true });
-    return true;
-  }
-  getPluginSettingsAsJsonString() {
-    return JSON.stringify(
-      {
-        version: this.plugin.manifest.version,
-        mobile: this.app.isMobile,
-        settings: this.plugin.settings
-      },
-      null,
-      4
-    );
-  }
-};
-
-// src/ui/ProviderStatusBar.ts
-var ProviderStatusBar = class _ProviderStatusBar {
-  constructor(currentFile, currentVault, customDictionary, internalLink, frontMatter, matchStrategy, complementAutomatically) {
-    this.currentFile = currentFile;
-    this.currentVault = currentVault;
-    this.customDictionary = customDictionary;
-    this.internalLink = internalLink;
-    this.frontMatter = frontMatter;
-    this.matchStrategy = matchStrategy;
-    this.complementAutomatically = complementAutomatically;
-  }
-  static new(statusBar, showMatchStrategy, showIndexingStatus, showComplementAutomatically) {
-    const currentFile = showIndexingStatus ? statusBar.createEl("span", {
-      text: "---",
-      cls: "various-complements__footer various-complements__footer__current-file"
-    }) : null;
-    const currentVault = showIndexingStatus ? statusBar.createEl("span", {
-      text: "---",
-      cls: "various-complements__footer various-complements__footer__current-vault"
-    }) : null;
-    const customDictionary = showIndexingStatus ? statusBar.createEl("span", {
-      text: "---",
-      cls: "various-complements__footer various-complements__footer__custom-dictionary"
-    }) : null;
-    const internalLink = showIndexingStatus ? statusBar.createEl("span", {
-      text: "---",
-      cls: "various-complements__footer various-complements__footer__internal-link"
-    }) : null;
-    const frontMatter = showIndexingStatus ? statusBar.createEl("span", {
-      text: "---",
-      cls: "various-complements__footer various-complements__footer__front-matter"
-    }) : null;
-    const matchStrategy = showMatchStrategy ? statusBar.createEl("span", {
-      text: "---",
-      cls: "various-complements__footer various-complements__footer__match-strategy"
-    }) : null;
-    const complementAutomatically = showComplementAutomatically ? statusBar.createEl("span", {
-      text: "---",
-      cls: "various-complements__footer various-complements__footer__complement-automatically"
-    }) : null;
-    return new _ProviderStatusBar(
-      currentFile,
-      currentVault,
-      customDictionary,
-      internalLink,
-      frontMatter,
-      matchStrategy,
-      complementAutomatically
-    );
-  }
-  setOnClickStrategyListener(listener) {
-    var _a;
-    (_a = this.matchStrategy) == null ? void 0 : _a.addEventListener("click", listener);
-  }
-  setOnClickComplementAutomatically(listener) {
-    var _a;
-    (_a = this.complementAutomatically) == null ? void 0 : _a.addEventListener("click", listener);
-  }
-  setCurrentFileDisabled() {
-    var _a;
-    (_a = this.currentFile) == null ? void 0 : _a.setText("---");
-  }
-  setCurrentVaultDisabled() {
-    var _a;
-    (_a = this.currentVault) == null ? void 0 : _a.setText("---");
-  }
-  setCustomDictionaryDisabled() {
-    var _a;
-    (_a = this.customDictionary) == null ? void 0 : _a.setText("---");
-  }
-  setInternalLinkDisabled() {
-    var _a;
-    (_a = this.internalLink) == null ? void 0 : _a.setText("---");
-  }
-  setFrontMatterDisabled() {
-    var _a;
-    (_a = this.frontMatter) == null ? void 0 : _a.setText("---");
-  }
-  setCurrentFileIndexing() {
-    var _a;
-    (_a = this.currentFile) == null ? void 0 : _a.setText("indexing...");
-  }
-  setCurrentVaultIndexing() {
-    var _a;
-    (_a = this.currentVault) == null ? void 0 : _a.setText("indexing...");
-  }
-  setCustomDictionaryIndexing() {
-    var _a;
-    (_a = this.customDictionary) == null ? void 0 : _a.setText("indexing...");
-  }
-  setInternalLinkIndexing() {
-    var _a;
-    (_a = this.internalLink) == null ? void 0 : _a.setText("indexing...");
-  }
-  setFrontMatterIndexing() {
-    var _a;
-    (_a = this.frontMatter) == null ? void 0 : _a.setText("indexing...");
-  }
-  setCurrentFileIndexed(count) {
-    var _a;
-    (_a = this.currentFile) == null ? void 0 : _a.setText(String(count));
-  }
-  setCurrentVaultIndexed(count) {
-    var _a;
-    (_a = this.currentVault) == null ? void 0 : _a.setText(String(count));
-  }
-  setCustomDictionaryIndexed(count) {
-    var _a;
-    (_a = this.customDictionary) == null ? void 0 : _a.setText(String(count));
-  }
-  setInternalLinkIndexed(count) {
-    var _a;
-    (_a = this.internalLink) == null ? void 0 : _a.setText(String(count));
-  }
-  setFrontMatterIndexed(count) {
-    var _a;
-    (_a = this.frontMatter) == null ? void 0 : _a.setText(String(count));
-  }
-  setMatchStrategy(strategy) {
-    var _a;
-    (_a = this.matchStrategy) == null ? void 0 : _a.setText(strategy.name);
-  }
-  setComplementAutomatically(automatically) {
-    var _a;
-    (_a = this.complementAutomatically) == null ? void 0 : _a.setText(automatically ? "auto" : "manual");
   }
 };
 
@@ -6709,7 +8562,7 @@ var ObsidianButton_default = ObsidianButton;
 // node_modules/.pnpm/svelte-lucide-icons@0.6.0/node_modules/svelte-lucide-icons/icons/File.svelte
 function create_fragment2(ctx) {
   let svg;
-  let path;
+  let path2;
   let polyline;
   let current;
   const default_slot_template = (
@@ -6750,9 +8603,9 @@ function create_fragment2(ctx) {
     c() {
       svg = svg_element("svg");
       if (default_slot) default_slot.c();
-      path = svg_element("path");
+      path2 = svg_element("path");
       polyline = svg_element("polyline");
-      attr(path, "d", "M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z");
+      attr(path2, "d", "M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z");
       attr(polyline, "points", "14 2 14 8 20 8");
       set_svg_attributes(svg, svg_data);
     },
@@ -6761,7 +8614,7 @@ function create_fragment2(ctx) {
       if (default_slot) {
         default_slot.m(svg, null);
       }
-      append(svg, path);
+      append(svg, path2);
       append(svg, polyline);
       current = true;
     },
@@ -7732,46 +9585,132 @@ var CustomDictionaryWordAddModal = class extends import_obsidian8.Modal {
   }
 };
 
-// node_modules/.pnpm/ts-deepmerge@7.0.1/node_modules/ts-deepmerge/esm/index.js
-var isObject = (obj) => {
-  if (typeof obj === "object" && obj !== null) {
-    if (typeof Object.getPrototypeOf === "function") {
-      const prototype = Object.getPrototypeOf(obj);
-      return prototype === Object.prototype || prototype === null;
-    }
-    return Object.prototype.toString.call(obj) === "[object Object]";
+// src/ui/ProviderStatusBar.ts
+var ProviderStatusBar = class _ProviderStatusBar {
+  constructor(currentFile, currentVault, customDictionary, internalLink, frontMatter, matchStrategy, complementAutomatically) {
+    this.currentFile = currentFile;
+    this.currentVault = currentVault;
+    this.customDictionary = customDictionary;
+    this.internalLink = internalLink;
+    this.frontMatter = frontMatter;
+    this.matchStrategy = matchStrategy;
+    this.complementAutomatically = complementAutomatically;
   }
-  return false;
-};
-var merge = (...objects) => objects.reduce((result, current) => {
-  if (Array.isArray(current)) {
-    throw new TypeError("Arguments provided to ts-deepmerge must be objects, not arrays.");
+  static new(statusBar, showMatchStrategy, showIndexingStatus, showComplementAutomatically) {
+    const currentFile = showIndexingStatus ? statusBar.createEl("span", {
+      text: "---",
+      cls: "various-complements__footer various-complements__footer__current-file"
+    }) : null;
+    const currentVault = showIndexingStatus ? statusBar.createEl("span", {
+      text: "---",
+      cls: "various-complements__footer various-complements__footer__current-vault"
+    }) : null;
+    const customDictionary = showIndexingStatus ? statusBar.createEl("span", {
+      text: "---",
+      cls: "various-complements__footer various-complements__footer__custom-dictionary"
+    }) : null;
+    const internalLink = showIndexingStatus ? statusBar.createEl("span", {
+      text: "---",
+      cls: "various-complements__footer various-complements__footer__internal-link"
+    }) : null;
+    const frontMatter = showIndexingStatus ? statusBar.createEl("span", {
+      text: "---",
+      cls: "various-complements__footer various-complements__footer__front-matter"
+    }) : null;
+    const matchStrategy = showMatchStrategy ? statusBar.createEl("span", {
+      text: "---",
+      cls: "various-complements__footer various-complements__footer__match-strategy"
+    }) : null;
+    const complementAutomatically = showComplementAutomatically ? statusBar.createEl("span", {
+      text: "---",
+      cls: "various-complements__footer various-complements__footer__complement-automatically"
+    }) : null;
+    return new _ProviderStatusBar(
+      currentFile,
+      currentVault,
+      customDictionary,
+      internalLink,
+      frontMatter,
+      matchStrategy,
+      complementAutomatically
+    );
   }
-  Object.keys(current).forEach((key) => {
-    if (["__proto__", "constructor", "prototype"].includes(key)) {
-      return;
-    }
-    if (Array.isArray(result[key]) && Array.isArray(current[key])) {
-      result[key] = merge.options.mergeArrays ? merge.options.uniqueArrayItems ? Array.from(new Set(result[key].concat(current[key]))) : [...result[key], ...current[key]] : current[key];
-    } else if (isObject(result[key]) && isObject(current[key])) {
-      result[key] = merge(result[key], current[key]);
-    } else {
-      result[key] = current[key] === void 0 ? merge.options.allowUndefinedOverrides ? current[key] : result[key] : current[key];
-    }
-  });
-  return result;
-}, {});
-var defaultOptions = {
-  allowUndefinedOverrides: true,
-  mergeArrays: true,
-  uniqueArrayItems: true
-};
-merge.options = defaultOptions;
-merge.withOptions = (options, ...objects) => {
-  merge.options = Object.assign(Object.assign({}, defaultOptions), options);
-  const result = merge(...objects);
-  merge.options = defaultOptions;
-  return result;
+  setOnClickStrategyListener(listener) {
+    var _a;
+    (_a = this.matchStrategy) == null ? void 0 : _a.addEventListener("click", listener);
+  }
+  setOnClickComplementAutomatically(listener) {
+    var _a;
+    (_a = this.complementAutomatically) == null ? void 0 : _a.addEventListener("click", listener);
+  }
+  setCurrentFileDisabled() {
+    var _a;
+    (_a = this.currentFile) == null ? void 0 : _a.setText("---");
+  }
+  setCurrentVaultDisabled() {
+    var _a;
+    (_a = this.currentVault) == null ? void 0 : _a.setText("---");
+  }
+  setCustomDictionaryDisabled() {
+    var _a;
+    (_a = this.customDictionary) == null ? void 0 : _a.setText("---");
+  }
+  setInternalLinkDisabled() {
+    var _a;
+    (_a = this.internalLink) == null ? void 0 : _a.setText("---");
+  }
+  setFrontMatterDisabled() {
+    var _a;
+    (_a = this.frontMatter) == null ? void 0 : _a.setText("---");
+  }
+  setCurrentFileIndexing() {
+    var _a;
+    (_a = this.currentFile) == null ? void 0 : _a.setText("indexing...");
+  }
+  setCurrentVaultIndexing() {
+    var _a;
+    (_a = this.currentVault) == null ? void 0 : _a.setText("indexing...");
+  }
+  setCustomDictionaryIndexing() {
+    var _a;
+    (_a = this.customDictionary) == null ? void 0 : _a.setText("indexing...");
+  }
+  setInternalLinkIndexing() {
+    var _a;
+    (_a = this.internalLink) == null ? void 0 : _a.setText("indexing...");
+  }
+  setFrontMatterIndexing() {
+    var _a;
+    (_a = this.frontMatter) == null ? void 0 : _a.setText("indexing...");
+  }
+  setCurrentFileIndexed(count) {
+    var _a;
+    (_a = this.currentFile) == null ? void 0 : _a.setText(String(count));
+  }
+  setCurrentVaultIndexed(count) {
+    var _a;
+    (_a = this.currentVault) == null ? void 0 : _a.setText(String(count));
+  }
+  setCustomDictionaryIndexed(count) {
+    var _a;
+    (_a = this.customDictionary) == null ? void 0 : _a.setText(String(count));
+  }
+  setInternalLinkIndexed(count) {
+    var _a;
+    (_a = this.internalLink) == null ? void 0 : _a.setText(String(count));
+  }
+  setFrontMatterIndexed(count) {
+    var _a;
+    (_a = this.frontMatter) == null ? void 0 : _a.setText(String(count));
+  }
+  setMatchStrategy(strategy) {
+    var _a;
+    (_a = this.matchStrategy) == null ? void 0 : _a.setText(strategy.name);
+  }
+  setComplementAutomatically(automatically) {
+    var _a;
+    (_a = this.complementAutomatically) == null ? void 0 : _a.setText(automatically ? "auto" : "manual");
+  }
 };
 
 // src/main.ts

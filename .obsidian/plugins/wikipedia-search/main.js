@@ -27,7 +27,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
 // src/main.ts
 var main_exports = {};
 __export(main_exports, {
-  default: () => WikipediaSearchPlugin,
+  default: () => WikipediaHelperPlugin,
   wikilist: () => wikilist
 });
 module.exports = __toCommonJS(main_exports);
@@ -2407,7 +2407,7 @@ var DEFAULT_SETTINGS = {
   overrideFiles: false,
   showedWebviewerMessage: false
 };
-var WikipediaSearchSettingTab = class extends import_obsidian10.PluginSettingTab {
+var WikipediaHelperSettingTab = class extends import_obsidian10.PluginSettingTab {
   constructor(app2, plugin) {
     super(app2, plugin);
     __publicField(this, "plugin");
@@ -2419,7 +2419,7 @@ var WikipediaSearchSettingTab = class extends import_obsidian10.PluginSettingTab
     const { containerEl } = this;
     containerEl.empty();
     const fragment = new DocumentFragment();
-    fragment.createEl("span").innerHTML = "Wikipedia Search Settings > Read the <a href='https://strangegirlmurph.github.io/obsidian-wikipedia-search/'>documentation</a>!";
+    fragment.createEl("span").innerHTML = "Wikipedia Helper Settings > Read the <a href='https://strangegirlmurph.github.io/obsidian-wikipedia-helper/'>documentation</a>!";
     new import_obsidian10.Setting(containerEl).setName(fragment).setHeading();
     new import_obsidian10.Setting(containerEl).setName("Language").setDesc("The default Wikipedia to browse.").addDropdown(
       (dropdown) => dropdown.addOptions(
@@ -2464,7 +2464,7 @@ var WikipediaSearchSettingTab = class extends import_obsidian10.PluginSettingTab
       });
     });
     const templateSettings = new DocumentFragment();
-    templateSettings.createEl("span").innerHTML = "Templates (<a href='https://strangegirlmurph.github.io/obsidian-wikipedia-search/settings.html#template-settings'>Guide</a>)";
+    templateSettings.createEl("span").innerHTML = "Templates (<a href='https://strangegirlmurph.github.io/obsidian-wikipedia-helper/settings.html#template-settings'>Guide</a>)";
     new import_obsidian10.Setting(containerEl).setName(templateSettings).setHeading();
     this.addTemplateSettings(containerEl);
     new import_obsidian10.Setting(containerEl).setName("Workflow optimizations").setHeading();
@@ -2519,8 +2519,7 @@ var WikipediaSearchSettingTab = class extends import_obsidian10.PluginSettingTab
       })
     );
     new import_obsidian10.Setting(containerEl).setName("Feedback, bug reports and feature requests \u{1F33F}").setHeading();
-    const appendix = `<p style="border-top:1px solid var(--background-modifier-border); padding: 0.75em 0; margin: unset;">If you have any kind of feedback, please let me know! No matter how small! I want to make this plugin as useful as possible for everyone and the only way I can improve this plugin for you is if you tell me about it. I love to hear about your ideas for new features, all the bugs you found and everything that annoys you. Don't be shy! I can also obsess a lot about small details. Just <a href="https://github.com/StrangeGirlMurph/obsidian-wikipedia-search/issues/new/choose">create an issue on GitHub</a> or <a href="mailto:work@murphy-in.space">write me an email</a> and I'll get back to you ASAP. ~ Murphy :)</p>
-		<p style="margin: unset;">PS: Wikipedia also has a dark mode for everyone with an account.</p>`;
+    const appendix = `<p style="border-top:1px solid var(--background-modifier-border); padding: 0.75em 0; margin: unset;">If you have any kind of feedback, please let me know! No matter how small! I want to make this plugin as useful as possible for everyone and the only way I can improve this plugin for you is if you tell me about it. I love to hear about your ideas for new features, all the bugs you found and everything that annoys you. Don't be shy! I can also obsess a lot about small details. Just <a href="https://github.com/StrangeGirlMurph/obsidian-wikipedia-helper/issues/new/choose">create an issue on GitHub</a> or <a href="mailto:work@murphy.science">write me an email</a> and I'll get back to you ASAP. ~ Murphy :)</p>`;
     const div = containerEl.createEl("div");
     div.innerHTML = appendix;
   }
@@ -2748,13 +2747,13 @@ var wikilist = [
   "Wikisource",
   "Wikinews"
 ];
-var WikipediaSearchPlugin = class extends import_obsidian13.Plugin {
+var WikipediaHelperPlugin = class extends import_obsidian13.Plugin {
   constructor() {
     super(...arguments);
     __publicField(this, "settings");
   }
   async onload() {
-    console.log("loading wikipedia-search plugin");
+    console.log("Loading Wikipedia Helper plugin");
     await this.loadSettings();
     this.addCommand({
       id: "link-wikipedia-article",
@@ -2795,7 +2794,7 @@ var WikipediaSearchPlugin = class extends import_obsidian13.Plugin {
         callback: () => new OpenArticleModal(this.app, this.settings, wiki, this).open()
       });
     }
-    this.addSettingTab(new WikipediaSearchSettingTab(this.app, this));
+    this.addSettingTab(new WikipediaHelperSettingTab(this.app, this));
   }
   onunload() {
   }

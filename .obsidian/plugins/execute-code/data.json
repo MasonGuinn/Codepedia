@@ -1,5 +1,5 @@
 {
-  "lastOpenLanguageTab": "cpp",
+  "lastOpenLanguageTab": "c",
   "releaseNote2_1_0wasShowed": true,
   "persistentOuput": false,
   "timeout": 10000,
@@ -97,7 +97,7 @@
   "cppFileExtension": "cpp",
   "cppInject": "",
   "cppArgs": "",
-  "cppUseMain": false,
+  "cppUseMain": true,
   "clingPath": "cling",
   "clingArgs": "",
   "clingStd": "c++17",

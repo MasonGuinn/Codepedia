@@ -11,5 +11,8 @@
   "nativeMenus": true,
   "accentColor": "#c47821",
   "baseFontSize": 16,
-  "showRibbon": true
+  "showRibbon": true,
+  "textFontFamily": "Inter",
+  "interfaceFontFamily": "Inter",
+  "baseFontSizeAction": true
 }

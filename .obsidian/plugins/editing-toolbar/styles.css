@@ -18,33 +18,33 @@
   transition: 100ms cubic-bezier(0.92, -0.53, 0.65, 1.21);
   -webkit-transition: 100ms cubic-bezier(0.92, -0.53, 0.65, 1.21);
   min-width: fit-content;
-  justify-content: center;
+  justify-content: space-around;
   z-index: var(--layer-modal);
   transform: translate(var(--toolbar-horizontal-offset), var(--toolbar-vertical-offset));
 }
-
 #editingToolbarModalBar.editingToolbarCustomAesthetic,
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar).editingToolbarCustomAesthetic button[class^=editingToolbarCommandsubItem]>.subitem,
-#editingToolbarPopoverBar.editingToolbarCustomAesthetic {
-  background-color: #333333;
-  gap: calc(var(--toolbar-icon-size) / 1) !important;
+#editingToolbarPopoverBar.editingToolbarCustomAesthetic
+{
+  background-color: var(--editing-toolbar-background-color);
+  gap: calc(var(--toolbar-icon-size) / 15) !important;
 
 
 }
-
-#editingToolbarModalBar.editingToolbarCustomAesthetic {
-  padding: calc(var(--toolbar-icon-size) / 4);
+#editingToolbarModalBar.editingToolbarCustomAesthetic
+{
+  padding:calc(var(--toolbar-icon-size) / 4);
 }
-
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar).editingToolbarCustomAesthetic :is(.editingToolbarCommandItem, button[class^=editingToolbarCommandsubItem]):not(.editingToolbar-Divider-Line) {
-
-  height: var(--toolbar-icon-size) + 8px;
+ 
+height: var(--toolbar-icon-size) + 8px;
 }
 
 /* 应用到工具栏图标 */
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar).editingToolbarCustomAesthetic .editingToolbarCommandItem svg,
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar).editingToolbarCustomAesthetic button[class^=editingToolbarCommandsubItem] svg,
-:is(#editingToolbarModalBar, #editingToolbarPopoverBar).editingToolbarCustomAesthetic button[class^=editingToolbarCommandsubItem]>.subitem svg {
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar).editingToolbarCustomAesthetic button[class^=editingToolbarCommandsubItem]>.subitem svg
+ {
   color: var(--editing-toolbar-icon-color);
   width: var(--toolbar-icon-size);
   height: var(--toolbar-icon-size);
@@ -52,15 +52,15 @@
   max-height: var(--toolbar-icon-size);
 }
 
-#editingToolbarModalBar.fixed {
-  display: grid;
-  grid-template-columns: repeat(12, calc(var(--toolbar-icon-size) + 10px));
-}
-
-
+#editingToolbarModalBar.fixed{
+    display: grid;
+    grid-template-columns: repeat(12, calc(var(--toolbar-icon-size) + 10px));
+} 
+ 
+ 
 #editingToolbarModalBar.editingToolbarFlex {
   display: flex;
-  transform: none;
+  transform:none;
 }
 
 #editingToolbarModalBar.editingToolbarFlex :is(.editingToolbarCommandItem, button[class^=editingToolbarCommandsubItem]) {
@@ -98,9 +98,9 @@
 editingToolbar SETTINGS BUTTONS
 ----------------------------------------------------------------*/
 
+ 
 
-
-
+ 
 
 button.editingToolbarSettingsButton {
   padding: 4px 14px;
@@ -219,15 +219,15 @@ editingToolbar ICONS
   height: 17px;
 }
 
+ 
+ 
 
-
-
-
+ 
 
 /*----------------------------------------------------------------
 editingToolbar SUPPORT
 ---------------------------------------------`-------------------*/
-
+ 
 
 #editingToolbarModalBar {
   align-items: center;
@@ -236,7 +236,7 @@ editingToolbar SUPPORT
   backdrop-filter: none;
 }
 
-
+ 
 
 #editingToolbarModalBar.editingToolbarGlassAesthetic [class^=editingToolbarCommandsubItem] {
 
@@ -258,13 +258,13 @@ editingToolbar SUPPORT
 
 
 
-div.modal-container.editingToolbar-Modal:not(:is(.changename, .customicon)) .modal-bg {
+div.modal-container.editingToolbar-Modal:not(:is(.changename,.customicon)) .modal-bg {
   background-color: transparent !important;
   backdrop-filter: none !important;
   position: relative;
 }
 
-.modal-container.editingToolbar-Modal:not(:is(.changename, .customicon)) .modal {
+.modal-container.editingToolbar-Modal:not(:is(.changename,.customicon)) .modal {
   padding: 10px 20px;
   width: 220px;
   position: absolute;
@@ -317,7 +317,7 @@ body.theme-dark .modal-container.editingToolbar-Modal .modal input[type='range']
   margin-right: 0px;
   position: relative;
   background-color: transparent;
-
+ 
 
 }
 
@@ -365,24 +365,24 @@ button[class^=editingToolbarCommandsubItem]::after {
 
 }
 
-:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]:first-child>.subitem {
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]:first-child>.subitem
+{
   left: 0;
 }
-
-:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]:nth-child(2)>.subitem {
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]:nth-child(2)>.subitem
+{
   left: 0;
 }
-
-:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]:nth-last-child(1)>.subitem {
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]:nth-last-child(1)>.subitem
+{
   right: 0;
 }
-
-:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]:nth-last-child(2)>.subitem {
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]:nth-last-child(2)>.subitem
+{
   right: 0;
 }
-
 @media screen and (max-width: 768px) {
-  :is(#editingToolbarModalBar, #editingToolbarPopoverBar):not(:is(.top, .editingToolbarFlex)) button[class^=editingToolbarCommandsubItem]>.subitem {
+  :is(#editingToolbarModalBar, #editingToolbarPopoverBar):not(:is(.top,.editingToolbarFlex)) button[class^=editingToolbarCommandsubItem]>.subitem {
     left: 58%;
     transform: translate(-60%, 90%);
   }
@@ -410,8 +410,8 @@ button[class^=editingToolbarCommandsubItem]::after {
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]>.subitem {
 
   visibility: hidden;
-  transition: all 0.1s linear;
-  -webkit-transition: all .1s linear;
+  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
 }
 
 
@@ -439,12 +439,12 @@ button[class^=editingToolbarCommandsubItem]::after {
 
 }
 
-:is(#editingToolbarModalBar, #editingToolbarPopoverBar):not(:is(.top, .editingToolbarFlex)) button.editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar):not(:is(.top,.editingToolbarFlex)) button.editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
   top: auto;
   bottom: calc(100% - 2rem);
 }
 
-:is(#editingToolbarModalBar, #editingToolbarPopoverBar):not(:is(.top, .editingToolbarFlex)) button[class^=editingToolbarCommandsubItem]:not(.editingToolbarSecond)>.subitem {
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar):not(:is(.top,.editingToolbarFlex)) button[class^=editingToolbarCommandsubItem]:not(.editingToolbarSecond)>.subitem {
   bottom: calc(100% + calc(var(--toolbar-icon-size) + 18px));
 }
 
@@ -540,20 +540,16 @@ button[class^=editingToolbarCommandsubItem]::after {
 .setting-item .editingToolbarSettingsIcon:empty::before {
   content: "❗";
 }
-
-.modal.mod-settings .custom-commands-container .editingToolbarSettingsIcon {
-  box-shadow: none !important;
+.modal.mod-settings .custom-commands-container .editingToolbarSettingsIcon{
+  box-shadow: none!important;
 }
-
-.modal.mod-settings .custom-commands-container .editingToolbarSettingsIcon:hover {
-  background-color: transparent !important;
-  color: var(--text-normal) !important;
+.modal.mod-settings .custom-commands-container .editingToolbarSettingsIcon:hover{
+  background-color: transparent!important;
+  color: var(--text-normal)!important;
 }
-
-.modal .setting-item-control>input.id-is-disabled {
+.modal .setting-item-control>input.id-is-disabled{
   background-color: var(--background-modifier-border);
 }
-
 .setting-item button.editingToolbarSettingsIcon svg {
   max-width: 1.5em;
   max-height: 1.5em;
@@ -610,51 +606,42 @@ button[class^=editingToolbarCommandsubItem]::after {
   border-radius: var(--radius-s);
   background-color: var(--color-base-10, --background-primary);
 }
-
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar) button:first-child.editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
   right: unset;
   transform: translateX(0);
   left: 0px;
 }
-
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar) button:nth-child(2).editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
   right: unset;
   transform: translateX(0);
   left: 0px;
 }
-
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar) button:nth-child(3).editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
   right: unset;
   transform: translateX(0);
   left: -30px;
 }
-
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar) button:nth-child(4).editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
   right: unset;
   transform: translateX(0);
   left: -50px;
 }
-
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar) button:nth-last-child(1).editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
   right: 0px;
   transform: translateX(0);
 }
-
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar) button:nth-last-child(2).editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
   right: 0px;
   transform: translateX(0);
 }
-
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar) button:nth-last-child(3).editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
   right: 0px;
   transform: translateX(30px);
 }
-
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar) button:nth-last-child(4).editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
   right: 0px;
   transform: translateX(40px);
 }
-
 :is(#editingToolbarModalBar, #editingToolbarPopoverBar) button:nth-last-child(5).editingToolbarCommandsubItem-font-color .x-color-picker-wrapper {
   right: 0px;
   transform: translateX(50px);
@@ -718,25 +705,27 @@ button[class^=editingToolbarCommandsubItem]::after {
   transform: none;
   z-index: var(--layer-status-bar);
 }
-
-#editingToolbarModalBar~.excalidraw .FixedSideContainer_side_top {
-  top: 38px !important;
+#editingToolbarModalBar ~.excalidraw .FixedSideContainer_side_top
+{
+  top: 38px!important;
 }
-
-.excalidraw-wrapper #editingToolbarModalBar.top {
+.excalidraw-wrapper #editingToolbarModalBar.top
+{
   top: 38px;
 }
-
-.excalidraw-wrapper #editingToolbarPopoverBar {
+.excalidraw-wrapper #editingToolbarPopoverBar
+{
   top: 76px;
 }
-
 #editingToolbarModalBar.top.autohide {
   opacity: 0;
   transition: all 0.5s linear;
   -webkit-transition: all 0.5s linear;
 }
-
+#editingToolbarModalBar.top.centered {
+  max-width: var(--file-line-width) ;
+  align-self: center;
+}
 
 #editingToolbarModalBar.top.autohide:hover {
   opacity: 1;
@@ -762,16 +751,13 @@ button[class^=editingToolbarCommandsubItem]::after {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
-
-
+ 
 }
 
-#editingToolbarModalBar~.canvas-controls {
+#editingToolbarModalBar ~.canvas-controls{
   top: calc(var(--size-4-2) + 50px);
 }
-
+ 
 /* #editingToolbarModalBar.top button.editingToolbarCommandItem:hover {
   background-color: var(--interactive-hover);
 } */
@@ -793,19 +779,18 @@ button[class^=editingToolbarCommandsubItem]::after {
   margin-right: 25px;
   transition: all 0.1s linear;
   -webkit-transition: all 0.1s linear;
-
+ 
   position: absolute;
   right: 0;
 }
 
 @media screen and (max-width: 768px) {
   #editingToolbarPopoverBar {
-    left: 50%;
-    transform: translateX(-50%);
-    right: unset;
+   left: 50%;
+   transform: translateX(-50%);
+   right: unset;
   }
 }
-
 .markdown-source-view.mod-cm6 #editingToolbarPopoverBar {
   margin-top: calc(var(--toolbar-icon-size) + 20px);
 }
@@ -892,11 +877,12 @@ button[class^=editingToolbarCommandsubItem]::after {
   content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M511.674077 66.707284c-246.52265 0-446.347744 199.835328-446.347744 446.347744s199.825095 446.356954 446.347744 446.356954c246.50423 0 446.348768-199.844537 446.348768-446.356954S758.177284 66.707284 511.674077 66.707284zM744.967424 667.159826c21.8701 21.8701 21.8701 57.310264 0 79.199807-21.8701 21.851681-57.30924 21.851681-79.198783-0.019443L511.674077 592.264045 357.56007 746.359632c-21.8701 21.8701-57.30924 21.851681-79.17934-0.019443s-21.8701-57.290821 0-79.160921L432.493713 513.065262 278.379707 358.950232c-21.8701-21.86089-21.8701-57.328683 0-79.18855 21.8701-21.87931 57.30924-21.87931 79.17934 0l154.114007 154.104797 154.095587-154.104797c21.889543-21.87931 57.32766-21.87931 79.198783-0.010233 21.8701 21.8701 21.8701 57.348126 0 79.207993L590.89128 513.065262 744.967424 667.159826z' fill='%23666666'/%3E%3C/svg%3E");
 }
 
-:is(#editingToolbarModalBar:not(.top), #editingToolbarPopoverBar) button.editingToolbar-Divider-Line {
+:is(#editingToolbarModalBar:not(.top), #editingToolbarPopoverBar) button.editingToolbar-Divider-Line
+{
   display: none;
 }
-
-:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button.editingToolbar-Divider-Line {
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button.editingToolbar-Divider-Line
+{
   min-width: unset;
   flex-shrink: 0;
   display: inline-flex;
@@ -906,9 +892,8 @@ button[class^=editingToolbarCommandsubItem]::after {
   opacity: 0.8;
   margin: 0;
 }
-
-:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]>.subitem button.menu-item.editingToolbar-Divider-Line {
-  min-width: unset;
+:is(#editingToolbarModalBar, #editingToolbarPopoverBar) button[class^=editingToolbarCommandsubItem]>.subitem button.menu-item.editingToolbar-Divider-Line
+{  min-width: unset;
   flex-shrink: 0;
   display: inline-flex;
   width: 0.6px;
@@ -959,66 +944,63 @@ button[class^=editingToolbarCommandsubItem]::after {
   position: relative;
 }
 
-.toolbar-pickr .pcr-last-color,
-.pickr .pcr-button {
+.toolbar-pickr  .pcr-last-color,
+.pickr  .pcr-button{
   background-color: var(--pcr-color);
 }
-
-.toolbar-pickr .pcr-interaction :not(:is(input.pcr-save, .pcr-result)) {
-  display: none;
+.toolbar-pickr .pcr-interaction :not(:is(input.pcr-save,.pcr-result)){
+  display:none;
 }
-
 .toolbar-pickr .pcr-swatches {
-  display: none;
+  display:none;
 }
-
 .toolbar-pickr {
-  display: flex;
+  display:flex;
 }
 
 
-div[data-type="thino_view"] .memo-editor-wrapper:has(#editingToolbarModalBar) {
-  padding-top: 0;
-  padding-left: 0;
-  padding-right: 0;
+div[data-type="thino_view"] .memo-editor-wrapper:has(#editingToolbarModalBar)
+{
+    padding-top:0;
+    padding-left:0;
+    padding-right:0;
 }
 
-div[data-type="thino_view"] .memo-editor-wrapper:has(#editingToolbarModalBar) .common-tools-wrapper {
-  padding-left: 16px;
-  padding-right: 16px;
+div[data-type="thino_view"] .memo-editor-wrapper:has(#editingToolbarModalBar) .common-tools-wrapper
+{
+   padding-left:16px;
+    padding-right:16px;
+}
+div[data-type="thino_view"] .memo-editor-wrapper #editingToolbarModalBar ~ .cm-editor{
+    padding-top:38px;
+    padding-bottom:0px;
+    padding-left:16px;
+    padding-right:16px;
+}
+div[data-type=thino_view] .common-editor-wrapper .common-editor-inputer:has(#editingToolbarModalBar)
+{
+  min-height:118px;
 }
 
-div[data-type="thino_view"] .memo-editor-wrapper #editingToolbarModalBar~.cm-editor {
-  padding-top: 38px;
-  padding-bottom: 0px;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-div[data-type=thino_view] .common-editor-wrapper .common-editor-inputer:has(#editingToolbarModalBar) {
-  min-height: 118px;
-}
-
-div[data-type=thino_view] #editingToolbarModalBar.top {
-  position: absolute !important;
+div[data-type=thino_view] #editingToolbarModalBar.top
+{
+  position:absolute!important;
   width: 100%;
 }
-
-body.auto-hide-header .workspace-tab-header-container:hover+.workspace-tab-container .workspace-leaf .workspace-leaf-content>.view-header {
+body.auto-hide-header .workspace-tab-header-container:hover + .workspace-tab-container .workspace-leaf .workspace-leaf-content>.view-header {
   margin-top: 0;
   transition: all 0.1s linear;
 }
 
-body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .workspace-leaf .workspace-leaf-content>.view-header:hover {
+body.auto-hide-header .workspace-tab-header-container + .workspace-tab-container .workspace-leaf .workspace-leaf-content>.view-header:hover {
   margin-top: 0;
   transition: all 0.6s linear;
 }
-
-body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .workspace-leaf .workspace-leaf-content>.view-header {
+body.auto-hide-header .workspace-tab-header-container + .workspace-tab-container .workspace-leaf .workspace-leaf-content>.view-header {
   margin-top: -40px;
   transition: all 0.6s linear;
 }
-
+ 
 .setting-item:is(.custom_bg, .custom_font) .pickr-container {
   display: flex;
   gap: 8px;
@@ -1038,7 +1020,6 @@ body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .
     justify-content: center;
   }
 }
-
 /* 头部容器样式 */
 .editing-toolbar-header {
   display: flex;
@@ -1131,11 +1112,9 @@ body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .
   0% {
     transform: scale(1);
   }
-
   50% {
     transform: scale(0.98);
   }
-
   100% {
     transform: scale(1);
   }
@@ -1164,7 +1143,6 @@ body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .
   from {
     opacity: 0;
   }
-
   to {
     opacity: 0.3;
   }
@@ -1182,15 +1160,15 @@ body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .
   align-items: center;
   gap: 8px;
 }
-
-.callout-type-container .setting-item {
+.callout-type-container .setting-item
+{
   width: 100%;
 }
-
 .callout-icon-container {
-
+  display: flex;
   width: 24px;
   height: 24px;
+  align-items: center;
 }
 
 .callout-icon-container svg {
@@ -1198,34 +1176,31 @@ body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .
   height: 16px;
   color: rgb(var(--callout-color));
 }
-
-.insert-link-modal .setting-item {
-  border-top: none;
+.insert-link-modal .setting-item
+{
+ border-top: none;
 }
-
-.insert-link-modal input {
-  width: 100%;
+.insert-link-modal   input{
+     width: 100%;
 }
-
-.modal .insert-link-modal-title {
+.modal .insert-link-modal-title{
   font-size: 12px;
   color: var(--text-muted);
 }
-
-.insert-link-modal .preview-setting {
+.insert-link-modal .preview-setting 
+{
   display: block;
 }
-
-.insert-link-modal .preview-setting input {
+.insert-link-modal .preview-setting input{
   width: 100%;
   background-color: transparent;
   border: none;
   color: var(--text-muted);
   font-size: 12px;
 }
+ 
 
-
-.position-style-info {
+ .position-style-info{
   margin-bottom: 1rem;
   padding: 0.5rem;
   border-radius: 4px;
@@ -1235,45 +1210,40 @@ body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .
   color: white;
   background-color: rgba(var(--color-purple-rgb), 0.8);
   top: 0;
-}
-
-.position-style-info.following {
+ }
+ .position-style-info.following{
   background-color: rgba(var(--color-green-rgb), 0.8);
-}
-
-.position-style-info.fixed {
+ }
+ .position-style-info.fixed{
   background-color: rgba(var(--color-blue-rgb), 0.8);
-}
-
-.position-style-info.top {
+ }
+ .position-style-info.top{
   background-color: rgba(var(--color-yellow-rgb), 0.8);
-}
-
-.command-lists-container.following {
+ }
+ 
+ .command-lists-container.following{
   background-color: rgba(var(--color-green-rgb), 0.1);
   border: 1px solid rgba(var(--color-green-rgb), 0.3);
-}
-
-.command-lists-container.fixed {
+ }
+ .command-lists-container.fixed{
   background-color: rgba(var(--color-blue-rgb), 0.1);
   border: 1px solid rgba(var(--color-blue-rgb), 0.3);
-}
-
-.command-lists-container.top {
+ }
+ .command-lists-container.top{
   background-color: rgba(var(--color-yellow-rgb), 0.1);
   border: 1px solid rgba(var(--color-yellow-rgb), 0.3);
-}
+ }
+ 
 
 
-
-@media screen and (max-width: 1024px) {
+ @media screen and (max-width: 1024px) {
   .editing-toolbar-tabs .editing-toolbar-tab:not(.active)>span {
     display: none;
   }
-}
+ }
 
 
-
+ 
 /* 命令类型标签 */
 .command-type-badge {
   display: inline-block;
@@ -1287,24 +1257,21 @@ body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .
 .command-type-badge.regex {
   background-color: var(--text-accent);
   color: var(--text-on-accent);
-}
-
+} 
 .custom-commands-container .command-list-container .setting-item-name {
   display: flex;
   gap: 8px;
 }
-
 .custom-commands-modal {
-
+ 
   width: auto;
   max-width: 800px;
-
+ 
 }
-
 .custom-commands-modal input {
-
-  width: 100%;
-  max-width: 300px;
+ 
+ width: 100%;
+ max-width: 300px;
 }
 
 .command-buttons-container {
@@ -1324,7 +1291,7 @@ body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .
   gap: 10px;
   align-items: center;
 }
-
+ 
 /* 工具栏预览样式 */
 .toolbar-preview {
   background-color: var(--editing-toolbar-background-color);
@@ -1337,25 +1304,27 @@ body.auto-hide-header .workspace-tab-header-container+.workspace-tab-container .
 }
 
 
-.toolbar-preview-container #editingToolbarModalBar {
-  visibility: visible !important;
+ .toolbar-preview-container #editingToolbarModalBar{
+  visibility:visible !important;
   position: relative;
-}
-
-
-.confirm-modal .confirm-modal-buttons {
+ }
+ 
+ 
+ .confirm-modal .confirm-modal-buttons {
   gap: 8px;
   display: flex;
   justify-content: flex-end;
 }
-
-.confirm-modal p {
+.confirm-modal p{
   margin: 0;
   line-height: 1.6;
 }
-
 .format-brush-cursor .cm-content {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024' width='18' height='18'%3E%3Cpath d='M786.285714 56.888889h121.93727A20.280889 20.280889 0 0 0 928.507937 36.591746v-16.294603A20.284952 20.284952 0 0 0 908.222984 0h-398.287238A20.280889 20.280889 0 0 0 489.650794 20.297143v16.294603A20.284952 20.284952 0 0 0 509.935746 56.888889H635.936508v910.222222h-126.000762A20.280889 20.280889 0 0 0 489.650794 987.408254v16.294603a20.284952 20.284952 0 0 0 20.284952 20.297143h398.287238a20.280889 20.280889 0 0 0 20.284953-20.297143v-16.294603a20.284952 20.284952 0 0 0-20.284953-20.297143H786.285714V56.888889zM359.619048 903.233016H310.857143V690.793651H266.15873v213.577143H217.396825V690.793651H172.698413v213.577143h-29.415619c-49.290159 0-42.573206-44.901587-42.573207-44.901588S97.076825 722.306032 97.10527 642.031746H480.467302c-0.008127 80.428698-3.604317 216.299683-3.604318 216.299683s6.716952 44.901587-42.57727 44.901587H404.31746V690.793651H359.619048v212.439365zM97.828571 597.333333l0.065016-1.235301c2.816-50.704254-5.640127-98.588444 66.186159-123.936508 71.830349-25.35619 47.896381-35.210159 54.934349-83.098413 7.037968-47.88419-18.310095-71.826286-18.310095-207.034921 0-109.04381 51.301587-125.456254 79.766349-127.723682 0.353524-0.934603 0.723302-1.414095 1.113397-1.414095 16.420571 0 95.288889-7.200508 95.288889 128 0 135.208635-25.348063 159.15073-18.314159 207.03492 7.037968 47.888254-16.891937 57.742222 54.938413 83.098413 71.822222 25.348063 63.370159 73.236317 66.186159 123.936508l0.121904 2.373079H97.824508zM288.507937 166.603175a34.539683 34.539683 0 1 0 0-69.079365 34.539683 34.539683 0 0 0 0 69.079365z' fill='%235c5c5c'/%3E%3C/svg%3E") 16 16, auto;
+}
+.format-brush-cursor button[aria-label="Format Brush"]
+{
+    background-color: var(--background-modifier-hover) !important ;
 }
 
 .theme-dark.format-brush-cursor .cm-content {
