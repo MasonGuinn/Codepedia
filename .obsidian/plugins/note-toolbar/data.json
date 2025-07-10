@@ -860,7 +860,7 @@
           "hasCommand": false,
           "icon": "lucide-folder-search",
           "inGallery": false,
-          "label": "Vault Search",
+          "label": "Vault",
           "link": "Omnisearch: Vault search",
           "linkAttr": {
             "commandCheck": false,
@@ -901,7 +901,7 @@
           "hasCommand": false,
           "icon": "lucide-file-search",
           "inGallery": false,
-          "label": "In-file Search",
+          "label": "In-file (Edit Mode)",
           "link": "Omnisearch: In-file search",
           "linkAttr": {
             "commandCheck": false,
@@ -942,7 +942,7 @@
           "hasCommand": false,
           "icon": "lucide-replace",
           "inGallery": false,
-          "label": "Replace",
+          "label": "Replace (Edit Mode)",
           "link": "Search & replace in current file",
           "linkAttr": {
             "commandCheck": false,
@@ -998,16 +998,11 @@
           }
         }
       },
-      "updated": "2025-07-10T01:32:29.498Z"
+      "updated": "2025-07-10T01:36:41.332Z"
     },
     {
       "uuid": "80a65f18-6142-401f-9369-d316affce460",
-      "defaultStyles": [
-        "border",
-        "button",
-        "wide",
-        "center"
-      ],
+      "defaultStyles": [],
       "items": [
         {
           "uuid": "86c94476-e512-476f-95e8-ca34d2d9e315",
@@ -1086,6 +1081,47 @@
             }
           },
           "inGallery": false
+        },
+        {
+          "uuid": "9fd43646-64a8-4c2c-ac22-e2f1525b01da",
+          "hasCommand": false,
+          "icon": "",
+          "inGallery": false,
+          "label": "",
+          "link": "",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "",
+            "hasVars": false,
+            "type": "separator"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
         }
       ],
       "mobileStyles": [],
@@ -1107,7 +1143,7 @@
           }
         }
       },
-      "updated": "2024-12-04T05:48:45.483Z"
+      "updated": "2025-07-10T01:34:16.979Z"
     },
     {
       "uuid": "21453789-043d-4755-9f14-76353292bf84",
