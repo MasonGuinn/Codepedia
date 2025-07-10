@@ -6,12 +6,13 @@
   "wikipedia-search",
   "obsidian-style-settings",
   "note-toolbar",
-  "obsidian-icon-folder",
   "obsidian-minimal-settings",
   "obsidian-hider",
   "execute-code",
   "creases",
   "editing-toolbar",
   "obsidian-custom-frames",
-  "lazy-plugins"
+  "lazy-plugins",
+  "js-engine",
+  "obsidian-icon-folder"
 ]

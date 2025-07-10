@@ -677,13 +677,14 @@
           "inGallery": false
         },
         {
-          "uuid": "14333e71-400f-4285-a9ec-1d958b045f1f",
+          "uuid": "04c17c4c-8d4c-46fd-b964-1b62e53b19e6",
           "hasCommand": false,
           "icon": "",
           "inGallery": false,
           "label": "",
           "link": "",
           "linkAttr": {
+            "commandCheck": false,
             "commandId": "",
             "hasVars": false,
             "type": "command"
@@ -727,16 +728,16 @@
         },
         "mobile": {
           "allViews": {
-            "position": "top"
+            "position": "fabl"
           }
         },
         "tablet": {
           "allViews": {
-            "position": "top"
+            "position": "fabl"
           }
         }
       },
-      "updated": "2025-04-09T02:20:13.553Z",
+      "updated": "2025-07-10T01:08:27.048Z",
       "hasCommand": false
     },
     {
@@ -848,64 +849,26 @@
       "updated": "2025-01-11T00:47:50.861Z"
     },
     {
-      "uuid": "d96ca327-f424-4d17-a9db-c35ba9e724fe",
-      "defaultStyles": [
-        "border",
-        "button",
-        "wide",
-        "center"
-      ],
+      "uuid": "561f4dd8-db81-48b8-b1aa-c0ff6d75a7aa",
+      "customClasses": "",
+      "defaultItem": null,
+      "defaultStyles": [],
+      "hasCommand": true,
       "items": [
         {
-          "uuid": "e9c11ad4-966e-4295-8c44-3056f781f045",
-          "label": "",
-          "icon": "lucide-file-search",
-          "link": "Omnisearch: In-file search",
-          "linkAttr": {
-            "commandId": "omnisearch:show-modal-infile",
-            "hasVars": false,
-            "type": "command"
-          },
-          "tooltip": "In-File Search",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          },
-          "inGallery": false
-        },
-        {
-          "uuid": "a88d118f-502d-4d21-bb00-62aa49cb5b15",
-          "label": "",
+          "uuid": "1c9d8282-d676-46cc-925d-25210b598ea3",
+          "hasCommand": false,
           "icon": "lucide-folder-search",
+          "inGallery": false,
+          "label": "Vault Search",
           "link": "Omnisearch: Vault search",
           "linkAttr": {
+            "commandCheck": false,
             "commandId": "omnisearch:show-modal",
             "hasVars": false,
             "type": "command"
           },
-          "tooltip": "Vault Search",
+          "tooltip": "",
           "visibility": {
             "desktop": {
               "allViews": {
@@ -931,20 +894,63 @@
                 ]
               }
             }
-          },
-          "inGallery": false
+          }
         },
         {
-          "uuid": "2105bf7a-0fa6-4679-8da0-a3cba8f5be92",
-          "label": "",
+          "uuid": "dab0dd1e-13ee-4fa1-88c2-b3e1e0d354c4",
+          "hasCommand": false,
+          "icon": "lucide-file-search",
+          "inGallery": false,
+          "label": "In-file Search",
+          "link": "Omnisearch: In-file search",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "omnisearch:show-modal-infile",
+            "hasVars": false,
+            "type": "command"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "uuid": "986ef007-077b-4e1b-85a0-d7033c816b0e",
+          "hasCommand": false,
           "icon": "lucide-replace",
+          "inGallery": false,
+          "label": "Replace",
           "link": "Search & replace in current file",
           "linkAttr": {
+            "commandCheck": false,
             "commandId": "editor:open-search-replace",
             "hasVars": false,
             "type": "command"
           },
-          "tooltip": "Search & Replace",
+          "tooltip": "",
           "visibility": {
             "desktop": {
               "allViews": {
@@ -970,8 +976,7 @@
                 ]
               }
             }
-          },
-          "inGallery": false
+          }
         }
       ],
       "mobileStyles": [],
@@ -979,22 +984,21 @@
       "position": {
         "desktop": {
           "allViews": {
-            "position": "fabl"
+            "position": "props"
           }
         },
         "mobile": {
           "allViews": {
-            "position": "top"
+            "position": "props"
           }
         },
         "tablet": {
           "allViews": {
-            "position": "top"
+            "position": "props"
           }
         }
       },
-      "updated": "2025-07-10T00:57:47.325Z",
-      "hasCommand": true
+      "updated": "2025-07-10T01:32:29.498Z"
     },
     {
       "uuid": "80a65f18-6142-401f-9369-d316affce460",
@@ -1048,7 +1052,7 @@
           "uuid": "4f1b8633-47db-47a0-879e-22ddb5f1d3c2",
           "label": "Search",
           "icon": "lucide-search",
-          "link": "d96ca327-f424-4d17-a9db-c35ba9e724fe",
+          "link": "561f4dd8-db81-48b8-b1aa-c0ff6d75a7aa",
           "linkAttr": {
             "commandId": "",
             "hasVars": false,

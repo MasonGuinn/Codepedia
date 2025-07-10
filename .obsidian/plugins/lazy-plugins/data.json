@@ -40,7 +40,7 @@
         "startupType": "instant"
       },
       "js-engine": {
-        "startupType": "short"
+        "startupType": "instant"
       },
       "obsidian-meta-bind-plugin": {
         "startupType": "instant"
@@ -52,7 +52,7 @@
         "startupType": "instant"
       },
       "omnisearch": {
-        "startupType": "long"
+        "startupType": "short"
       },
       "obsidian-style-settings": {
         "startupType": "instant"
