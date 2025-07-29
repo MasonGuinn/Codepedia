@@ -74,9 +74,19 @@
               "icon": "sheets-in-box",
               "title": "File Tree"
             }
+          },
+          {
+            "id": "f9564742773cb86c",
+            "type": "leaf",
+            "state": {
+              "type": "file-tree-view",
+              "state": {},
+              "icon": "sheets-in-box",
+              "title": "File Tree"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -135,74 +145,37 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Content/Development/C++/Welcome to C++.md",
+                "file": "Home.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Welcome to C++"
+              "title": "Outgoing links from Home"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
       "obsidian-custom-frames:Open SoundCloud": false,
-      "command-palette:Open command palette": false,
       "homepage:Open homepage": true,
-      "templater-obsidian:Templater": false,
       "graph:Open graph view": false,
+      "templater-obsidian:Templater": false,
+      "command-palette:Open command palette": false,
       "obsidian-git:Open Git source control": true,
       "wikipedia-search:Open Article": true,
-      "canvas:Create new canvas": false,
-      "templates:Insert template": true
+      "canvas:Create new canvas": true,
+      "templates:Insert template": true,
+      "obsidian-excalidraw-plugin:New drawing": true,
+      "omnisearch:Omnisearch": true
     }
   },
-  "floating": {
-    "id": "430432a619f3e745",
-    "type": "floating",
-    "children": [
-      {
-        "id": "969c939ff47f533b",
-        "type": "window",
-        "children": [
-          {
-            "id": "a40cdb5da62e9557",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "24a0fc200fe7753f",
-                "type": "leaf",
-                "state": {
-                  "type": "webviewer",
-                  "state": {
-                    "url": "https://www.make.md/docs/Getting%20Started/Organizing%20Files/Navigator",
-                    "title": "Navigator - make.md",
-                    "mode": "webview"
-                  },
-                  "icon": "globe-2",
-                  "title": "Navigator - make.md"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 448,
-        "y": 116,
-        "width": 1024,
-        "height": 800,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
-  },
-  "active": "e7a7b303c61786dc",
+  "active": "d5e56f2ac090749e",
   "lastOpenFiles": [
     "Home.md",
     "Development.md",

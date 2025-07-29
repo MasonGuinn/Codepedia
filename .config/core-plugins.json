@@ -10,7 +10,7 @@
   "properties": false,
   "page-preview": false,
   "daily-notes": false,
-  "templates": true,
+  "templates": false,
   "note-composer": false,
   "command-palette": true,
   "slash-command": true,
