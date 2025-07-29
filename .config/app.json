@@ -1,0 +1,21 @@
+{
+  "defaultViewMode": "preview",
+  "propertiesInDocument": "visible",
+  "alwaysUpdateLinks": true,
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "showIndentGuide": false,
+  "spellcheck": true,
+  "newFileLocation": "current",
+  "attachmentFolderPath": "Assets/Attachments",
+  "showInlineTitle": true,
+  "showLineNumber": false,
+  "foldHeading": true,
+  "foldIndent": true,
+  "livePreview": true,
+  "showUnsupportedFiles": true,
+  "userIgnoreFilters": [
+    "Assets/"
+  ],
+  "promptDelete": false
+}
