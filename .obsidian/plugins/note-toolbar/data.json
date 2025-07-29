@@ -942,17 +942,17 @@
           }
         },
         {
-          "uuid": "1281e05f-c978-43f9-9ee8-73369f280ae8",
+          "uuid": "29566ace-cb14-4577-84c1-491cb54facd7",
           "hasCommand": false,
           "icon": "",
           "inGallery": false,
-          "label": "",
-          "link": "",
+          "label": "New...",
+          "link": "5f338b7e-3121-4d20-94fb-a2281405fb0f",
           "linkAttr": {
             "commandCheck": false,
             "commandId": "",
             "hasVars": false,
-            "type": "separator"
+            "type": "menu"
           },
           "tooltip": "",
           "visibility": {
@@ -983,136 +983,7 @@
           }
         },
         {
-          "uuid": "9b4b09bc-f6bf-4bc3-881d-38afeb8664d7",
-          "hasCommand": false,
-          "icon": "trello",
-          "inGallery": false,
-          "label": "New kanban",
-          "link": "",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "obsidian-kanban:create-new-kanban-board",
-            "hasVars": false,
-            "target": "tab",
-            "type": "command"
-          },
-          "plugin": "",
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "uuid": "c82f5cc4-491d-431f-9ba7-a962572c30c3",
-          "hasCommand": false,
-          "icon": "percent-square",
-          "inGallery": false,
-          "label": "New from template",
-          "link": "",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "templater-obsidian:create-new-note-from-template",
-            "hasVars": false,
-            "target": "",
-            "type": "command"
-          },
-          "plugin": "",
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "uuid": "b576ed97-9d44-470d-ab9f-6e4ee8d0076b",
-          "hasCommand": false,
-          "icon": "file-plus",
-          "inGallery": false,
-          "label": "New note",
-          "link": "",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "file-explorer:new-file",
-            "hasVars": false,
-            "target": "",
-            "type": "command"
-          },
-          "plugin": "",
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "uuid": "db7aefed-665e-4753-b0c1-b521dc96eff9",
+          "uuid": "abf78f89-7f02-4a60-b15a-b4ad68f6a30b",
           "hasCommand": false,
           "icon": "",
           "inGallery": false,
@@ -1172,7 +1043,7 @@
           }
         }
       },
-      "updated": "2025-07-10T02:04:01.023Z"
+      "updated": "2025-07-10T02:05:35.475Z"
     },
     {
       "uuid": "33f636ef-918a-47ab-9466-d94cfe0e781c",
@@ -1324,11 +1195,7 @@
       "uuid": "5f338b7e-3121-4d20-94fb-a2281405fb0f",
       "customClasses": "",
       "defaultItem": null,
-      "defaultStyles": [
-        "border",
-        "even",
-        "sticky"
-      ],
+      "defaultStyles": [],
       "hasCommand": false,
       "items": [
         {
@@ -1416,6 +1283,135 @@
               }
             }
           }
+        },
+        {
+          "uuid": "e2d2c921-cfa8-4d16-9b3b-11e3849b4108",
+          "hasCommand": false,
+          "icon": "trello",
+          "inGallery": false,
+          "label": "New kanban",
+          "link": "",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "obsidian-kanban:create-new-kanban-board",
+            "hasVars": false,
+            "target": "tab",
+            "type": "command"
+          },
+          "plugin": "",
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "uuid": "89be19ac-191b-469a-9875-f9296b0287c1",
+          "hasCommand": false,
+          "icon": "percent-square",
+          "inGallery": false,
+          "label": "New from template",
+          "link": "",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "templater-obsidian:create-new-note-from-template",
+            "hasVars": false,
+            "target": "",
+            "type": "command"
+          },
+          "plugin": "",
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "uuid": "e41a786f-5cfe-4e73-8a7b-83baa39fc17d",
+          "hasCommand": false,
+          "icon": "file-plus",
+          "inGallery": false,
+          "label": "New note",
+          "link": "",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "file-explorer:new-file",
+            "hasVars": false,
+            "target": "",
+            "type": "command"
+          },
+          "plugin": "",
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
         }
       ],
       "mobileStyles": [],
@@ -1437,7 +1433,7 @@
           }
         }
       },
-      "updated": "2025-07-10T02:03:33.608Z"
+      "updated": "2025-07-10T02:05:53.617Z"
     },
     {
       "uuid": "561f4dd8-db81-48b8-b1aa-c0ff6d75a7aa",
