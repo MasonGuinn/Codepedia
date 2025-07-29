@@ -16,7 +16,7 @@
         "startupType": "instant"
       },
       "obsidian-custom-frames": {
-        "startupType": "instant"
+        "startupType": "short"
       },
       "dataview": {
         "startupType": "long"
@@ -40,7 +40,7 @@
         "startupType": "instant"
       },
       "js-engine": {
-        "startupType": "instant"
+        "startupType": "short"
       },
       "obsidian-meta-bind-plugin": {
         "startupType": "instant"
@@ -76,7 +76,7 @@
         "startupType": "short"
       },
       "file-tree-alternative": {
-        "startupType": "short"
+        "startupType": "instant"
       }
     }
   }

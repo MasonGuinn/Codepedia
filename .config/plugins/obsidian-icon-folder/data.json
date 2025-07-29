@@ -5,7 +5,9 @@
     "fontSize": 16,
     "emojiStyle": "native",
     "iconColor": null,
-    "recentlyUsedIcons": [],
+    "recentlyUsedIcons": [
+      "LiHome"
+    ],
     "recentlyUsedIconsSize": 5,
     "rules": [],
     "extraMargin": {
@@ -16,8 +18,8 @@
     },
     "iconInTabsEnabled": true,
     "iconInTitleEnabled": false,
-    "iconInTitlePosition": "above",
-    "iconInFrontmatterEnabled": false,
+    "iconInTitlePosition": "inline",
+    "iconInFrontmatterEnabled": true,
     "iconInFrontmatterFieldName": "icon",
     "iconColorInFrontmatterFieldName": "iconColor",
     "iconsBackgroundCheckEnabled": true,
@@ -27,5 +29,6 @@
     "lucideIconPackType": "native",
     "debugMode": false,
     "useInternalPlugins": false
-  }
+  },
+  "Home.md": "LiHome"
 }

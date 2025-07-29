@@ -657,5 +657,10 @@
   "minimal-style@@minimal-tab-text-color@@dark": "#FFFFFF",
   "minimal-style@@inline-title-weight": 600,
   "minimal-advanced@@hide-settings-desc": false,
-  "minimal-advanced@@cursor": "default"
+  "minimal-advanced@@cursor": "default",
+  "minimal-style@@zoom-off": true,
+  "minimal-style@@sidebar-tabs-style": "sidebar-tabs-default",
+  "minimal-style@@sidebar-tabs-names": "tab-names-off",
+  "minimal-style@@vault-profile-display": "vault-profile-default",
+  "minimal-style@@hide-settings": false
 }

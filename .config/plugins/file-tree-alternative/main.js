@@ -3427,7 +3427,7 @@ function Tree(props) {
     };
     // --> Click Events
     const folderNameClickEvent = (ev) => {
-        if (props.plugin.settings.folderNote && ev.shiftKey) {
+        if (props.plugin.settings.folderNote) {
             const fileFullPath = `${props.folder.path}/${props.folder.name}.md`;
             props.plugin.app.vault.getAbstractFileByPath(fileFullPath);
             props.plugin.app.workspace.openLinkText(fileFullPath, '/', false);
