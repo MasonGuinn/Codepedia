@@ -2,7 +2,9 @@
   "useCache": true,
   "hideExcluded": true,
   "recencyBoost": "0",
-  "downrankedFoldersFilters": [],
+  "downrankedFoldersFilters": [
+    "Assets/"
+  ],
   "ignoreDiacritics": true,
   "ignoreArabicDiacritics": false,
   "indexedFileTypes": [],
@@ -11,7 +13,7 @@
   "officeIndexing": false,
   "imagesIndexing": false,
   "aiImageIndexing": false,
-  "unsupportedFilesIndexing": "default",
+  "unsupportedFilesIndexing": "no",
   "splitCamelCase": false,
   "openInNewPane": false,
   "vimLikeNavigationShortcut": false,

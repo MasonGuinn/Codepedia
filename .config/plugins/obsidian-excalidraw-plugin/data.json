@@ -20,12 +20,12 @@
   "drawingFilenamePrefix": "Drawing ",
   "drawingEmbedPrefixWithFilename": true,
   "drawingFilnameEmbedPostfix": " ",
-  "drawingFilenameDateTime": "YYYY-MM-DD HH.mm.ss",
-  "useExcalidrawExtension": true,
+  "drawingFilenameDateTime": "MM-DD-YY",
+  "useExcalidrawExtension": false,
   "cropSuffix": "",
-  "cropPrefix": "cropped_",
+  "cropPrefix": "c_",
   "annotateSuffix": "",
-  "annotatePrefix": "annotated_",
+  "annotatePrefix": "a_",
   "annotatePreserveSize": false,
   "previewImageType": "SVGIMG",
   "renderingConcurrency": 3,
@@ -33,15 +33,15 @@
   "allowImageCacheInScene": true,
   "displayExportedImageIfAvailable": false,
   "previewMatchObsidianTheme": false,
-  "width": "400",
+  "width": "1000",
   "height": "",
   "overrideObsidianFontSize": false,
   "dynamicStyling": "colorful",
   "isLeftHanded": false,
-  "iframeMatchExcalidrawTheme": true,
-  "matchTheme": false,
-  "matchThemeAlways": false,
-  "matchThemeTrigger": false,
+  "iframeMatchExcalidrawTheme": false,
+  "matchTheme": true,
+  "matchThemeAlways": true,
+  "matchThemeTrigger": true,
   "defaultMode": "normal",
   "defaultPenMode": "never",
   "penModeDoubleTapEraser": true,
@@ -60,7 +60,7 @@
   "parseTODO": false,
   "todo": "☐",
   "done": "🗹",
-  "hoverPreviewWithoutCTRL": false,
+  "hoverPreviewWithoutCTRL": true,
   "linkOpacity": 1,
   "openInAdjacentPane": true,
   "showSecondOrderLinks": true,
@@ -103,7 +103,7 @@
   "library2": {
     "type": "excalidrawlib",
     "version": 2,
-    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.13.0",
+    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.14.0",
     "libraryItems": []
   },
   "imageElementNotice": true,
@@ -115,7 +115,7 @@
   "mdCSS": "",
   "scriptEngineSettings": {},
   "defaultTrayMode": true,
-  "previousRelease": "2.13.0",
+  "previousRelease": "2.14.0",
   "showReleaseNotes": true,
   "showNewVersionNotification": true,
   "latexBoilerplate": "\\color{blue}",
@@ -474,7 +474,7 @@
   "markdownNodeOneClickEditing": false,
   "canvasImmersiveEmbed": true,
   "startupScriptPath": "",
-  "aiEnabled": true,
+  "aiEnabled": false,
   "openAIAPIToken": "",
   "openAIDefaultTextModel": "gpt-3.5-turbo-1106",
   "openAIDefaultVisionModel": "gpt-4o",
@@ -774,26 +774,7 @@
   "doubleClickLinkOpenViewMode": true,
   "isDebugMode": false,
   "rank": "Bronze",
-  "modifierKeyOverrides": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "Enter"
-    },
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "k"
-    },
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "G"
-    }
-  ],
+  "modifierKeyOverrides": [],
   "showSplashscreen": true,
   "pdfSettings": {
     "pageSize": "A4",

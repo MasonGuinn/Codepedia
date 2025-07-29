@@ -483,4 +483,3 @@ Covers the fundamental concepts of C programming, which remain relevant and esse
 
 # %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">Modern Books</span></button>
 ## %% fold %%<span class="section-sub-heading heading-collapse-indicator">Book Name</span> `INPUT[section-status][:["Book Name"]]`
-test test 123

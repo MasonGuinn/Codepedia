@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Assets/Templates/Section Template.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Section Template"
+              "title": "Home"
             }
           }
         ]
@@ -64,13 +64,23 @@
               "icon": "lucide-folder-closed",
               "title": "Files"
             }
+          },
+          {
+            "id": "edd64e1c416162e3",
+            "type": "leaf",
+            "state": {
+              "type": "file-tree-view",
+              "state": {},
+              "icon": "sheets-in-box",
+              "title": "File Tree"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 278.5
   },
   "right": {
     "id": "0cbac843d665c890",
@@ -142,23 +152,82 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "canvas:Create new canvas": false,
       "obsidian-custom-frames:Open SoundCloud": false,
-      "graph:Open graph view": false,
       "command-palette:Open command palette": false,
-      "homepage:Open homepage": false,
+      "homepage:Open homepage": true,
       "templater-obsidian:Templater": false,
-      "obsidian-git:Open Git source control": false,
-      "wikipedia-search:Open Article": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
-      "obsidian-kanban:Create new board": false,
-      "omnisearch:Omnisearch": false,
-      "publish:Publish changes...": false,
-      "templates:Insert template": false
+      "graph:Open graph view": false,
+      "obsidian-git:Open Git source control": true,
+      "wikipedia-search:Open Article": true,
+      "canvas:Create new canvas": false,
+      "templates:Insert template": true
     }
+  },
+  "floating": {
+    "id": "430432a619f3e745",
+    "type": "floating",
+    "children": [
+      {
+        "id": "969c939ff47f533b",
+        "type": "window",
+        "children": [
+          {
+            "id": "a40cdb5da62e9557",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "24a0fc200fe7753f",
+                "type": "leaf",
+                "state": {
+                  "type": "webviewer",
+                  "state": {
+                    "url": "https://www.make.md/docs/Getting%20Started/Organizing%20Files/Navigator",
+                    "title": "Navigator - make.md",
+                    "mode": "webview"
+                  },
+                  "icon": "globe-2",
+                  "title": "Navigator - make.md"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 448,
+        "y": 116,
+        "width": 1024,
+        "height": 800,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "Home.md",
+    "Development.md",
+    "Gaming.md",
+    "Assets/Attachments/codepedia_logo.png",
+    "Assets/Attachments/codepedia_logo_full.png",
+    "Content/Development/C/Welcome to C.md",
+    "Content/Development/C++/Welcome to C++.md",
+    "Content/Development/JavaScript/Welcome to JavaScript.md",
+    "Content/Other/1. Obsidian Commands.md",
+    "Other.md",
+    "Assets/Excalidraw/Drawing 07-29-25_2.md",
+    "Untitled.canvas",
+    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
+    "Assets/Excalidraw/Drawing 07-29-25_1.md",
+    "Assets/Excalidraw/Drawing 07-29-25_0.md",
+    "Content/Development/Cyber Security/Untitled Kanban.md",
+    "Content/Development/Version Control/Git/1.2 Branching and Merging.md",
+    "Content/Development/C/K&R/0. INTRODUCTION.md",
+    "School.md",
+    "Content/Development/Version Control/Git/0. Introduction.md",
+    "Content/Development/Version Control/Git/1.4 Stashing and Undoing Changes.md",
+    "Content/Development/Version Control/Git/1.1 Git Basics and Terminology.md",
+    "Assets/Excalidraw/Drawing 07-29-25.md",
+    "Assets/Excalidraw/Welcome to Cyber Security 07-29-25.md",
     "Assets/Templates/Section Template.md",
     "Assets/Excalidraw/Scripts",
     "Assets/Excalidraw/Templates",
@@ -168,29 +237,8 @@
     "Assets/Templates/Table of Contents Template.md",
     "Assets/Templates/Menu Template.md",
     "Assets/Templates/New Note with Nav Template.md",
-    "Home.md",
-    "Development.md",
-    "Config/Resources/Welcome to Cyber Security 2025-07-29 01.16.50.excalidraw.md",
     "Config/Resources/showcase_pic03.png",
-    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
-    "Gaming.md",
-    "Excalidraw/Drawing 2025-07-29 01.14.43.excalidraw.md",
     "Excalidraw",
-    "School.md",
-    "Other.md",
-    "Content/Development/C/Welcome to C.md",
-    "Content/Development/C++/References/STL/Overview.md",
-    "Content/Development/C++/References/STL/Untitled.md",
-    "Content/Development/C++/Welcome to C++.md",
-    "Content/Development/C/Beginner/Compiler.md",
-    "Content/Development/C/Beginner/IDE.md",
-    "Content/School/Unix-Linux/Chapter 10.md",
-    "Content/School/Unix-Linux/Chapter 9.md",
-    "Content/School/Unix-Linux/Chapter 8.md",
-    "Content/School/Unix-Linux/Chapter 7.md",
-    "Content/School/Unix-Linux/Chapter 6.md",
-    "Content/School/Unix-Linux/Chapter 5.md",
-    "Content/School/Unix-Linux/Chapter 4.md",
     "^/Change Me",
     "^",
     "Content/Development/C++/References/STL",
@@ -201,8 +249,6 @@
     "Config/Resources/Pasted image 20250430184906.png",
     "Config/Resources/Pasted image 20250430184756.png",
     "Config/Resources/Pasted image 20250430184435.png",
-    "Config/Resources/Pasted image 20250430184126.png",
-    "Config/Resources/Pasted image 20250430183341.png",
-    "Config/Resources/Pasted image 20250430183034.png"
+    "Config/Resources/Pasted image 20250430184126.png"
   ]
 }

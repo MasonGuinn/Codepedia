@@ -470,9 +470,9 @@
           "uuid": "f171edbc-9ae1-4c45-b147-13c7b8b574cd",
           "label": "Google Search",
           "icon": "lucide-search",
-          "link": "Surfing: Search In Current Page Title Bar",
+          "link": "Web viewer: Search the web",
           "linkAttr": {
-            "commandId": "surfing:search-in-current-page-title-bar",
+            "commandId": "webviewer:search",
             "hasVars": false,
             "type": "command"
           },
@@ -590,7 +590,121 @@
           "inGallery": false
         },
         {
-          "uuid": "d44a3ad9-edd9-4a6c-83a8-939870a19dc3",
+          "uuid": "53f119b1-7d6f-4cad-8ab4-17f8028948d8",
+          "hasCommand": false,
+          "icon": "",
+          "inGallery": false,
+          "label": "New...",
+          "link": "5f338b7e-3121-4d20-94fb-a2281405fb0f",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "",
+            "hasVars": false,
+            "type": "menu"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "uuid": "f64b9229-56a5-4ce1-aa7f-f48b098c4911",
+          "hasCommand": false,
+          "icon": "",
+          "inGallery": false,
+          "label": "Misc...",
+          "link": "333e6aeb-2dc3-4a82-b329-e36d7f4104d7",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "",
+            "hasVars": false,
+            "type": "menu"
+          },
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          },
+          "scriptConfig": {
+            "pluginFunction": ""
+          }
+        }
+      ],
+      "mobileStyles": [],
+      "name": "Callout Home",
+      "position": {
+        "desktop": {
+          "allViews": {
+            "position": "props"
+          }
+        },
+        "mobile": {
+          "allViews": {
+            "position": "props"
+          }
+        },
+        "tablet": {
+          "allViews": {
+            "position": "props"
+          }
+        }
+      },
+      "updated": "2025-07-29T10:34:49.185Z"
+    },
+    {
+      "uuid": "333e6aeb-2dc3-4a82-b329-e36d7f4104d7",
+      "customClasses": "",
+      "defaultItem": null,
+      "defaultStyles": [],
+      "hasCommand": false,
+      "items": [
+        {
+          "uuid": "11566f83-23bb-45e7-823f-4f5cacb0d157",
           "label": "Start Cat",
           "icon": "lucide-check-circle-2",
           "link": "",
@@ -631,10 +745,11 @@
             "sourceFile": "Assets/Scripts/start-cat.js",
             "outputContainer": ""
           },
-          "inGallery": false
+          "inGallery": false,
+          "hasCommand": false
         },
         {
-          "uuid": "bd7d051b-46a4-4a8a-93c9-cba651e3a048",
+          "uuid": "520257c0-cd56-4880-8df8-2b84709b1249",
           "label": "Stop Cat",
           "icon": "lucide-circle-x",
           "link": "",
@@ -675,10 +790,11 @@
             "sourceFile": "Assets/Scripts/stop-cat.js",
             "outputContainer": ""
           },
-          "inGallery": false
+          "inGallery": false,
+          "hasCommand": false
         },
         {
-          "uuid": "f7e48053-10e6-43a8-bad7-5eaf63888dd1",
+          "uuid": "5b6342c0-84e2-4ec9-a97d-54bdbd10aefb",
           "hasCommand": false,
           "icon": "lucide-settings",
           "inGallery": false,
@@ -720,7 +836,7 @@
         }
       ],
       "mobileStyles": [],
-      "name": "Callout Home",
+      "name": "Callout Home Misc",
       "position": {
         "desktop": {
           "allViews": {
@@ -738,7 +854,208 @@
           }
         }
       },
-      "updated": "2025-07-10T01:43:32.698Z"
+      "updated": "2025-07-29T10:32:59.255Z"
+    },
+    {
+      "uuid": "5f338b7e-3121-4d20-94fb-a2281405fb0f",
+      "customClasses": "",
+      "defaultItem": null,
+      "defaultStyles": [],
+      "hasCommand": false,
+      "items": [
+        {
+          "uuid": "e1567521-71e1-4bde-ad84-b3eb5f46acc6",
+          "hasCommand": false,
+          "icon": "network",
+          "inGallery": false,
+          "label": "New canvas",
+          "link": "",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "canvas:new-file",
+            "hasVars": false,
+            "target": "tab",
+            "type": "command"
+          },
+          "plugin": "",
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "uuid": "a47849c4-ab15-4e64-8848-e544aa0eb4dc",
+          "hasCommand": false,
+          "icon": "pencil-line",
+          "inGallery": false,
+          "label": "New drawing",
+          "link": "",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "obsidian-excalidraw-plugin:excalidraw-autocreate-newtab",
+            "hasVars": false,
+            "target": "",
+            "type": "command"
+          },
+          "plugin": "",
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "uuid": "89be19ac-191b-469a-9875-f9296b0287c1",
+          "hasCommand": false,
+          "icon": "percent-square",
+          "inGallery": false,
+          "label": "New from template",
+          "link": "",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "templater-obsidian:create-new-note-from-template",
+            "hasVars": false,
+            "target": "",
+            "type": "command"
+          },
+          "plugin": "",
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "uuid": "e41a786f-5cfe-4e73-8a7b-83baa39fc17d",
+          "hasCommand": false,
+          "icon": "file-plus",
+          "inGallery": false,
+          "label": "New note",
+          "link": "",
+          "linkAttr": {
+            "commandCheck": false,
+            "commandId": "file-explorer:new-file",
+            "hasVars": false,
+            "target": "",
+            "type": "command"
+          },
+          "plugin": "",
+          "tooltip": "",
+          "visibility": {
+            "desktop": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "mobile": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            },
+            "tablet": {
+              "allViews": {
+                "components": [
+                  "icon",
+                  "label"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "mobileStyles": [],
+      "name": "Callout Home New",
+      "position": {
+        "desktop": {
+          "allViews": {
+            "position": "props"
+          }
+        },
+        "mobile": {
+          "allViews": {
+            "position": "props"
+          }
+        },
+        "tablet": {
+          "allViews": {
+            "position": "props"
+          }
+        }
+      },
+      "updated": "2025-07-29T10:33:50.974Z"
     },
     {
       "uuid": "a4ca80eb-6f11-40e5-b9b2-a1860e1f93e9",
@@ -847,203 +1164,6 @@
         }
       },
       "updated": "2025-07-10T01:44:08.602Z"
-    },
-    {
-      "uuid": "3d3b99c6-72a1-4452-a65f-6571a69d9037",
-      "customClasses": "",
-      "defaultItem": null,
-      "defaultStyles": [
-        "border",
-        "even",
-        "sticky"
-      ],
-      "hasCommand": false,
-      "items": [
-        {
-          "uuid": "eb026027-5b78-4e0b-a8d1-d9fd7ee41505",
-          "hasCommand": false,
-          "icon": "lucide-fold-vertical",
-          "inGallery": false,
-          "label": "Fold",
-          "link": "Creases: Fold along creases",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "creases:fold",
-            "hasVars": false,
-            "type": "command"
-          },
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "uuid": "6e575e61-81d5-407e-89f8-fa8ff79ace23",
-          "hasCommand": false,
-          "icon": "lucide-unfold-vertical",
-          "inGallery": false,
-          "label": "Unfold",
-          "link": "Unfold all headings and lists",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "editor:unfold-all",
-            "hasVars": false,
-            "type": "command"
-          },
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "uuid": "29566ace-cb14-4577-84c1-491cb54facd7",
-          "hasCommand": false,
-          "icon": "",
-          "inGallery": false,
-          "label": "New...",
-          "link": "5f338b7e-3121-4d20-94fb-a2281405fb0f",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "",
-            "hasVars": false,
-            "type": "menu"
-          },
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "uuid": "abf78f89-7f02-4a60-b15a-b4ad68f6a30b",
-          "hasCommand": false,
-          "icon": "",
-          "inGallery": false,
-          "label": "",
-          "link": "",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "",
-            "hasVars": false,
-            "type": "separator"
-          },
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        }
-      ],
-      "mobileStyles": [],
-      "name": "ItemMenu More",
-      "position": {
-        "desktop": {
-          "allViews": {
-            "position": "props"
-          }
-        },
-        "mobile": {
-          "allViews": {
-            "position": "props"
-          }
-        },
-        "tablet": {
-          "allViews": {
-            "position": "props"
-          }
-        }
-      },
-      "updated": "2025-07-10T02:05:35.475Z"
     },
     {
       "uuid": "33f636ef-918a-47ab-9466-d94cfe0e781c",
@@ -1190,250 +1310,6 @@
         }
       },
       "updated": "2025-07-10T01:44:32.233Z"
-    },
-    {
-      "uuid": "5f338b7e-3121-4d20-94fb-a2281405fb0f",
-      "customClasses": "",
-      "defaultItem": null,
-      "defaultStyles": [],
-      "hasCommand": false,
-      "items": [
-        {
-          "uuid": "e1567521-71e1-4bde-ad84-b3eb5f46acc6",
-          "hasCommand": false,
-          "icon": "network",
-          "inGallery": false,
-          "label": "New canvas",
-          "link": "",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "canvas:new-file",
-            "hasVars": false,
-            "target": "tab",
-            "type": "command"
-          },
-          "plugin": "",
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "uuid": "a47849c4-ab15-4e64-8848-e544aa0eb4dc",
-          "hasCommand": false,
-          "icon": "pencil-line",
-          "inGallery": false,
-          "label": "New drawing",
-          "link": "",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "obsidian-excalidraw-plugin:excalidraw-autocreate-newtab",
-            "hasVars": false,
-            "target": "",
-            "type": "command"
-          },
-          "plugin": "",
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "uuid": "e2d2c921-cfa8-4d16-9b3b-11e3849b4108",
-          "hasCommand": false,
-          "icon": "trello",
-          "inGallery": false,
-          "label": "New kanban",
-          "link": "",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "obsidian-kanban:create-new-kanban-board",
-            "hasVars": false,
-            "target": "tab",
-            "type": "command"
-          },
-          "plugin": "",
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "uuid": "89be19ac-191b-469a-9875-f9296b0287c1",
-          "hasCommand": false,
-          "icon": "percent-square",
-          "inGallery": false,
-          "label": "New from template",
-          "link": "",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "templater-obsidian:create-new-note-from-template",
-            "hasVars": false,
-            "target": "",
-            "type": "command"
-          },
-          "plugin": "",
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "uuid": "e41a786f-5cfe-4e73-8a7b-83baa39fc17d",
-          "hasCommand": false,
-          "icon": "file-plus",
-          "inGallery": false,
-          "label": "New note",
-          "link": "",
-          "linkAttr": {
-            "commandCheck": false,
-            "commandId": "file-explorer:new-file",
-            "hasVars": false,
-            "target": "",
-            "type": "command"
-          },
-          "plugin": "",
-          "tooltip": "",
-          "visibility": {
-            "desktop": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "mobile": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            },
-            "tablet": {
-              "allViews": {
-                "components": [
-                  "icon",
-                  "label"
-                ]
-              }
-            }
-          }
-        }
-      ],
-      "mobileStyles": [],
-      "name": "ItemMenu New",
-      "position": {
-        "desktop": {
-          "allViews": {
-            "position": "props"
-          }
-        },
-        "mobile": {
-          "allViews": {
-            "position": "props"
-          }
-        },
-        "tablet": {
-          "allViews": {
-            "position": "props"
-          }
-        }
-      },
-      "updated": "2025-07-10T02:05:53.617Z"
     },
     {
       "uuid": "561f4dd8-db81-48b8-b1aa-c0ff6d75a7aa",

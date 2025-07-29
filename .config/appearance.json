@@ -10,7 +10,7 @@
   "showViewHeader": true,
   "nativeMenus": true,
   "accentColor": "#c47821",
-  "baseFontSize": 16,
+  "baseFontSize": 18,
   "showRibbon": true,
   "textFontFamily": "Inter",
   "interfaceFontFamily": "Inter",

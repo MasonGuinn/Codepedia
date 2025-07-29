@@ -9,7 +9,7 @@
   "treatUnderscoreAsPartOfWord": true,
   "maxNumberOfSuggestions": 5,
   "maxNumberOfWordsAsPhrase": 3,
-  "minNumberOfCharactersTriggered": 0,
+  "minNumberOfCharactersTriggered": 1,
   "minNumberOfWordsTriggeredPhrase": 1,
   "complementAutomatically": true,
   "delayMilliSeconds": 0,
@@ -35,6 +35,7 @@
       }
     ],
     "select with custom alias": [],
+    "select with query alias": [],
     "up": [
       {
         "modifiers": [],
@@ -61,14 +62,15 @@
     "insert as text": []
   },
   "propagateEsc": false,
-  "enableCurrentFileComplement": true,
+  "enableCurrentFileComplement": false,
   "currentFileMinNumberOfCharacters": 0,
   "onlyComplementEnglishOnCurrentFileComplement": true,
   "excludeCurrentFileWordPatterns": [],
-  "enableCurrentVaultComplement": true,
+  "enableCurrentVaultComplement": false,
   "currentVaultMinNumberOfCharacters": 0,
   "includeCurrentVaultPathPrefixPatterns": "",
   "excludeCurrentVaultPathPrefixPatterns": "",
+  "excludeCurrentVaultPathGlobPatterns": [],
   "includeCurrentVaultOnlyFilesUnderCurrentDirectory": false,
   "excludeCurrentVaultWordPatterns": [],
   "enableCustomDictionaryComplement": false,
@@ -80,8 +82,11 @@
   "caretLocationSymbolAfterComplement": "",
   "displayedTextSuffix": " => ...",
   "enableInternalLinkComplement": true,
-  "suggestInternalLinkWithAlias": false,
+  "suggestInternalLinkWithAlias": true,
   "excludeInternalLinkPathPrefixPatterns": "",
+  "excludeInternalLinkPathGlobPatterns": [],
+  "excludeSelfInternalLink": true,
+  "excludeExistingInActiveFileInternalLinks": false,
   "updateInternalLinksOnSave": true,
   "insertAliasTransformedFromDisplayedInternalLink": {
     "enabled": false,
@@ -89,9 +94,14 @@
     "after": ""
   },
   "frontMatterKeyForExclusionInternalLink": "",
-  "enableFrontMatterComplement": true,
+  "tagsForExclusionInternalLink": [],
+  "enableFrontMatterComplement": false,
   "frontMatterComplementMatchStrategy": "inherit",
   "insertCommaAfterFrontMatterCompletion": false,
+  "currentFileMinNumberOfCharactersForTrigger": 0,
+  "currentVaultMinNumberOfCharactersForTrigger": 0,
+  "customDictionaryMinNumberOfCharactersForTrigger": 0,
+  "internalLinkMinNumberOfCharactersForTrigger": 0,
   "intelligentSuggestionPrioritization": {
     "enabled": true,
     "historyFilePath": "",

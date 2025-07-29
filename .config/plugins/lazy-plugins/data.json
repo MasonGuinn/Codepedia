@@ -74,6 +74,9 @@
       },
       "obsidian-kanban": {
         "startupType": "short"
+      },
+      "file-tree-alternative": {
+        "startupType": "short"
       }
     }
   }
