@@ -111,8 +111,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           }
         ],
@@ -131,48 +131,8 @@
       "command-palette:Open command palette": false,
       "obsidian-git:Open Git source control": true,
       "wikipedia-search:Open Article": true,
-      "canvas:Create new canvas": true,
-      "obsidian-spaced-repetition:Review flashcards": false
+      "canvas:Create new canvas": true
     }
-  },
-  "floating": {
-    "id": "50f921baaa9efd47",
-    "type": "floating",
-    "children": [
-      {
-        "id": "9c437fac54066b96",
-        "type": "window",
-        "children": [
-          {
-            "id": "e5883489604e2a90",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "ff79734e3d4d9c2f",
-                "type": "leaf",
-                "state": {
-                  "type": "webviewer",
-                  "state": {
-                    "url": "https://www.moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/inputfields/number/",
-                    "title": "Number | Meta Bind Docs",
-                    "mode": "webview"
-                  },
-                  "icon": "globe-2",
-                  "title": "Number | Meta Bind Docs"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 448,
-        "y": 116,
-        "width": 1024,
-        "height": 800,
-        "maximize": true,
-        "zoom": 0
-      }
-    ]
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [

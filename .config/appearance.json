@@ -4,7 +4,7 @@
     "ToolbarNavigation",
     "Navigation",
     "Notes",
-    "components"
+    "overrides"
   ],
   "cssTheme": "Minimal",
   "monospaceFontFamily": "Cascadia Code",

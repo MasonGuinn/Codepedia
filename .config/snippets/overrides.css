@@ -2,3 +2,6 @@
     margin-inline-start: 0;
 }
 
+.markdown-preview-view .collapse-indicator {
+    display: none;
+}
