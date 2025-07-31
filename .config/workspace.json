@@ -15,7 +15,7 @@
               "state": {
                 "file": "Home.md",
                 "mode": "preview",
-                "source": true,
+                "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
@@ -52,7 +52,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 321.5
+    "width": 355.5
   },
   "right": {
     "id": "0cbac843d665c890",
@@ -73,17 +73,27 @@
             }
           },
           {
+            "id": "70626d22867900a5",
+            "type": "leaf",
+            "state": {
+              "type": "custom-frames-soundcloud",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
             "id": "3ee895e26a9dab4a",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Home.md",
+                "file": "Content/Development/C/Welcome to C.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Home"
+              "title": "Outgoing links from Welcome to C"
             }
           },
           {
@@ -92,7 +102,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Home.md",
+                "file": "Content/Development/C/Welcome to C.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,74 +112,15 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Home"
-            }
-          },
-          {
-            "id": "ba0fb53891ad4ca4",
-            "type": "leaf",
-            "state": {
-              "type": "review-queue-list-view",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "Plugin no longer active"
-            }
-          },
-          {
-            "id": "baf1d34d4f8bd57b",
-            "type": "leaf",
-            "state": {
-              "type": "review-queue-list-view",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "Plugin no longer active"
-            }
-          },
-          {
-            "id": "246d8fb2dc5c07ec",
-            "type": "leaf",
-            "state": {
-              "type": "review-queue-list-view",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "Plugin no longer active"
-            }
-          },
-          {
-            "id": "de216c00d2fff4d8",
-            "type": "leaf",
-            "state": {
-              "type": "review-queue-list-view",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "Plugin no longer active"
-            }
-          },
-          {
-            "id": "8dc57294c78ed998",
-            "type": "leaf",
-            "state": {
-              "type": "review-queue-list-view",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "Plugin no longer active"
-            }
-          },
-          {
-            "id": "12f225e5cec7ac58",
-            "type": "leaf",
-            "state": {
-              "type": "review-queue-list-view",
-              "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "title": "Backlinks for Welcome to C"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -179,44 +130,40 @@
       "command-palette:Open command palette": false,
       "obsidian-git:Open Git source control": true,
       "wikipedia-search:Open Article": true,
-      "canvas:Create new canvas": true,
-      "obsidian-custom-frames:Open SoundCloud": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
-      "obsidian-spaced-repetition:Review flashcards": false,
-      "omnisearch:Omnisearch": false
+      "canvas:Create new canvas": true
     }
   },
-  "active": "d5e56f2ac090749e",
+  "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "Gaming.md",
+    "Content/Development/C/Welcome to C.md",
+    "Content/Development/C/K&R/0. INTRODUCTION.md",
+    "Content/Development/C/K&R/1.1 Getting Started.md",
+    "Content/Development/C/Welcome to C.md~",
+    "Content/Development/C/Beginner/Compiler.md",
+    "Content/Development/C/Beginner/IDE.md",
+    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
+    "Assets/Templates/Course Template.md",
+    "Development.md",
+    "Content/Development/Cyber Security/Networking/OSI Model.md",
+    "Content/Development/C/K&R/1.4 Symbolic Constants.md",
+    "Content/Development/C/K&R/1.2 Variables and Arithmetic.md",
     "Home.md",
+    "Gaming.md",
     "Assets/Templates/Table of Contents Template.md",
     "Assets/Templates/Untitled.md",
     "Assets/Templates/New Note with Nav Template.md",
     "Assets/Templates/Menu Template.md",
-    "Assets/Templates/Course Template.md",
     "Assets/Templates/Course Dashboard.md",
-    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
-    "Development.md",
     "Assets/Templates/Course Chapter Template.md",
-    "Content/Development/Cyber Security/Networking/OSI Model.md",
     "Assets/Templates/Section Template.md~",
-    "Content/Development/C/Welcome to C.md",
     "School.md",
     "Content/Development/Version Control/Welcome to Version Control.md",
-    "Content/Development/C/K&R/1.2 Variables and Arithmetic.md",
     "Assets/Attachments/Pasted image 20250730175918.png",
     "Content/Development/Cyber Security/Prof. Messer/1.4.md",
     "Content/Development/Cyber Security/Networking",
     "Content/Development/Cyber Security/Prof. Messer/1.1-1.3.md",
     "Assets/Excalidraw/Drawing 07-29-25_1.md",
     "Assets/Excalidraw/Drawing 07-29-25_2.md",
-    "Assets/Excalidraw/Welcome to Cyber Security 07-29-25.md",
-    "Assets/Assets.md",
-    "CONTRIBUTING.md",
-    "Content/School/Spring 2025.md",
-    "Content/Content.md",
-    "Content/School/Database Design/Chapter 3.md",
     "Content/Development/Cyber Security/Prof. Messer",
     "Content/Development/Cyber Security/CompTIA Network+/Messer",
     "Content/Development/Cyber Security/CompTIA Network+",
@@ -227,7 +174,6 @@
     "Assets/Excalidraw/Templates",
     "Assets/Excalidraw/Annotations",
     "Assets/Excalidraw/Cropped",
-    "Assets/Excalidraw",
     "Config/Resources/showcase_pic03.png",
     "Config/Resources/Pasted image 20250509221542.png",
     "Config/Resources/Pasted image 20250509220244.png",

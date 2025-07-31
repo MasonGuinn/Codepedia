@@ -182,7 +182,11 @@
     color: white;
     text-decoration: none;
 }
-.content-menu ul li code div a.internal-link {
+.content-menu ul li code div a.internal-link,
+.content-menu ul li code div a.internal-link:hover {
+    color: white;
+    text-decoration: none;
+}{
     color: white;
     text-decoration: none;
 }

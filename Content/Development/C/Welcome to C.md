@@ -1,95 +1,93 @@
 ---
-K&R Status: In Progress
-Setup Environment: In Progress
+tags: course
+course:
+  title: Beginner
+  provider:
+    title: Setup Environment
+    status: Done
+    page: 1
+    chapters:
+      "1": "[Compiler](Beginner/Compiler)"
+      "2": "[IDE](Beginner/IDE)"
+course-2:
+  title: Classic Book Tutorials
+  provider:
+    title: K&R Book 2nd Edition (C89)
+    status: In Progress
+    page: 2
+    chapters:
+      "1": "[Chapter 1 Title](K&R/0. INTRODUCTION)"
+      "2": "[Chapter 2 Title](K&R/1.1 Getting Started)"
+      "3": "[Chapter 3 Title](K&R/1.2 Variables and Arithmetic)"
+      "4": "[Chapter 4 Title](K&R/1.3 The For Statement)"
+      "5": "[Chapter 5 Title](K&R/1.4 Symbolic Constants)"
+      "6": "[Chapter 6 Title](K&R/1.5 A Collection of Useful Programs)"
+      "7": "[Chapter 7 Title](K&R/1.6 Arrays)"
+      "8": "[Chapter 8 Title](K&R/1.7 Functions)"
 ---
 
-#  %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">Beginner (Start Here)</span></button>
-## %% fold %%<span class="section-sub-heading heading-collapse-indicator">Setup Environment</span> `INPUT[status][:["Setup Environment"]]`
+#  %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">`VIEW[{course.title}][text]`</span></button>
+## %% fold %%<button class="section-sub-heading heading-collapse-indicator" role="button"><span>`VIEW[{course.provider.title}][text]`</span>
+</button><div>`INPUT[status][:course.provider.status]`<p style="display: inline; font-size: 16px;">Page # </p>`INPUT[chapter][:course.provider.page]`</div>
 <div class="content-menu">
   <ul>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Beginner/Compiler">
-        <span>Compiler</span>
-      </a>
+        <code>VIEW[{course.provider.chapters["1"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=Beginner/IDE">
-        <span>IDE</span>
-      </a>
+        <code>VIEW[{course.provider.chapters["2"]}][link]</code>
     </li>
   </ul>
 </div>
 
-# %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">Classic Book Tutorials</span></button>
-## %% fold %%<span class="section-sub-heading heading-collapse-indicator">K&R Book 2nd Edition (C89)</span> `INPUT[status][:["K&R Status"]]`
+
+# %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">`VIEW[{course-2.title}][text]`</span></button>
+## %% fold %%<button class="section-sub-heading heading-collapse-indicator" role="button"><span>`VIEW[{course-2.provider.title}][text]`</span>
+</button><div>`INPUT[status][:course-2.provider.status]`<p style="display: inline; font-size: 16px;">Page # </p>`INPUT[chapter][:course-2.provider.page]`</div>
 Covers the fundamental concepts of C programming, which remain relevant and essential even with newer standards. Known for its clear and concise explanations, K&R makes complex topics accessible and understandable. Written by the creators of C, the book provides insights into the design and philosophy of the language, offering a deeper understanding of its principles. It includes numerous practical examples and exercises that help reinforce learning and provide hands-on experience with C programming.
 <div class="content-menu">
   <!-- CHAPTER 0 -->
   <h3>CHAPTER 0: INTRODUCTION</h3>
   <ul>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/0. Introduction">
-        <span>0. Introduction</span>
-      </a>
+      <code>VIEW[{course-2.provider.chapters["1"]}][link]</code>
     </li>
   </ul>
   <!-- CHAPTER 1 -->
   <h3>CHAPTER 1: A TUTORIAL INTRODUCTION</h3>
   <ul>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.1 Getting Started">
-        <span>1.1 Getting Started</span>
-      </a>
+      <code>VIEW[{course-2.provider.chapters["2"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.2 Variables and Arithmetic">
-        <span>1.2 Variables and Arithmetic</span>
-      </a>
+      <code>VIEW[{course-2.provider.chapters["3"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.3 The For Statement">
-        <span>1.3 The For Statement</span>
-      </a>
+      <code>VIEW[{course-2.provider.chapters["4"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.4 Symbolic Constants">
-        <span>1.4 Symbolic Constants</span>
-      </a>
+      <code>VIEW[{course-2.provider.chapters["1"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.5 A Collection of Useful Programs">
-        <span>1.5 A Collection of Useful Programs</span>
-      </a>
+      <code>VIEW[{course-2.provider.chapters["1"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.6 Arrays">
-        <span>1.6 Arrays</span>
-      </a>
+      <code>VIEW[{course-2.provider.chapters["1"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.7 Functions">
-        <span>1.7 Functions</span>
-      </a>
+      <code>VIEW[{course-2.provider.chapters["1"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.8 Arguments - Call by Value">
-        <span>1.8 Arguments - Call by Value</span>
-      </a>
+      <code>VIEW[{course.provider.chapters["1"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.9 Character Arrays">
-        <span>1.9 Character Arrays</span>
-      </a>
+      <code>VIEW[{course.provider.chapters["1"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.10 Scope; External Variables">
-        <span>1.10 Scope; External Variables</span>
-      </a>
+      <code>VIEW[{course.provider.chapters["1"]}][link]</code>
     </li>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=K%26R/1.11 Summary">
-        <span>1.11 Summary</span>
-      </a>
+      <code>VIEW[{course.provider.chapters["1"]}][link]</code>
     </li>
   </ul>
   <!-- CHAPTER 2 -->
