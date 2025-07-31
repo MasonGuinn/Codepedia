@@ -338,7 +338,7 @@
       },
       "inline": {
         "syntaxHighlight": true,
-        "style": true,
+        "style": false,
         "fontWeight": 4,
         "curvature": 6,
         "paddingVertical": 5,

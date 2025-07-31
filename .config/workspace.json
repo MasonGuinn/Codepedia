@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "Content/Development/Cyber Security/Welcome to Cyber Security.md",
                 "mode": "preview",
-                "source": false,
+                "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Home"
+              "title": "Welcome to Cyber Security"
             }
           }
         ]
@@ -134,9 +134,28 @@
               "icon": "lucide-file",
               "title": "Plugin no longer active"
             }
+          },
+          {
+            "id": "de216c00d2fff4d8",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "8dc57294c78ed998",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "horizontal",
@@ -151,56 +170,29 @@
       "command-palette:Open command palette": false,
       "obsidian-git:Open Git source control": true,
       "wikipedia-search:Open Article": true,
-      "canvas:Create new canvas": true
+      "canvas:Create new canvas": true,
+      "obsidian-custom-frames:Open SoundCloud": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-spaced-repetition:Review flashcards": false,
+      "omnisearch:Omnisearch": false
     }
-  },
-  "floating": {
-    "id": "29dfa84944e59717",
-    "type": "floating",
-    "children": [
-      {
-        "id": "23902bef6d391466",
-        "type": "window",
-        "children": [
-          {
-            "id": "7d7998d71c861717",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "c12ae2f2d6fe8ba7",
-                "type": "leaf",
-                "state": {
-                  "type": "webviewer",
-                  "state": {
-                    "mode": "blank"
-                  },
-                  "icon": "globe-2",
-                  "title": "New web viewer"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 448,
-        "y": 116,
-        "width": 1024,
-        "height": 800,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
-    "Content/Development/Cyber Security/Networking/OSI Model.md",
     "Development.md",
+    "Assets/Templates/Section Template.md",
+    "Assets/Templates/Section Template.md~",
+    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
+    "Assets/Templates/Table of Contents Template.md",
+    "Assets/Templates/New Note with Nav Template.md",
+    "Assets/Templates/Menu Template.md",
+    "Content/Development/C/Welcome to C.md",
     "Home.md",
+    "Gaming.md",
+    "School.md",
+    "Content/Development/Cyber Security/Networking/OSI Model.md",
     "Content/Development/Version Control/Welcome to Version Control.md",
     "Content/Development/C/K&R/1.2 Variables and Arithmetic.md",
-    "Content/Development/C/Welcome to C.md",
-    "Gaming.md",
     "Assets/Attachments/Pasted image 20250730175918.png",
     "Content/Development/Cyber Security/Prof. Messer/1.4.md",
     "Content/Development/Cyber Security/Networking",
@@ -211,16 +203,10 @@
     "Assets/Assets.md",
     "CONTRIBUTING.md",
     "Content/School/Spring 2025.md",
-    "School.md",
     "Content/Content.md",
     "Content/School/Database Design/Chapter 3.md",
     "Content/School/Database Design/Chapter 2.md",
     "Content/School/Database Design/Chapter 1.md",
-    "Content/School/Database Design/DatabaseDesignCh2.md",
-    "Content/School/Database Design/Database Design.md",
-    "Content/Other/1. Obsidian Commands.md",
-    "Content/Development/Development.md",
-    "Content/Development/JavaScript/Welcome to JavaScript.md",
     "Content/Development/Cyber Security/Prof. Messer",
     "Content/Development/Cyber Security/CompTIA Network+/Messer",
     "Content/Development/Cyber Security/CompTIA Network+",
@@ -233,7 +219,6 @@
     "Assets/Excalidraw/Cropped",
     "Assets/Excalidraw",
     "Config/Resources/showcase_pic03.png",
-    "Excalidraw",
     "Config/Resources/Pasted image 20250509221542.png",
     "Config/Resources/Pasted image 20250509220244.png",
     "Config/Resources/Pasted image 20250509220202.png",

@@ -1,5 +1,12 @@
-# %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">Example</span></button>
-## %% fold %%<span class="section-sub-heading heading-collapse-indicator">Example</span> `INPUT[section-status][:["Example"]]`
+---
+example:
+  status: Not Started
+  chapter: 1
+  title: example
+  provider: examplee
+---
+# %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">`VIEW[{example.title}][text]`</span></button>
+## %% fold %%<button class="section-sub-heading heading-collapse-indicator" role="button"><span></span></button> `INPUT[status][:example.status]`<p style="display: inline; font-size: 16px;">Chapter: </p>`INPUT[chapter][:example.chapter]`
 <div class="content-menu">
   <ul>
     <li>
@@ -14,3 +21,5 @@
     </li>
   </ul>
 </div>
+
+`VIEW[{example.title}][text]`
