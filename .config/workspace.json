@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Content/Development/C/C.md",
-                "mode": "source",
-                "source": true,
+                "file": "Home.md",
+                "mode": "preview",
+                "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "C"
+              "title": "Home"
             }
           }
         ]
@@ -35,16 +35,6 @@
         "id": "4bc244b6b10058c3",
         "type": "tabs",
         "children": [
-          {
-            "id": "edd64e1c416162e3",
-            "type": "leaf",
-            "state": {
-              "type": "file-tree-view",
-              "state": {},
-              "icon": "sheets-in-box",
-              "title": "File Tree"
-            }
-          },
           {
             "id": "03bc6109097f2796",
             "type": "leaf",
@@ -130,46 +120,43 @@
       "command-palette:Open command palette": false,
       "obsidian-git:Open Git source control": true,
       "wikipedia-search:Open Article": true,
-      "canvas:Create new canvas": true,
-      "obsidian-custom-frames:Open SoundCloud": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
-      "omnisearch:Omnisearch": false
+      "canvas:Create new canvas": true
     }
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "Content/Development/Assembly/Assembly.md",
-    "Content/Development/C/C.md",
+    "Assets/Excalidraw/Drawing 07-29-25_1.md",
     "Home.md",
-    "Content/Development/C/Welcome to C.md",
-    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
-    "Content/Development/Cyber Security/Prof. Messer/1.1-1.3.md",
-    "Content/Development/Cyber Security/Prof. Messer/1.4.md",
+    "Assets/Excalidraw/Drawing 07-29-25_2.md",
+    "Assets/Excalidraw/Welcome to Cyber Security 07-29-25.md",
+    "Assets/Assets.md",
+    "CONTRIBUTING.md",
+    "Content/School/Spring 2025.md",
+    "School.md",
     "Development.md",
+    "Content/Content.md",
+    "Content/School/Database Design/Chapter 3.md",
+    "Content/School/Database Design/Chapter 2.md",
+    "Content/School/Database Design/Chapter 1.md",
+    "Content/School/Database Design/DatabaseDesignCh2.md",
+    "Content/School/Database Design/Database Design.md",
+    "Content/Other/1. Obsidian Commands.md",
+    "Content/Development/Development.md",
+    "Content/Development/JavaScript/Welcome to JavaScript.md",
+    "Content/Development/Cyber Security/Cyber Security.md",
+    "Content/Development/C/Beginner/Compiler.md",
+    "Content/Development/C/Beginner/IDE.md",
+    "Content/Development/C++/Welcome to C++.md",
+    "Content/Development/C++/References/STL/STL.md",
+    "Content/Development/Assembly/Assembly.md",
+    "Content/Development/C/Welcome to C.md",
+    "Content/Development/C/C.md",
     "Content/Development/Cyber Security/Prof. Messer",
     "Content/Development/Cyber Security/CompTIA Network+/Messer",
     "Content/Development/Cyber Security/CompTIA Network+",
-    "Content/Development/C/Beginner/Compiler.md",
-    "Assets/Templates/Section Template.md",
-    "Assets/Templates/Table of Contents Template.md",
-    "Assets/Templates/Menu Template.md",
-    "Assets/Templates/New Note with Nav Template.md",
-    "Gaming.md",
-    "Content/Development/Development.md",
-    "Content/Other/Other.md",
-    "Content/Other/1. Obsidian Commands.md",
     "Untitled.canvas",
     "Assets/Attachments/codepedia_logo.png",
     "Assets/Attachments/codepedia_logo_full.png",
-    "Content/Development/C++/Welcome to C++.md",
-    "Content/Development/JavaScript/Welcome to JavaScript.md",
-    "Other.md",
-    "Assets/Excalidraw/Drawing 07-29-25_2.md",
-    "Assets/Excalidraw/Drawing 07-29-25_1.md",
-    "Assets/Excalidraw/Drawing 07-29-25_0.md",
-    "Content/Development/Cyber Security/Untitled Kanban.md",
-    "Content/Development/Version Control/Git/1.2 Branching and Merging.md",
-    "Content/Development/C/K&R/0. INTRODUCTION.md",
     "Assets/Excalidraw/Scripts",
     "Assets/Excalidraw/Templates",
     "Assets/Excalidraw/Annotations",
