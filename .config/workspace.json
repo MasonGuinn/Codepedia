@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Content/Development/Cyber Security/Welcome to Cyber Security.md",
+                "file": "Development.md",
                 "mode": "preview",
-                "source": true,
+                "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Welcome to Cyber Security"
+              "title": "Development"
             }
           }
         ]
@@ -151,8 +151,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           }
         ]
@@ -172,22 +172,20 @@
       "wikipedia-search:Open Article": true,
       "canvas:Create new canvas": true,
       "obsidian-custom-frames:Open SoundCloud": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
-      "obsidian-spaced-repetition:Review flashcards": false,
-      "omnisearch:Omnisearch": false
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "Home.md",
+    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
     "Development.md",
     "Assets/Templates/Section Template.md",
     "Assets/Templates/Section Template.md~",
-    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
     "Assets/Templates/Table of Contents Template.md",
     "Assets/Templates/New Note with Nav Template.md",
     "Assets/Templates/Menu Template.md",
     "Content/Development/C/Welcome to C.md",
-    "Home.md",
     "Gaming.md",
     "School.md",
     "Content/Development/Cyber Security/Networking/OSI Model.md",
