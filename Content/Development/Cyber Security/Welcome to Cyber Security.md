@@ -9,8 +9,8 @@
 <div class="content-menu">
   <ul>
     <li>
-      <a href="obsidian://open?vault=Codepedia&file=CompTIA Network+/Messer/1.1-1.3">
-        <span>1.1 through 1.3</span>
+      <a href="obsidian://open?vault=Codepedia&file=Networking/OSI Model">
+        <span>OSI Model</span>
       </a>
     </li>
     <li>

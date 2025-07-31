@@ -114,9 +114,19 @@
               "icon": "lucide-file",
               "title": "Plugin no longer active"
             }
+          },
+          {
+            "id": "baf1d34d4f8bd57b",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -136,12 +146,15 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
     "Development.md",
     "Home.md",
+    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
+    "Content/Development/Cyber Security/Networking/OSI Model.md",
+    "Content/Development/Version Control/Welcome to Version Control.md",
+    "Content/Development/C/K&R/1.2 Variables and Arithmetic.md",
+    "Content/Development/C/Welcome to C.md",
     "Gaming.md",
     "Assets/Attachments/Pasted image 20250730175918.png",
-    "Content/Development/Cyber Security/Networking/OSI Model.md",
     "Content/Development/Cyber Security/Prof. Messer/1.4.md",
     "Content/Development/Cyber Security/Networking",
     "Content/Development/Cyber Security/Prof. Messer/1.1-1.3.md",
@@ -161,9 +174,6 @@
     "Content/Other/1. Obsidian Commands.md",
     "Content/Development/Development.md",
     "Content/Development/JavaScript/Welcome to JavaScript.md",
-    "Content/Development/Cyber Security/Cyber Security.md",
-    "Content/Development/C/Beginner/Compiler.md",
-    "Content/Development/C/Beginner/IDE.md",
     "Content/Development/Cyber Security/Prof. Messer",
     "Content/Development/Cyber Security/CompTIA Network+/Messer",
     "Content/Development/Cyber Security/CompTIA Network+",
