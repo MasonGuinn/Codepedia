@@ -5,9 +5,9 @@ course:
   status: In Progress
   chapter: 2
 ---
-%% fold %% <button class="section-heading heading-collapse-indicator" role="button"><span class="text"> `VIEW[{course.title}][text]`</span></button>
-<span class="section-sub-heading heading-collapse-indicator">`VIEW[{course.provider}][text]`</span> `INPUT[status][:course.status]` <span style="display: inline; font-size: 16px;">Chapter:</p> `INPUT[chapter][:course.chapter]`
-
+# %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text">`VIEW[{course.title}][text]`</span></button>
+## %% fold %%<button class="section-sub-heading heading-collapse-indicator" role="button"><span>`VIEW[{course.provider}][text]`</span>
+</button><div>`INPUT[status][:course.status]`<p style="display: inline; font-size: 16px;">Chapter: </p>`INPUT[chapter][:course.chapter]`</div>
 <div class="content-menu">
   <ul>
     <li>
@@ -17,10 +17,8 @@ course:
     </li>
     <li>
       <a href="obsidian://open?vault=Codepedia&file=Beginner/IDE">
-        <span>1.4</span>
+        <span>Example</span>
       </a>
     </li>
   </ul>
 </div>
-
-

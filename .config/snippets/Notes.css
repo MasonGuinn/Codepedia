@@ -157,7 +157,9 @@
     justify-content: center;
 }
 
-.content-menu ul li a {
+.content-menu ul li a,
+.content-menu ul li code
+{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -168,6 +170,25 @@
     height: 100%;
     width: 100%;
     transition: background-color 0.6s;
+}
+
+.content-menu ul li code div {
+    width: 100%;
+}
+
+.content-menu ul li code div a,
+.content-menu ul li code div a:hover
+{
+    color: white;
+    text-decoration: none;
+}
+.content-menu ul li code div a.internal-link {
+    color: white;
+    text-decoration: none;
+}
+
+.content-menu ul li code div a.external-link {
+    background-image: none;
 }
 
 /* Content Menu Light-Mode */

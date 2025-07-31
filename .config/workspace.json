@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Development.md",
+                "file": "Home.md",
                 "mode": "preview",
-                "source": false,
+                "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Development"
+              "title": "Home"
             }
           }
         ]
@@ -154,13 +154,22 @@
               "icon": "lucide-file",
               "title": "Plugin no longer active"
             }
+          },
+          {
+            "id": "12f225e5cec7ac58",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -172,23 +181,28 @@
       "wikipedia-search:Open Article": true,
       "canvas:Create new canvas": true,
       "obsidian-custom-frames:Open SoundCloud": false,
-      "obsidian-excalidraw-plugin:New drawing": false
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-spaced-repetition:Review flashcards": false,
+      "omnisearch:Omnisearch": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "d5e56f2ac090749e",
   "lastOpenFiles": [
+    "Gaming.md",
     "Home.md",
-    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
-    "Development.md",
-    "Assets/Templates/Section Template.md",
-    "Assets/Templates/Section Template.md~",
     "Assets/Templates/Table of Contents Template.md",
+    "Assets/Templates/Untitled.md",
     "Assets/Templates/New Note with Nav Template.md",
     "Assets/Templates/Menu Template.md",
-    "Content/Development/C/Welcome to C.md",
-    "Gaming.md",
-    "School.md",
+    "Assets/Templates/Course Template.md",
+    "Assets/Templates/Course Dashboard.md",
+    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
+    "Development.md",
+    "Assets/Templates/Course Chapter Template.md",
     "Content/Development/Cyber Security/Networking/OSI Model.md",
+    "Assets/Templates/Section Template.md~",
+    "Content/Development/C/Welcome to C.md",
+    "School.md",
     "Content/Development/Version Control/Welcome to Version Control.md",
     "Content/Development/C/K&R/1.2 Variables and Arithmetic.md",
     "Assets/Attachments/Pasted image 20250730175918.png",
@@ -203,8 +217,6 @@
     "Content/School/Spring 2025.md",
     "Content/Content.md",
     "Content/School/Database Design/Chapter 3.md",
-    "Content/School/Database Design/Chapter 2.md",
-    "Content/School/Database Design/Chapter 1.md",
     "Content/Development/Cyber Security/Prof. Messer",
     "Content/Development/Cyber Security/CompTIA Network+/Messer",
     "Content/Development/Cyber Security/CompTIA Network+",
