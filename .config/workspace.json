@@ -124,9 +124,19 @@
               "icon": "lucide-file",
               "title": "Plugin no longer active"
             }
+          },
+          {
+            "id": "246d8fb2dc5c07ec",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -144,12 +154,49 @@
       "canvas:Create new canvas": true
     }
   },
+  "floating": {
+    "id": "29dfa84944e59717",
+    "type": "floating",
+    "children": [
+      {
+        "id": "23902bef6d391466",
+        "type": "window",
+        "children": [
+          {
+            "id": "7d7998d71c861717",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "c12ae2f2d6fe8ba7",
+                "type": "leaf",
+                "state": {
+                  "type": "webviewer",
+                  "state": {
+                    "mode": "blank"
+                  },
+                  "icon": "globe-2",
+                  "title": "New web viewer"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 448,
+        "y": 116,
+        "width": 1024,
+        "height": 800,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "Development.md",
-    "Home.md",
     "Content/Development/Cyber Security/Welcome to Cyber Security.md",
     "Content/Development/Cyber Security/Networking/OSI Model.md",
+    "Development.md",
+    "Home.md",
     "Content/Development/Version Control/Welcome to Version Control.md",
     "Content/Development/C/K&R/1.2 Variables and Arithmetic.md",
     "Content/Development/C/Welcome to C.md",

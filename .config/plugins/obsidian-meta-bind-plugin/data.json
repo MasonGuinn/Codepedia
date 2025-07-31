@@ -14,11 +14,11 @@
   "enableEditorRightClickMenu": true,
   "inputFieldTemplates": [
     {
-      "name": "section-status",
+      "name": "status",
       "declaration": "INPUT[inlineSelect(defaultValue(Not Started), option(Not Started), option(In Progress), option(Done))]"
     },
     {
-      "name": "chapter-status",
+      "name": "chapter",
       "declaration": "INPUT[number(defaultValue(0))]"
     }
   ],
