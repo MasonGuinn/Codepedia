@@ -3,7 +3,8 @@
   "enabledCssSnippets": [
     "ToolbarNavigation",
     "Navigation",
-    "Notes"
+    "Notes",
+    "components"
   ],
   "cssTheme": "Minimal",
   "monospaceFontFamily": "Cascadia Code",

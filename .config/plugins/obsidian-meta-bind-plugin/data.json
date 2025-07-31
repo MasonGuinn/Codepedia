@@ -1,15 +1,13 @@
 {
   "devMode": false,
   "ignoreCodeBlockRestrictions": false,
-  "preferredDateFormat": "YYYY-MM-DD",
+  "preferredDateFormat": "MM-DD-YY",
   "firstWeekday": {
     "index": 1,
     "name": "Monday",
     "shortName": "Mo"
   },
   "syncInterval": 200,
-  "minSyncInterval": 50,
-  "maxSyncInterval": 1000,
   "enableJs": false,
   "viewFieldDisplayNullAsEmpty": false,
   "enableSyntaxHighlighting": true,
@@ -18,10 +16,16 @@
     {
       "name": "section-status",
       "declaration": "INPUT[inlineSelect(defaultValue(Not Started), option(Not Started), option(In Progress), option(Done))]"
+    },
+    {
+      "name": "chapter-status",
+      "declaration": "INPUT[number(defaultValue(0))]"
     }
   ],
   "buttonTemplates": [],
   "excludedFolders": [
     "templates"
-  ]
+  ],
+  "minSyncInterval": 50,
+  "maxSyncInterval": 1000
 }

@@ -52,7 +52,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 278.5
+    "width": 321.5
   },
   "right": {
     "id": "0cbac843d665c890",
@@ -104,8 +104,19 @@
               "icon": "links-coming-in",
               "title": "Backlinks for Home"
             }
+          },
+          {
+            "id": "ba0fb53891ad4ca4",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -120,20 +131,67 @@
       "command-palette:Open command palette": false,
       "obsidian-git:Open Git source control": true,
       "wikipedia-search:Open Article": true,
-      "canvas:Create new canvas": true
+      "canvas:Create new canvas": true,
+      "obsidian-spaced-repetition:Review flashcards": false
     }
+  },
+  "floating": {
+    "id": "50f921baaa9efd47",
+    "type": "floating",
+    "children": [
+      {
+        "id": "9c437fac54066b96",
+        "type": "window",
+        "children": [
+          {
+            "id": "e5883489604e2a90",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "ff79734e3d4d9c2f",
+                "type": "leaf",
+                "state": {
+                  "type": "webviewer",
+                  "state": {
+                    "url": "https://www.moritzjung.dev/obsidian-meta-bind-plugin-docs/reference/inputfields/number/",
+                    "title": "Number | Meta Bind Docs",
+                    "mode": "webview"
+                  },
+                  "icon": "globe-2",
+                  "title": "Number | Meta Bind Docs"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 448,
+        "y": 116,
+        "width": 1024,
+        "height": 800,
+        "maximize": true,
+        "zoom": 0
+      }
+    ]
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "Assets/Excalidraw/Drawing 07-29-25_1.md",
+    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
+    "Development.md",
     "Home.md",
+    "Gaming.md",
+    "Assets/Attachments/Pasted image 20250730175918.png",
+    "Content/Development/Cyber Security/Networking/OSI Model.md",
+    "Content/Development/Cyber Security/Prof. Messer/1.4.md",
+    "Content/Development/Cyber Security/Networking",
+    "Content/Development/Cyber Security/Prof. Messer/1.1-1.3.md",
+    "Assets/Excalidraw/Drawing 07-29-25_1.md",
     "Assets/Excalidraw/Drawing 07-29-25_2.md",
     "Assets/Excalidraw/Welcome to Cyber Security 07-29-25.md",
     "Assets/Assets.md",
     "CONTRIBUTING.md",
     "Content/School/Spring 2025.md",
     "School.md",
-    "Development.md",
     "Content/Content.md",
     "Content/School/Database Design/Chapter 3.md",
     "Content/School/Database Design/Chapter 2.md",
@@ -146,11 +204,6 @@
     "Content/Development/Cyber Security/Cyber Security.md",
     "Content/Development/C/Beginner/Compiler.md",
     "Content/Development/C/Beginner/IDE.md",
-    "Content/Development/C++/Welcome to C++.md",
-    "Content/Development/C++/References/STL/STL.md",
-    "Content/Development/Assembly/Assembly.md",
-    "Content/Development/C/Welcome to C.md",
-    "Content/Development/C/C.md",
     "Content/Development/Cyber Security/Prof. Messer",
     "Content/Development/Cyber Security/CompTIA Network+/Messer",
     "Content/Development/Cyber Security/CompTIA Network+",
@@ -164,13 +217,11 @@
     "Assets/Excalidraw",
     "Config/Resources/showcase_pic03.png",
     "Excalidraw",
-    "^/Change Me",
     "Config/Resources/Pasted image 20250509221542.png",
     "Config/Resources/Pasted image 20250509220244.png",
     "Config/Resources/Pasted image 20250509220202.png",
     "Config/Resources/Pasted image 20250430184906.png",
     "Config/Resources/Pasted image 20250430184756.png",
-    "Config/Resources/Pasted image 20250430184435.png",
-    "Config/Resources/Pasted image 20250430184126.png"
+    "Config/Resources/Pasted image 20250430184435.png"
   ]
 }

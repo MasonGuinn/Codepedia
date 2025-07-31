@@ -1,8 +1,11 @@
 ---
-Professor Messer Series: In Progress
+"Chapter: Professor Messer": 2
+"Section: Professor Messer Series": In Progress
 ---
+
 # %% fold %%<button class="section-heading heading-collapse-indicator" role="button"><span class="text"> CompTIA Network+ (N10-009)</span></button>
-## %% fold %%<span class="section-sub-heading heading-collapse-indicator">Professor Messer Series</span> `INPUT[section-status][:["Professor Messer Series"]]`
+## %% fold %%<span class="section-sub-heading heading-collapse-indicator">Professor Messer Series</span> `INPUT[section-status][:["Section: Professor Messer Series"]]` <p style="display: inline; font-size: 16px;">Chapter:</p> `INPUT[chapter-status][:["Chapter: Professor Messer"]]`
+
 <div class="content-menu">
   <ul>
     <li>
