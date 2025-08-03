@@ -114,13 +114,62 @@
               "icon": "links-coming-in",
               "title": "Backlinks for Welcome to C"
             }
+          },
+          {
+            "id": "3770adc087367374",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "a55eba02767079cf",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "dad1c5035e224467",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "e1cd259e9ecdd901",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "f671f2710fe18229",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -136,23 +185,23 @@
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
     "Content/Development/C/Welcome to C.md",
+    "Development.md",
+    "Home.md",
+    "Assets/Templates/Course Template.md",
+    "Assets/Templates/Menu Template.md",
+    "Assets/Templates/New Note with Nav Template.md",
+    "Assets/Templates/Table of Contents Template.md",
     "Content/Development/C/K&R/0. INTRODUCTION.md",
+    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
     "Content/Development/C/K&R/1.1 Getting Started.md",
     "Content/Development/C/Welcome to C.md~",
     "Content/Development/C/Beginner/Compiler.md",
     "Content/Development/C/Beginner/IDE.md",
-    "Content/Development/Cyber Security/Welcome to Cyber Security.md",
-    "Assets/Templates/Course Template.md",
-    "Development.md",
     "Content/Development/Cyber Security/Networking/OSI Model.md",
     "Content/Development/C/K&R/1.4 Symbolic Constants.md",
     "Content/Development/C/K&R/1.2 Variables and Arithmetic.md",
-    "Home.md",
     "Gaming.md",
-    "Assets/Templates/Table of Contents Template.md",
     "Assets/Templates/Untitled.md",
-    "Assets/Templates/New Note with Nav Template.md",
-    "Assets/Templates/Menu Template.md",
     "Assets/Templates/Course Dashboard.md",
     "Assets/Templates/Course Chapter Template.md",
     "Assets/Templates/Section Template.md~",
